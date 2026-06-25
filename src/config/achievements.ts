@@ -43,8 +43,8 @@ export const achievements: Achievement[] = [
       "Triaged and remediated through HackerOne's coordinated disclosure.",
     ],
     featured: true,
-    image: "/assets/achievements/critical_severity(2).png",
-    gallery: ["/assets/achievements/critical_severity(2).png"],
+    image: "/assets/achievements/critical-severity-9-1.png",
+    gallery: ["/assets/achievements/critical-severity-9-1.png"],
   },
 ];
 
