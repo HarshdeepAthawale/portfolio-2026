@@ -16,7 +16,7 @@ export const experience: ExperienceItem[] = [
     role: "Security Engineer Intern — Android Security",
     periodShort: "Jun 26 – Jul 26",
     periodLong: "June 2026 – July 2026",
-    locationShort: "Kanpur, IN",
+    locationShort: "Kanpur, IN (Hybrid)",
     locationLong: "Kanpur, India (Hybrid)",
     working: true,
     details: [
@@ -31,7 +31,7 @@ export const experience: ExperienceItem[] = [
     role: "Security Engineer",
     periodShort: "Mar 26 – Apr 26",
     periodLong: "March 2026 – April 2026",
-    locationShort: "Delhi, IN",
+    locationShort: "Delhi, IN (Hybrid)",
     locationLong: "Delhi, India (Hybrid)",
     details: [
       "Performed vulnerability assessments across REST APIs, authentication flows, and a sandboxed code-execution layer — surfacing broken access control, injection, and cross-tenant data-leakage gaps and driving remediation before launch.",
@@ -45,7 +45,7 @@ export const experience: ExperienceItem[] = [
     role: "Security Researcher",
     periodShort: "Dec 25 – Mar 26",
     periodLong: "December 2025 – March 2026",
-    locationShort: "Remote",
+    locationShort: "San Francisco, CA (Remote)",
     locationLong: "San Francisco, CA (Remote)",
     details: [
       "Submitted 35+ vulnerability reports to global programs including Goldman Sachs, NASA, Flipkart, Adobe, Netflix, Red Bull, NVIDIA, Anduril, Coca-Cola, and Superdrug — headlined by a Critical (CVSS 9.1) GraphQL flaw at Red Bull exposing employee PII, and an unauthenticated API exposing 892 employees' PII with write access to a production database.",
