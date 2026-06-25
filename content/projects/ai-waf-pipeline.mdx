@@ -1,0 +1,28 @@
+---
+title: "Transformer-Based AI WAF"
+description: "An AI-driven web application firewall using DistilBERT anomaly detection, with a production pipeline for rate limiting, DDoS mitigation, and multi-tenant metrics."
+date: "02.2026"
+tech: ["PyTorch", "DistilBERT", "FastAPI", "Next.js", "Docker", "Redis", "Nginx"]
+---
+
+A web application firewall that learns what *normal* traffic looks like, instead of relying on hand-written signatures and rules.
+
+## The idea
+
+Traditional WAFs match requests against a ruleset. That works until an attacker sends something the ruleset has never seen — a zero-day, an obfuscated payload, a novel attack pattern. This project flips the model: train on **benign traffic only**, then flag anything that deviates.
+
+## Detection engine
+
+- A **DistilBERT** model is fine-tuned on a corpus of legitimate HTTP requests.
+- Incoming requests are scored for anomaly in real time via a **FastAPI** service.
+- Because the design is **signature- and rule-agnostic**, it generalizes to attack classes it was never explicitly trained on.
+
+## Production pipeline
+
+- **Redis-backed rate limiting** and **DDoS mitigation** — burst detection and request-size enforcement.
+- A **multi-tenant Next.js dashboard** for metrics, alerting, and audit.
+- Containerized with **Docker** and fronted by **Nginx**.
+
+## Stack
+
+PyTorch · DistilBERT · FastAPI · Next.js · Docker · PostgreSQL · Redis · Nginx

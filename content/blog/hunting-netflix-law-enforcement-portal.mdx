@@ -1,0 +1,30 @@
+---
+title: "I Spent a Day Hunting Netflix's Law Enforcement Portal"
+description: "Source maps, archived JavaScript, and a hardcoded Contentful token — plus the twist that someone had already reported it five months earlier."
+date: "Apr 2026"
+cover: "/assets/blog/netflix-cover.jpg"
+---
+
+> Originally published on [Medium](https://harshdeepathawale.medium.com/i-spent-a-day-hunting-netflixs-law-enforcement-portal-here-s-what-i-found-and-who-got-there-ba54866ce52f).
+
+A bug bounty story about Netflix's law enforcement portal — and a lesson about the difference between *removing* a secret and *revoking* one.
+
+## Source maps left the door open
+
+The portal shipped a **5.3 MB source map** containing 678 source files of unminified TypeScript. That's the entire front-end laid bare — routes, API calls, and the kind of details that turn a black-box target into a white-box one.
+
+## The hardcoded token
+
+Digging through **archived JavaScript builds** (via the Wayback Machine) from March 2026, I found a hardcoded **Contentful CMS API token**. It granted read access to **951 live entries** — including law enforcement procedures and emergency disclosure criteria.
+
+## Removal is not revocation
+
+The token had been stripped from the *current* build — but it was never **rotated**. So the archived versions remained fully exploitable. Deleting a secret from your source code does nothing if the secret still works on the backend.
+
+## The twist
+
+After all that, I discovered the same vulnerability had already been reported in **November 2025** for a $600 bounty. My finding matched it exactly. A reminder that in bug bounty, you're racing a global field — and sometimes you get there second.
+
+## Takeaway
+
+Check archived builds, not just live ones. And if you're a defender: **rotate** leaked credentials, don't just delete the line that printed them.

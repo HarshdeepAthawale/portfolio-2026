@@ -1,0 +1,30 @@
+---
+title: "One Word in a Subdomain Exposed Red Bull User Data"
+description: "A Critical (CVSS 9.1) data exposure found through recon alone — a single keyword in a subdomain led to an unauthenticated CMS API leaking ~140 user records."
+date: "Jun 2026"
+cover: "/assets/blog/red-bull-cover.jpg"
+---
+
+> Originally published on [Medium](https://harshdeepathawale.medium.com/one-word-in-a-subdomain-exposed-red-bull-user-data-1a4b97b13179).
+
+Sometimes the bug isn't in the exploit — it's in the **reconnaissance**. This is the story of how a single word in a subdomain hostname led to a Critical (CVSS 9.1) data exposure at Red Bull.
+
+## The recon
+
+Scanning **certificate transparency logs**, I noticed a hostname containing `cms` and `staging`. Both words are tells: staging infrastructure is often less hardened than production, and a headless CMS exposes APIs by default.
+
+## Fingerprinting
+
+From response headers and default endpoints, I identified the software as a popular **open-source headless CMS**. That told me exactly which API routes to probe.
+
+## The flaw
+
+I tested the simplest possible thing: *is authentication actually enforced?* I made an **anonymous, unauthenticated request** to a content API endpoint — and it returned real production data: roughly **140 user records** with names, emails, and competition applicants' phone numbers.
+
+## Confirming impact
+
+The severity became undeniable when a genuine `@redbull.com` employee email appeared in the results, proving this was live production data and not test fixtures. Scored **CVSS 9.1** and reported through coordinated disclosure.
+
+## The lesson
+
+You don't always need a clever payload. Reading subdomain names, fingerprinting software, and asking "is this actually locked down?" finds critical bugs that scanners walk right past.
