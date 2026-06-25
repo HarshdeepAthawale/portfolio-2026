@@ -77,8 +77,12 @@ export function AchievementCard({
           </div>
           <div className="flex min-w-[64px] shrink-0 flex-col text-right text-xs text-secondary md:min-w-[100px]">
             <p className="font-medium text-foreground">{achievement.year}</p>
-            <p className="md:hidden">{achievement.periodShort}</p>
-            <p className="hidden md:block">{achievement.periodLong}</p>
+            {achievement.periodShort !== achievement.year && (
+              <p className="md:hidden">{achievement.periodShort}</p>
+            )}
+            {achievement.periodLong !== achievement.year && (
+              <p className="hidden md:block">{achievement.periodLong}</p>
+            )}
           </div>
         </div>
 
