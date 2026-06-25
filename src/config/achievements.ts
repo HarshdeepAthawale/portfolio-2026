@@ -19,7 +19,7 @@ export const achievements: Achievement[] = [
     title: "Top 1% Worldwide",
     organization: "TryHackMe",
     year: "2026",
-    periodShort: "2026",
+    periodShort: "2025–26",
     periodLong: "2025 – 2026",
     details: [
       "Ranked in the Top 1% worldwide (India Rank #2,052).",
@@ -35,8 +35,8 @@ export const achievements: Achievement[] = [
     title: "Critical · CVSS 9.1",
     organization: "Red Bull",
     year: "2026",
-    periodShort: "2026",
-    periodLong: "Early 2026",
+    periodShort: "June",
+    periodLong: "June",
     details: [
       "Found an unauthenticated headless-CMS API on a staging subdomain leaking ~140 user records.",
       "Documented with a CVSS 3.1 score and full reproduction steps; written up on Medium.",
