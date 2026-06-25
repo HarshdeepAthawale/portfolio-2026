@@ -3,7 +3,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { lastPlayedTrack } from "@/config/spotify";
 
 type LiveTrack = {
   isPlaying: boolean;
@@ -25,7 +24,8 @@ function VinylDisc() {
 }
 
 export function SpotifyLastPlayed() {
-  const [live, setLive] = useState<LiveTrack | null>(null);
+  const [track, setTrack] = useState<LiveTrack | null>(null);
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     let active = true;
@@ -35,9 +35,11 @@ export function SpotifyLastPlayed() {
         const res = await fetch("/api/spotify");
         if (!res.ok) return;
         const data = (await res.json()) as { track: LiveTrack | null };
-        if (active && data.track) setLive(data.track);
+        if (active) setTrack(data.track);
       } catch {
-        // Ignore — fall back to the static track.
+        // Ignore — the card stays hidden if the API is unavailable.
+      } finally {
+        if (active) setLoaded(true);
       }
     };
 
@@ -51,8 +53,31 @@ export function SpotifyLastPlayed() {
     };
   }, []);
 
-  const track = live ?? lastPlayedTrack;
-  const label = live?.isPlaying ? "Now playing" : "Last played";
+  // Until the first fetch resolves, show a skeleton (no hardcoded track).
+  if (!loaded) {
+    return (
+      <div className="group w-full max-w-xs">
+        <div className="flex items-center gap-3 rounded-xl border border-border bg-card/80 p-2.5 shadow-sm backdrop-blur-sm">
+          <div className="relative flex h-14 w-16 shrink-0 items-center">
+            <div className="relative z-10 h-14 w-14 animate-pulse overflow-hidden rounded-[3px] bg-muted ring-1 ring-black/10" />
+            <div className="absolute -right-0.5 top-1/2 z-0 -translate-y-1/2">
+              <VinylDisc />
+            </div>
+          </div>
+          <div className="min-w-0 flex-1 space-y-1.5">
+            <div className="h-2 w-16 animate-pulse rounded bg-muted" />
+            <div className="h-3 w-28 animate-pulse rounded bg-muted" />
+            <div className="h-2 w-20 animate-pulse rounded bg-muted" />
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Loaded but the API returned nothing — hide the card (never show a fake track).
+  if (!track) return null;
+
+  const label = track.isPlaying ? "Now playing" : "Last played";
 
   return (
     <div className="group w-full max-w-xs">
@@ -65,6 +90,7 @@ export function SpotifyLastPlayed() {
               fill
               sizes="56px"
               className="object-cover"
+              unoptimized
             />
             <div className="pointer-events-none absolute inset-y-0 right-0 w-2 bg-linear-to-l from-black/25 to-transparent" />
           </div>
@@ -78,7 +104,7 @@ export function SpotifyLastPlayed() {
           <p className="flex items-center gap-1 text-[10px] text-secondary">
             <span
               className={
-                live?.isPlaying
+                track.isPlaying
                   ? "size-1 animate-pulse rounded-full bg-[#1DB954]"
                   : "size-1 rounded-full bg-secondary/60"
               }
