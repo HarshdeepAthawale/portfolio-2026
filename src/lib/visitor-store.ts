@@ -8,15 +8,23 @@ type VisitorData = {
   count: number;
 };
 
+// Supports both the Upstash-direct names and the Vercel Marketplace / KV names,
+// so it works no matter how the Redis database is provisioned.
+function redisUrl() {
+  return process.env.UPSTASH_REDIS_REST_URL ?? process.env.KV_REST_API_URL;
+}
+
+function redisToken() {
+  return process.env.UPSTASH_REDIS_REST_TOKEN ?? process.env.KV_REST_API_TOKEN;
+}
+
 function hasRedisConfig() {
-  return Boolean(
-    process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN,
-  );
+  return Boolean(redisUrl() && redisToken());
 }
 
 async function redisGet(): Promise<number> {
-  const url = process.env.UPSTASH_REDIS_REST_URL!;
-  const token = process.env.UPSTASH_REDIS_REST_TOKEN!;
+  const url = redisUrl()!;
+  const token = redisToken()!;
 
   const res = await fetch(`${url}/get/${REDIS_KEY}`, {
     headers: { Authorization: `Bearer ${token}` },
@@ -32,8 +40,8 @@ async function redisGet(): Promise<number> {
 }
 
 async function redisIncr(): Promise<number> {
-  const url = process.env.UPSTASH_REDIS_REST_URL!;
-  const token = process.env.UPSTASH_REDIS_REST_TOKEN!;
+  const url = redisUrl()!;
+  const token = redisToken()!;
 
   const res = await fetch(`${url}/incr/${REDIS_KEY}`, {
     headers: { Authorization: `Bearer ${token}` },
