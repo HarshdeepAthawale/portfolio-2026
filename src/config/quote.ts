@@ -8,5 +8,4 @@ export const rotatingTitles = [
   "Offensive Security Researcher",
   "Bug Bounty Hunter",
   "Android Security",
-  "CTF Player",
 ];
