@@ -22,6 +22,7 @@ export const projects: Project[] = [
     tech: ["PyTorch", "DistilBERT", "FastAPI", "Next.js", "Docker", "Redis", "Nginx"],
     href: "https://github.com/HarshdeepAthawale",
     featured: true,
+    cover: "/assets/projects/ai-waf.jpg",
     gradient: "from-blue-500/25 via-indigo-500/15 to-violet-500/25",
   },
   {
@@ -33,6 +34,7 @@ export const projects: Project[] = [
     tech: ["Next.js", "React", "TypeScript", "Node.js", "MongoDB", "FFmpeg"],
     href: "https://github.com/HarshdeepAthawale",
     featured: true,
+    cover: "/assets/projects/deepfake.jpg",
     gradient: "from-fuchsia-500/25 via-purple-500/15 to-violet-500/25",
   },
   {
@@ -44,6 +46,7 @@ export const projects: Project[] = [
     tech: ["AWS", "PostgreSQL", "Grafana", "MQTT"],
     href: "https://github.com/HarshdeepAthawale",
     featured: true,
+    cover: "/assets/projects/scada-ics.jpg",
     gradient: "from-emerald-500/25 via-teal-500/15 to-cyan-500/25",
   },
 ];

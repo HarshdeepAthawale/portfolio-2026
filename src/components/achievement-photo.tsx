@@ -39,7 +39,7 @@ export function AchievementPhoto({
         alt={`${achievement.organization} — ${achievement.title}`}
         fill
         sizes="(max-width: 768px) 100vw, 400px"
-        className="object-cover"
+        className="object-contain"
         priority={priority}
         onError={() => setFailed(true)}
       />
