@@ -19,5 +19,5 @@ export const techStack: TechItem[] = [
   { name: "PostgreSQL", icon: "postgresql" },
   { name: "MongoDB", icon: "mongodb" },
   { name: "Redis", icon: "redis" },
-  { name: "AWS", icon: "amazonwebservices" },
+  { name: "AWS", icon: "/assets/tech/aws.svg" },
 ];
