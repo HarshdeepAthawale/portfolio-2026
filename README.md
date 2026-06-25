@@ -2,7 +2,7 @@
 
 Personal portfolio for a security engineer and offensive security researcher. Built with Next.js 15, TypeScript, Tailwind CSS v4, and MDX — clean layout, fast pages, and content you can edit without touching UI code.
 
-![Portfolio preview](./public/assets/readme-preview.png)
+![Portfolio preview](./public/assets/mineport.png)
 
 **Live:** [harshdeepathawale.framer.website](https://harshdeepathawale.framer.website) · **GitHub:** [@HarshdeepAthawale](https://github.com/HarshdeepAthawale)
 
