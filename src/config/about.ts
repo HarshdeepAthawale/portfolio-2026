@@ -27,7 +27,7 @@ export const aboutConfig = {
     paragraphs: [
       "It started with a simple question that wouldn't leave me alone: how does software actually **break**? I'd pull apart apps just to see what assumptions they made — and which ones I could violate. That **curiosity** pulled me straight into security.",
       "At **Thapar Institute**, coursework was only half the story. The other half was late nights on **TryHackMe** labs, reading disclosed reports, and learning to think like an attacker. The grind compounded — 230+ labs and a 300+ day streak into the **Top 1% worldwide**.",
-      "**HackerOne** changed everything. Hunting real programs — Goldman Sachs, NASA, Flipkart, Red Bull — taught me that finding a bug is the easy part. **Proving impact**, writing a report a stranger can reproduce, and scoring it honestly is the craft. A **Critical CVSS 9.1** at Red Bull and an API leaking 892 employees' PII drove that home.",
+      "**HackerOne** changed everything. Hunting real programs — Goldman Sachs, Flipkart, Red Bull — taught me that finding a bug is the easy part. **Proving impact**, writing a report a stranger can reproduce, and scoring it honestly is the craft. A **Critical CVSS 9.1** at Red Bull and an API leaking 892 employees' PII drove that home.",
       "Now I work across the offensive and defensive sides — **vulnerability research**, **Android security** at C3i Hub (IIT Kanpur), and **GRC** (SOC 2, ISO 27001) at Iris Intelligence. I'm still learning fast, and I'm doing it by **breaking things and writing it up**.",
     ],
   },
