@@ -37,11 +37,6 @@ export const achievements: Achievement[] = [
     year: "2026",
     periodShort: "June",
     periodLong: "June",
-    details: [
-      "Found an unauthenticated headless-CMS API on a staging subdomain leaking ~140 user records.",
-      "Documented with a CVSS 3.1 score and full reproduction steps; written up on Medium.",
-      "Triaged and remediated through HackerOne's coordinated disclosure.",
-    ],
     featured: true,
     image: "/assets/achievements/critical-severity-9-1.png",
     gallery: ["/assets/achievements/critical-severity-9-1.png"],
