@@ -7,5 +7,5 @@ export const rotatingTitles = [
   "Security Engineer",
   "Offensive Security Researcher",
   "Bug Bounty Hunter",
-  "Android Security",
+  "Mobile Security",
 ];
