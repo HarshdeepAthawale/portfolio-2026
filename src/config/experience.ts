@@ -12,21 +12,6 @@ export type ExperienceItem = {
 
 export const experience: ExperienceItem[] = [
   {
-    company: "C3i Hub, IIT Kanpur",
-    role: "Security Engineer Intern — Android Security",
-    periodShort: "Jun 26 – Jul 26",
-    periodLong: "June 2026 – July 2026",
-    locationShort: "Kanpur, IN (Hybrid)",
-    locationLong: "Kanpur, India (Hybrid)",
-    working: true,
-    details: [
-      "Performed static and dynamic analysis of Android apps against the OWASP MASVS/MSTG standard using MobSF, JADX, Apktool, Frida, and ADB — decompiling APKs to audit Smali/DEX bytecode and instrumenting runtime behavior on test devices.",
-      "Identified mobile vulnerability classes: insecure local storage, hardcoded API keys and secrets in app binaries, exported activities/content providers, and weak TLS validation enabling MITM interception of app-to-server traffic.",
-      "Reverse-engineered application logic to bypass client-side controls and documented findings with reproducible steps and remediation mapped to MASVS verification levels.",
-    ],
-    tech: ["MobSF", "JADX", "Frida", "Apktool", "ADB", "OWASP MASVS"],
-  },
-  {
     company: "Iris Intelligence",
     role: "Security Engineer",
     periodShort: "Mar 26 – Apr 26",
