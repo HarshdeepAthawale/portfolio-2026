@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { ArrowLeft } from "@phosphor-icons/react/dist/ssr";
 import { AchievementGallery } from "@/components/achievement-gallery";
 import { AchievementPhoto } from "@/components/achievement-photo";
+import { BadgeGallery } from "@/components/badge-gallery";
 import { Container } from "@/components/container";
 import { achievements, getAchievement } from "@/config/achievements";
 
@@ -77,15 +78,27 @@ export default async function AchievementDetailPage({
 
       {hasGallery ? (
         <Container>
-          <h2 className="text-lg font-semibold tracking-tight">Photos</h2>
+          <h2 className="text-lg font-semibold tracking-tight">
+            {achievement.badgeGallery ? "Hall of Fame" : "Photos"}
+          </h2>
           <p className="mt-1 text-sm text-secondary">
-            Moments from {achievement.organization}.
+            {achievement.badgeGallery
+              ? `Badges earned on ${achievement.organization}.`
+              : `Moments from ${achievement.organization}.`}
           </p>
-          <AchievementGallery
-            images={achievement.gallery!}
-            title={achievement.organization}
-            className="mt-6"
-          />
+          {achievement.badgeGallery ? (
+            <BadgeGallery
+              images={achievement.gallery!}
+              title={achievement.organization}
+              className="mt-6"
+            />
+          ) : (
+            <AchievementGallery
+              images={achievement.gallery!}
+              title={achievement.organization}
+              className="mt-6"
+            />
+          )}
         </Container>
       ) : (
         <Container>
