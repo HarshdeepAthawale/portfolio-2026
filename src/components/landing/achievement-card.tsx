@@ -86,6 +86,25 @@ export function AchievementCard({
           </div>
         </div>
 
+        {achievement.badgeGallery && achievement.gallery && (
+          <div className="grid grid-cols-2 gap-2 px-4 pb-3 sm:grid-cols-4">
+            {achievement.gallery.map((src, index) => (
+              <div
+                key={`${src}-${index}`}
+                className="overflow-hidden rounded-lg border border-border bg-muted"
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={src}
+                  alt={`${achievement.organization} — badge ${index + 1}`}
+                  loading="lazy"
+                  className="aspect-[2/1] w-full object-cover"
+                />
+              </div>
+            ))}
+          </div>
+        )}
+
         <CollapsibleContent className="space-y-1.5 px-4 pb-4 text-sm text-secondary">
           {achievement.details?.map((detail) => (
             <p key={detail}>• {detail}</p>

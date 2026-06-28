@@ -10,10 +10,34 @@ export type Achievement = {
   image?: string;
   /** Pinterest-style photo gallery on the detail page */
   gallery?: string[];
+  /** When true, renders the gallery as a uniform badge wall instead of masonry */
+  badgeGallery?: boolean;
   featured?: boolean;
 };
 
 export const achievements: Achievement[] = [
+  {
+    slug: "intigriti-hall-of-fame",
+    title: "Hall of Fame · 4 Badges",
+    organization: "Intigriti",
+    year: "2026",
+    periodShort: "2026",
+    periodLong: "2026",
+    details: [
+      "Recognized on Intigriti with four severity badges across multiple programs.",
+      "Exceptional severity (4×), Critical severity (3×), Medium severity (2×), and First valid submission.",
+      "Consistent valid reports from recon to exploitation chain.",
+    ],
+    featured: true,
+    image: "/assets/achievements/intigriti-exceptional-severity.png",
+    gallery: [
+      "/assets/achievements/intigriti-exceptional-severity.png",
+      "/assets/achievements/intigriti-critical-severity.png",
+      "/assets/achievements/intigriti-medium-severity.png",
+      "/assets/achievements/intigriti-one-valid-submission.png",
+    ],
+    badgeGallery: true,
+  },
   {
     slug: "tryhackme-top-1-percent",
     title: "Top 1% Worldwide",
