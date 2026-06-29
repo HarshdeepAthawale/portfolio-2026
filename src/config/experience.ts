@@ -1,5 +1,6 @@
 export type ExperienceItem = {
   company: string;
+  logo: string;
   role: string;
   periodShort: string;
   periodLong: string;
@@ -13,6 +14,7 @@ export type ExperienceItem = {
 export const experience: ExperienceItem[] = [
   {
     company: "Iris Intelligence",
+    logo: "/assets/experience/irisintelligence.jpg",
     role: "Security Engineer",
     periodShort: "Mar 26 – Apr 26",
     periodLong: "March 2026 – April 2026",
@@ -27,6 +29,7 @@ export const experience: ExperienceItem[] = [
   },
   {
     company: "HackerOne",
+    logo: "/assets/experience/hackerone.jpg",
     role: "Security Researcher",
     periodShort: "Dec 25 – Mar 26",
     periodLong: "December 2025 – March 2026",
