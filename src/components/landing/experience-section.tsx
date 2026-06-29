@@ -1,6 +1,7 @@
 "use client";
 
 import { CaretRight } from "@phosphor-icons/react";
+import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/container";
 import { SectionHeading } from "@/components/section-heading";
@@ -23,7 +24,17 @@ function ExperienceCard({ job, delay }: { job: ExperienceItem; delay: number }) 
       <Collapsible>
         <div className="group/card flex flex-row flex-nowrap items-start justify-between gap-4">
           <div className="flex min-w-0 flex-1 flex-col">
-            <div className="flex flex-wrap items-center gap-2">
+            <div className="flex flex-wrap items-center gap-3">
+              {job.logo && (
+                <Image
+                  src={job.logo}
+                  alt={`${job.company} logo`}
+                  width={36}
+                  height={36}
+                  className="size-9 shrink-0 rounded-lg border border-border object-contain p-1"
+                  unoptimized
+                />
+              )}
               <h3 className="text-xl font-bold sm:text-2xl">{job.company}</h3>
               {job.working && (
                 <div className="flex items-center gap-1 rounded-md border border-green-300 bg-green-500/10 px-2 py-1 text-xs">
