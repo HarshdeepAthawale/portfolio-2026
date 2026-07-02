@@ -43,12 +43,31 @@ export default function ResumePage() {
 
       <Container>
         <div className="overflow-hidden rounded-2xl border border-border bg-card shadow-sm">
+          {/* Desktop: embedded PDF viewer. Mobile browsers won't render a PDF
+              inside an iframe, so we show a tappable page image there instead. */}
           <iframe
             src={resumeConfig.embedUrl}
             title="Harshdeep Athawale resume"
-            className="aspect-[3/4] w-full min-h-[70vh] bg-muted sm:aspect-auto sm:min-h-[80vh]"
+            className="hidden aspect-auto w-full min-h-[80vh] bg-muted sm:block"
             allow="autoplay"
           />
+          <Link
+            href={resumeConfig.viewUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group relative block sm:hidden"
+            aria-label="Open resume PDF"
+          >
+            <img
+              src={resumeConfig.previewImage}
+              alt="Harshdeep Athawale resume preview"
+              className="w-full bg-white"
+            />
+            <span className="absolute inset-x-0 bottom-0 flex items-center justify-center gap-2 bg-gradient-to-t from-black/70 to-transparent px-4 py-4 text-sm font-medium text-white">
+              Tap to open full PDF
+              <ArrowSquareOut className="size-4" />
+            </span>
+          </Link>
         </div>
       </Container>
     </div>
