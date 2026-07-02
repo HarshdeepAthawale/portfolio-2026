@@ -5,4 +5,5 @@ export const resumeConfig = {
   viewUrl: "/assets/resume.pdf",
   embedUrl: "/assets/resume.pdf",
   downloadUrl: "/assets/resume.pdf",
+  previewImage: "/assets/resume-preview.png",
 };
