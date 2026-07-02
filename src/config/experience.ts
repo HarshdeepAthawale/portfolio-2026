@@ -38,7 +38,7 @@ export const experience: ExperienceItem[] = [
     details: [
       "Submitted 35+ vulnerability reports to global programs including Goldman Sachs, Flipkart, Adobe, Netflix, Red Bull, NVIDIA, Anduril, Coca-Cola, and Superdrug — headlined by a Critical (CVSS 9.1) GraphQL flaw at Red Bull exposing employee PII, and an unauthenticated API exposing 892 employees' PII with write access to a production database.",
       "Identified infrastructure and supply-chain risks: an unauthenticated Artifactory access chain combined with npm dependency confusion for build-pipeline RCE, a dangling-CNAME subdomain takeover at Anduril Industries, and exposed source maps leaking OAuth credentials and 149 microservice definitions at Flipkart/Myntra.",
-      "Surfaced sensitive-data exposures: hardcoded OAuth secrets leaking NHS medical data and a cross-organization appointment IDOR at Superdrug, plus PingFederate metrics mapping internal network topology at Goldman Sachs — each documented in a CVSS 3.1-scored, reproducible report.",
+      "Discovered hardcoded OAuth secrets leaking NHS medical data and an appointment IDOR at Superdrug — preventing potential patient-data breaches.",
     ],
     tech: ["Burp Suite", "GraphQL", "IDOR", "Subdomain Takeover", "CVSS 3.1"],
   },
