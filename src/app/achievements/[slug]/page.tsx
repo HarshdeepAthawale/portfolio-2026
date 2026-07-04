@@ -50,7 +50,7 @@ export default async function AchievementDetailPage({
         <div className="mt-6 overflow-hidden rounded-2xl border border-border bg-card">
           <AchievementPhoto
             achievement={achievement}
-            className="aspect-[16/10] w-full sm:aspect-[2/1]"
+            className="aspect-[2/1] w-full"
             priority
           />
           <div className="space-y-4 p-5 sm:p-6">
