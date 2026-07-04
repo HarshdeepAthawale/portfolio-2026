@@ -30,11 +30,11 @@ export function AchievementCard({
       <Link href={detailHref} className="block">
         <AchievementPhoto
           achievement={achievement}
-          className="aspect-[16/10] w-full transition-opacity hover:opacity-95"
+          className="aspect-[2/1] w-full transition-opacity hover:opacity-95"
         />
       </Link>
     ) : (
-      <AchievementPhoto achievement={achievement} className="aspect-[16/10] w-full" />
+      <AchievementPhoto achievement={achievement} className="aspect-[2/1] w-full" />
     )
   ) : null;
 
