@@ -13,6 +13,22 @@ export type ExperienceItem = {
 
 export const experience: ExperienceItem[] = [
   {
+    company: "Intigriti",
+    logo: "/assets/experience/intigriti.jpg",
+    role: "Security Researcher",
+    periodShort: "Apr 26 – Present",
+    periodLong: "April 2026 – Present",
+    locationShort: "Antwerp, BE (Remote)",
+    locationLong: "Antwerp, Belgium (Remote)",
+    working: true,
+    details: [
+      "15+ reports across Intigriti programs.",
+      "Headlined by a Critical CVSS 9.1 GraphQL PII exposure at Red Bull (Critical Hit) and an unauthenticated API at Coca-Cola exposing 892 employees' PII with write access to a production database (Exceptional Find).",
+      "Plus Impact Maker and Bronze severity badges.",
+    ],
+    tech: ["GraphQL", "API Security", "Bug Bounty", "CVSS 3.1"],
+  },
+  {
     company: "Iris Intelligence",
     logo: "/assets/experience/irisintelligence.jpg",
     role: "Security Engineer",
@@ -36,7 +52,7 @@ export const experience: ExperienceItem[] = [
     locationShort: "San Francisco, CA (Remote)",
     locationLong: "San Francisco, CA (Remote)",
     details: [
-      "Submitted 35+ vulnerability reports to global programs including Goldman Sachs, Flipkart, Adobe, Netflix, Red Bull, NVIDIA, Anduril, Coca-Cola, and Superdrug — headlined by a Critical (CVSS 9.1) GraphQL flaw at Red Bull exposing employee PII, and an unauthenticated API exposing 892 employees' PII with write access to a production database.",
+      "Submitted 20+ vulnerability reports to global programs including Goldman Sachs, Flipkart, Adobe, Netflix, NVIDIA, Anduril, and Superdrug — spanning broken access control, injection, and sensitive-data exposure.",
       "Identified infrastructure and supply-chain risks: an unauthenticated Artifactory access chain combined with npm dependency confusion for build-pipeline RCE, a dangling-CNAME subdomain takeover at Anduril Industries, and exposed source maps leaking OAuth credentials and 149 microservice definitions at Flipkart/Myntra.",
       "Discovered hardcoded OAuth secrets leaking NHS medical data and an appointment IDOR at Superdrug — preventing potential patient-data breaches.",
     ],
