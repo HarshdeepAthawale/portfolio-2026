@@ -37,16 +37,4 @@ export const projects: Project[] = [
     cover: "/assets/projects/deepfake.jpg",
     gradient: "from-fuchsia-500/25 via-purple-500/15 to-violet-500/25",
   },
-  {
-    slug: "scada-ics-topology",
-    title: "Secure SCADA/ICS Topology",
-    date: "01.2026",
-    description:
-      "Secure, non-intrusive topology discovery for industrial control networks, aligned with the Purdue Model (Levels 0–5) and NIST. Eliminated insecure protocols (CDP/LLDP) in favour of authenticated telemetry (SNMPv3, NetFlow, Syslog) for real-time OT visibility.",
-    tech: ["AWS", "PostgreSQL", "Grafana", "MQTT"],
-    href: "https://github.com/HarshdeepAthawale",
-    featured: true,
-    cover: "/assets/projects/scada-ics.jpg",
-    gradient: "from-emerald-500/25 via-teal-500/15 to-cyan-500/25",
-  },
 ];
