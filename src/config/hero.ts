@@ -1,11 +1,11 @@
 export const heroConfig = {
   name: "Harshdeep Athawale",
   email: "harshdeepathawale27@gmail.com",
-  bio: "Security engineer and offensive security researcher — I break web, API, and mobile apps and report critical bugs. 35+ reports to programs like Red Bull, Goldman Sachs, Flipkart, and Coca-Cola.",
+  bio: "I break web and mobile apps and report critical bugs. 35+ reports to programs like Red Bull, Goldman Sachs, Flipkart, and Coca-Cola.",
   avatar: "/assets/avatar.png",
   avatarSmile: "/assets/avatar-smile.png",
   timezone: "Asia/Kolkata",
-  location: "Patiala, India",
+  location: "Pune, India",
 };
 
 export const socialLinks = [
