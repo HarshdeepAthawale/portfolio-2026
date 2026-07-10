@@ -3,7 +3,7 @@ import { heroConfig } from "@/config/hero";
 export const aboutConfig = {
   headline: ["From curious tinkering", "to breaking real systems."],
   intro:
-    "I'm Harshdeep Athawale — a **security engineer** and **offensive security researcher**. I find and report critical vulnerabilities across **web, API, and mobile** targets, and I care about the full picture: clear **reproduction**, real **impact**, and remediation that actually holds.",
+    "I'm Harshdeep Athawale, a **security engineer** and **offensive security researcher**. I find and report critical vulnerabilities across **web and mobile** targets, and I care about the full picture: clear **reproduction**, real **impact**, and remediation that actually holds.",
   quote:
     "The best security work is reproducible, honestly scoped, and written so the defender can fix it the same day.",
   traits: ["Curious", "Relentless", "Methodical", "Ethical"] as const,

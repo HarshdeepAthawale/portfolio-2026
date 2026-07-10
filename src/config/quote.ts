@@ -1,6 +1,6 @@
 export const quoteConfig = {
-  text: "Amateurs hack systems, professionals hack people — but the best ones just read the source.",
-  author: "Security folklore",
+  text: "Amateurs hack systems, professionals hack people.",
+  author: "Bruce Schneier",
 };
 
 export const rotatingTitles = [

@@ -13,22 +13,6 @@ export type ExperienceItem = {
 
 export const experience: ExperienceItem[] = [
   {
-    company: "Intigriti",
-    logo: "/assets/experience/intigriti.jpg",
-    role: "Security Researcher",
-    periodShort: "Apr 26 – Present",
-    periodLong: "April 2026 – Present",
-    locationShort: "Antwerp, BE (Remote)",
-    locationLong: "Antwerp, Belgium (Remote)",
-    working: true,
-    details: [
-      "15+ reports across Intigriti programs.",
-      "Headlined by a Critical CVSS 9.1 GraphQL PII exposure at Red Bull (Critical Hit) and an unauthenticated API at Coca-Cola exposing 892 employees' PII with write access to a production database (Exceptional Find).",
-      "Plus Impact Maker and Bronze severity badges.",
-    ],
-    tech: ["GraphQL", "API Security", "Bug Bounty", "CVSS 3.1"],
-  },
-  {
     company: "Iris Intelligence",
     logo: "/assets/experience/irisintelligence.jpg",
     role: "Security Engineer",
