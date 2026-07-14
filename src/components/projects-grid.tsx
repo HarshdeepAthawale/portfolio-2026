@@ -8,31 +8,43 @@ import { getTechIcon } from "@/lib/tech-icons";
 import { cn } from "@/lib/utils";
 
 export function ProjectCard({ project, index = 0 }: { project: Project; index?: number }) {
+  const mark = project.monogram ?? project.title.slice(0, 2).toUpperCase();
+
   return (
     <article
       className="animate-in-up-on-view group flex flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-sm"
       style={{ animationDelay: `${index * 0.05}s` }}
     >
-      <div
-        className={cn(
-          "relative mx-4 mt-4 flex aspect-[16/10] items-center justify-center overflow-hidden rounded-xl bg-muted sm:aspect-[2/1]",
-          !project.cover && ["bg-linear-to-br", project.gradient],
-        )}
-      >
+      <div className="relative mx-4 mt-4 flex aspect-[16/10] items-center justify-center overflow-hidden rounded-xl bg-muted/40 sm:aspect-[2/1]">
         {project.cover ? (
           <Image
             src={project.cover}
             alt={`${project.title} cover`}
             fill
             sizes="(max-width: 640px) 100vw, 400px"
-            className="object-cover object-top transition-transform duration-300 group-hover:scale-[1.02]"
+            className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
           />
         ) : (
           <>
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.35),transparent_55%)]" />
-            <span className="relative text-3xl font-bold tracking-tight text-foreground/20 sm:text-4xl">
-              {project.title.slice(0, 2).toUpperCase()}
-            </span>
+            {/* soft glow behind the tile */}
+            <div
+              className={cn(
+                "pointer-events-none absolute size-24 rounded-[1.6rem] bg-linear-to-br opacity-40 blur-2xl transition-opacity duration-300 group-hover:opacity-60 sm:size-28",
+                project.gradient,
+              )}
+            />
+            {/* monogram tile */}
+            <div
+              className={cn(
+                "relative flex size-20 items-center justify-center overflow-hidden rounded-[1.35rem] bg-linear-to-br shadow-lg ring-1 ring-white/10 transition-transform duration-300 group-hover:scale-[1.04] sm:size-24",
+                project.gradient,
+              )}
+            >
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.35),transparent_60%)]" />
+              <span className="relative text-2xl font-semibold tracking-tight text-white sm:text-3xl">
+                {mark}
+              </span>
+            </div>
           </>
         )}
       </div>

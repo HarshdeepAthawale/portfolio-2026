@@ -9,6 +9,8 @@ export type Project = {
   featured?: boolean;
   /** Optional cover image for project cards */
   cover?: string;
+  /** 2-letter monogram shown on the gradient tile */
+  monogram?: string;
   gradient: string;
 };
 
@@ -22,8 +24,9 @@ export const projects: Project[] = [
     tech: ["PyTorch", "DistilBERT", "ONNX", "FastAPI", "Next.js", "Docker", "Redis", "Nginx"],
     href: "https://github.com/HarshdeepAthawale",
     featured: true,
-    cover: "/assets/projects/ai-waf.jpg",
-    gradient: "from-blue-500/25 via-indigo-500/15 to-violet-500/25",
+    monogram: "AW",
+    cover: "/assets/projects/ai-waf-cover.png",
+    gradient: "from-[#0f1015] via-[#332c63] to-[#8574c0]",
   },
   {
     slug: "deepfake-detection",
@@ -34,7 +37,8 @@ export const projects: Project[] = [
     tech: ["Next.js", "React", "TypeScript", "Node.js", "MongoDB", "FFmpeg"],
     href: "https://github.com/HarshdeepAthawale",
     featured: true,
-    cover: "/assets/projects/deepfake.jpg",
-    gradient: "from-fuchsia-500/25 via-purple-500/15 to-violet-500/25",
+    monogram: "DD",
+    cover: "/assets/projects/deepfake-cover.png",
+    gradient: "from-[#0f1015] via-[#173a3c] to-[#4fa39c]",
   },
 ];
