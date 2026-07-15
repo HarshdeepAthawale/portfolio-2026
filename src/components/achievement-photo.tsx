@@ -10,10 +10,12 @@ export function AchievementPhoto({
   achievement,
   className,
   priority = false,
+  fit = "contain",
 }: {
   achievement: Achievement;
   className?: string;
   priority?: boolean;
+  fit?: "cover" | "contain";
 }) {
   const [failed, setFailed] = useState(false);
   const showPlaceholder = !achievement.image || failed;
@@ -39,7 +41,7 @@ export function AchievementPhoto({
         alt={`${achievement.organization} — ${achievement.title}`}
         fill
         sizes="(max-width: 768px) 100vw, 400px"
-        className="object-contain"
+        className={fit === "cover" ? "object-cover" : "object-contain"}
         priority={priority}
         onError={() => setFailed(true)}
       />
