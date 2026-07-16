@@ -67,7 +67,7 @@ export function AchievementCard({
                 <CollapsibleTrigger
                   className={cn(
                     "group/trigger inline-flex size-6 shrink-0 items-center justify-center rounded-md text-secondary transition-all hover:bg-muted hover:text-foreground",
-                    "opacity-0 group-hover/card:opacity-100 data-[state=open]:opacity-100",
+                    "opacity-100 sm:opacity-0 sm:group-hover/card:opacity-100 data-[state=open]:opacity-100",
                   )}
                   aria-label="Expand details"
                 >
