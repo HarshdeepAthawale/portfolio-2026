@@ -1,7 +1,7 @@
 export const heroConfig = {
   name: "Harshdeep Athawale",
   email: "harshdeepathawale27@gmail.com",
-  bio: "I break web and mobile apps and report critical bugs. 35+ reports to programs like Red Bull, Goldman Sachs, Flipkart, and Coca-Cola.",
+  bio: "I build software and break web and mobile apps to report critical bugs - 35+ vulnerability reports to programs like Red Bull, Goldman Sachs, NVIDIA, Flipkart, and Coca-Cola.",
   avatar: "/assets/avatar.png",
   avatarSmile: "/assets/avatar-smile.png",
   timezone: "Asia/Kolkata",
