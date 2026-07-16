@@ -19,7 +19,7 @@ export const aboutConfig = {
   },
   meta: [
     { label: "Location", value: heroConfig.location },
-    { label: "Status", value: "Open to security roles" },
+    { label: "Status", value: "Open to security roles · Remote" },
     { label: "Focus", value: "AppSec · Bug Bounty · Mobile" },
   ],
   story: {
