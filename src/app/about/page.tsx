@@ -15,7 +15,7 @@ const connectIconMap = {
 };
 
 export const metadata = {
-  title: "About — Harshdeep Athawale",
+  title: "About - Harshdeep Athawale",
   description: aboutConfig.intro.replace(/\*\*/g, ""),
 };
 
@@ -116,7 +116,7 @@ export default function AboutPage() {
         <section className="max-w-2xl space-y-4 rounded-2xl border border-border bg-card/60 p-6">
           <h2 className="text-xl font-bold tracking-tight">Let&apos;s connect</h2>
           <p className="text-sm leading-relaxed text-secondary sm:text-base">
-            Whether you want to collaborate, talk security, or just say hi — I&apos;d love to
+            Whether you want to collaborate, talk security, or just say hi - I&apos;d love to
             hear from you.
           </p>
           <div className="flex flex-wrap gap-2 pt-1">

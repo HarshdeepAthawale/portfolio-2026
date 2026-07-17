@@ -20,7 +20,7 @@ export const projects: Project[] = [
     title: "Transformer-Based AI WAF",
     date: "02.2026",
     description:
-      "A reverse-proxy AI WAF pairing DistilBERT request inspection with Redis rate limiting, DDoS detection, and bot scoring — outperforming ModSecurity OWASP CRS v4 (96% vs 46%) on 675 real-world payloads. Fine-tuned across 10 web attack classes for 97.5% detection on Path Traversal, XXE, SSRF, and LDAP/XPath injection, with inference cut 8× (46ms → 6ms p50) via ONNX Runtime and served as a multi-tenant FastAPI service with monitor, block, and challenge modes.",
+      "A reverse-proxy AI WAF pairing DistilBERT request inspection with Redis rate limiting, DDoS detection, and bot scoring - outperforming ModSecurity OWASP CRS v4 (96% vs 46%) on 675 real-world payloads. Fine-tuned across 10 web attack classes for 97.5% detection on Path Traversal, XXE, SSRF, and LDAP/XPath injection, with inference cut 8× (46ms → 6ms p50) via ONNX Runtime and served as a multi-tenant FastAPI service with monitor, block, and challenge modes.",
     tech: ["PyTorch", "DistilBERT", "ONNX", "FastAPI", "Next.js", "Docker", "Redis", "Nginx"],
     href: "https://github.com/HarshdeepAthawale",
     featured: true,

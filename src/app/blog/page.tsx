@@ -5,7 +5,7 @@ import { Container } from "@/components/container";
 import { getBlogPosts } from "@/lib/mdx";
 
 export const metadata = {
-  title: "Blog — Harshdeep Athawale",
+  title: "Blog - Harshdeep Athawale",
 };
 
 export default async function BlogPage() {

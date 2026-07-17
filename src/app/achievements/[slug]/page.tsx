@@ -20,7 +20,7 @@ export async function generateMetadata({
   const achievement = getAchievement(slug);
   if (!achievement) return {};
   return {
-    title: `${achievement.organization} — Achievements`,
+    title: `${achievement.organization} - Achievements`,
     description: `${achievement.title} at ${achievement.organization}.`,
   };
 }

@@ -50,7 +50,7 @@ function getYearRange(contributions: { date: string }[]) {
   const end = dates[dates.length - 1]!.getFullYear();
   const endShort = String(end).slice(2);
 
-  return start === end ? `${start}` : `${start}–${endShort}`;
+  return start === end ? `${start}` : `${start}-${endShort}`;
 }
 
 export async function GitHubContributions() {
