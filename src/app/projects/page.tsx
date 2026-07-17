@@ -3,7 +3,7 @@ import { ProjectsGrid } from "@/components/projects-grid";
 import { projects } from "@/config/projects";
 
 export const metadata = {
-  title: "Projects — Harshdeep Athawale",
+  title: "Projects - Harshdeep Athawale",
 };
 
 export default function ProjectsPage() {

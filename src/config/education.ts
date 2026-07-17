@@ -2,7 +2,7 @@ export const education = [
   {
     school: "Thapar Institute of Engineering & Technology",
     degree: "B.E. · Computer Engineering",
-    period: "2024—2028",
+    period: "2024-2028",
   },
 ];
 

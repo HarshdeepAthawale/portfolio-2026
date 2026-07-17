@@ -5,7 +5,7 @@ import { Container } from "@/components/container";
 import { achievements } from "@/config/achievements";
 
 export const metadata = {
-  title: "Achievements — Harshdeep Athawale",
+  title: "Achievements - Harshdeep Athawale",
   description: "Hackathon wins, awards, and milestones.",
 };
 

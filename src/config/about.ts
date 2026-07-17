@@ -25,10 +25,10 @@ export const aboutConfig = {
   story: {
     title: "How it started",
     paragraphs: [
-      "It started with a simple question that wouldn't leave me alone: how does software actually **break**? I'd pull apart apps just to see what assumptions they made — and which ones I could violate. That **curiosity** pulled me straight into security.",
-      "At **Thapar Institute**, coursework was only half the story. The other half was late nights on **TryHackMe** labs, reading disclosed reports, and learning to think like an attacker. The grind compounded — 230+ labs and a 300+ day streak into the **Top 1% worldwide**.",
-      "**Bug bounty** changed everything. Hunting real programs on **HackerOne** and **Intigriti** — Goldman Sachs, Flipkart, Coca-Cola, Red Bull — taught me that finding a bug is the easy part. **Proving impact**, writing a report a stranger can reproduce, and scoring it honestly is the craft. A **Critical CVSS 9.1** at Red Bull and an unauthenticated API leaking 892 employees' PII drove that home.",
-      "Now I work across the offensive and defensive sides — **vulnerability research**, **mobile security**, and **GRC** (SOC 2, ISO 27001) at Iris Intelligence. I'm still learning fast, and I'm doing it by **breaking things and writing it up**.",
+      "It started with a simple question that wouldn't leave me alone: how does software actually **break**? I'd pull apart apps just to see what assumptions they made - and which ones I could violate. That **curiosity** pulled me straight into security.",
+      "At **Thapar Institute**, coursework was only half the story. The other half was late nights on **TryHackMe** labs, reading disclosed reports, and learning to think like an attacker. The grind compounded - 230+ labs and a 300+ day streak into the **Top 1% worldwide**.",
+      "**Bug bounty** changed everything. Hunting real programs on **HackerOne** and **Intigriti** - Goldman Sachs, Flipkart, Coca-Cola, Red Bull - taught me that finding a bug is the easy part. **Proving impact**, writing a report a stranger can reproduce, and scoring it honestly is the craft. A **Critical CVSS 9.1** at Red Bull and an unauthenticated API leaking 892 employees' PII drove that home.",
+      "Now I work across the offensive and defensive sides - **vulnerability research**, **mobile security**, and **GRC** (SOC 2, ISO 27001) at Iris Intelligence. I'm still learning fast, and I'm doing it by **breaking things and writing it up**.",
     ],
   },
   principles: {
@@ -60,7 +60,7 @@ export const aboutConfig = {
     title: "Beyond the bugs",
     paragraphs: [
       "Outside of hunting, you'll find me grinding **CTFs** and labs, reading disclosed reports, and reverse-engineering apps just to understand how they tick. I like **learning in public** and sharing what actually worked.",
-      "I'm drawn to engineers who combine **deep technical depth** with **clear communication** — because in security, the report is the product.",
+      "I'm drawn to engineers who combine **deep technical depth** with **clear communication** - because in security, the report is the product.",
     ],
   },
   connectLinks: [

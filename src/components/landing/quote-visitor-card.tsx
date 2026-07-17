@@ -46,7 +46,7 @@ export function QuoteVisitorCard() {
               {quoteConfig.text}
             </p>
             <p className="mt-3 text-right text-sm text-muted-foreground">
-              — {quoteConfig.author}
+              - {quoteConfig.author}
             </p>
           </div>
 

@@ -3,7 +3,7 @@ import { MediaCoverGrid } from "@/components/media-cover-grid";
 import { books } from "@/config/books";
 
 export const metadata = {
-  title: "Books — Harshdeep Athawale",
+  title: "Books - Harshdeep Athawale",
   description:
     "A collection of books that made me pause, think, and see things differently.",
 };

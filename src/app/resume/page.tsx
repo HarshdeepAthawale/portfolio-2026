@@ -4,7 +4,7 @@ import { Container } from "@/components/container";
 import { resumeConfig } from "@/config/resume";
 
 export const metadata = {
-  title: "Resume — Harshdeep Athawale",
+  title: "Resume - Harshdeep Athawale",
   description: resumeConfig.description,
 };
 

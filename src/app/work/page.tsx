@@ -2,7 +2,7 @@ import { Container } from "@/components/container";
 import { ExperienceSection } from "@/components/landing/experience-section";
 
 export const metadata = {
-  title: "Work — Harshdeep Athawale",
+  title: "Work - Harshdeep Athawale",
 };
 
 export default function WorkPage() {

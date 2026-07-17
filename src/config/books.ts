@@ -4,5 +4,5 @@ export type Book = {
   cover: string;
 };
 
-// Add your books here — drop cover images in public/assets/books/
+// Add your books here - drop cover images in public/assets/books/
 export const books: Book[] = [];

@@ -3,7 +3,7 @@ import { MediaCoverGrid } from "@/components/media-cover-grid";
 import { favouriteMovies, favouriteSeries } from "@/config/favourites";
 
 export const metadata = {
-  title: "Favourites — Harshdeep Athawale",
+  title: "Favourites - Harshdeep Athawale",
   description:
     "Stories I've enjoyed and connected with across movies and series.",
 };

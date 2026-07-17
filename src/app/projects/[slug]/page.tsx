@@ -17,7 +17,7 @@ export async function generateMetadata({
   const { slug } = await params;
   const post = await getProjectPost(slug);
   if (!post) return {};
-  return { title: `${post.title} — Projects` };
+  return { title: `${post.title} - Projects` };
 }
 
 export default async function ProjectDetailPage({
