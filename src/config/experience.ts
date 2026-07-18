@@ -36,7 +36,7 @@ export const experience: ExperienceItem[] = [
     locationShort: "San Francisco, CA (Remote)",
     locationLong: "San Francisco, CA (Remote)",
     details: [
-      "Submitted 20+ vulnerability reports to global programs including Goldman Sachs, Flipkart, Adobe, Netflix, NVIDIA, Anduril, and Superdrug - spanning broken access control, injection, and sensitive-data exposure.",
+      "Submitted 35+ vulnerability reports to global programs including Goldman Sachs, Flipkart, Adobe, Netflix, Red Bull, NVIDIA, Anduril, Coca-Cola, and Superdrug - headlined by a Critical (CVSS 9.1) GraphQL flaw at Red Bull exposing employee PII, and an unauthenticated API exposing 892 employees' PII with write access to a production database.",
       "Found high-impact infra and supply-chain bugs: remote code execution in a build pipeline, a subdomain takeover at Anduril, and exposed source maps leaking OAuth secrets at Flipkart/Myntra.",
       "Discovered hardcoded OAuth secrets leaking NHS medical data and an appointment IDOR at Superdrug - preventing potential patient-data breaches.",
     ],
