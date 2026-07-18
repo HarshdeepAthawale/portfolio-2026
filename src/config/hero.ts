@@ -1,6 +1,6 @@
 export const heroConfig = {
   name: "Harshdeep Athawale",
-  email: "harshdeepathawale27@gmail.com",
+  email: "athawaleharshdeep@gmail.com",
   bio: "I build software and break web and mobile apps to report critical bugs - 35+ vulnerability reports to programs like Red Bull, Goldman Sachs, NVIDIA, Flipkart, and Coca-Cola.",
   avatar: "/assets/avatar.png",
   avatarSmile: "/assets/avatar-smile.png",
@@ -26,7 +26,7 @@ export const socialLinks = [
   },
   {
     name: "Mail",
-    href: "mailto:harshdeepathawale27@gmail.com",
+    href: "mailto:athawaleharshdeep@gmail.com",
     icon: "mail" as const,
   },
   {

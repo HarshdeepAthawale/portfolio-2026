@@ -12,7 +12,7 @@ const footerSocial = [
   { name: "LinkedIn", href: "https://www.linkedin.com/in/harshdeepathawale/", icon: LinkedinLogo },
   { name: "GitHub", href: "https://github.com/HarshdeepAthawale", icon: GithubLogo },
   { name: "Medium", href: "https://medium.com/@harshdeepathawale", icon: MediumLogo },
-  { name: "Email", href: "mailto:harshdeepathawale27@gmail.com", icon: EnvelopeSimple },
+  { name: "Email", href: "mailto:athawaleharshdeep@gmail.com", icon: EnvelopeSimple },
 ];
 
 export function SiteFooter() {
