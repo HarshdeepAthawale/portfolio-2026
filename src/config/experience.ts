@@ -37,7 +37,7 @@ export const experience: ExperienceItem[] = [
     locationLong: "San Francisco, CA (Remote)",
     details: [
       "Submitted 20+ vulnerability reports to global programs including Goldman Sachs, Flipkart, Adobe, Netflix, NVIDIA, Anduril, and Superdrug - spanning broken access control, injection, and sensitive-data exposure.",
-      "Identified infrastructure and supply-chain risks: an unauthenticated Artifactory access chain combined with npm dependency confusion for build-pipeline RCE, a dangling-CNAME subdomain takeover at Anduril Industries, and exposed source maps leaking OAuth credentials and 149 microservice definitions at Flipkart/Myntra.",
+      "Found high-impact infra and supply-chain bugs: remote code execution in a build pipeline, a subdomain takeover at Anduril, and exposed source maps leaking OAuth secrets at Flipkart/Myntra.",
       "Discovered hardcoded OAuth secrets leaking NHS medical data and an appointment IDOR at Superdrug - preventing potential patient-data breaches.",
     ],
     tech: ["Burp Suite", "GraphQL", "IDOR", "Subdomain Takeover", "CVSS 3.1"],
