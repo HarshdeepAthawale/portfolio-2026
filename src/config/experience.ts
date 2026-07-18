@@ -22,8 +22,8 @@ export const experience: ExperienceItem[] = [
     locationLong: "Delhi, India (Hybrid)",
     details: [
       "Performed vulnerability assessments across REST APIs, authentication flows, and a sandboxed code-execution layer - surfacing broken access control, injection, and cross-tenant data-leakage gaps and driving remediation before launch.",
-      "Authored SOC 2 and ISO 27001 compliance documentation with privacy-by-design controls - data classification, encryption, retention, and Row-Level Security - establishing the company's GRC baseline.",
-      "Hardened request rate limiting and agent runtime restrictions to keep workloads isolated and abuse-resistant as the platform securely scaled to 5K+ concurrent users.",
+      "Secured an agentic AI platform - sandboxed untrusted code execution and runtime isolation that stopped cross-tenant leakage and kept workloads secure at 5K+ concurrent users.",
+      "Authored SOC 2 and ISO 27001 compliance documentation with privacy-by-design controls (data classification, encryption, retention), establishing the company's GRC baseline.",
     ],
     tech: ["API Security", "SOC 2", "ISO 27001", "RLS", "Threat Modeling"],
   },
