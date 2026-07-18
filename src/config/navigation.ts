@@ -28,5 +28,5 @@ export const commandItems = [
   { label: "GitHub", href: "https://github.com/HarshdeepAthawale", external: true },
   { label: "LinkedIn", href: "https://www.linkedin.com/in/harshdeepathawale/", external: true },
   { label: "Medium", href: "https://medium.com/@harshdeepathawale", external: true },
-  { label: "Email", href: "mailto:harshdeepathawale27@gmail.com", external: true },
+  { label: "Email", href: "mailto:athawaleharshdeep@gmail.com", external: true },
 ];
