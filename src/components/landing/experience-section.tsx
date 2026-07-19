@@ -61,6 +61,9 @@ function ExperienceCard({ job, delay }: { job: ExperienceItem; delay: number }) 
             <p className="hidden md:block">{job.periodLong}</p>
             <p className="md:hidden">{job.locationShort}</p>
             <p className="hidden md:block">{job.locationLong}</p>
+            {job.employmentType && (
+              <p className="text-muted-foreground">{job.employmentType}</p>
+            )}
           </div>
         </div>
         <CollapsibleContent className="mt-4 space-y-2 text-sm text-secondary">
