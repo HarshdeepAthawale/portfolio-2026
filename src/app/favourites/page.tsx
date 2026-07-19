@@ -13,7 +13,7 @@ export default function FavouritesPage() {
     <div className="pb-16 pt-8">
       <Container className="max-w-5xl space-y-12">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Favourites</h1>
+          <h1 className="font-display text-3xl font-medium tracking-tight">Favourites</h1>
           <p className="mt-3 max-w-xl text-secondary">
             Stories I&apos;ve enjoyed and connected with, across movies and series. Some
             inspired me, some made me think, and some I just genuinely loved watching.
