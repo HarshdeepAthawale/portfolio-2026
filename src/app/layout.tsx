@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Plus_Jakarta_Sans, Newsreader, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
@@ -10,9 +10,14 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { siteConfig } from "@/config/meta";
 import "./globals.css";
 
-const geistSans = Geist({
+const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  variable: "--font-geist-sans",
+  variable: "--font-plus-jakarta",
+});
+
+const newsreader = Newsreader({
+  subsets: ["latin"],
+  variable: "--font-newsreader",
 });
 
 const geistMono = Geist_Mono({
@@ -38,7 +43,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} min-h-screen bg-background font-sans antialiased`}
+        className={`${plusJakartaSans.variable} ${newsreader.variable} ${geistMono.variable} min-h-screen bg-background font-sans antialiased`}
         suppressHydrationWarning
       >
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>

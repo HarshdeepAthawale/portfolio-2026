@@ -14,7 +14,7 @@ export default function ResumePage() {
       <Container>
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <h1 className="text-3xl font-bold tracking-tight">{resumeConfig.title}</h1>
+            <h1 className="font-display text-3xl font-medium tracking-tight">{resumeConfig.title}</h1>
             <p className="mt-3 max-w-xl text-secondary">{resumeConfig.description}</p>
           </div>
 

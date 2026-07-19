@@ -36,7 +36,7 @@ export default async function ProjectDetailPage({
           ← Back to projects
         </Link>
         <p className="mt-4 font-mono text-xs text-muted-foreground">{post.date}</p>
-        <h1 className="mt-2 text-3xl font-bold tracking-tight">{post.title}</h1>
+        <h1 className="font-display mt-2 text-3xl font-medium tracking-tight">{post.title}</h1>
         <p className="mt-3 text-secondary">{post.description}</p>
         {post.tech && (
           <div className="mt-4 flex flex-wrap gap-2">

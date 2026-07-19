@@ -43,7 +43,7 @@ export function Hero() {
         <div className="flex items-start gap-4">
           <ProfileAvatar />
           <div className="min-w-0 flex-1">
-            <h1 className="flex items-center gap-2 text-3xl font-bold tracking-tight sm:text-4xl">
+            <h1 className="font-display flex items-center gap-2 text-3xl font-medium tracking-tight sm:text-4xl">
               {heroConfig.name}
               <SealCheck
                 className="size-6 shrink-0 text-[#1D9BF0] sm:size-7"

@@ -55,7 +55,7 @@ export default async function AchievementDetailPage({
           />
           <div className="space-y-4 p-5 sm:p-6">
             <div className="flex flex-wrap items-center gap-2">
-              <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">
+              <h1 className="font-display text-2xl font-medium tracking-tight sm:text-3xl">
                 {achievement.organization}
               </h1>
               <span className="rounded-md border border-border bg-muted px-2.5 py-1 text-xs font-medium text-secondary">

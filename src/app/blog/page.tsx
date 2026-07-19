@@ -14,7 +14,7 @@ export default async function BlogPage() {
   return (
     <div className="space-y-10 pb-16 pt-8">
       <Container>
-        <h1 className="text-3xl font-bold tracking-tight">Blog</h1>
+        <h1 className="font-display text-3xl font-medium tracking-tight">Blog</h1>
         <p className="mt-3 text-secondary">
           Bug bounty writeups, security research, and lessons from the hunt.
         </p>
