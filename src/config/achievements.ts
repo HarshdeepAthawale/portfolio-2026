@@ -21,8 +21,8 @@ export const achievements: Achievement[] = [
     title: "National 1st Runner-Up",
     organization: "PSB Hackathon Series 2026",
     year: "2026",
-    periodShort: "2026",
-    periodLong: "2026",
+    periodShort: "Aug 1",
+    periodLong: "August 1, 2026",
     details: [
       "Organized by the Government of India, Ministry of Finance, with Central Bank of India & MNNIT Allahabad.",
       "Outlasted 226 registered teams through a 30-team shortlist to reach the 8-team grand finale.",
