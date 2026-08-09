@@ -18,7 +18,7 @@ export type Achievement = {
 export const achievements: Achievement[] = [
   {
     slug: "psb-hackathon-series-2026-runner-up",
-    title: "National Runner-Up (2nd Place)",
+    title: "National 1st Runner-Up",
     organization: "PSB Hackathon Series 2026",
     year: "2026",
     periodShort: "2026",
@@ -30,7 +30,10 @@ export const achievements: Achievement[] = [
     ],
     featured: true,
     image: "/assets/achievements/psb-hackathon-series-2026-runner-up.jpg",
-    gallery: ["/assets/achievements/psb-hackathon-series-2026-runner-up.jpg"],
+    gallery: [
+      "/assets/achievements/psb-hackathon-series-2026-runner-up.jpg",
+      "/assets/achievements/psb-hackathon-series-2026-cheque.jpg",
+    ],
   },
   {
     slug: "intigriti-hall-of-fame",
