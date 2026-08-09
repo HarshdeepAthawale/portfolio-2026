@@ -39,8 +39,8 @@ Personal portfolio for a security engineer and offensive security researcher. Bu
 **Requirements:** Node.js 18+
 
 ```bash
-git clone https://github.com/HarshdeepAthawale/My_portfolio.git
-cd My_portfolio
+git clone https://github.com/HarshdeepAthawale/portfolio-2026.git
+cd portfolio-2026
 npm install
 npm run dev
 ```
@@ -61,7 +61,7 @@ Open [http://localhost:3000](http://localhost:3000).
 ## Project Structure
 
 ```
-My_portfolio/
+portfolio-2026/
 ├── src/
 │   ├── app/              # Routes (each folder = a URL)
 │   ├── components/       # Reusable UI + landing sections

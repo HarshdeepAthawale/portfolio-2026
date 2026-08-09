@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Container } from "@/components/container";
 import { quoteConfig } from "@/config/quote";
 import { getOrdinalSuffix } from "@/lib/ordinal";
@@ -8,8 +8,12 @@ import { getOrdinalSuffix } from "@/lib/ordinal";
 export function QuoteVisitorCard() {
   const [count, setCount] = useState<number | null>(null);
   const [failed, setFailed] = useState(false);
+  const requested = useRef(false);
 
   useEffect(() => {
+    if (requested.current) return;
+    requested.current = true;
+
     const key = "visitor-counted";
     const alreadyCounted = sessionStorage.getItem(key);
 
