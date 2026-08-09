@@ -58,6 +58,7 @@ export default function ResumePage() {
             className="group relative block sm:hidden"
             aria-label="Open resume PDF"
           >
+            {/* eslint-disable-next-line @next/next/no-img-element -- iframe PDF viewer doesn't work on mobile, this is a tappable fallback */}
             <img
               src={resumeConfig.previewImage}
               alt="Harshdeep Athawale resume preview"
