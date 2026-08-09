@@ -17,6 +17,22 @@ export type Achievement = {
 
 export const achievements: Achievement[] = [
   {
+    slug: "psb-hackathon-series-2026-runner-up",
+    title: "National Runner-Up (2nd Place)",
+    organization: "PSB Hackathon Series 2026",
+    year: "2026",
+    periodShort: "2026",
+    periodLong: "2026",
+    details: [
+      "Organized by the Government of India, Ministry of Finance, with Central Bank of India & MNNIT Allahabad.",
+      "Outlasted 226 registered teams through a 30-team shortlist to reach the 8-team grand finale.",
+      "Won an INR 3,00,000 cash prize as part of Team Dhurandhar.",
+    ],
+    featured: true,
+    image: "/assets/achievements/psb-hackathon-series-2026-runner-up.jpg",
+    gallery: ["/assets/achievements/psb-hackathon-series-2026-runner-up.jpg"],
+  },
+  {
     slug: "intigriti-hall-of-fame",
     title: "Hall of Fame · 4 Badges",
     organization: "Intigriti",
