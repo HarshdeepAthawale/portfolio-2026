@@ -20,6 +20,11 @@ export const socialLinks = [
     icon: "github" as const,
   },
   {
+    name: "X",
+    href: "https://x.com/harshdeep0x01",
+    icon: "x" as const,
+  },
+  {
     name: "Medium",
     href: "https://medium.com/@harshdeepathawale",
     icon: "medium" as const,

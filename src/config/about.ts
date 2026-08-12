@@ -84,5 +84,10 @@ export const aboutConfig = {
       href: "https://github.com/HarshdeepAthawale",
       icon: "github" as const,
     },
+    {
+      name: "X",
+      href: "https://x.com/harshdeep0x01",
+      icon: "x" as const,
+    },
   ],
 };

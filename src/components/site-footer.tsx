@@ -4,6 +4,7 @@ import {
   GithubLogo,
   LinkedinLogo,
   MediumLogo,
+  XLogo,
 } from "@phosphor-icons/react/dist/ssr";
 import { Container } from "@/components/container";
 import { siteConfig } from "@/config/meta";
@@ -11,6 +12,7 @@ import { siteConfig } from "@/config/meta";
 const footerSocial = [
   { name: "LinkedIn", href: "https://www.linkedin.com/in/harshdeepathawale/", icon: LinkedinLogo },
   { name: "GitHub", href: "https://github.com/HarshdeepAthawale", icon: GithubLogo },
+  { name: "X", href: "https://x.com/harshdeep0x01", icon: XLogo },
   { name: "Medium", href: "https://medium.com/@harshdeepathawale", icon: MediumLogo },
   { name: "Email", href: "mailto:athawaleharshdeep@gmail.com", icon: EnvelopeSimple },
 ];
