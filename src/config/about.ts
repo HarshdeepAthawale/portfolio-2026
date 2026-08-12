@@ -6,6 +6,11 @@ export const aboutConfig = {
     "I'm Harshdeep Athawale, a **software security engineer**. I find and report critical vulnerabilities across **web and mobile** targets, and I care about the full picture: clear **reproduction**, real **impact**, and remediation that actually holds.",
   quote:
     "The best security work is reproducible, honestly scoped, and written so the defender can fix it the same day.",
+  portrait: {
+    src: "/assets/portrait.jpg",
+    alt: "Harshdeep Athawale",
+    caption: heroConfig.location,
+  },
   traits: ["Curious", "Relentless", "Methodical", "Ethical"] as const,
   traitStyles: {
     Curious:
