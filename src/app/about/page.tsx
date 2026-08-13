@@ -28,7 +28,7 @@ export default function AboutPage() {
       <Container>
         <div className="max-w-2xl space-y-8">
           <div className="grid gap-6 sm:grid-cols-[1fr_auto] sm:items-start sm:gap-8">
-            <div className="order-2 space-y-4 sm:order-none">
+            <div className="space-y-4">
               <h1 className="font-display text-3xl font-medium tracking-tight sm:text-4xl">
                 {aboutConfig.headline[0]}
                 <br />
@@ -39,18 +39,18 @@ export default function AboutPage() {
               </p>
             </div>
 
-            <figure className="order-1 mx-auto w-40 shrink-0 sm:order-none sm:mx-0 sm:w-44 md:w-52">
+            <figure className="w-36 shrink-0 sm:w-44 md:w-52">
               <div className="relative aspect-[3/4] overflow-hidden rounded-2xl border border-border bg-muted">
                 <Image
                   src={aboutConfig.portrait.src}
                   alt={aboutConfig.portrait.alt}
                   fill
-                  sizes="(max-width: 640px) 160px, (max-width: 768px) 176px, 208px"
+                  sizes="(max-width: 640px) 144px, (max-width: 768px) 176px, 208px"
                   className="object-cover"
                   priority
                 />
               </div>
-              <figcaption className="mt-2 text-center text-xs text-secondary sm:text-left">
+              <figcaption className="mt-2 text-xs text-secondary">
                 {aboutConfig.portrait.caption}
               </figcaption>
             </figure>
