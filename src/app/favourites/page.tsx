@@ -21,14 +21,14 @@ export default function FavouritesPage() {
         </div>
 
         <div className="space-y-4">
-          <h2 className="text-sm font-semibold uppercase tracking-wider text-secondary">
+          <h2 className="font-mono text-xs font-medium uppercase tracking-[0.2em] text-secondary">
             Movies
           </h2>
           <MediaCoverGrid items={favouriteMovies} />
         </div>
 
         <div className="space-y-4">
-          <h2 className="text-sm font-semibold uppercase tracking-wider text-secondary">
+          <h2 className="font-mono text-xs font-medium uppercase tracking-[0.2em] text-secondary">
             Series
           </h2>
           <MediaCoverGrid items={favouriteSeries} />

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { GithubLogo, Globe } from "@phosphor-icons/react/dist/ssr";
+import { ArrowUpRight, GithubLogo, Globe } from "@phosphor-icons/react/dist/ssr";
 import { Container } from "@/components/container";
 import { SectionHeading } from "@/components/section-heading";
 import { projects, type Project } from "@/config/projects";
@@ -51,7 +51,7 @@ export function ProjectCard({ project, index = 0 }: { project: Project; index?: 
 
       <div className="flex flex-1 flex-col p-4 pt-3">
         <div className="flex items-start justify-between gap-3">
-          <h3 className="text-lg font-bold tracking-tight">{project.title}</h3>
+          <h3 className="font-display text-xl font-medium tracking-tight">{project.title}</h3>
           <div className="flex shrink-0 items-center gap-1">
             {project.website && (
               <Link
@@ -136,9 +136,10 @@ export function ProjectsGrid({
           {showViewAll && (
             <Link
               href="/projects"
-              className="shrink-0 text-xs uppercase tracking-wider text-secondary transition-colors hover:text-foreground"
+              className="inline-flex shrink-0 items-center gap-1 font-mono text-xs uppercase tracking-[0.15em] text-secondary transition-colors hover:text-foreground"
             >
               View all
+              <ArrowUpRight className="size-3.5" />
             </Link>
           )}
         </div>

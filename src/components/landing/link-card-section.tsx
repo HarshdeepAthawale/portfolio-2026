@@ -31,7 +31,7 @@ export function LinkCardSection({
               className="group flex flex-row items-center justify-between gap-3 rounded-xl border border-border bg-card px-3 py-2.5 no-underline transition-colors hover:bg-muted/60"
             >
               <div className="min-w-0 flex-1 space-y-0.5">
-                <h3 className="text-base font-semibold leading-tight text-primary">
+                <h3 className="font-display text-base font-medium leading-tight text-primary">
                   {item.title}
                 </h3>
                 <p className="line-clamp-2 text-xs text-secondary sm:text-sm">

@@ -78,7 +78,7 @@ export default function AboutPage() {
           <div className="grid gap-4 border-t border-border pt-6 sm:grid-cols-3">
             {aboutConfig.meta.map((item) => (
               <div key={item.label}>
-                <p className="text-xs uppercase tracking-wider text-secondary">
+                <p className="font-mono text-xs uppercase tracking-[0.15em] text-secondary">
                   {item.label}
                 </p>
                 <p className="mt-1 text-sm font-medium">{item.value}</p>
@@ -90,7 +90,7 @@ export default function AboutPage() {
 
       <Container>
         <section className="max-w-2xl space-y-5">
-          <h2 className="text-xl font-bold tracking-tight">{aboutConfig.story.title}</h2>
+          <h2 className="font-display text-xl font-medium tracking-tight">{aboutConfig.story.title}</h2>
           <div className="space-y-4 text-sm leading-relaxed text-secondary sm:text-base">
             {aboutConfig.story.paragraphs.map((paragraph) => (
               <p key={paragraph}>
@@ -103,14 +103,14 @@ export default function AboutPage() {
 
       <Container>
         <section className="max-w-2xl space-y-6">
-          <h2 className="text-xl font-bold tracking-tight">{aboutConfig.principles.title}</h2>
+          <h2 className="font-display text-xl font-medium tracking-tight">{aboutConfig.principles.title}</h2>
           <div className="grid gap-4 sm:grid-cols-2">
             {aboutConfig.principles.items.map((item) => (
               <div
                 key={item.title}
                 className="rounded-xl border border-border bg-card/60 p-4"
               >
-                <h3 className="font-semibold">{item.title}</h3>
+                <h3 className="font-display text-lg font-medium tracking-tight">{item.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-secondary">
                   {item.description}
                 </p>
@@ -122,7 +122,7 @@ export default function AboutPage() {
 
       <Container>
         <section className="max-w-2xl space-y-4">
-          <h2 className="text-xl font-bold tracking-tight">{aboutConfig.beyond.title}</h2>
+          <h2 className="font-display text-xl font-medium tracking-tight">{aboutConfig.beyond.title}</h2>
           <div className="space-y-4 text-sm leading-relaxed text-secondary sm:text-base">
             {aboutConfig.beyond.paragraphs.map((paragraph) => (
               <p key={paragraph}>
@@ -135,7 +135,7 @@ export default function AboutPage() {
 
       <Container>
         <section className="max-w-2xl space-y-4 rounded-2xl border border-border bg-card/60 p-6">
-          <h2 className="text-xl font-bold tracking-tight">Let&apos;s connect</h2>
+          <h2 className="font-display text-xl font-medium tracking-tight">Let&apos;s connect</h2>
           <p className="text-sm leading-relaxed text-secondary sm:text-base">
             Whether you want to collaborate, talk security, or just say hi - I&apos;d love to
             hear from you.

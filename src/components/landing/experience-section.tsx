@@ -1,6 +1,6 @@
 "use client";
 
-import { CaretRight } from "@phosphor-icons/react";
+import { ArrowUpRight, CaretRight } from "@phosphor-icons/react";
 import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/container";
@@ -35,7 +35,9 @@ function ExperienceCard({ job, delay }: { job: ExperienceItem; delay: number }) 
                   unoptimized
                 />
               )}
-              <h3 className="text-xl font-bold sm:text-2xl">{job.company}</h3>
+              <h3 className="font-display text-xl font-medium tracking-tight sm:text-2xl">
+                {job.company}
+              </h3>
               {job.working && (
                 <div className="flex items-center gap-1 rounded-md border border-green-300 bg-green-500/10 px-2 py-1 text-xs">
                   <div className="size-2 animate-pulse rounded-full bg-green-500" />
@@ -57,10 +59,14 @@ function ExperienceCard({ job, delay }: { job: ExperienceItem; delay: number }) 
             <p className="mt-1 text-base text-secondary">{job.role}</p>
           </div>
           <div className="flex min-w-[96px] shrink-0 flex-col text-right text-sm text-secondary md:min-w-[150px]">
-            <p className="md:hidden">{job.periodShort}</p>
-            <p className="hidden md:block">{job.periodLong}</p>
-            <p className="md:hidden">{job.locationShort}</p>
-            <p className="hidden md:block">{job.locationLong}</p>
+            <p className="font-mono text-xs uppercase tracking-[0.1em] text-foreground/80 md:hidden">
+              {job.periodShort}
+            </p>
+            <p className="hidden font-mono text-xs uppercase tracking-[0.1em] text-foreground/80 md:block">
+              {job.periodLong}
+            </p>
+            <p className="mt-0.5 md:hidden">{job.locationShort}</p>
+            <p className="mt-0.5 hidden md:block">{job.locationLong}</p>
             {job.employmentType && (
               <p className="text-muted-foreground">{job.employmentType}</p>
             )}
@@ -108,9 +114,10 @@ export function ExperienceSection({
       {showAllLink && experience.length > (limit ?? experience.length) && (
         <Link
           href="/work"
-          className="mt-5 inline-flex text-sm text-secondary transition-colors hover:text-foreground"
+          className="mt-5 inline-flex items-center gap-1 font-mono text-xs uppercase tracking-[0.15em] text-secondary transition-colors hover:text-foreground"
         >
-          Show all work experiences
+          Show all work
+          <ArrowUpRight className="size-3.5" />
         </Link>
       )}
     </Container>

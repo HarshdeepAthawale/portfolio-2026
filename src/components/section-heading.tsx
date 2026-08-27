@@ -13,10 +13,10 @@ export function SectionHeading({
     <div className={cn("mb-4", className)}>
       <h2
         className={cn(
-          "font-bold tracking-tight text-foreground",
+          "tracking-tight text-foreground",
           uppercase
-            ? "text-xs uppercase tracking-[0.2em] text-secondary"
-            : "text-xl",
+            ? "font-mono text-xs font-medium uppercase tracking-[0.2em] text-secondary"
+            : "font-display text-xl font-medium",
         )}
       >
         {title}
