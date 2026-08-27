@@ -35,10 +35,10 @@ export default async function BlogPage() {
               />
               <div className="p-5 sm:p-6">
                 <div className="flex items-start justify-between gap-3">
-                  <p className="text-xs uppercase tracking-wider text-secondary">{post.date}</p>
+                  <p className="font-mono text-xs uppercase tracking-[0.15em] text-secondary">{post.date}</p>
                   <ArrowUpRight className="size-4 shrink-0 text-secondary opacity-0 transition-opacity group-hover:opacity-100" />
                 </div>
-                <h2 className="mt-2 text-xl font-bold tracking-tight sm:text-2xl">
+                <h2 className="mt-2 font-display text-xl font-medium tracking-tight sm:text-2xl">
                   {post.title}
                 </h2>
                 <p className="mt-3 text-sm leading-relaxed text-secondary sm:text-base">

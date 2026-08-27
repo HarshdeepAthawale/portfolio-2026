@@ -29,7 +29,7 @@
   let nekoFile = "./oneko.gif";
   let sleepFile = "./oneko/mowgli-sleep.png";
 
-  const nekoSpeed = 10;
+  const nekoSpeed = 13;
   const spriteSets = {
     idle: [[-3, -3]],
     alert: [[-7, -3]],

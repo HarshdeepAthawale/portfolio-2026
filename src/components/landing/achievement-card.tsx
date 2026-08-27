@@ -53,12 +53,14 @@ export function AchievementCard({
               {linkToDetail ? (
                 <Link
                   href={detailHref}
-                  className="text-lg font-bold transition-colors hover:text-secondary"
+                  className="font-display text-xl font-medium tracking-tight transition-colors hover:text-secondary"
                 >
                   {achievement.organization}
                 </Link>
               ) : (
-                <h3 className="text-lg font-bold">{achievement.organization}</h3>
+                <h3 className="font-display text-xl font-medium tracking-tight">
+                  {achievement.organization}
+                </h3>
               )}
               <span className="rounded-md border border-border bg-muted px-2 py-0.5 text-xs text-secondary">
                 {achievement.title}
@@ -77,12 +79,18 @@ export function AchievementCard({
             </div>
           </div>
           <div className="flex min-w-[64px] shrink-0 flex-col text-right text-xs text-secondary md:min-w-[100px]">
-            <p className="font-medium text-foreground">{achievement.year}</p>
+            <p className="font-mono uppercase tracking-[0.1em] text-foreground/80">
+              {achievement.year}
+            </p>
             {achievement.periodShort !== achievement.year && (
-              <p className="md:hidden">{achievement.periodShort}</p>
+              <p className="font-mono uppercase tracking-[0.1em] md:hidden">
+                {achievement.periodShort}
+              </p>
             )}
             {achievement.periodLong !== achievement.year && (
-              <p className="hidden md:block">{achievement.periodLong}</p>
+              <p className="hidden font-mono uppercase tracking-[0.1em] md:block">
+                {achievement.periodLong}
+              </p>
             )}
           </div>
         </div>

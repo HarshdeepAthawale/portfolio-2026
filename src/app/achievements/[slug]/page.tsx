@@ -78,7 +78,7 @@ export default async function AchievementDetailPage({
 
       {hasGallery ? (
         <Container>
-          <h2 className="text-lg font-semibold tracking-tight">
+          <h2 className="font-display text-xl font-medium tracking-tight">
             {achievement.badgeGallery ? "Hall of Fame" : "Photos"}
           </h2>
           <p className="mt-1 text-sm text-secondary">
