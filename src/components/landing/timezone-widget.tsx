@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { MapPin } from "@phosphor-icons/react";
 import { heroConfig } from "@/config/hero";
 import { cn } from "@/lib/utils";
 
@@ -53,15 +54,13 @@ export function TimezoneWidget({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        "flex shrink-0 flex-col justify-center rounded-xl border border-border bg-card/80 px-3 py-2.5 shadow-sm backdrop-blur-sm",
+        "flex shrink-0 flex-col items-center justify-center gap-1.5 rounded-xl border border-border bg-card/80 px-4 py-2.5 text-center shadow-sm backdrop-blur-sm",
         className,
       )}
     >
       {sameTime ? (
-        <p className="whitespace-nowrap text-[11px] leading-tight text-secondary">
-          <span className="font-semibold text-foreground">{myTime}</span>
-          <span className="mx-1">·</span>
-          same time
+        <p className="whitespace-nowrap text-[13px] font-semibold leading-none text-foreground">
+          {myTime}
         </p>
       ) : (
         <div className="space-y-1 text-[10px] leading-tight">
@@ -75,6 +74,11 @@ export function TimezoneWidget({ className }: { className?: string }) {
           </p>
         </div>
       )}
+
+      <p className="flex items-center justify-center gap-1 whitespace-nowrap text-[10px] leading-none text-secondary">
+        <MapPin className="size-3 shrink-0" weight="fill" aria-hidden />
+        {heroConfig.location}
+      </p>
     </div>
   );
 }
