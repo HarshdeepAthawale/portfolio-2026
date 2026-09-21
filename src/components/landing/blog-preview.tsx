@@ -21,7 +21,7 @@ export async function BlogPreview({ limit = 3 }: { limit?: number }) {
           >
             <Link
               href={`/blog/${post.slug}`}
-              className="group flex flex-row items-center justify-between gap-3 rounded-xl border border-border bg-card px-4 py-3 no-underline transition-colors hover:bg-muted/40"
+              className="group flex flex-row items-center justify-between gap-3 rounded-xl border border-border bg-card px-4 py-3 no-underline transition-all duration-200 hover:-translate-y-0.5 hover:border-foreground/15 hover:bg-muted/40 hover:shadow-sm"
             >
               <div className="min-w-0 flex-1">
                 <h3 className="font-display text-base font-medium leading-tight">{post.title}</h3>

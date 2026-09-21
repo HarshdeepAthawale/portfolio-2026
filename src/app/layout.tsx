@@ -5,6 +5,7 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { CommandMenu } from "@/components/command-menu";
 import { CursorPet } from "@/components/cursor-pet";
+import { ScrollReveal } from "@/components/scroll-reveal";
 import { ThemeProvider } from "@/components/theme-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { siteConfig } from "@/config/meta";
@@ -46,6 +47,12 @@ export default function RootLayout({
         className={`${plusJakartaSans.variable} ${newsreader.variable} ${geistMono.variable} min-h-screen bg-background font-sans antialiased`}
         suppressHydrationWarning
       >
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "try{if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('reveal-enabled')}catch(e){}",
+          }}
+        />
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
           <TooltipProvider>
             <div className="relative flex min-h-screen flex-col bg-green-grid">
@@ -55,6 +62,7 @@ export default function RootLayout({
               <div className="pointer-events-none fixed inset-x-0 bottom-0 z-10 h-[60px] bg-gradient-to-t from-background/80 to-transparent [mask-image:linear-gradient(to_top,black_50%,transparent)]" />
               <CommandMenu />
               <CursorPet />
+              <ScrollReveal />
             </div>
             <Analytics />
           </TooltipProvider>

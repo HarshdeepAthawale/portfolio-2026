@@ -42,7 +42,7 @@ export function QuoteVisitorCard() {
 
   return (
     <Container>
-      <div className="animate-in-up-on-view overflow-hidden rounded-2xl border border-border bg-card/80 shadow-sm backdrop-blur-sm">
+      <div className="animate-in-up-on-view overflow-hidden rounded-2xl border border-border bg-card/80 shadow-sm backdrop-blur-sm transition-all duration-300 hover:border-foreground/15 hover:shadow-md">
         <div className="grid sm:grid-cols-[1fr_auto]">
           <div className="border-b border-border p-5 sm:border-b-0 sm:border-r">
             <span className="text-5xl leading-none text-muted-foreground sm:text-6xl">&ldquo;</span>

@@ -18,7 +18,7 @@ function ExperienceCard({ job, delay }: { job: ExperienceItem; delay: number }) 
 
   return (
     <div
-      className="animate-in-up-on-view rounded-2xl border border-border bg-card/60 p-5"
+      className="animate-in-up-on-view rounded-2xl border border-border bg-card/60 p-5 transition-all duration-300 hover:border-foreground/15 hover:bg-card/80 hover:shadow-md"
       style={{ animationDelay: `${delay}s` }}
     >
       <Collapsible>

@@ -54,7 +54,7 @@ export function TimezoneWidget({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        "flex shrink-0 flex-col items-center justify-center gap-1.5 rounded-xl border border-border bg-card/80 px-4 py-2.5 text-center shadow-sm backdrop-blur-sm",
+        "flex shrink-0 flex-col items-center justify-center gap-1.5 rounded-xl border border-border bg-card/80 px-4 py-2.5 text-center shadow-sm backdrop-blur-sm transition-all duration-300 hover:border-foreground/15 hover:shadow-md",
         className,
       )}
     >

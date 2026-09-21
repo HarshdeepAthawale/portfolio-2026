@@ -12,7 +12,7 @@ export function ProjectCard({ project, index = 0 }: { project: Project; index?: 
 
   return (
     <article
-      className="animate-in-up-on-view group flex flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-sm"
+      className="animate-in-up-on-view group flex flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-foreground/15 hover:shadow-lg"
       style={{ animationDelay: `${index * 0.05}s` }}
     >
       <div className="relative mx-4 mt-4 flex aspect-[16/10] items-center justify-center overflow-hidden rounded-xl bg-muted/40 sm:aspect-[2/1]">
