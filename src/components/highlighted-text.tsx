@@ -1,5 +1,5 @@
 const highlightClass =
-  "font-semibold text-violet-600 dark:text-violet-400";
+  "font-semibold text-orange-700 dark:text-orange-300/90";
 
 export function HighlightedText({ text }: { text: string }) {
   const parts = text.split(/(\*\*[^*]+\*\*)/g);
