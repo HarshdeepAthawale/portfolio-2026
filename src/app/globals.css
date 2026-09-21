@@ -277,3 +277,27 @@ body {
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
 }
+
+/* ── Theme toggle: circular "wave" reveal via the View Transitions API ────── */
+/* Disable the browser's default cross-fade so only our clip-path circle plays. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+/* Old theme stays still underneath; the new theme is clipped and grows over it. */
+::view-transition-old(root) {
+  z-index: 1;
+}
+::view-transition-new(root) {
+  z-index: 9999;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(root),
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none !important;
+  }
+}
