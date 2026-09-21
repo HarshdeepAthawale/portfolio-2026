@@ -41,7 +41,7 @@ export function AchievementCard({
 
   return (
     <article
-      className="animate-in-up-on-view overflow-hidden rounded-xl border border-border bg-card/60"
+      className="animate-in-up-on-view overflow-hidden rounded-xl border border-border bg-card/60 transition-all duration-300 hover:-translate-y-0.5 hover:border-foreground/15 hover:shadow-md"
       style={{ animationDelay: `${delay}s` }}
     >
       {photo}

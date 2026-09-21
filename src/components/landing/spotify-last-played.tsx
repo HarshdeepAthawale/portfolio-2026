@@ -81,7 +81,7 @@ export function SpotifyLastPlayed() {
 
   return (
     <div className="group w-full max-w-xs">
-      <div className="flex items-center gap-3 rounded-xl border border-border bg-card/80 p-2.5 shadow-sm backdrop-blur-sm">
+      <div className="flex items-center gap-3 rounded-xl border border-border bg-card/80 p-2.5 shadow-sm backdrop-blur-sm transition-all duration-300 group-hover:border-foreground/15 group-hover:shadow-md">
         <div className="relative flex h-14 w-16 shrink-0 items-center">
           <div className="relative z-10 h-14 w-14 overflow-hidden rounded-[3px] shadow-[2px_2px_8px_rgba(0,0,0,0.18)] ring-1 ring-black/10">
             <Image

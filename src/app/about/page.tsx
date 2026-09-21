@@ -40,13 +40,13 @@ export default function AboutPage() {
             </div>
 
             <figure className="w-36 shrink-0 sm:w-44 md:w-52">
-              <div className="relative aspect-[3/4] overflow-hidden rounded-2xl border border-border bg-muted">
+              <div className="group relative aspect-[3/4] overflow-hidden rounded-2xl border border-border bg-muted">
                 <Image
                   src={aboutConfig.portrait.src}
                   alt={aboutConfig.portrait.alt}
                   fill
                   sizes="(max-width: 640px) 144px, (max-width: 768px) 176px, 208px"
-                  className="object-cover"
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
                   priority
                 />
               </div>
@@ -108,7 +108,7 @@ export default function AboutPage() {
             {aboutConfig.principles.items.map((item) => (
               <div
                 key={item.title}
-                className="rounded-xl border border-border bg-card/60 p-4"
+                className="rounded-xl border border-border bg-card/60 p-4 transition-all duration-300 hover:-translate-y-1 hover:border-foreground/15 hover:bg-card/80 hover:shadow-md"
               >
                 <h3 className="font-display text-lg font-medium tracking-tight">{item.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-secondary">
@@ -153,7 +153,7 @@ export default function AboutPage() {
                   target={external ? "_blank" : undefined}
                   rel={external ? "noopener noreferrer" : undefined}
                   aria-label={link.name}
-                  className="flex size-10 items-center justify-center rounded-xl border border-border text-secondary transition-colors hover:bg-muted hover:text-foreground"
+                  className="flex size-10 items-center justify-center rounded-xl border border-border text-secondary transition-all duration-200 hover:-translate-y-0.5 hover:border-foreground/20 hover:bg-muted hover:text-foreground hover:shadow-sm"
                 >
                   <Icon className="size-5" />
                 </Link>

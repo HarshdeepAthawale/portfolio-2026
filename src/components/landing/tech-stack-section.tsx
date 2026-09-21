@@ -17,7 +17,7 @@ export function TechStackSection() {
               <button
                 type="button"
                 aria-label={tech.name}
-                className="flex size-[52px] items-center justify-center rounded-xl border border-dashed border-border bg-card/60 transition-colors hover:border-foreground/25 hover:bg-card dark:border-border dark:bg-white/95 dark:hover:bg-white"
+                className="flex size-[52px] items-center justify-center rounded-xl border border-dashed border-border bg-card/60 transition-all duration-200 hover:-translate-y-1 hover:scale-[1.06] hover:border-foreground/25 hover:bg-card hover:shadow-md active:translate-y-0 active:scale-100 dark:border-border dark:bg-white/95 dark:hover:bg-white"
               >
                 <Image
                   src={

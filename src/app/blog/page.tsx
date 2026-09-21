@@ -26,7 +26,7 @@ export default async function BlogPage() {
             <Link
               key={post.slug}
               href={`/blog/${post.slug}`}
-              className="group block overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-colors hover:bg-card/80"
+              className="group block overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-foreground/15 hover:bg-card/80 hover:shadow-lg"
             >
               <BlogCover
                 title={post.title}
