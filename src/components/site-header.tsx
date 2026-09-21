@@ -27,7 +27,7 @@ function MoreMenu() {
       <button
         type="button"
         onClick={() => setOpen((prev) => !prev)}
-        className="inline-flex items-center gap-1 text-sm text-secondary transition-colors hover:text-foreground"
+        className="inline-flex items-center gap-1 text-sm text-secondary transition-colors duration-200 hover:text-foreground"
         aria-expanded={open}
         aria-haspopup="menu"
       >
@@ -63,39 +63,41 @@ export function SiteHeader() {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/50 bg-background/75 backdrop-blur-md">
-      <div className="container mx-auto flex h-14 max-w-3xl items-center justify-between gap-4 px-4 sm:px-6">
+    <header className="sticky top-0 z-50 w-full animate-in fade-in slide-in-from-top-2 border-b border-border/50 bg-background/75 backdrop-blur-md duration-500">
+      <div className="container mx-auto flex h-14 max-w-3xl items-center justify-between gap-2 px-4 sm:grid sm:grid-cols-[1fr_auto_1fr] sm:gap-4 sm:px-6">
         <Link
           href="/"
-          className="font-mono text-lg font-bold tracking-tight text-foreground hover:opacity-80"
+          className="justify-self-start font-mono text-lg font-bold tracking-tight text-foreground transition-transform duration-300 hover:scale-110 active:scale-95"
         >
           HA
         </Link>
 
-        <div className="flex items-center gap-3 sm:gap-5">
-          <nav className="flex items-center gap-4 text-sm font-medium sm:gap-5">
-            {headerNav.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={cn(
-                  "transition-colors hover:text-foreground",
-                  pathname === item.href
-                    ? "font-semibold text-foreground"
-                    : "text-secondary",
-                )}
-              >
-                {item.label}
-              </Link>
-            ))}
-            <MoreMenu />
-          </nav>
+        <nav className="flex items-center justify-center gap-3 text-sm font-medium sm:gap-5">
+          {headerNav.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className={cn(
+                "relative py-1 transition-colors duration-200 hover:text-foreground",
+                // Slide-in underline (transform-only = GPU-cheap).
+                "after:pointer-events-none after:absolute after:inset-x-0 after:-bottom-0.5 after:h-0.5 after:origin-left after:rounded-full after:bg-foreground after:transition-transform after:duration-300 hover:after:scale-x-100",
+                pathname === item.href
+                  ? "font-semibold text-foreground after:scale-x-100"
+                  : "text-secondary after:scale-x-0",
+              )}
+            >
+              {item.label}
+            </Link>
+          ))}
+          <MoreMenu />
+        </nav>
 
+        <div className="flex items-center justify-end gap-3 sm:gap-4">
           <button
             type="button"
             onClick={openCommand}
             aria-label="Open command palette"
-            className="inline-flex h-8 items-center gap-2 rounded-full border border-border bg-card/80 px-3 text-sm text-secondary shadow-sm transition-colors hover:border-foreground/20 hover:text-foreground"
+            className="hidden h-8 items-center gap-2 rounded-full border border-border bg-card/80 px-3 text-sm text-secondary shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-foreground/20 hover:text-foreground hover:shadow-md active:translate-y-0 active:scale-95 sm:inline-flex"
           >
             <MagnifyingGlass className="size-4" weight="bold" />
             <span className="hidden items-center gap-1 sm:inline-flex">
