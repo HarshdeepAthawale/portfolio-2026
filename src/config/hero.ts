@@ -4,6 +4,10 @@ export const heroConfig = {
   bio: "I build software and break web and mobile apps to report critical bugs - 35+ vulnerability reports to programs like Red Bull, Goldman Sachs, NVIDIA, Flipkart, and Coca-Cola.",
   avatar: "/assets/avatar.png",
   avatarSmile: "/assets/avatar-smile.png",
+  // Images the circular avatar cycles through, in order. Add/remove freely.
+  avatarRotation: ["/assets/avatar.png", "/assets/avatar-anime.jpg"],
+  // How long each image stays before crossfading to the next (ms).
+  avatarRotationInterval: 4000,
   timezone: "Asia/Kolkata",
   location: "Pune, India",
 };
