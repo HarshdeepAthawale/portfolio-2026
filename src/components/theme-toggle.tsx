@@ -86,7 +86,7 @@ export function ThemeToggle({ className }: { className?: string }) {
       aria-label="Toggle theme"
       onClick={toggleTheme}
       className={cn(
-        "inline-flex size-8 items-center justify-center rounded-md text-muted-foreground transition-colors hover:text-primary active:scale-95",
+        "inline-flex size-8 items-center justify-center rounded-md text-muted-foreground transition-[color,transform] duration-200 hover:-rotate-12 hover:text-primary active:scale-95",
         className,
       )}
     >
