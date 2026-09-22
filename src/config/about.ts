@@ -3,7 +3,7 @@ import { heroConfig } from "@/config/hero";
 export const aboutConfig = {
   headline: ["From curious tinkering", "to breaking real systems."],
   intro:
-    "I'm Harshdeep Athawale, a **security engineer/researcher** who builds software and breaks it. **35+ vulnerability reports** across Red Bull, Goldman Sachs, Adobe, Netflix, NVIDIA, Anduril, Flipkart, and Coca-Cola - and the defenses I build come straight from what breaking them taught me. I care about the full picture: clear **reproduction**, real **impact**, and remediation that holds.",
+    "I'm Harshdeep Athawale, a **security researcher/engineer** who builds software and breaks it. **35+ vulnerability reports** across Red Bull, Goldman Sachs, Adobe, Netflix, NVIDIA, Anduril, Flipkart, and Coca-Cola - and the defenses I build come straight from what breaking them taught me. I care about the full picture: clear **reproduction**, real **impact**, and remediation that holds.",
   quote:
     "The best security work is reproducible, honestly scoped, and written so the defender can fix it the same day.",
   portrait: {
