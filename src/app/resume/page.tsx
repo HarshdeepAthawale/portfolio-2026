@@ -42,34 +42,27 @@ export default function ResumePage() {
       </Container>
 
       <Container>
-        <div className="overflow-hidden rounded-2xl border border-border bg-card shadow-sm">
-          {/* Desktop: embedded PDF viewer. Mobile browsers won't render a PDF
-              inside an iframe, so we show a tappable page image there instead. */}
-          <iframe
-            src={resumeConfig.embedUrl}
-            title="Harshdeep Athawale resume"
-            className="hidden aspect-auto w-full min-h-[80vh] bg-muted sm:block"
-            allow="autoplay"
+        {/* A rendered page image instead of an embedded PDF: the browser's PDF
+            viewer adds its own dark toolbar/backdrop that can't be styled away.
+            Clicking opens the real PDF. Keep resume-preview.png in sync with it. */}
+        <Link
+          href={resumeConfig.viewUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Open resume PDF"
+          className="group relative block overflow-hidden rounded-2xl border border-border bg-white p-3 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg sm:p-6"
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element -- static full-res page render */}
+          <img
+            src={resumeConfig.previewImage}
+            alt="Harshdeep Athawale resume"
+            className="w-full"
           />
-          <Link
-            href={resumeConfig.viewUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group relative block sm:hidden"
-            aria-label="Open resume PDF"
-          >
-            {/* eslint-disable-next-line @next/next/no-img-element -- iframe PDF viewer doesn't work on mobile, this is a tappable fallback */}
-            <img
-              src={resumeConfig.previewImage}
-              alt="Harshdeep Athawale resume preview"
-              className="w-full bg-white"
-            />
-            <span className="absolute inset-x-0 bottom-0 flex items-center justify-center gap-2 bg-gradient-to-t from-black/70 to-transparent px-4 py-4 text-sm font-medium text-white">
-              Tap to open full PDF
-              <ArrowSquareOut className="size-4" />
-            </span>
-          </Link>
-        </div>
+          <span className="absolute inset-x-0 bottom-0 flex items-center justify-center gap-2 bg-gradient-to-t from-black/60 to-transparent px-4 py-4 text-sm font-medium text-white sm:hidden">
+            Tap to open full PDF
+            <ArrowSquareOut className="size-4" />
+          </span>
+        </Link>
       </Container>
     </div>
   );
