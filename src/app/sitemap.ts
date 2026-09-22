@@ -12,7 +12,6 @@ const staticRoutes = [
   "/achievements",
   "/resume",
   "/books",
-  "/movies",
   "/favourites",
 ];
 
