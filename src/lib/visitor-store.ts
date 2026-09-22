@@ -1,11 +1,15 @@
 import fs from "fs/promises";
 import path from "path";
 
+// Local-dev fallback only (gitignored). Production uses Redis.
 const DATA_PATH = path.join(process.cwd(), "data", "visitors.json");
-const REDIS_KEY = "portfolio-visitors";
+
+// A Redis HyperLogLog of hashed visitor ids. It stores no ids at all - only
+// enough state to estimate the unique count (~0.8% error).
+const REDIS_KEY = "portfolio-unique-visitors";
 
 type VisitorData = {
-  count: number;
+  ids: string[];
 };
 
 // Supports both the Upstash-direct names and the Vercel Marketplace / KV names,
@@ -22,46 +26,35 @@ function hasRedisConfig() {
   return Boolean(redisUrl() && redisToken());
 }
 
-async function redisGet(): Promise<number> {
-  const url = redisUrl()!;
-  const token = redisToken()!;
-
-  const res = await fetch(`${url}/get/${REDIS_KEY}`, {
-    headers: { Authorization: `Bearer ${token}` },
+// Runs one or more commands in a single round trip via Upstash's REST pipeline.
+async function redisPipeline(commands: string[][]): Promise<unknown[]> {
+  const res = await fetch(`${redisUrl()}/pipeline`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${redisToken()}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(commands),
     cache: "no-store",
   });
 
   if (!res.ok) {
-    throw new Error(`Redis GET failed (${res.status})`);
+    throw new Error(`Redis pipeline failed (${res.status})`);
   }
 
-  const data = (await res.json()) as { result: string | null };
-  return data.result ? Number(data.result) : 0;
-}
-
-async function redisIncr(): Promise<number> {
-  const url = redisUrl()!;
-  const token = redisToken()!;
-
-  const res = await fetch(`${url}/incr/${REDIS_KEY}`, {
-    headers: { Authorization: `Bearer ${token}` },
-    cache: "no-store",
-  });
-
-  if (!res.ok) {
-    throw new Error(`Redis INCR failed (${res.status})`);
-  }
-
-  const data = (await res.json()) as { result: number };
-  return data.result;
+  const data = (await res.json()) as { result?: unknown; error?: string }[];
+  const failed = data.find((entry) => entry.error);
+  if (failed) throw new Error(`Redis command failed: ${failed.error}`);
+  return data.map((entry) => entry.result);
 }
 
 async function readFileData(): Promise<VisitorData> {
   try {
     const raw = await fs.readFile(DATA_PATH, "utf8");
-    return JSON.parse(raw) as VisitorData;
+    const parsed = JSON.parse(raw) as Partial<VisitorData>;
+    return { ids: Array.isArray(parsed.ids) ? parsed.ids : [] };
   } catch {
-    return { count: 0 };
+    return { ids: [] };
   }
 }
 
@@ -72,20 +65,28 @@ async function writeFileData(data: VisitorData) {
 
 export async function getVisitorCount() {
   if (hasRedisConfig()) {
-    return redisGet();
+    const [count] = await redisPipeline([["PFCOUNT", REDIS_KEY]]);
+    return Number(count);
   }
 
   const data = await readFileData();
-  return data.count;
+  return data.ids.length;
 }
 
-export async function incrementVisitorCount() {
+/** Records a visitor (idempotent per id) and returns the unique count. */
+export async function recordVisitor(visitorId: string) {
   if (hasRedisConfig()) {
-    return redisIncr();
+    const [, count] = await redisPipeline([
+      ["PFADD", REDIS_KEY, visitorId],
+      ["PFCOUNT", REDIS_KEY],
+    ]);
+    return Number(count);
   }
 
   const data = await readFileData();
-  data.count += 1;
-  await writeFileData(data);
-  return data.count;
+  if (!data.ids.includes(visitorId)) {
+    data.ids.push(visitorId);
+    await writeFileData(data);
+  }
+  return data.ids.length;
 }
