@@ -9,6 +9,16 @@ import {
 import { Container } from "@/components/container";
 import { HighlightedText } from "@/components/highlighted-text";
 import { aboutConfig } from "@/config/about";
+import { cn } from "@/lib/utils";
+
+const severityStyles: Record<string, string> = {
+  critical:
+    "border-rose-200 bg-rose-50 text-rose-700 dark:border-rose-900/50 dark:bg-rose-950/40 dark:text-rose-300",
+  high: "border-amber-200 bg-amber-50 text-amber-800 dark:border-amber-900/50 dark:bg-amber-950/40 dark:text-amber-300",
+  // Bug class, not a severity score - kept neutral so color only marks real CVSS.
+  neutral:
+    "border-stone-300 bg-stone-100 text-stone-700 dark:border-stone-700 dark:bg-stone-900/60 dark:text-stone-300",
+};
 
 const connectIconMap = {
   mail: EnvelopeSimple,
@@ -75,7 +85,7 @@ export default function AboutPage() {
             ))}
           </div>
 
-          <div className="grid gap-4 border-t border-border pt-6 sm:grid-cols-3">
+          <div className="grid grid-cols-2 gap-4 border-t border-border pt-6 sm:grid-cols-4">
             {aboutConfig.meta.map((item) => (
               <div key={item.label}>
                 <p className="font-mono text-xs uppercase tracking-[0.15em] text-secondary">
@@ -96,6 +106,50 @@ export default function AboutPage() {
               <p key={paragraph}>
                 <HighlightedText text={paragraph} />
               </p>
+            ))}
+          </div>
+        </section>
+      </Container>
+
+      <Container>
+        <section className="max-w-2xl space-y-6">
+          <h2 className="font-display text-xl font-medium tracking-tight">{aboutConfig.findings.title}</h2>
+          <div className="grid gap-3 sm:grid-cols-2">
+            {aboutConfig.findings.items.map((item) => (
+              <div
+                key={item.org}
+                className="rounded-xl border border-border bg-card/60 p-4 transition-all duration-300 hover:-translate-y-1 hover:border-foreground/15 hover:bg-card/80 hover:shadow-md"
+              >
+                <div className="flex items-center justify-between gap-2">
+                  <h3 className="font-display text-base font-medium tracking-tight">{item.org}</h3>
+                  <span
+                    className={cn(
+                      "shrink-0 rounded-full border px-2 py-0.5 font-mono text-[10px] uppercase tracking-wide",
+                      severityStyles[item.tier],
+                    )}
+                  >
+                    {item.severity}
+                  </span>
+                </div>
+                <p className="mt-2 text-sm leading-relaxed text-secondary">{item.text}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+      </Container>
+
+      <Container>
+        <section className="max-w-2xl space-y-6">
+          <h2 className="font-display text-xl font-medium tracking-tight">{aboutConfig.built.title}</h2>
+          <div className="space-y-3">
+            {aboutConfig.built.items.map((item) => (
+              <div
+                key={item.title}
+                className="rounded-xl border border-border bg-card/60 p-4 transition-all duration-300 hover:-translate-y-0.5 hover:border-foreground/15 hover:bg-card/80 hover:shadow-md"
+              >
+                <h3 className="font-display text-lg font-medium tracking-tight">{item.title}</h3>
+                <p className="mt-1.5 text-sm leading-relaxed text-secondary">{item.text}</p>
+              </div>
             ))}
           </div>
         </section>

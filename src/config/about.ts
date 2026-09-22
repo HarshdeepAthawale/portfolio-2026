@@ -3,7 +3,7 @@ import { heroConfig } from "@/config/hero";
 export const aboutConfig = {
   headline: ["From curious tinkering", "to breaking real systems."],
   intro:
-    "I'm Harshdeep Athawale, a **software security engineer**. I find and report critical vulnerabilities across **web and mobile** targets, and I care about the full picture: clear **reproduction**, real **impact**, and remediation that actually holds.",
+    "I'm Harshdeep Athawale, a **security engineer** who builds software and breaks it. **35+ vulnerability reports** across Red Bull, Goldman Sachs, Adobe, Netflix, NVIDIA, Anduril, Flipkart, and Coca-Cola - and the defenses I build come straight from what breaking them taught me. I care about the full picture: clear **reproduction**, real **impact**, and remediation that holds.",
   quote:
     "The best security work is reproducible, honestly scoped, and written so the defender can fix it the same day.",
   portrait: {
@@ -25,16 +25,75 @@ export const aboutConfig = {
   },
   meta: [
     { label: "Location", value: heroConfig.location },
-    { label: "Status", value: "Open to security roles · Remote" },
-    { label: "Focus", value: "AppSec · Bug Bounty · Mobile" },
+    { label: "Education", value: "3rd year CS · TIET" },
+    { label: "Status", value: "Security Intern · Fall 2026" },
+    { label: "Focus", value: "AppSec · Bug Bounty · GRC" },
   ],
   story: {
     title: "How it started",
     paragraphs: [
       "It started with a simple question that wouldn't leave me alone: how does software actually **break**? I'd pull apart apps just to see what assumptions they made - and which ones I could violate. That **curiosity** pulled me straight into security.",
-      "At **Thapar Institute**, coursework was only half the story. The other half was late nights on **TryHackMe** labs, reading disclosed reports, and learning to think like an attacker. The grind compounded - 230+ labs and a 300+ day streak into the **Top 1% worldwide**.",
-      "**Bug bounty** changed everything. Hunting real programs on **HackerOne** and **Intigriti** - Goldman Sachs, Flipkart, Coca-Cola, Red Bull - taught me that finding a bug is the easy part. **Proving impact**, writing a report a stranger can reproduce, and scoring it honestly is the craft. A **Critical CVSS 9.1** at Red Bull and an unauthenticated API leaking 892 employees' PII drove that home.",
-      "Now I work across the offensive and defensive sides - **vulnerability research**, **mobile security**, and **GRC** (SOC 2, ISO 27001), most recently at **Iris Intelligence**. I'm still learning fast, and I'm doing it by **breaking things and writing it up**.",
+      "At **TIET**, coursework was only half the story. The other half was late nights on **TryHackMe** labs, reading disclosed reports, and learning to think like an attacker. The grind compounded - 230+ labs and a 300+ day streak into the **Top 1% worldwide**.",
+      "**Bug bounty** changed everything. Hunting real programs on **HackerOne** and **Intigriti** - Red Bull, Netflix, Adobe, NVIDIA, Anduril, Flipkart, Coca-Cola - taught me that finding a bug is the easy part. **Proving impact**, writing a report a stranger can reproduce, and scoring it honestly is the craft.",
+      "Then I flipped it. **Finding the bugs is what taught me to build the defenses** - a transformer-based WAF, runtime isolation for an agentic AI platform, and the SOC 2 / ISO 27001 GRC baseline at **Iris Intelligence**. Along the way I **won 1st place at Nio Hack** (NioGraph, American Society - 120+ teams) and placed **1st runner-up at the PSB Hackathon Series 2026** (Govt. of India, 227 teams), and I'm still learning fast by breaking things and writing it up.",
+    ],
+  },
+  findings: {
+    title: "Selected findings",
+    items: [
+      {
+        org: "Red Bull",
+        severity: "CVSS 9.1",
+        tier: "critical",
+        text: "Critical GraphQL flaw exposing employee PII.",
+      },
+      {
+        org: "Netflix",
+        severity: "CVSS 8.6",
+        tier: "high",
+        text: "Auth bypass on the Law Enforcement Portal - government emails auto-approved without review, and consumer domains could register too.",
+      },
+      {
+        org: "Coca-Cola",
+        severity: "Unauth API",
+        tier: "neutral",
+        text: "Unauthenticated API leaking PII for 892 employees, with write access to a production database.",
+      },
+      {
+        org: "NHS · Superdrug",
+        severity: "Secrets · IDOR",
+        tier: "neutral",
+        text: "Hardcoded OAuth secrets exposing medical data, and an appointment IDOR - both caught before patient data could be breached.",
+      },
+      {
+        org: "Anduril · NVIDIA",
+        severity: "Takeover",
+        tier: "neutral",
+        text: "A subdomain takeover, and dangling DNS records silently serving gambling content to real users.",
+      },
+      {
+        org: "Flipkart · Myntra",
+        severity: "RCE",
+        tier: "neutral",
+        text: "Remote code execution in a build pipeline, and exposed source maps leaking OAuth secrets.",
+      },
+    ],
+  },
+  built: {
+    title: "What I've built",
+    items: [
+      {
+        title: "Transformer-based WAF",
+        text: "Catches 96% of real-world attack payloads across 10 attack classes - versus 46% for ModSecurity with OWASP CRS v4.",
+      },
+      {
+        title: "Agentic AI platform security",
+        text: "Sandboxed untrusted code execution and runtime isolation that stopped cross-tenant leakage at 5,000+ concurrent users.",
+      },
+      {
+        title: "GRC baseline",
+        text: "SOC 2 and ISO 27001 compliance documentation with privacy-by-design controls, establishing the company's GRC foundation.",
+      },
     ],
   },
   principles: {
