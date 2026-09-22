@@ -22,7 +22,7 @@ export const achievements: Achievement[] = [
     organization: "NioHack 2026",
     year: "2026",
     periodShort: "Sep 5-6",
-    periodLong: "September 5-6, 2026",
+    periodLong: "September 5-6",
     details: [
       "Won 1st place out of 120+ teams as Team INCOGNITO (T046).",
       "Organized by Niograph Inc., USA, with technical support from the American Society for Engineers, USA.",
@@ -37,7 +37,7 @@ export const achievements: Achievement[] = [
     organization: "PSB Hackathon Series 2026",
     year: "2026",
     periodShort: "Aug 1",
-    periodLong: "August 1, 2026",
+    periodLong: "August 1",
     details: [
       "Organized by the Government of India, Ministry of Finance, with Central Bank of India & MNNIT Allahabad.",
       "Outlasted 226 registered teams through a 30-team shortlist to reach the 8-team grand finale.",
