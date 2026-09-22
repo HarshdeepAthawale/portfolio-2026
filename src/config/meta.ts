@@ -1,8 +1,8 @@
 export const siteConfig = {
   name: "Harshdeep Athawale",
-  title: "Harshdeep Athawale - Software Security Engineer",
+  title: "Harshdeep Athawale - Security Researcher/Engineer",
   description:
-    "Software security engineer and bug bounty researcher. 35+ vulnerability reports to programs including Goldman Sachs, Flipkart, and Red Bull (Critical CVSS 9.1). Android & API security.",
+    "Security researcher/engineer and bug bounty hunter. 35+ vulnerability reports across Red Bull (CVSS 9.1), Netflix, Goldman Sachs, Adobe, NVIDIA, and more. AppSec, mobile, and GRC.",
   url: "https://www.harshdeepathawale.in",
   githubUsername: "HarshdeepAthawale",
   copyright: "All rights reserved.",
