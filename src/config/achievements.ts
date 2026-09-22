@@ -17,6 +17,21 @@ export type Achievement = {
 
 export const achievements: Achievement[] = [
   {
+    slug: "niohack-2026-winner",
+    title: "Winner · 1st Place",
+    organization: "NioHack 2026",
+    year: "2026",
+    periodShort: "Sep 5-6",
+    periodLong: "September 5-6, 2026",
+    details: [
+      "Won 1st place out of 120+ teams as Team INCOGNITO (T046).",
+      "Organized by Niograph Inc., USA, with technical support from the American Society for Engineers, USA.",
+      "Represented Thapar Institute of Engineering & Technology alongside Prabinder Singh, Deepesh Kakkar, Kyna Sood, and Danish Dhanjal.",
+    ],
+    featured: true,
+    image: "/assets/achievements/niohack-2026-winner.jpg",
+  },
+  {
     slug: "psb-hackathon-series-2026-runner-up",
     title: "National 1st Runner-Up",
     organization: "PSB Hackathon Series 2026",
