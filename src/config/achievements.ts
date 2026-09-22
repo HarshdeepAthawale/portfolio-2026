@@ -71,7 +71,6 @@ export const achievements: Achievement[] = [
     ],
     featured: true,
     image: "/assets/achievements/tryhackme-harshdeepathawale-300-streak.png",
-    gallery: ["/assets/achievements/tryhackme-harshdeepathawale-300-streak.png"],
   },
   {
     slug: "redbull-critical",
@@ -82,7 +81,6 @@ export const achievements: Achievement[] = [
     periodLong: "June",
     featured: true,
     image: "/assets/achievements/critical-severity-9-1.png",
-    gallery: ["/assets/achievements/critical-severity-9-1.png"],
   },
 ];
 
