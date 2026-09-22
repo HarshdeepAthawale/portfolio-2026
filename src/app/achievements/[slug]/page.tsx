@@ -48,11 +48,7 @@ export default async function AchievementDetailPage({
         </Link>
 
         <div className="mt-6 overflow-hidden rounded-2xl border border-border bg-card">
-          <AchievementPhoto
-            achievement={achievement}
-            className="aspect-[2/1] w-full"
-            priority
-          />
+          <AchievementPhoto achievement={achievement} fit="natural" priority />
           <div className="space-y-4 p-5 sm:p-6">
             <div className="flex flex-wrap items-center gap-2">
               <h1 className="font-display text-2xl font-medium tracking-tight sm:text-3xl">
@@ -100,13 +96,7 @@ export default async function AchievementDetailPage({
             />
           )}
         </Container>
-      ) : (
-        <Container>
-          <div className="rounded-xl border border-dashed border-border bg-muted/30 px-6 py-10 text-center">
-            <p className="text-sm text-secondary">Photos coming soon.</p>
-          </div>
-        </Container>
-      )}
+      ) : null}
     </div>
   );
 }

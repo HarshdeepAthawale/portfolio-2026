@@ -15,7 +15,8 @@ export function AchievementPhoto({
   achievement: Achievement;
   className?: string;
   priority?: boolean;
-  fit?: "cover" | "contain";
+  /** "natural" keeps the photo's own aspect ratio at full width (no crop, no bars). */
+  fit?: "cover" | "contain" | "natural";
 }) {
   const [failed, setFailed] = useState(false);
   const showPlaceholder = !achievement.image || failed;
@@ -31,6 +32,21 @@ export function AchievementPhoto({
         <Trophy className="size-8 opacity-40" weight="duotone" />
         <span className="px-4 text-center text-xs">Photo coming soon</span>
       </div>
+    );
+  }
+
+  if (fit === "natural") {
+    return (
+      <Image
+        src={achievement.image!}
+        alt={`${achievement.organization} — ${achievement.title}`}
+        width={0}
+        height={0}
+        sizes="(max-width: 768px) 100vw, 768px"
+        className={cn("h-auto w-full", className)}
+        priority={priority}
+        onError={() => setFailed(true)}
+      />
     );
   }
 
