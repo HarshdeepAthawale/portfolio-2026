@@ -26,7 +26,6 @@ export function ProfileAvatar({ className }: { className?: string }) {
       )}
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
-      title="Harshdeep / anime"
     >
       {images.map((src, i) => (
         <Image
