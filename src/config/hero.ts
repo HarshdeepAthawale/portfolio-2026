@@ -5,7 +5,7 @@ export const heroConfig = {
   avatar: "/assets/avatar.png",
   avatarSmile: "/assets/avatar-smile.png",
   // Images the circular avatar cycles through, in order. Add/remove freely.
-  avatarRotation: ["/assets/avatar.png", "/assets/avatar-anime.jpg"],
+  avatarRotation: ["/assets/avatar.png"],
   // How long each image stays before crossfading to the next (ms).
   avatarRotationInterval: 4000,
   timezone: "Asia/Kolkata",
