@@ -5,7 +5,9 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { CommandMenu } from "@/components/command-menu";
 import { CursorPet } from "@/components/cursor-pet";
+import { Lightbox } from "@/components/lightbox";
 import { ScrollReveal } from "@/components/scroll-reveal";
+import { ViewTransitionsProvider } from "@/components/view-transitions";
 import { ThemeProvider } from "@/components/theme-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { siteConfig } from "@/config/meta";
@@ -69,6 +71,7 @@ export default function RootLayout({
         />
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
           <TooltipProvider>
+            <ViewTransitionsProvider>
             <div className="relative flex min-h-screen flex-col bg-green-grid">
               <SiteHeader />
               <main className="page-content flex-1">{children}</main>
@@ -77,8 +80,10 @@ export default function RootLayout({
               <CommandMenu />
               <CursorPet />
               <ScrollReveal />
+              <Lightbox />
             </div>
             <Analytics />
+            </ViewTransitionsProvider>
           </TooltipProvider>
         </ThemeProvider>
       </body>

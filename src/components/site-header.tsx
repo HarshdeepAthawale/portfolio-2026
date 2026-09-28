@@ -49,6 +49,16 @@ function MoreMenu() {
               {item.label}
             </Link>
           ))}
+          <button
+            type="button"
+            onClick={() => {
+              setOpen(false);
+              document.dispatchEvent(new CustomEvent("open-command-menu"));
+            }}
+            className="mt-1 block w-full rounded-lg border-t border-border px-3 py-2 text-left text-sm text-secondary transition-colors hover:bg-muted hover:text-foreground"
+          >
+            Search
+          </button>
         </div>
       )}
     </div>
@@ -63,7 +73,7 @@ export function SiteHeader() {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full animate-in fade-in slide-in-from-top-2 border-b border-border/50 bg-background/75 backdrop-blur-md duration-500">
+    <header style={{ viewTransitionName: "site-header" }} className="sticky top-0 z-50 w-full animate-in fade-in slide-in-from-top-2 border-b border-border/50 bg-background/75 backdrop-blur-md duration-500">
       <div className="container mx-auto flex h-14 max-w-3xl items-center justify-between gap-2 px-4 sm:grid sm:grid-cols-[1fr_auto_1fr] sm:gap-4 sm:px-6">
         <Link
           href="/"

@@ -4,6 +4,7 @@ import { ArrowUpRight, GithubLogo, Globe } from "@phosphor-icons/react/dist/ssr"
 import { Container } from "@/components/container";
 import { ProjectScene } from "@/components/project-scene";
 import { SectionHeading } from "@/components/section-heading";
+import { TransitionLink } from "@/components/view-transitions";
 import { projects, type Project } from "@/config/projects";
 import { getTechIcon } from "@/lib/tech-icons";
 import { cn } from "@/lib/utils";
@@ -16,7 +17,14 @@ export function ProjectCard({ project, index = 0 }: { project: Project; index?: 
       className="animate-in-up-on-view group flex flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-foreground/15 hover:shadow-lg"
       style={{ animationDelay: `${index * 0.05}s` }}
     >
-      <div className="relative mx-4 mt-4 flex aspect-[16/10] items-center justify-center overflow-hidden rounded-xl bg-muted/40 sm:aspect-[2/1]">
+      {/* Poster opens the project page; the shared view-transition-name lets it
+          glide into the page header. */}
+      <TransitionLink
+        href={`/projects/${project.slug}`}
+        aria-label={`Open ${project.title}`}
+        className="relative mx-4 mt-4 flex aspect-[16/10] items-center justify-center overflow-hidden rounded-xl bg-muted/40 sm:aspect-[2/1]"
+        style={{ viewTransitionName: `poster-${project.slug}` }}
+      >
         {project.scene ? (
           <ProjectScene variant={project.scene} label={`${project.title} animated poster`} />
         ) : project.cover ? (
@@ -50,11 +58,18 @@ export function ProjectCard({ project, index = 0 }: { project: Project; index?: 
             </div>
           </>
         )}
-      </div>
+      </TransitionLink>
 
       <div className="flex flex-1 flex-col p-4 pt-3">
         <div className="flex items-start justify-between gap-3">
-          <h3 className="font-display text-xl font-medium tracking-tight">{project.title}</h3>
+          <h3 className="font-display text-xl font-medium tracking-tight">
+            <TransitionLink
+              href={`/projects/${project.slug}`}
+              className="transition-colors hover:text-secondary"
+            >
+              {project.title}
+            </TransitionLink>
+          </h3>
           <div className="flex shrink-0 items-center gap-1">
             {project.website && (
               <Link

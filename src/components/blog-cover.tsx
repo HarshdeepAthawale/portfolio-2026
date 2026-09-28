@@ -6,12 +6,17 @@ export function BlogCover({
   cover,
   className,
   priority = false,
+  transitionName,
 }: {
   title: string;
   cover?: string;
   className?: string;
   priority?: boolean;
+  /** view-transition-name, so the cover can morph between list and post. */
+  transitionName?: string;
 }) {
+  const style = transitionName ? { viewTransitionName: transitionName } : undefined;
+
   if (!cover) {
     return (
       <div
@@ -19,6 +24,7 @@ export function BlogCover({
           "flex items-center justify-center bg-linear-to-br from-foreground/5 via-foreground/10 to-foreground/5",
           className,
         )}
+        style={style}
       >
         <span className="text-5xl font-bold tracking-tight text-foreground/15">
           {title.slice(0, 1).toUpperCase()}
@@ -28,7 +34,7 @@ export function BlogCover({
   }
 
   return (
-    <div className={cn("relative overflow-hidden bg-muted", className)}>
+    <div className={cn("relative overflow-hidden bg-muted", className)} style={style}>
       <Image
         src={cover}
         alt=""
