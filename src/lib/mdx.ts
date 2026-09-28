@@ -12,6 +12,8 @@ export type ContentItem = {
   tech?: string[];
   /** Where the piece was first published (e.g. Medium), shown in the post header. */
   original?: string;
+  /** Projects: path to a blog post that tells the full story. */
+  writeup?: string;
 };
 
 // Newest first. "Apr 2026"-style dates compare as real dates; anything that
@@ -43,6 +45,7 @@ async function readMdxFiles(dir: string): Promise<ContentItem[]> {
           cover: data.cover ? String(data.cover) : undefined,
           tech: Array.isArray(data.tech) ? data.tech.map(String) : undefined,
           original: data.original ? String(data.original) : undefined,
+          writeup: data.writeup ? String(data.writeup) : undefined,
           content,
         };
       }),

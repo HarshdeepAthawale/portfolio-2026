@@ -60,6 +60,15 @@ export default async function ProjectDetailPage({
             ))}
           </div>
         )}
+        {post.writeup && (
+          <Link
+            href={post.writeup}
+            className="link-underline mt-5 inline-flex items-center gap-1.5 text-sm font-medium"
+          >
+            Read the full write-up
+            <span aria-hidden>→</span>
+          </Link>
+        )}
         <article className="prose prose-neutral prose-reading dark:prose-invert mt-8">
           <MdxContent source={post.content} />
         </article>
