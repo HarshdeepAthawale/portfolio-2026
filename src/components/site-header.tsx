@@ -97,7 +97,7 @@ export function SiteHeader() {
             type="button"
             onClick={openCommand}
             aria-label="Open command palette"
-            className="hidden h-8 items-center gap-2 rounded-full border border-border bg-card/80 px-3 text-sm text-secondary shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-foreground/20 hover:text-foreground hover:shadow-md active:translate-y-0 active:scale-95 sm:inline-flex"
+            className="hidden h-8 items-center gap-2 rounded-full border border-border bg-card/80 px-3 text-sm text-secondary shadow-sm transition-all duration-200 hover:border-foreground/20 hover:text-foreground active:scale-95 sm:inline-flex"
           >
             <MagnifyingGlass className="size-4" weight="bold" />
             <span className="hidden items-center gap-1 sm:inline-flex">

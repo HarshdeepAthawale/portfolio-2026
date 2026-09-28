@@ -28,7 +28,7 @@ export function LinkCardSection({
           >
             <Link
               href={item.href}
-              className="group flex flex-row items-center justify-between gap-3 rounded-xl border border-border bg-card px-3 py-2.5 no-underline transition-all duration-200 hover:-translate-y-0.5 hover:border-foreground/15 hover:bg-muted/60 hover:shadow-sm"
+              className="group flex flex-row items-center justify-between gap-3 rounded-xl border border-border bg-card px-3 py-2.5 no-underline transition-colors duration-200 hover:border-foreground/15 hover:bg-muted/60"
             >
               <div className="min-w-0 flex-1 space-y-0.5">
                 <h3 className="font-display text-base font-medium leading-tight text-primary">
@@ -39,7 +39,7 @@ export function LinkCardSection({
                 </p>
               </div>
               <span className="inline-flex shrink-0 opacity-0 transition-opacity group-hover:opacity-100">
-                <ArrowRight className="size-4 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                <ArrowRight className="size-4 text-muted-foreground transition-transform group-hover:translate-x-0.5" />
               </span>
             </Link>
           </div>

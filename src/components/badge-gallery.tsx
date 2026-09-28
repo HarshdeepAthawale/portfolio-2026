@@ -21,7 +21,7 @@ export function BadgeGallery({
       {images.map((src, index) => (
         <div
           key={`${src}-${index}`}
-          className="group overflow-hidden rounded-xl border border-border bg-card shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
+          className="group overflow-hidden rounded-xl border border-border bg-card shadow-sm transition-colors duration-300 hover:border-foreground/15"
         >
           {/* Native img preserves the badge's natural 2:1 aspect ratio */}
           {/* eslint-disable-next-line @next/next/no-img-element */}

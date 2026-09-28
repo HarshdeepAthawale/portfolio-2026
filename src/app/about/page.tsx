@@ -118,7 +118,7 @@ export default function AboutPage() {
             {aboutConfig.findings.items.map((item) => (
               <div
                 key={item.org}
-                className="rounded-xl border border-border bg-card/60 p-4 transition-all duration-300 hover:-translate-y-1 hover:border-foreground/15 hover:bg-card/80 hover:shadow-md"
+                className="rounded-xl border border-border bg-card/60 p-4 transition-colors duration-300 hover:border-foreground/15 hover:bg-card/80"
               >
                 <div className="flex items-center justify-between gap-2">
                   <h3 className="font-display text-base font-medium tracking-tight">{item.org}</h3>
@@ -145,7 +145,7 @@ export default function AboutPage() {
             {aboutConfig.built.items.map((item) => (
               <div
                 key={item.title}
-                className="rounded-xl border border-border bg-card/60 p-4 transition-all duration-300 hover:-translate-y-0.5 hover:border-foreground/15 hover:bg-card/80 hover:shadow-md"
+                className="rounded-xl border border-border bg-card/60 p-4 transition-colors duration-300 hover:border-foreground/15 hover:bg-card/80"
               >
                 <h3 className="font-display text-lg font-medium tracking-tight">{item.title}</h3>
                 <p className="mt-1.5 text-sm leading-relaxed text-secondary">{item.text}</p>
@@ -162,7 +162,7 @@ export default function AboutPage() {
             {aboutConfig.principles.items.map((item) => (
               <div
                 key={item.title}
-                className="rounded-xl border border-border bg-card/60 p-4 transition-all duration-300 hover:-translate-y-1 hover:border-foreground/15 hover:bg-card/80 hover:shadow-md"
+                className="rounded-xl border border-border bg-card/60 p-4 transition-colors duration-300 hover:border-foreground/15 hover:bg-card/80"
               >
                 <h3 className="font-display text-lg font-medium tracking-tight">{item.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-secondary">
@@ -207,7 +207,7 @@ export default function AboutPage() {
                   target={external ? "_blank" : undefined}
                   rel={external ? "noopener noreferrer" : undefined}
                   aria-label={link.name}
-                  className="flex size-10 items-center justify-center rounded-xl border border-border text-secondary transition-all duration-200 hover:-translate-y-0.5 hover:border-foreground/20 hover:bg-muted hover:text-foreground hover:shadow-sm"
+                  className="flex size-10 items-center justify-center rounded-xl border border-border text-secondary transition-colors duration-200 hover:border-foreground/20 hover:bg-muted hover:text-foreground"
                 >
                   <Icon className="size-5" />
                 </Link>
