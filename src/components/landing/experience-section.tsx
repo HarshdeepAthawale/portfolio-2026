@@ -38,7 +38,8 @@ function TimelineItem({ job, delay }: { job: ExperienceItem; delay: number }) {
       </div>
 
       <Collapsible className="group/card min-w-0 flex-1 pt-1">
-        <div className="flex flex-row flex-nowrap items-start justify-between gap-4">
+        {/* Phones: date/location sit on one line under the role. Wider: right column. */}
+        <div className="flex flex-col gap-1.5 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
           <div className="min-w-0 flex-1">
             <div className="flex flex-wrap items-center gap-2">
               <h3 className="font-display text-xl font-medium tracking-tight sm:text-2xl">
@@ -70,14 +71,14 @@ function TimelineItem({ job, delay }: { job: ExperienceItem; delay: number }) {
             </p>
           </div>
 
-          <div className="shrink-0 text-right text-sm text-secondary">
+          <div className="flex flex-wrap items-baseline gap-x-3 text-sm text-secondary sm:block sm:shrink-0 sm:text-right">
             <p className="font-mono text-xs uppercase tracking-[0.1em] text-foreground/80 md:hidden">
               {job.periodShort}
             </p>
             <p className="hidden font-mono text-xs uppercase tracking-[0.1em] text-foreground/80 md:block">
               {job.periodLong}
             </p>
-            <p className="mt-1 md:hidden">{job.locationShort}</p>
+            <p className="sm:mt-1 md:hidden">{job.locationShort}</p>
             <p className="mt-1 hidden md:block">{job.locationLong}</p>
           </div>
         </div>
