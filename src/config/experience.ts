@@ -27,13 +27,14 @@ export const experience: ExperienceItem[] = [
     working: true,
     details: [
       "Head of Cyber Security since August 2026, after a year as a Core Member (July 2025 - August 2026).",
-      "Leading the club's security work - building security projects with junior members, alongside bug bounty hunting and security research.",
+      "Leading the club's security work - building security projects with core members, alongside bug bounty hunting and security research.",
       "Delivered a 2-hour cybersecurity workshop at DevFest 2025, covering core security concepts through live demonstrations for 160+ attendees.",
     ],
     photos: [
-      { src: "/assets/experience/gdg-tiet-team.jpg", alt: "The GDG TIET team at the 'Welcome to the family' induction" },
-      { src: "/assets/experience/gdg-tiet-devfest.jpg", alt: "DevFest 2025 audience with the GDG on Campus team" },
+      { src: "/assets/experience/gdg-tiet-speaking.jpg", alt: "Presenting the DevFest 2025 cybersecurity workshop" },
+      { src: "/assets/experience/gdg-tiet-devfest.jpg", alt: "DevFest 2025 audience with the GDG at Thapar team" },
       { src: "/assets/experience/gdg-tiet-workshop.jpg", alt: "Attendees following along in the DevFest 2025 cybersecurity workshop" },
+      { src: "/assets/experience/gdg-tiet-team.jpg", alt: "The GDG TIET team at the 'Welcome to the family' induction" },
     ],
   },
   {
