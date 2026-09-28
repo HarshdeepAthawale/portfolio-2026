@@ -29,6 +29,12 @@ export const achievements: Achievement[] = [
       "Collaborated with a panel of 90 judges, giving technical feedback to teams competing for selection to the national SIH 2026 round.",
     ],
     featured: true,
+    image: "/assets/achievements/sih-2026-group.jpg",
+    gallery: [
+      "/assets/achievements/sih-2026-judge-plaque.jpg",
+      "/assets/achievements/sih-2026-banner.jpg",
+      "/assets/achievements/sih-2026-group.jpg",
+    ],
   },
   {
     slug: "niohack-2026-winner",
