@@ -200,6 +200,24 @@ body {
   animation: fade-in-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
+/* GitHub grid: cells light up in a wave across the year once revealed.
+   "backwards" fill (not "both") so hover transforms still apply afterwards. */
+.reveal-enabled .animate-in-up-on-view:not(.reveal-in) .gh-cell {
+  opacity: 0;
+}
+
+.reveal-enabled .animate-in-up-on-view.reveal-in .gh-cell {
+  animation: gh-cell-in 0.45s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+  animation-delay: calc(var(--w) * 12ms + var(--d) * 20ms + 150ms);
+}
+
+@keyframes gh-cell-in {
+  from {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .reveal-enabled .animate-in-up-on-view {
     opacity: 1;
