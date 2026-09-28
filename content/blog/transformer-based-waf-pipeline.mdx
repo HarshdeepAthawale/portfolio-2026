@@ -1,0 +1,35 @@
+---
+title: "Building a Transformer-Based End-to-End Web Application Firewall (WAF) Pipeline"
+description: "Replacing signature matching with learned behavior: a fine-tuned DistilBERT at a Layer 7 reverse proxy that scores every request and decides whether to allow, challenge, or block it."
+date: "Mar 2026"
+cover: "/assets/blog/waf-dashboard.jpg"
+original: "https://harshdeepathawale.medium.com/building-a-transformer-based-end-to-end-web-application-firewall-waf-pipeline-704b3d191039"
+---
+
+Most Web Application Firewalls rely on static signatures and rule sets. They detect what they already know but struggle with zero-day exploits, obfuscated payloads, and evolving attack techniques. Maintaining rule accuracy becomes a continuous operational burden. To address this limitation, I built an end-to-end WAF pipeline that replaces signature matching with learned behavioral detection.
+
+## Learned behavior instead of signatures
+
+Instead of searching for predefined payload patterns, the system models legitimate HTTP traffic and flags deviations in real time. A fine-tuned DistilBERT Transformer evaluates every request at the gateway and performs binary classification: benign or malicious. A single model generalizes across SQL injection, cross-site scripting, path traversal, header injection, command injection, and SSRF without relying on handcrafted rules. The classifier learns structural and semantic patterns in request paths, parameters, headers, and bodies rather than static payload strings.
+
+## One choke point, layered controls
+
+The architecture is built around a Layer 7 reverse proxy that acts as a single enforcement choke point. Every request passes through layered controls before reaching the upstream application: edge cache lookup, Redis-backed rate limiting, DDoS burst detection, IP blacklist enforcement, bot scoring, and finally machine learning inspection. DistilBERT (6 layers, 12 attention heads, 768 hidden size) outputs a probability score that is converted into an anomaly score. Based on configurable thresholds, the gateway decides whether to allow, challenge, or block. Blocked traffic never reaches the origin.
+
+![Architecture: requests pass through the WAF gateway's edge cache, Redis rate limiting, DDoS check, IP blacklist, bot scoring, and DistilBERT inspection before the reverse proxy forwards them to OWASP Juice Shop, WebGoat, or DVWA.](/assets/blog/waf-architecture.jpeg)
+
+## Training data
+
+For training, I deployed three deliberately vulnerable applications — OWASP Juice Shop, OWASP WebGoat, and DVWA — and generated controlled benign and malicious traffic across multiple attack classes. Request logs were collected and serialized into the exact HTTP-style text format used during inference, ensuring strict alignment between training and deployment conditions. In addition, the primary dataset included **notesbymuneeb/ai-waf-dataset** from Hugging Face. Combining curated dataset samples with lab-generated attack traffic improved generalization and reduced overfitting to a single source.
+
+## From raw logs to decisions
+
+The machine learning pipeline transforms raw HTTP logs into real-time enforcement decisions through six structured stages. Access logs are ingested in batch or streaming mode with automatic format detection, parsed into structured HTTP request objects, and normalized during training to replace high-variance fields such as UUIDs, IP addresses, timestamps, and session identifiers. Requests are serialized into a standardized HTTP-style text representation to maintain alignment between training and inference. A fine-tuned DistilBERT model performs binary classification, producing a probability-based attack score that the gateway maps to configurable block or challenge thresholds before traffic reaches the origin application.
+
+![The six-stage pipeline: log ingestion, request parsing, normalization, serialization, model inference with DistilBERT, and the final decision.](/assets/blog/waf-ml-pipeline.png)
+
+## Dashboard and live results
+
+The system includes a multi-tenant backend and dashboard exposing anomaly scores, enforcement actions, rate-limit metrics, and attack trends. An integrated AI copilot enables natural-language investigation queries, generating structured summaries of recent threats and risk assessments without manual log analysis. In live testing with 295 requests, including 106 malicious attempts, the WAF successfully blocked malicious traffic with HTTP 403 responses. Built using PyTorch, Hugging Face Transformers, FastAPI, Next.js, Redis, and Docker, the project demonstrates how Transformer-based behavioral modeling can operationalize adaptive web security at the edge.
+
+The code is on GitHub: [Transformer-based end-to-end WAF pipeline](https://github.com/HarshdeepAthawale/Transformer-based-end-to-end-Web-Application-Firewall-WAF-pipeline).
