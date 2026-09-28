@@ -34,14 +34,4 @@ export const socialLinks = [
     href: "https://medium.com/@harshdeepathawale",
     icon: "medium" as const,
   },
-  {
-    name: "Mail",
-    href: "mailto:athawaleharshdeep@gmail.com",
-    icon: "mail" as const,
-  },
-  {
-    name: "Resume",
-    href: "/resume",
-    icon: "resume" as const,
-  },
 ];
