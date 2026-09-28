@@ -8,7 +8,7 @@ export const moreNav = [
   { label: "Work", href: "/work" },
   { label: "Blog", href: "/blog" },
   { label: "Resume", href: "/resume" },
-  { label: "Achievements", href: "/achievements" },
+  { label: "Honors & Awards", href: "/achievements" },
   { label: "Favourites", href: "/favourites" },
 ] as const;
 
@@ -19,7 +19,7 @@ export const footerNav = [
   { label: "Work", href: "/work" },
   { label: "Blog", href: "/blog" },
   { label: "Resume", href: "/resume" },
-  { label: "Achievements", href: "/achievements" },
+  { label: "Honors & Awards", href: "/achievements" },
   { label: "Favourites", href: "/favourites" },
 ] as const;
 

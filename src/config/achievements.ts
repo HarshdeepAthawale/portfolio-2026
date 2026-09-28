@@ -17,6 +17,20 @@ export type Achievement = {
 
 export const achievements: Achievement[] = [
   {
+    slug: "sih-2026-internal-judge",
+    title: "Judge",
+    organization: "Internal Smart India Hackathon (SIH) 2026",
+    year: "2026",
+    periodShort: "Sep 12",
+    periodLong: "September 12",
+    details: [
+      "Served as a judge at TIET's Internal Smart India Hackathon 2026, an event featuring 366 teams and 2,100+ students.",
+      "Evaluated solutions across 366 teams on innovation, technical feasibility, scalability, and problem-solving approach.",
+      "Collaborated with a panel of 90 judges, giving technical feedback to teams competing for selection to the national SIH 2026 round.",
+    ],
+    featured: true,
+  },
+  {
     slug: "niohack-2026-winner",
     title: "Winner · 1st Place",
     organization: "NioHack 2026",
