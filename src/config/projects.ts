@@ -23,7 +23,7 @@ export const projects: Project[] = [
     date: "02.2026",
     description:
       "A reverse-proxy WAF combining sliding-window rate limiting with transformer-based request inspection, benchmarked against ModSecurity with OWASP CRS v4 on 675 labeled real-world payloads for a 96% detection rate vs. 46%. Fine-tuned DistilBERT to detect 10 web attack classes - Path Traversal, SQLi, XSS, SSRF, and IDOR - at 97.5% accuracy, with OWASP Juice Shop, WebGoat, and DVWA deployed behind a Docker Compose reverse-proxy gateway enforcing per-IP rate limiting and monitor, block, and challenge modes before reaching the origin.",
-    tech: ["PyTorch", "DistilBERT", "ONNX", "FastAPI", "Next.js", "Docker", "Redis", "Nginx"],
+    tech: ["PyTorch", "DistilBERT", "FastAPI", "Next.js", "Docker", "Redis", "Nginx"],
     href: "https://github.com/HarshdeepAthawale",
     featured: true,
     monogram: "AW",
