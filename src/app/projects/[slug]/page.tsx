@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { Container } from "@/components/container";
 import { MdxContent } from "@/components/mdx-content";
 import { ProjectScene } from "@/components/project-scene";
+import { TransitionLink } from "@/components/view-transitions";
 import { projects } from "@/config/projects";
 import { getProjectPost, getProjectPosts } from "@/lib/mdx";
 
@@ -37,11 +38,14 @@ export default async function ProjectDetailPage({
   return (
     <div className="space-y-8 pb-16 pt-8">
       <Container>
-        <Link href="/projects" className="text-sm text-secondary hover:text-primary">
+        <TransitionLink href="/projects" className="text-sm text-secondary hover:text-primary">
           ← Back to projects
-        </Link>
+        </TransitionLink>
         {scene && (
-          <div className="relative mt-6 aspect-[16/10] overflow-hidden rounded-2xl border border-border sm:aspect-[2/1]">
+          <div
+            className="relative mt-6 aspect-[16/10] overflow-hidden rounded-2xl border border-border sm:aspect-[2/1]"
+            style={{ viewTransitionName: `poster-${slug}` }}
+          >
             <ProjectScene variant={scene} label={`${post.title} animated poster`} />
           </div>
         )}

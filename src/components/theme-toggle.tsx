@@ -7,6 +7,9 @@ import { flushSync } from "react-dom";
 import { playThemeClickSound } from "@/lib/theme-click-sound";
 import { cn } from "@/lib/utils";
 
+// Only the most recent theme transition may clear the html[data-vt] marker.
+let latestThemeTransition = 0;
+
 export function ThemeToggle({ className }: { className?: string }) {
   const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
@@ -19,7 +22,10 @@ export function ThemeToggle({ className }: { className?: string }) {
     const next = resolvedTheme === "dark" ? "light" : "dark";
 
     const doc = document as Document & {
-      startViewTransition?: (cb: () => void) => { ready: Promise<void> };
+      startViewTransition?: (cb: () => void) => {
+        ready: Promise<void>;
+        finished: Promise<void>;
+      };
     };
     const prefersReduced =
       typeof window !== "undefined" &&
@@ -41,6 +47,11 @@ export function ThemeToggle({ className }: { className?: string }) {
       Math.max(x, window.innerWidth - x),
       Math.max(y, window.innerHeight - y),
     );
+
+    // Marks this as a theme transition so globals.css applies the wave styles
+    // (and not the page-change cross-fade).
+    document.documentElement.dataset.vt = "theme";
+    const id = ++latestThemeTransition;
 
     const transition = doc.startViewTransition(() => {
       // Apply the theme class to <html> synchronously so the *new* snapshot is
@@ -73,6 +84,12 @@ export function ThemeToggle({ className }: { className?: string }) {
       // A rapid re-toggle skips the in-flight transition and rejects `ready`.
       // The theme is already applied, so there's nothing else to do.
     }
+
+    transition.finished
+      .catch(() => {})
+      .finally(() => {
+        if (id === latestThemeTransition) delete document.documentElement.dataset.vt;
+      });
   };
 
   if (!mounted) {
