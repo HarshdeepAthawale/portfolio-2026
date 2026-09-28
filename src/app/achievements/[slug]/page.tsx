@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { ArrowLeft } from "@phosphor-icons/react/dist/ssr";
 import { AchievementGallery } from "@/components/achievement-gallery";
 import { AchievementPhoto } from "@/components/achievement-photo";
+import { BadgeFan } from "@/components/badge-fan";
 import { BadgeGallery } from "@/components/badge-gallery";
 import { Container } from "@/components/container";
 import { achievements, getAchievement } from "@/config/achievements";
@@ -48,8 +49,12 @@ export default async function AchievementDetailPage({
         </Link>
 
         <div className="mt-6 overflow-hidden rounded-2xl border border-border bg-card">
-          {achievement.image && (
-            <AchievementPhoto achievement={achievement} fit="natural" priority />
+          {achievement.badgeFan && achievement.gallery?.length ? (
+            <BadgeFan images={achievement.gallery} title={achievement.organization} />
+          ) : (
+            achievement.image && (
+              <AchievementPhoto achievement={achievement} fit="natural" priority />
+            )
           )}
           <div className="space-y-4 p-5 sm:p-6">
             <div className="flex flex-wrap items-center gap-2">
@@ -61,7 +66,9 @@ export default async function AchievementDetailPage({
               </span>
             </div>
             <p className="text-sm text-secondary">
-              {achievement.periodLong} · {achievement.year}
+              {achievement.periodLong === achievement.year
+                ? achievement.year
+                : `${achievement.periodLong} · ${achievement.year}`}
             </p>
             {achievement.details && achievement.details.length > 0 && (
               <ul className="space-y-1.5 text-sm leading-relaxed text-secondary">

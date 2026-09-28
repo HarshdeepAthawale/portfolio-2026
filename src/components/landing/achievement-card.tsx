@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { CaretRight } from "@phosphor-icons/react";
 import { AchievementPhoto } from "@/components/achievement-photo";
+import { BadgeFan } from "@/components/badge-fan";
 import {
   Collapsible,
   CollapsibleContent,
@@ -25,19 +26,26 @@ export function AchievementCard({
   const hasDetails = Boolean(achievement.details?.length);
   const detailHref = `/achievements/${achievement.slug}`;
 
-  const photo = showPhoto && achievement.image ? (
-    linkToDetail ? (
+  const showFan = showPhoto && achievement.badgeFan && Boolean(achievement.gallery?.length);
+
+  const visual = showFan ? (
+    <BadgeFan images={achievement.gallery!} title={achievement.organization} />
+  ) : showPhoto && achievement.image ? (
+    <AchievementPhoto
+      achievement={achievement}
+      fit="natural"
+      className={linkToDetail ? "transition-opacity hover:opacity-95" : undefined}
+    />
+  ) : null;
+
+  const photo =
+    visual && linkToDetail ? (
       <Link href={detailHref} className="block">
-        <AchievementPhoto
-          achievement={achievement}
-          fit="natural"
-          className="transition-opacity hover:opacity-95"
-        />
+        {visual}
       </Link>
     ) : (
-      <AchievementPhoto achievement={achievement} fit="natural" />
-    )
-  ) : null;
+      visual
+    );
 
   return (
     <article
@@ -95,7 +103,7 @@ export function AchievementCard({
           </div>
         </div>
 
-        {achievement.badgeGallery && achievement.gallery && (
+        {!showFan && achievement.badgeGallery && achievement.gallery && (
           <div className="grid grid-cols-2 gap-2 px-4 pb-3 sm:grid-cols-4">
             {achievement.gallery.map((src, index) => (
               <div
