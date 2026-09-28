@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 // Images that can be opened full-screen: gallery photos and article images.
-const ZOOMABLE = ".achievement-gallery img, .prose-reading img";
+const ZOOMABLE = ".achievement-gallery img, .prose-reading img, .zoomable-gallery img";
 
 type Open = { src: string; alt: string };
 
