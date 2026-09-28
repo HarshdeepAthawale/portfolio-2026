@@ -43,18 +43,19 @@ export function Hero() {
         <div className="flex items-start gap-4">
           <ProfileAvatar />
           <div className="min-w-0 flex-1">
-            <h1 className="font-display flex items-center gap-2 text-3xl font-medium tracking-tight sm:text-4xl">
-              <span>
-                {heroConfig.name.split(" ").slice(0, -1).join(" ")}{" "}
+            <h1 className="font-display text-3xl font-medium tracking-tight sm:text-4xl">
+              {heroConfig.name.split(" ").slice(0, -1).join(" ")}{" "}
+              {/* Badge rides with the last name so it never strands on wrap. */}
+              <span className="whitespace-nowrap">
                 <span className="font-normal italic">
                   {heroConfig.name.split(" ").slice(-1)}
                 </span>
+                <SealCheck
+                  className="ml-2 inline-block size-6 align-[-0.12em] text-sage sm:size-7"
+                  weight="fill"
+                  aria-label="Verified"
+                />
               </span>
-              <SealCheck
-                className="size-6 shrink-0 text-sage sm:size-7"
-                weight="fill"
-                aria-label="Verified"
-              />
             </h1>
             <RotatingTitle />
             <p className="mt-3 flex flex-wrap items-center gap-x-1 gap-y-1 text-sm sm:text-base">
