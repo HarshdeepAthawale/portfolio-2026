@@ -27,6 +27,7 @@ export const experience: ExperienceItem[] = [
     working: true,
     details: [
       "Head of Cyber Security since August 2026, after a year as a Core Member (July 2025 - August 2026).",
+      "Leading the club's security work - building security projects with junior members, alongside bug bounty hunting and security research.",
       "Delivered a 2-hour cybersecurity workshop at DevFest 2025, covering core security concepts through live demonstrations for 160+ attendees.",
     ],
     photos: [
