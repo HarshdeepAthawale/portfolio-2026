@@ -246,16 +246,117 @@ body {
   outline-offset: 2px;
 }
 
-/* Links inside long-form content (blog, project write-ups). */
-.prose a {
-  text-decoration-color: color-mix(in srgb, var(--sage) 55%, transparent);
-  text-underline-offset: 3px;
-  transition: color 0.2s, text-decoration-color 0.2s;
+/* Inline links (prose + .link-underline): a faint sage base line, with a solid
+   underline that slides in on hover - the same motion as the navbar links.
+   Background-image underlines also work across line wraps. */
+.prose a,
+.link-underline {
+  text-decoration: none;
+  background-image:
+    linear-gradient(var(--sage), var(--sage)),
+    linear-gradient(
+      color-mix(in srgb, var(--sage) 35%, transparent),
+      color-mix(in srgb, var(--sage) 35%, transparent)
+    );
+  background-size: 0% 1.5px, 100% 1px;
+  background-position: 0 100%, 0 100%;
+  background-repeat: no-repeat;
+  padding-bottom: 2px;
+  transition:
+    background-size 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    color 0.2s;
 }
 
-.prose a:hover {
+.prose a:hover,
+.prose a:focus-visible,
+.link-underline:hover,
+.link-underline:focus-visible {
+  background-size: 100% 1.5px, 100% 1px;
   color: var(--sage);
-  text-decoration-color: var(--sage);
+}
+
+/* ---- Long-form reading: blog posts and project write-ups ---- */
+.prose-reading {
+  max-width: 68ch;
+  font-size: 1.0625rem;
+  line-height: 1.8;
+}
+
+@media (min-width: 640px) {
+  .prose-reading {
+    font-size: 1.125rem;
+  }
+}
+
+.prose-reading :where(h2, h3) {
+  font-family: var(--font-newsreader), Georgia, serif;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.prose-reading :where(h2) {
+  margin-top: 2.4em;
+}
+
+/* Pull quotes. */
+.prose-reading :where(blockquote) {
+  margin: 2em 0;
+  border-left: 2px solid var(--sage);
+  padding-left: 1.25em;
+  font-family: var(--font-newsreader), Georgia, serif;
+  font-size: 1.25em;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--foreground);
+  quotes: none;
+}
+
+.prose-reading blockquote p::before,
+.prose-reading blockquote p::after {
+  content: none;
+}
+
+/* Inline code as a quiet sage chip (no typography-plugin backticks). */
+.prose-reading :where(code):not(:where(pre code)) {
+  border: 1px solid var(--sage-border);
+  border-radius: 6px;
+  background: var(--sage-soft);
+  padding: 0.1em 0.4em;
+  font-size: 0.85em;
+  font-weight: 500;
+  color: var(--sage);
+}
+
+.prose-reading :where(code):not(:where(pre code))::before,
+.prose-reading :where(code):not(:where(pre code))::after {
+  content: none;
+}
+
+/* Code blocks themed to the site. */
+.prose-reading pre {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--muted);
+  padding: 1em 1.25em;
+  font-size: 0.85em;
+  line-height: 1.7;
+  color: var(--foreground);
+}
+
+.prose-reading :where(ul > li)::marker,
+.prose-reading :where(ol > li)::marker {
+  color: var(--sage);
+}
+
+.prose-reading :where(img) {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.prose-reading :where(hr) {
+  margin: 3em 0;
+  border-color: var(--border);
 }
 
 .achievement-gallery {

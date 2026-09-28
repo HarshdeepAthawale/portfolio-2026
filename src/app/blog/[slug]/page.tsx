@@ -57,7 +57,7 @@ export default async function BlogPostPage({
           </p>
         </header>
 
-        <article className="prose prose-neutral dark:prose-invert mt-10 max-w-none border-t border-border pt-10">
+        <article className="prose prose-neutral prose-reading dark:prose-invert mt-10 border-t border-border pt-10">
           <MdxContent source={post.content} />
         </article>
       </Container>

@@ -8,16 +8,18 @@ import { achievements } from "@/config/achievements";
 export function AchievementsSection({
   limit,
   showAllLink = false,
+  index,
 }: {
   limit?: number;
   showAllLink?: boolean;
+  index?: number;
 }) {
   const items = limit ? achievements.slice(0, limit) : achievements;
 
   return (
     <Container>
       <div className="mb-4 flex items-end justify-between gap-4">
-        <SectionHeading title="Achievements" uppercase className="mb-0" />
+        <SectionHeading title="Honors & Awards" uppercase className="mb-0" index={index} />
         {showAllLink && (
           <Link
             href="/achievements"

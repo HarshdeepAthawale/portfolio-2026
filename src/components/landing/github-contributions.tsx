@@ -63,7 +63,7 @@ const formatDay = (date: string) =>
     timeZone: "UTC",
   });
 
-export async function GitHubContributions() {
+export async function GitHubContributions({ index }: { index?: number }) {
   const data = await getGitHubContributions(siteConfig.githubUsername);
 
   if (!data) return null;
@@ -86,7 +86,7 @@ export async function GitHubContributions() {
   return (
     <Container>
       <div className="mb-5 flex items-center justify-between gap-4">
-        <SectionHeading title="GitHub Activity" uppercase className="mb-0" />
+        <SectionHeading title="GitHub Activity" uppercase className="mb-0" index={index} />
         <Link
           href={`https://github.com/${siteConfig.githubUsername}`}
           target="_blank"

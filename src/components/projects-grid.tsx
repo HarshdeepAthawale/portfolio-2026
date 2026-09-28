@@ -121,11 +121,13 @@ export function ProjectsGrid({
   limit,
   showHeading = true,
   showViewAll = false,
+  index,
 }: {
   items?: Project[];
   limit?: number;
   showHeading?: boolean;
   showViewAll?: boolean;
+  index?: number;
 }) {
   const source = items ?? projects;
   const list = limit && !items ? source.filter((p) => p.featured) : source;
@@ -135,7 +137,7 @@ export function ProjectsGrid({
     <Container>
       {showHeading && (
         <div className="mb-4 flex items-end justify-between gap-4">
-          <SectionHeading title="Featured Projects" uppercase className="mb-0" />
+          <SectionHeading title="Featured Projects" uppercase className="mb-0" index={index} />
           {showViewAll && (
             <Link
               href="/projects"
