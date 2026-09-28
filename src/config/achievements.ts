@@ -12,6 +12,8 @@ export type Achievement = {
   gallery?: string[];
   /** When true, renders the gallery as a uniform badge wall instead of masonry */
   badgeGallery?: boolean;
+  /** Show the gallery as a fanned "hand of cards" poster instead of `image` */
+  badgeFan?: boolean;
   featured?: boolean;
 };
 
@@ -91,6 +93,7 @@ export const achievements: Achievement[] = [
       "/assets/achievements/intigriti-one-valid-submission.png",
     ],
     badgeGallery: true,
+    badgeFan: true,
   },
   {
     slug: "tryhackme-top-1-percent",
@@ -106,16 +109,6 @@ export const achievements: Achievement[] = [
     ],
     featured: true,
     image: "/assets/achievements/tryhackme-harshdeepathawale-300-streak.png",
-  },
-  {
-    slug: "redbull-critical",
-    title: "Critical · CVSS 9.1",
-    organization: "Red Bull",
-    year: "2026",
-    periodShort: "June",
-    periodLong: "June",
-    featured: true,
-    image: "/assets/achievements/critical-severity-9-1.png",
   },
 ];
 
