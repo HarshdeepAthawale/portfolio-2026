@@ -3,14 +3,7 @@
 import Link from "next/link";
 import { ArrowUpRight, Copy, Check, SealCheck } from "@phosphor-icons/react";
 import { useState } from "react";
-import {
-  EnvelopeSimple,
-  FileText,
-  GithubLogo,
-  LinkedinLogo,
-  MediumLogo,
-  XLogo,
-} from "@phosphor-icons/react";
+import { GithubLogo, LinkedinLogo, MediumLogo, XLogo } from "@phosphor-icons/react";
 import { ProfileAvatar } from "@/components/profile-avatar";
 import { Container } from "@/components/container";
 import { RotatingTitle } from "@/components/landing/rotating-title";
@@ -24,8 +17,6 @@ const iconMap = {
   linkedin: LinkedinLogo,
   github: GithubLogo,
   medium: MediumLogo,
-  mail: EnvelopeSimple,
-  resume: FileText,
 };
 
 export function Hero() {
