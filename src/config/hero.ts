@@ -10,6 +10,7 @@ export const heroConfig = {
   avatarRotationInterval: 4000,
   timezone: "Asia/Kolkata",
   location: "Pune, India",
+  availability: "Open to security internships · Fall 2026",
 };
 
 export const socialLinks = [
