@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Copy, Check, SealCheck } from "@phosphor-icons/react";
+import { ArrowUpRight, Copy, Check, SealCheck } from "@phosphor-icons/react";
 import { useState } from "react";
 import {
   EnvelopeSimple,
@@ -82,6 +82,32 @@ export function Hero() {
         <p className="max-w-xl text-sm leading-relaxed text-secondary sm:text-base">
           {heroConfig.bio}
         </p>
+
+        {/* Availability + the two actions recruiters look for. */}
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-3">
+          <div className="flex items-center gap-2">
+            <Link
+              href="/resume"
+              className="inline-flex h-9 items-center gap-1.5 rounded-full bg-foreground px-4 text-sm font-medium text-background transition-opacity hover:opacity-85"
+            >
+              Resume
+              <ArrowUpRight className="size-3.5" />
+            </Link>
+            <a
+              href={`mailto:${heroConfig.email}`}
+              className="inline-flex h-9 items-center rounded-full border border-border bg-card/80 px-4 text-sm font-medium transition-colors hover:border-foreground/25 hover:bg-card"
+            >
+              Get in touch
+            </a>
+          </div>
+          <p className="inline-flex items-center gap-2 text-xs text-secondary sm:text-sm">
+            <span className="relative flex size-2" aria-hidden>
+              <span className="absolute inline-flex size-full animate-ping rounded-full bg-sage opacity-60 motion-reduce:animate-none" />
+              <span className="relative inline-flex size-2 rounded-full bg-sage" />
+            </span>
+            {heroConfig.availability}
+          </p>
+        </div>
 
         <div className="flex flex-wrap gap-0.5">
           {socialLinks.map((link) => {
