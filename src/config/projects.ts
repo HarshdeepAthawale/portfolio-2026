@@ -7,8 +7,10 @@ export type Project = {
   href: string;
   website?: string;
   featured?: boolean;
-  /** Optional cover image for project cards */
+  /** Optional cover image for project cards (fallback when no scene) */
   cover?: string;
+  /** Animated CSS-3D poster; takes precedence over the static cover */
+  scene?: "waf" | "deepfake";
   /** 2-letter monogram shown on the gradient tile */
   monogram?: string;
   gradient: string;
@@ -26,6 +28,7 @@ export const projects: Project[] = [
     featured: true,
     monogram: "AW",
     cover: "/assets/projects/ai-waf-cover.png",
+    scene: "waf",
     gradient: "from-[#0f1015] via-[#332c63] to-[#8574c0]",
   },
   {
@@ -39,6 +42,7 @@ export const projects: Project[] = [
     featured: true,
     monogram: "DD",
     cover: "/assets/projects/deepfake-cover.png",
+    scene: "deepfake",
     gradient: "from-[#0f1015] via-[#173a3c] to-[#4fa39c]",
   },
 ];

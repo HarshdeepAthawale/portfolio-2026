@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, GithubLogo, Globe } from "@phosphor-icons/react/dist/ssr";
 import { Container } from "@/components/container";
+import { ProjectScene } from "@/components/project-scene";
 import { SectionHeading } from "@/components/section-heading";
 import { projects, type Project } from "@/config/projects";
 import { getTechIcon } from "@/lib/tech-icons";
@@ -16,7 +17,9 @@ export function ProjectCard({ project, index = 0 }: { project: Project; index?: 
       style={{ animationDelay: `${index * 0.05}s` }}
     >
       <div className="relative mx-4 mt-4 flex aspect-[16/10] items-center justify-center overflow-hidden rounded-xl bg-muted/40 sm:aspect-[2/1]">
-        {project.cover ? (
+        {project.scene ? (
+          <ProjectScene variant={project.scene} label={`${project.title} animated poster`} />
+        ) : project.cover ? (
           <Image
             src={project.cover}
             alt={`${project.title} cover`}
