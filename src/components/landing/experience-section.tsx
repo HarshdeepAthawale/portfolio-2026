@@ -99,6 +99,20 @@ function TimelineItem({ job, delay }: { job: ExperienceItem; delay: number }) {
               ))}
             </div>
           )}
+          {job.photos && job.photos.length > 0 && (
+            <div className="zoomable-gallery grid grid-cols-3 gap-2 pt-2">
+              {job.photos.map((photo) => (
+                // eslint-disable-next-line @next/next/no-img-element -- small thumbnails; lightbox opens full size
+                <img
+                  key={photo.src}
+                  src={photo.src}
+                  alt={photo.alt}
+                  loading="lazy"
+                  className="aspect-[4/3] w-full rounded-lg border border-border object-cover"
+                />
+              ))}
+            </div>
+          )}
         </CollapsibleContent>
       </Collapsible>
     </li>

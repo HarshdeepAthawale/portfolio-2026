@@ -356,7 +356,8 @@ body {
 
 /* Images the lightbox can open. */
 .prose-reading img,
-.achievement-gallery img {
+.achievement-gallery img,
+.zoomable-gallery img {
   cursor: zoom-in;
 }
 

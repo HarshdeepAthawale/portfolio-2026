@@ -10,9 +10,31 @@ export type ExperienceItem = {
   working?: boolean;
   details?: string[];
   tech?: string[];
+  /** Photos shown in the expanded details (open in the lightbox). */
+  photos?: { src: string; alt: string }[];
 };
 
 export const experience: ExperienceItem[] = [
+  {
+    company: "Google Developer Groups TIET",
+    logo: "/assets/experience/gdg-tiet.png",
+    role: "Head of Cyber Security",
+    employmentType: "Full-time",
+    periodShort: "Jul 25 - Present",
+    periodLong: "July 2025 - Present",
+    locationShort: "Patiala, IN (On-site)",
+    locationLong: "Patiala, India (On-site)",
+    working: true,
+    details: [
+      "Head of Cyber Security since August 2026, after a year as a Core Member (July 2025 - August 2026).",
+      "Delivered a 2-hour cybersecurity workshop at DevFest 2025, covering core security concepts through live demonstrations for 160+ attendees.",
+    ],
+    photos: [
+      { src: "/assets/experience/gdg-tiet-team.jpg", alt: "The GDG TIET team at the 'Welcome to the family' induction" },
+      { src: "/assets/experience/gdg-tiet-devfest.jpg", alt: "DevFest 2025 audience with the GDG on Campus team" },
+      { src: "/assets/experience/gdg-tiet-workshop.jpg", alt: "Attendees following along in the DevFest 2025 cybersecurity workshop" },
+    ],
+  },
   {
     company: "Iris Intelligence",
     logo: "/assets/experience/irisintelligence.jpg",
