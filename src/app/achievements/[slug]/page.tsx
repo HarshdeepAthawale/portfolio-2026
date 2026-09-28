@@ -20,7 +20,7 @@ export async function generateMetadata({
   const achievement = getAchievement(slug);
   if (!achievement) return {};
   return {
-    title: `${achievement.organization} - Achievements`,
+    title: `${achievement.organization} - Honors & Awards`,
     description: `${achievement.title} at ${achievement.organization}.`,
   };
 }
@@ -44,11 +44,13 @@ export default async function AchievementDetailPage({
           className="inline-flex items-center gap-1.5 text-sm text-secondary transition-colors hover:text-foreground"
         >
           <ArrowLeft className="size-4" />
-          Back to achievements
+          Back to honors &amp; awards
         </Link>
 
         <div className="mt-6 overflow-hidden rounded-2xl border border-border bg-card">
-          <AchievementPhoto achievement={achievement} fit="natural" priority />
+          {achievement.image && (
+            <AchievementPhoto achievement={achievement} fit="natural" priority />
+          )}
           <div className="space-y-4 p-5 sm:p-6">
             <div className="flex flex-wrap items-center gap-2">
               <h1 className="font-display text-2xl font-medium tracking-tight sm:text-3xl">

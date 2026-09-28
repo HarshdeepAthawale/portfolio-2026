@@ -25,7 +25,7 @@ export function AchievementCard({
   const hasDetails = Boolean(achievement.details?.length);
   const detailHref = `/achievements/${achievement.slug}`;
 
-  const photo = showPhoto ? (
+  const photo = showPhoto && achievement.image ? (
     linkToDetail ? (
       <Link href={detailHref} className="block">
         <AchievementPhoto

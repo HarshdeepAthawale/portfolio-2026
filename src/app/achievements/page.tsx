@@ -5,7 +5,7 @@ import { Container } from "@/components/container";
 import { achievements } from "@/config/achievements";
 
 export const metadata = {
-  title: "Achievements - Harshdeep Athawale",
+  title: "Honors & Awards - Harshdeep Athawale",
   description: "Hackathon wins, awards, and milestones.",
 };
 
@@ -20,7 +20,7 @@ export default function AchievementsPage() {
           <ArrowLeft className="size-4" />
           Back home
         </Link>
-        <h1 className="font-display text-3xl font-medium tracking-tight">Achievements</h1>
+        <h1 className="font-display text-3xl font-medium tracking-tight">Honors &amp; Awards</h1>
         <p className="mt-3 max-w-xl text-secondary">
           Awards, hackathon results, and milestones.
         </p>
