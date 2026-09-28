@@ -10,7 +10,18 @@ export type ContentItem = {
   content: string;
   cover?: string;
   tech?: string[];
+  /** Where the piece was first published (e.g. Medium), shown in the post header. */
+  original?: string;
 };
+
+// Newest first. "Apr 2026"-style dates compare as real dates; anything that
+// doesn't parse (e.g. "02.2026") falls back to string order.
+function byDateDesc(a: ContentItem, b: ContentItem) {
+  const ta = Date.parse(a.date);
+  const tb = Date.parse(b.date);
+  if (!Number.isNaN(ta) && !Number.isNaN(tb)) return tb - ta;
+  return a.date < b.date ? 1 : -1;
+}
 
 const contentRoot = path.join(process.cwd(), "content");
 
@@ -31,12 +42,13 @@ async function readMdxFiles(dir: string): Promise<ContentItem[]> {
           date: String(data.date ?? ""),
           cover: data.cover ? String(data.cover) : undefined,
           tech: Array.isArray(data.tech) ? data.tech.map(String) : undefined,
+          original: data.original ? String(data.original) : undefined,
           content,
         };
       }),
     );
 
-    return items.sort((a, b) => (a.date < b.date ? 1 : -1));
+    return items.sort(byDateDesc);
   } catch {
     return [];
   }

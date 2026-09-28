@@ -51,7 +51,22 @@ export default async function BlogPostPage({
         <header className="mt-8">
           <p className="font-mono text-xs uppercase tracking-[0.15em] text-secondary">{post.date}</p>
           <h1 className="font-display mt-3 text-3xl font-medium tracking-tight sm:text-4xl">{post.title}</h1>
-          <p className="mt-2 text-sm text-secondary">{heroConfig.name}</p>
+          <p className="mt-2 text-sm text-secondary">
+            {heroConfig.name}
+            {post.original && (
+              <>
+                {" · Originally published on "}
+                <a
+                  href={post.original}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="link-underline text-foreground"
+                >
+                  Medium ↗
+                </a>
+              </>
+            )}
+          </p>
           <p className="mt-4 text-base leading-relaxed text-secondary sm:text-lg">
             {post.description}
           </p>
