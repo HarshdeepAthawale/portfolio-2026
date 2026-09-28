@@ -13,66 +13,76 @@ import {
 import { experience, type ExperienceItem } from "@/config/experience";
 import { cn } from "@/lib/utils";
 
-function ExperienceCard({ job, delay }: { job: ExperienceItem; delay: number }) {
+function TimelineItem({ job, delay }: { job: ExperienceItem; delay: number }) {
   const hasDetails = Boolean(job.details?.length);
 
   return (
-    <div
-      className="animate-in-up-on-view rounded-2xl border border-border bg-card/60 p-5 transition-colors duration-300 hover:border-foreground/15 hover:bg-card/80"
+    <li
+      className="animate-in-up-on-view relative flex gap-4 pb-10 last:pb-0 sm:gap-5"
       style={{ animationDelay: `${delay}s` }}
     >
-      <Collapsible>
-        <div className="group/card flex flex-row flex-nowrap items-start justify-between gap-4">
-          <div className="flex min-w-0 flex-1 flex-col">
-            <div className="flex flex-wrap items-center gap-3">
-              {job.logo && (
-                <Image
-                  src={job.logo}
-                  alt={`${job.company} logo`}
-                  width={36}
-                  height={36}
-                  className="size-9 shrink-0 rounded-lg border border-border object-contain p-1"
-                  unoptimized
-                />
-              )}
+      {/* Node on the timeline: the company logo, or a sage dot. */}
+      <div className="relative z-10 flex size-10 shrink-0 items-center justify-center overflow-hidden rounded-full border border-border bg-background">
+        {job.logo ? (
+          <Image
+            src={job.logo}
+            alt={`${job.company} logo`}
+            width={40}
+            height={40}
+            className="size-full object-cover"
+            unoptimized
+          />
+        ) : (
+          <span className="size-2.5 rounded-full bg-sage" />
+        )}
+      </div>
+
+      <Collapsible className="group/card min-w-0 flex-1 pt-1">
+        <div className="flex flex-row flex-nowrap items-start justify-between gap-4">
+          <div className="min-w-0 flex-1">
+            <div className="flex flex-wrap items-center gap-2">
               <h3 className="font-display text-xl font-medium tracking-tight sm:text-2xl">
                 {job.company}
               </h3>
               {job.working && (
-                <div className="flex items-center gap-1 rounded-md border border-green-300 bg-green-500/10 px-2 py-1 text-xs">
-                  <div className="size-2 animate-pulse rounded-full bg-green-500" />
-                  <span>Working</span>
-                </div>
+                <span className="inline-flex items-center gap-1.5 rounded-full border border-sage-border bg-sage-soft px-2 py-0.5 text-xs text-sage">
+                  <span className="size-1.5 animate-pulse rounded-full bg-sage" />
+                  Current
+                </span>
               )}
               {hasDetails && (
                 <CollapsibleTrigger
                   className={cn(
-                    "group/trigger inline-flex size-7 shrink-0 items-center justify-center rounded-md text-secondary transition-all hover:bg-muted hover:text-foreground",
-                    "opacity-100 sm:opacity-0 sm:group-hover/card:opacity-100 data-[state=open]:opacity-100",
+                    "group/trigger inline-flex size-7 shrink-0 items-center justify-center rounded-md text-secondary transition-colors hover:bg-muted hover:text-foreground",
+                    "opacity-100 focus-visible:opacity-100 data-[state=open]:opacity-100 sm:opacity-0 sm:group-hover/card:opacity-100",
                   )}
-                  aria-label="Expand details"
+                  aria-label={`Show details for ${job.company}`}
                 >
                   <CaretRight className="size-4 transition-transform duration-200 group-data-[state=open]/trigger:rotate-90" />
                 </CollapsibleTrigger>
               )}
             </div>
-            <p className="mt-1 text-base text-secondary">{job.role}</p>
+            <p className="mt-0.5 text-base text-secondary">
+              {job.role}
+              {job.employmentType && (
+                <span className="text-muted-foreground"> · {job.employmentType}</span>
+              )}
+            </p>
           </div>
-          <div className="flex min-w-[96px] shrink-0 flex-col text-right text-sm text-secondary md:min-w-[150px]">
+
+          <div className="shrink-0 text-right text-sm text-secondary">
             <p className="font-mono text-xs uppercase tracking-[0.1em] text-foreground/80 md:hidden">
               {job.periodShort}
             </p>
             <p className="hidden font-mono text-xs uppercase tracking-[0.1em] text-foreground/80 md:block">
               {job.periodLong}
             </p>
-            <p className="mt-0.5 md:hidden">{job.locationShort}</p>
-            <p className="mt-0.5 hidden md:block">{job.locationLong}</p>
-            {job.employmentType && (
-              <p className="text-muted-foreground">{job.employmentType}</p>
-            )}
+            <p className="mt-1 md:hidden">{job.locationShort}</p>
+            <p className="mt-1 hidden md:block">{job.locationLong}</p>
           </div>
         </div>
-        <CollapsibleContent className="mt-4 space-y-2 text-sm text-secondary">
+
+        <CollapsibleContent className="mt-4 space-y-2 text-sm leading-relaxed text-secondary">
           {job.details?.map((detail) => (
             <p key={detail}>• {detail}</p>
           ))}
@@ -90,31 +100,38 @@ function ExperienceCard({ job, delay }: { job: ExperienceItem; delay: number }) 
           )}
         </CollapsibleContent>
       </Collapsible>
-    </div>
+    </li>
   );
 }
 
 export function ExperienceSection({
   limit,
   showAllLink = false,
+  index,
 }: {
   limit?: number;
   showAllLink?: boolean;
+  index?: number;
 }) {
   const items = limit ? experience.slice(0, limit) : experience;
 
   return (
     <Container>
-      <SectionHeading title="Experience" uppercase />
-      <div className="flex flex-col gap-5">
-        {items.map((job, index) => (
-          <ExperienceCard key={job.company} job={job} delay={(index + 1) * 0.05} />
+      <SectionHeading title="Experience" uppercase index={index} />
+      <ol className="relative mt-6">
+        {/* The timeline rail, running through the centre of each node. */}
+        <span
+          aria-hidden
+          className="absolute bottom-5 left-5 top-5 w-px -translate-x-1/2 bg-foreground/15"
+        />
+        {items.map((job, i) => (
+          <TimelineItem key={job.company} job={job} delay={(i + 1) * 0.05} />
         ))}
-      </div>
+      </ol>
       {showAllLink && experience.length > (limit ?? experience.length) && (
         <Link
           href="/work"
-          className="mt-5 inline-flex items-center gap-1 font-mono text-xs uppercase tracking-[0.15em] text-secondary transition-colors hover:text-foreground"
+          className="mt-6 inline-flex items-center gap-1 font-mono text-xs uppercase tracking-[0.15em] text-secondary transition-colors hover:text-foreground"
         >
           Show all work
           <ArrowUpRight className="size-3.5" />

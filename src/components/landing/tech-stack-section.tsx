@@ -6,10 +6,10 @@ import { SectionHeading } from "@/components/section-heading";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { techStack } from "@/config/tech-stack";
 
-export function TechStackSection() {
+export function TechStackSection({ index }: { index?: number }) {
   return (
     <Container>
-      <SectionHeading title="Tech Stack" uppercase />
+      <SectionHeading title="Tech Stack" uppercase index={index} />
       <div className="flex flex-wrap gap-3">
         {techStack.map((tech) => (
           <Tooltip key={tech.name} delayDuration={0}>

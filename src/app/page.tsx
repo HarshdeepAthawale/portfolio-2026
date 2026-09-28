@@ -8,13 +8,13 @@ import { QuoteVisitorCard } from "@/components/landing/quote-visitor-card";
 
 export default function HomePage() {
   return (
-    <div className="space-y-16 pb-20 pt-14">
+    <div className="space-y-20 pb-20 pt-14 sm:space-y-24">
       <Hero />
-      <TechStackSection />
-      <ExperienceSection limit={3} showAllLink />
-      <AchievementsSection limit={3} showAllLink />
-      <FeaturedProjects limit={2} />
-      <GitHubContributions />
+      <TechStackSection index={1} />
+      <ExperienceSection limit={3} showAllLink index={2} />
+      <AchievementsSection limit={3} showAllLink index={3} />
+      <FeaturedProjects limit={2} index={4} />
+      <GitHubContributions index={5} />
       <QuoteVisitorCard />
     </div>
   );
