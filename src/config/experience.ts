@@ -32,7 +32,7 @@ export const experience: ExperienceItem[] = [
     ],
     photos: [
       { src: "/assets/experience/gdg-tiet-speaking.jpg", alt: "Presenting the DevFest 2025 cybersecurity workshop" },
-      { src: "/assets/experience/gdg-tiet-devfest.jpg", alt: "DevFest 2025 audience with the GDG at Thapar team" },
+      { src: "/assets/experience/gdg-tiet-devfest.jpg", alt: "1st-year orientation 2025 with the GDG at Thapar team" },
       { src: "/assets/experience/gdg-tiet-workshop.jpg", alt: "Attendees following along in the DevFest 2025 cybersecurity workshop" },
       { src: "/assets/experience/gdg-tiet-team.jpg", alt: "The GDG TIET team at the 'Welcome to the family' induction" },
     ],
