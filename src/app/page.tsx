@@ -12,7 +12,7 @@ export default function HomePage() {
       <Hero />
       <TechStackSection index={1} />
       <ExperienceSection limit={3} showAllLink index={2} />
-      <AchievementsSection limit={3} showAllLink index={3} />
+      <AchievementsSection limit={4} showAllLink index={3} />
       <FeaturedProjects limit={2} index={4} />
       <GitHubContributions index={5} />
       <QuoteVisitorCard />
