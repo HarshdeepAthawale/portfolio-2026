@@ -27,6 +27,10 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+  /* The site's single accent: a calm sage. */
+  --color-sage: var(--sage);
+  --color-sage-soft: var(--sage-soft);
+  --color-sage-border: var(--sage-border);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -53,6 +57,9 @@
   --border: oklch(0.88 0.012 155);
   --input: oklch(0.88 0.012 155);
   --ring: oklch(0.55 0.02 155);
+  --sage: #4d6b47;
+  --sage-soft: #edf2ea;
+  --sage-border: #d2dfcc;
 }
 
 .dark {
@@ -74,6 +81,9 @@
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
   --ring: oklch(0.556 0 0);
+  --sage: #a6c3a0;
+  --sage-soft: rgb(122 157 128 / 0.12);
+  --sage-border: rgb(122 157 128 / 0.32);
 }
 
 * {
@@ -227,7 +237,25 @@ body {
 }
 
 ::selection {
-  background: color-mix(in srgb, var(--primary) 20%, transparent);
+  background: color-mix(in srgb, var(--sage) 28%, transparent);
+}
+
+/* Keyboard focus uses the sage accent everywhere. */
+:where(a, button, input, textarea, select, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--sage);
+  outline-offset: 2px;
+}
+
+/* Links inside long-form content (blog, project write-ups). */
+.prose a {
+  text-decoration-color: color-mix(in srgb, var(--sage) 55%, transparent);
+  text-underline-offset: 3px;
+  transition: color 0.2s, text-decoration-color 0.2s;
+}
+
+.prose a:hover {
+  color: var(--sage);
+  text-decoration-color: var(--sage);
 }
 
 .achievement-gallery {

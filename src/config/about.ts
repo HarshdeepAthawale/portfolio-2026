@@ -12,16 +12,12 @@ export const aboutConfig = {
     caption: heroConfig.location,
   },
   traits: ["Curious", "Relentless", "Methodical", "Ethical"] as const,
+  // One calm sage tint for every trait (the site's single accent).
   traitStyles: {
-    // Warm, cohesive earthy palette: honey → terracotta → taupe → dusty rose.
-    Curious:
-      "border-amber-200 bg-amber-50 text-amber-800 dark:border-amber-900/50 dark:bg-amber-950/40 dark:text-amber-300",
-    Relentless:
-      "border-orange-200 bg-orange-50 text-orange-800 dark:border-orange-900/50 dark:bg-orange-950/40 dark:text-orange-300",
-    Methodical:
-      "border-stone-300 bg-stone-100 text-stone-700 dark:border-stone-700 dark:bg-stone-900/60 dark:text-stone-300",
-    Ethical:
-      "border-rose-200 bg-rose-50 text-rose-800 dark:border-rose-900/50 dark:bg-rose-950/40 dark:text-rose-300",
+    Curious: "border-sage-border bg-sage-soft text-sage",
+    Relentless: "border-sage-border bg-sage-soft text-sage",
+    Methodical: "border-sage-border bg-sage-soft text-sage",
+    Ethical: "border-sage-border bg-sage-soft text-sage",
   },
   meta: [
     { label: "Location", value: heroConfig.location },

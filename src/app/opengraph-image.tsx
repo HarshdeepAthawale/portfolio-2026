@@ -23,7 +23,7 @@ export default async function Image() {
           flexDirection: "column",
           justifyContent: "space-between",
           padding: "72px 80px",
-          background: "#f6f3ee",
+          background: "#f3f5f1",
           color: "#1c1917",
         }}
       >
@@ -45,7 +45,7 @@ export default async function Image() {
             <div style={{ fontSize: 76, fontWeight: 700, letterSpacing: -2, lineHeight: 1 }}>
               Harshdeep Athawale
             </div>
-            <div style={{ fontSize: 40, fontWeight: 600, color: "#c2410c" }}>
+            <div style={{ fontSize: 40, fontWeight: 600, color: "#4d6b47" }}>
               Security Researcher/Engineer
             </div>
             <div style={{ fontSize: 26, color: "#57534e", marginTop: 6 }}>
@@ -66,9 +66,9 @@ export default async function Image() {
                   display: "flex",
                   padding: "12px 22px",
                   borderRadius: 9999,
-                  border: "2px solid #fed7aa",
-                  background: "#ffedd5",
-                  color: "#9a3412",
+                  border: "2px solid #d2dfcc",
+                  background: "#edf2ea",
+                  color: "#3f5a3a",
                   fontSize: 24,
                   fontWeight: 600,
                 }}

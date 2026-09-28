@@ -50,7 +50,7 @@ export default function ResumePage() {
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Open resume PDF"
-          className="group relative block overflow-hidden rounded-2xl border border-border bg-white p-3 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg sm:p-6"
+          className="group relative block overflow-hidden rounded-2xl border border-border bg-white p-3 shadow-sm transition-colors duration-300 hover:border-foreground/20 sm:p-6"
         >
           {/* eslint-disable-next-line @next/next/no-img-element -- static full-res page render */}
           <img

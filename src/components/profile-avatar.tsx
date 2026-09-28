@@ -21,7 +21,7 @@ export function ProfileAvatar({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        "group relative size-24 shrink-0 cursor-pointer overflow-hidden rounded-full bg-blue-300 dark:bg-yellow-300",
+        "group relative size-24 shrink-0 cursor-pointer overflow-hidden rounded-full bg-muted",
         className,
       )}
       onMouseEnter={() => setPaused(true)}

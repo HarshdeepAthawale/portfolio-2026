@@ -51,7 +51,7 @@ export function Hero() {
                 </span>
               </span>
               <SealCheck
-                className="size-6 shrink-0 text-[#1D9BF0] sm:size-7"
+                className="size-6 shrink-0 text-sage sm:size-7"
                 weight="fill"
                 aria-label="Verified"
               />
