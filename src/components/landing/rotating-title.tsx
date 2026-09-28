@@ -14,11 +14,14 @@ export function RotatingTitle() {
   }, []);
 
   return (
-    <div className="relative h-6 overflow-hidden">
+    // All titles share one grid cell, so the box is as tall as the longest title
+    // (a fixed one-line height clipped wrapped titles on narrow phones).
+    <div className="grid overflow-hidden">
       {rotatingTitles.map((title, i) => (
         <p
           key={title}
-          className="absolute inset-0 text-sm font-medium tracking-wide text-secondary transition-all duration-700 ease-in-out sm:text-base"
+          aria-hidden={i !== index}
+          className="col-start-1 row-start-1 text-[13px] font-medium text-secondary transition-all duration-700 ease-in-out sm:text-base sm:tracking-wide"
           style={{
             opacity: i === index ? 1 : 0,
             transform: i === index ? "translateY(0)" : "translateY(14px)",
