@@ -10,11 +10,91 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
-import { experience, type ExperienceItem } from "@/config/experience";
+import {
+  experience,
+  type ExperienceItem,
+  type ExperiencePhoto,
+  type ExperienceRole,
+} from "@/config/experience";
 import { cn } from "@/lib/utils";
 
+// Always visible on phones; on wider screens it appears on hover of its card/role.
+const triggerClass = (group: "card" | "role") =>
+  cn(
+    "group/trigger inline-flex size-7 shrink-0 items-center justify-center rounded-md text-secondary transition-colors hover:bg-muted hover:text-foreground",
+    "opacity-100 focus-visible:opacity-100 data-[state=open]:opacity-100 sm:opacity-0",
+    group === "card" ? "sm:group-hover/card:opacity-100" : "sm:group-hover/role:opacity-100",
+  );
+
+function Caret() {
+  return (
+    <CaretRight className="size-4 transition-transform duration-200 group-data-[state=open]/trigger:rotate-90" />
+  );
+}
+
+function Photos({ photos }: { photos?: ExperiencePhoto[] }) {
+  if (!photos?.length) return null;
+  return (
+    <div className="zoomable-gallery grid grid-cols-2 gap-2 pt-2 sm:grid-cols-4">
+      {photos.map((photo) => (
+        // eslint-disable-next-line @next/next/no-img-element -- small thumbnails; lightbox opens full size
+        <img
+          key={photo.src}
+          src={photo.src}
+          alt={photo.alt}
+          loading="lazy"
+          className="aspect-[4/3] w-full rounded-lg border border-border object-cover"
+        />
+      ))}
+    </div>
+  );
+}
+
+/** One position inside a multi-role company, on its own small rail. */
+function RoleItem({ role }: { role: ExperienceRole }) {
+  const hasDetails = Boolean(role.details?.length || role.photos?.length);
+
+  return (
+    <li className="relative flex gap-3">
+      <span
+        aria-hidden
+        className={cn(
+          "relative z-10 mt-[0.4rem] size-2.5 shrink-0 rounded-full ring-4 ring-background",
+          role.working ? "bg-sage" : "bg-foreground/30",
+        )}
+      />
+      <Collapsible className="group/role min-w-0 flex-1">
+        <div className="flex flex-col gap-0.5 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
+          <div className="flex min-w-0 items-center gap-1">
+            <h4 className="text-base font-medium text-foreground">{role.title}</h4>
+            {hasDetails && (
+              <CollapsibleTrigger
+                className={triggerClass("role")}
+                aria-label={`Show details for ${role.title}`}
+              >
+                <Caret />
+              </CollapsibleTrigger>
+            )}
+          </div>
+          <p className="font-mono text-xs uppercase tracking-[0.1em] text-foreground/80 sm:shrink-0 sm:pt-1 sm:text-right">
+            <span className="md:hidden">{role.periodShort}</span>
+            <span className="hidden md:inline">{role.periodLong}</span>
+          </p>
+        </div>
+        <CollapsibleContent className="mt-2 space-y-2 text-sm leading-relaxed text-secondary">
+          {role.details?.map((detail) => (
+            <p key={detail}>• {detail}</p>
+          ))}
+          <Photos photos={role.photos} />
+        </CollapsibleContent>
+      </Collapsible>
+    </li>
+  );
+}
+
 function TimelineItem({ job, delay }: { job: ExperienceItem; delay: number }) {
-  const hasDetails = Boolean(job.details?.length);
+  // Multi-role entries expand per role instead of as a whole card.
+  const hasDetails = !job.roles && Boolean(job.details?.length);
 
   return (
     <li
@@ -53,20 +133,20 @@ function TimelineItem({ job, delay }: { job: ExperienceItem; delay: number }) {
               )}
               {hasDetails && (
                 <CollapsibleTrigger
-                  className={cn(
-                    "group/trigger inline-flex size-7 shrink-0 items-center justify-center rounded-md text-secondary transition-colors hover:bg-muted hover:text-foreground",
-                    "opacity-100 focus-visible:opacity-100 data-[state=open]:opacity-100 sm:opacity-0 sm:group-hover/card:opacity-100",
-                  )}
+                  className={triggerClass("card")}
                   aria-label={`Show details for ${job.company}`}
                 >
-                  <CaretRight className="size-4 transition-transform duration-200 group-data-[state=open]/trigger:rotate-90" />
+                  <Caret />
                 </CollapsibleTrigger>
               )}
             </div>
             <p className="mt-0.5 text-base text-secondary">
               {job.role}
               {job.employmentType && (
-                <span className="text-muted-foreground"> · {job.employmentType}</span>
+                <span className={job.role ? "text-muted-foreground" : undefined}>
+                  {job.role && " · "}
+                  {job.employmentType}
+                </span>
               )}
             </p>
           </div>
@@ -99,21 +179,21 @@ function TimelineItem({ job, delay }: { job: ExperienceItem; delay: number }) {
               ))}
             </div>
           )}
-          {job.photos && job.photos.length > 0 && (
-            <div className="zoomable-gallery grid grid-cols-2 gap-2 pt-2 sm:grid-cols-4">
-              {job.photos.map((photo) => (
-                // eslint-disable-next-line @next/next/no-img-element -- small thumbnails; lightbox opens full size
-                <img
-                  key={photo.src}
-                  src={photo.src}
-                  alt={photo.alt}
-                  loading="lazy"
-                  className="aspect-[4/3] w-full rounded-lg border border-border object-cover"
-                />
-              ))}
-            </div>
-          )}
+          <Photos photos={job.photos} />
         </CollapsibleContent>
+
+        {job.roles && (
+          <ol className="relative mt-4 space-y-4">
+            {/* A thin rail joining the roles, through the centre of each dot. */}
+            <span
+              aria-hidden
+              className="absolute bottom-2 left-[5px] top-3 w-px -translate-x-1/2 bg-foreground/15"
+            />
+            {job.roles.map((role) => (
+              <RoleItem key={role.title} role={role} />
+            ))}
+          </ol>
+        )}
       </Collapsible>
     </li>
   );
