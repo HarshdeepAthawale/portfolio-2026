@@ -16,6 +16,23 @@ export type ExperienceItem = {
 
 export const experience: ExperienceItem[] = [
   {
+    company: "HackerOne",
+    logo: "/assets/experience/hackerone.jpg",
+    role: "Security Researcher",
+    employmentType: "Part-time",
+    periodShort: "Dec 25 - Present",
+    periodLong: "December 2025 - Present",
+    locationShort: "San Francisco, CA (Remote)",
+    locationLong: "San Francisco, CA (Remote)",
+    working: true,
+    details: [
+      "Submitted 35+ vulnerability reports to global programs including Goldman Sachs, Flipkart, Adobe, Netflix, Red Bull, NVIDIA, Anduril, Coca-Cola, and Superdrug - headlined by a Critical (CVSS 9.1) GraphQL flaw at Red Bull exposing employee PII, and an unauthenticated API exposing 892 employees' PII with write access to a production database.",
+      "Found high-impact infra and supply-chain bugs: remote code execution in a build pipeline, a subdomain takeover at Anduril, and exposed source maps leaking OAuth secrets at Flipkart/Myntra.",
+      "Discovered hardcoded OAuth secrets leaking NHS medical data and an appointment IDOR at Superdrug - preventing potential patient-data breaches.",
+    ],
+    tech: ["Burp Suite", "GraphQL", "IDOR", "Subdomain Takeover", "CVSS 3.1"],
+  },
+  {
     company: "Google Developer Groups TIET",
     logo: "/assets/experience/gdg-tiet.png",
     role: "Head of Cyber Security",
@@ -36,23 +53,6 @@ export const experience: ExperienceItem[] = [
       { src: "/assets/experience/gdg-tiet-workshop.jpg", alt: "Attendees following along in the DevFest 2025 cybersecurity workshop" },
       { src: "/assets/experience/gdg-tiet-team.jpg", alt: "The GDG TIET team at the 'Welcome to the family' induction" },
     ],
-  },
-  {
-    company: "HackerOne",
-    logo: "/assets/experience/hackerone.jpg",
-    role: "Security Researcher",
-    employmentType: "Part-time",
-    periodShort: "Dec 25 - Present",
-    periodLong: "December 2025 - Present",
-    locationShort: "San Francisco, CA (Remote)",
-    locationLong: "San Francisco, CA (Remote)",
-    working: true,
-    details: [
-      "Submitted 35+ vulnerability reports to global programs including Goldman Sachs, Flipkart, Adobe, Netflix, Red Bull, NVIDIA, Anduril, Coca-Cola, and Superdrug - headlined by a Critical (CVSS 9.1) GraphQL flaw at Red Bull exposing employee PII, and an unauthenticated API exposing 892 employees' PII with write access to a production database.",
-      "Found high-impact infra and supply-chain bugs: remote code execution in a build pipeline, a subdomain takeover at Anduril, and exposed source maps leaking OAuth secrets at Flipkart/Myntra.",
-      "Discovered hardcoded OAuth secrets leaking NHS medical data and an appointment IDOR at Superdrug - preventing potential patient-data breaches.",
-    ],
-    tech: ["Burp Suite", "GraphQL", "IDOR", "Subdomain Takeover", "CVSS 3.1"],
   },
   {
     company: "Iris Intelligence",
