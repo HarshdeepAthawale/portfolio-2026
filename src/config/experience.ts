@@ -1,7 +1,20 @@
+export type ExperiencePhoto = { src: string; alt: string };
+
+/** One position within a company, for multi-role entries (like LinkedIn). */
+export type ExperienceRole = {
+  title: string;
+  periodShort: string;
+  periodLong: string;
+  working?: boolean;
+  details?: string[];
+  photos?: ExperiencePhoto[];
+};
+
 export type ExperienceItem = {
   company: string;
   logo: string;
-  role: string;
+  /** Single-role entries. Multi-role entries use `roles` instead. */
+  role?: string;
   employmentType?: string;
   periodShort: string;
   periodLong: string;
@@ -11,7 +24,9 @@ export type ExperienceItem = {
   details?: string[];
   tech?: string[];
   /** Photos shown in the expanded details (open in the lightbox). */
-  photos?: { src: string; alt: string }[];
+  photos?: ExperiencePhoto[];
+  /** Positions held at this company, newest first. */
+  roles?: ExperienceRole[];
 };
 
 export const experience: ExperienceItem[] = [
@@ -35,23 +50,38 @@ export const experience: ExperienceItem[] = [
   {
     company: "Google Developer Groups TIET",
     logo: "/assets/experience/gdg-tiet.png",
-    role: "Head of Cyber Security",
     employmentType: "Full-time",
     periodShort: "Jul 25 - Present",
     periodLong: "July 2025 - Present",
     locationShort: "Patiala, IN (On-site)",
     locationLong: "Patiala, India (On-site)",
     working: true,
-    details: [
-      "Head of Cyber Security since August 2026, after a year as a Core Member (July 2025 - August 2026).",
-      "Leading the club's security work - building security projects with core members, alongside bug bounty hunting and security research.",
-      "Delivered a 2-hour cybersecurity workshop at DevFest 2025, covering core security concepts through live demonstrations for 160+ attendees.",
-    ],
-    photos: [
-      { src: "/assets/experience/gdg-tiet-speaking.jpg", alt: "Presenting the DevFest 2025 cybersecurity workshop" },
-      { src: "/assets/experience/gdg-tiet-devfest.jpg", alt: "1st-year orientation 2025 with the GDG at Thapar team" },
-      { src: "/assets/experience/gdg-tiet-workshop.jpg", alt: "Attendees following along in the DevFest 2025 cybersecurity workshop" },
-      { src: "/assets/experience/gdg-tiet-team.jpg", alt: "The GDG TIET team at the 'Welcome to the family' induction" },
+    roles: [
+      {
+        title: "Head of Cyber Security",
+        periodShort: "Aug 26 - Present",
+        periodLong: "August 2026 - Present",
+        working: true,
+        details: [
+          "Leading the club's security work - building security projects with core members, alongside bug bounty hunting and security research.",
+        ],
+        photos: [
+          { src: "/assets/experience/gdg-tiet-team.jpg", alt: "The GDG TIET team at the 'Welcome to the family' induction" },
+        ],
+      },
+      {
+        title: "Core Member",
+        periodShort: "Jul 25 - Aug 26",
+        periodLong: "July 2025 - August 2026",
+        details: [
+          "Delivered a 2-hour cybersecurity workshop at DevFest 2025, covering core security concepts through live demonstrations for 160+ attendees.",
+        ],
+        photos: [
+          { src: "/assets/experience/gdg-tiet-speaking.jpg", alt: "Presenting the DevFest 2025 cybersecurity workshop" },
+          { src: "/assets/experience/gdg-tiet-workshop.jpg", alt: "Attendees following along in the DevFest 2025 cybersecurity workshop" },
+          { src: "/assets/experience/gdg-tiet-devfest.jpg", alt: "1st-year orientation 2025 with the GDG at Thapar team" },
+        ],
+      },
     ],
   },
   {
