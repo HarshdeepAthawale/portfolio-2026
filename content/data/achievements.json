@@ -1,0 +1,94 @@
+[
+  {
+    "slug": "sih-2026-internal-judge",
+    "title": "Judge",
+    "organization": "Internal Smart India Hackathon (SIH) 2026",
+    "year": "2026",
+    "periodShort": "Sep 12",
+    "periodLong": "September 12",
+    "details": [
+      "Served as a judge at TIET's Internal Smart India Hackathon 2026, an event featuring 366 teams and 2,100+ students.",
+      "Evaluated solutions across 366 teams on innovation, technical feasibility, scalability, and problem-solving approach.",
+      "Collaborated with a panel of 90 judges, giving technical feedback to teams competing for selection to the national SIH 2026 round."
+    ],
+    "featured": true,
+    "image": "/assets/achievements/sih-2026-group.jpg",
+    "gallery": [
+      "/assets/achievements/sih-2026-judge-plaque.jpg",
+      "/assets/achievements/sih-2026-banner.jpg",
+      "/assets/achievements/sih-2026-group.jpg"
+    ]
+  },
+  {
+    "slug": "niohack-2026-winner",
+    "title": "Winner · 1st Place",
+    "organization": "NioHack 2026",
+    "year": "2026",
+    "periodShort": "Sep 5-6",
+    "periodLong": "September 5-6",
+    "details": [
+      "Won 1st place out of 120+ teams as Team INCOGNITO (T046).",
+      "Organized by Niograph Inc., USA, with technical support from the American Society for Engineers, USA.",
+      "Represented Thapar Institute of Engineering & Technology alongside Prabinder Singh, Deepesh Kakkar, Kyna Sood, and Danish Dhanjal."
+    ],
+    "featured": true,
+    "image": "/assets/achievements/niohack-2026-winner.jpg"
+  },
+  {
+    "slug": "psb-hackathon-series-2026-runner-up",
+    "title": "National 1st Runner-Up",
+    "organization": "PSB Hackathon Series 2026",
+    "year": "2026",
+    "periodShort": "Aug 1",
+    "periodLong": "August 1",
+    "details": [
+      "Organized by the Government of India, Ministry of Finance, with Central Bank of India & MNNIT Allahabad.",
+      "Outlasted 226 registered teams through a 30-team shortlist to reach the 8-team grand finale.",
+      "Won an INR 3,00,000 cash prize as part of Team Dhurandhar."
+    ],
+    "featured": true,
+    "image": "/assets/achievements/psb-hackathon-series-2026-runner-up.jpg",
+    "gallery": [
+      "/assets/achievements/psb-hackathon-series-2026-runner-up.jpg",
+      "/assets/achievements/psb-hackathon-series-2026-cheque.jpg"
+    ]
+  },
+  {
+    "slug": "intigriti-hall-of-fame",
+    "title": "Hall of Fame · 4 Badges",
+    "organization": "Intigriti",
+    "year": "2026",
+    "periodShort": "2026",
+    "periodLong": "2026",
+    "details": [
+      "Recognized on Intigriti with four severity badges across multiple programs.",
+      "Exceptional severity (4×), Critical severity (3×), Medium severity (2×), and First valid submission.",
+      "Consistent valid reports from recon to exploitation chain."
+    ],
+    "featured": true,
+    "image": "/assets/achievements/intigriti-exceptional-severity.png",
+    "gallery": [
+      "/assets/achievements/intigriti-exceptional-severity.png",
+      "/assets/achievements/intigriti-critical-severity.png",
+      "/assets/achievements/intigriti-medium-severity.png",
+      "/assets/achievements/intigriti-one-valid-submission.png"
+    ],
+    "badgeGallery": true,
+    "badgeFan": true
+  },
+  {
+    "slug": "tryhackme-top-1-percent",
+    "title": "Top 1% Worldwide",
+    "organization": "TryHackMe",
+    "year": "2026",
+    "periodShort": "2025-26",
+    "periodLong": "2025 - 2026",
+    "details": [
+      "Ranked in the Top 1% worldwide (India Rank #2,052).",
+      "300+ day learning streak - consistency over intensity.",
+      "230+ hands-on labs solved across web, network, and exploitation paths."
+    ],
+    "featured": true,
+    "image": "/assets/achievements/tryhackme-harshdeepathawale-300-streak.png"
+  }
+]

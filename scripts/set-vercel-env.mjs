@@ -25,6 +25,11 @@ const PUSH_KEYS = [
   "SPOTIFY_REFRESH_TOKEN",
   "UPSTASH_REDIS_REST_URL",
   "UPSTASH_REDIS_REST_TOKEN",
+  // /admin (see scripts/admin-setup.mjs)
+  "ADMIN_EMAIL",
+  "ADMIN_PASSWORD_HASH",
+  "ADMIN_TOTP_SECRET",
+  "GITHUB_TOKEN",
 ];
 
 const ALL_TARGETS = ["production", "preview", "development"];

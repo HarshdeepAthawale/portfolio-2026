@@ -1,37 +1,26 @@
-export const heroConfig = {
-  name: "Harshdeep Athawale",
-  email: "athawaleharshdeep@gmail.com",
-  bio: "I build software and break web and mobile apps to report critical bugs - 35+ vulnerability reports across Red Bull, Goldman Sachs, Adobe, Netflix, NVIDIA, Anduril, Flipkart, and Coca-Cola.",
-  avatar: "/assets/avatar.png",
-  avatarSmile: "/assets/avatar-smile.png",
-  // Images the circular avatar cycles through, in order. Add/remove freely.
-  avatarRotation: ["/assets/avatar.png"],
-  // How long each image stays before crossfading to the next (ms).
-  avatarRotationInterval: 4000,
-  timezone: "Asia/Kolkata",
-  location: "Pune, India",
-  availability: "Open to security internships · Fall 2026",
+// Content lives in content/data/hero.json (editable from /admin).
+import data from "../../content/data/hero.json";
+
+export type SocialIcon = "x" | "linkedin" | "github" | "medium";
+
+export type SocialLink = { name: string; href: string; icon: SocialIcon };
+
+export type HeroConfig = {
+  name: string;
+  email: string;
+  bio: string;
+  avatar: string;
+  avatarSmile: string;
+  /** Images the circular avatar cycles through, in order. */
+  avatarRotation: string[];
+  /** How long each image stays before crossfading to the next (ms). */
+  avatarRotationInterval: number;
+  timezone: string;
+  location: string;
+  availability: string;
 };
 
-export const socialLinks = [
-  {
-    name: "LinkedIn",
-    href: "https://www.linkedin.com/in/harshdeepathawale/",
-    icon: "linkedin" as const,
-  },
-  {
-    name: "GitHub",
-    href: "https://github.com/HarshdeepAthawale",
-    icon: "github" as const,
-  },
-  {
-    name: "X",
-    href: "https://x.com/harshdeep0x01",
-    icon: "x" as const,
-  },
-  {
-    name: "Medium",
-    href: "https://medium.com/@harshdeepathawale",
-    icon: "medium" as const,
-  },
-];
+const { socialLinks: links, ...hero } = data;
+
+export const heroConfig: HeroConfig = hero;
+export const socialLinks = links as SocialLink[];

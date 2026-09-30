@@ -7,6 +7,7 @@ export function BlogCover({
   className,
   priority = false,
   transitionName,
+  unoptimized = false,
 }: {
   title: string;
   cover?: string;
@@ -14,6 +15,8 @@ export function BlogCover({
   priority?: boolean;
   /** view-transition-name, so the cover can morph between list and post. */
   transitionName?: string;
+  /** Load the image directly (the admin preview serves not-yet-deployed uploads). */
+  unoptimized?: boolean;
 }) {
   const style = transitionName ? { viewTransitionName: transitionName } : undefined;
 
@@ -42,6 +45,7 @@ export function BlogCover({
         sizes="(max-width: 768px) 100vw, 720px"
         className="object-cover transition-transform duration-300 group-hover:scale-[1.02]"
         priority={priority}
+        unoptimized={unoptimized}
       />
     </div>
   );

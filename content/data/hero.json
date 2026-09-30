@@ -1,0 +1,36 @@
+{
+  "name": "Harshdeep Athawale",
+  "email": "athawaleharshdeep@gmail.com",
+  "bio": "I build software and break web and mobile apps to report critical bugs - 35+ vulnerability reports across Red Bull, Goldman Sachs, Adobe, Netflix, NVIDIA, Anduril, Flipkart, and Coca-Cola.",
+  "avatar": "/assets/avatar.png",
+  "avatarSmile": "/assets/avatar-smile.png",
+  "avatarRotation": [
+    "/assets/avatar.png"
+  ],
+  "avatarRotationInterval": 4000,
+  "timezone": "Asia/Kolkata",
+  "location": "Pune, India",
+  "availability": "Open to security internships · Fall 2026",
+  "socialLinks": [
+    {
+      "name": "LinkedIn",
+      "href": "https://www.linkedin.com/in/harshdeepathawale/",
+      "icon": "linkedin"
+    },
+    {
+      "name": "GitHub",
+      "href": "https://github.com/HarshdeepAthawale",
+      "icon": "github"
+    },
+    {
+      "name": "X",
+      "href": "https://x.com/harshdeep0x01",
+      "icon": "x"
+    },
+    {
+      "name": "Medium",
+      "href": "https://medium.com/@harshdeepathawale",
+      "icon": "medium"
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 import type { ComponentProps } from "react";
 import { MDXRemote } from "next-mdx-remote/rsc";
-import remarkGfm from "remark-gfm";
+import { mdxOptions } from "@/lib/mdx-options";
 import { slugify, textOf } from "@/lib/headings";
 
 // Give h2s anchor ids so the table of contents can link to them.
@@ -12,16 +12,23 @@ const components = {
   ),
 };
 
-export function MdxContent({ source }: { source: string }) {
-  return (
-    <MDXRemote
-      source={source}
-      components={components}
-      options={{
-        mdxOptions: {
-          remarkPlugins: [remarkGfm],
-        },
-      }}
-    />
-  );
+export function MdxContent({
+  source,
+  mapSrc,
+}: {
+  source: string;
+  /** Rewrites image URLs (the admin preview serves not-yet-deployed uploads). */
+  mapSrc?: (src: string) => string;
+}) {
+  const withImages = mapSrc
+    ? {
+        ...components,
+        img: ({ src, alt, ...props }: ComponentProps<"img">) => (
+          // eslint-disable-next-line @next/next/no-img-element -- mirrors plain markdown images
+          <img src={typeof src === "string" ? mapSrc(src) : src} alt={alt ?? ""} {...props} />
+        ),
+      }
+    : components;
+
+  return <MDXRemote source={source} components={withImages} options={{ mdxOptions }} />;
 }

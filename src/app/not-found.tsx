@@ -1,9 +1,11 @@
 import Link from "next/link";
 import { Container } from "@/components/container";
+import { SiteChrome } from "@/components/site-chrome";
 import { Button } from "@/components/ui/button";
 
 export default function NotFound() {
   return (
+    <SiteChrome>
     <div className="flex min-h-[60vh] items-center pb-16 pt-20">
       <Container className="text-center">
         <p className="font-mono text-sm text-muted-foreground">404</p>
@@ -16,5 +18,6 @@ export default function NotFound() {
         </Button>
       </Container>
     </div>
+    </SiteChrome>
   );
 }
