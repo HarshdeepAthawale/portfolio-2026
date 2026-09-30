@@ -17,6 +17,7 @@ Personal portfolio for a security engineer and offensive security researcher. Bu
 - **Command palette** — search any page with `⌘K` / `Ctrl+K`
 - **Theme toggle** — light / dark mode
 - **Mowgli** — animated cursor pet in the navbar
+- **Admin** — `/admin` CMS for posts, site content, images and the resume, plus real-time visitor analytics
 
 ---
 
@@ -69,7 +70,8 @@ portfolio-2026/
 │   └── lib/              # MDX, GitHub API, tech icons, utils
 ├── content/
 │   ├── blog/             # MDX blog posts
-│   └── projects/         # Optional long-form project writeups
+│   ├── projects/         # Optional long-form project writeups
+│   └── data/             # Site content as JSON (edited from /admin)
 ├── public/
 │   └── assets/           # Images (covers, photos, avatar)
 ├── data/
@@ -95,19 +97,20 @@ portfolio-2026/
 
 ## Customizing Content
 
-Most updates happen in **`src/config/`** — no component changes needed.
+The easiest way is **`/admin`** (see below). By hand:
 
 | File | What to edit |
 |------|--------------|
-| `hero.ts` | Name, bio, email, social links, avatar paths |
-| `projects.ts` | Projects — title, description, `href` (GitHub), `website` (live demo), cover, tech |
-| `achievements.ts` | Hackathon wins, cover image, photo gallery |
-| `experience.ts` | Work history & internships |
-| `about.ts` | About page story, traits, connect links |
-| `navigation.ts` | Navbar & command menu links |
-| `books.ts` / `favourites.ts` | Books, movies, series |
-| `resume.ts` | Google Drive PDF links |
-| `tech-stack.ts` | Home page tech icons |
+| `content/data/hero.json` | Name, bio, email, availability, social links, avatar paths |
+| `content/data/projects.json` | Projects — title, description, `href` (GitHub), `website` (live demo), cover, tech |
+| `content/data/achievements.json` | Hackathon wins, cover image, photo gallery |
+| `content/data/experience.json` | Work history, including multi-role companies and photos |
+| `content/data/education.json` | Education and skills |
+| `src/config/about.ts` | About page story, traits, connect links |
+| `src/config/navigation.ts` | Navbar & command menu links |
+| `src/config/books.ts` / `favourites.ts` | Books, movies, series |
+| `src/config/resume.ts` | Resume PDF paths |
+| `src/config/tech-stack.ts` | Home page tech icons |
 
 **Blog posts:** add `.mdx` files to `content/blog/`  
 **Project writeups:** add `.mdx` files to `content/projects/` (optional detail pages)
@@ -161,6 +164,26 @@ Vercel serverless functions have a **read-only filesystem** — writes to `data/
 4. Redeploy
 
 Locally, copy `.env.example` to `.env.local` and fill in the same vars (optional — without them, the file store is used).
+
+---
+
+## Admin (`/admin`)
+
+A private CMS built into the site. Every change is a commit to this repo, so git history is the audit log and anything can be reverted; Vercel redeploys on each publish.
+
+- **Posts** — write blog posts and project write-ups in Markdown/MDX with a live preview. Drafts autosave privately to Redis (never to the public repo); publishing refuses MDX that wouldn't build.
+- **Content** — forms for the hero, experience, achievements, projects and education.
+- **Media** — image uploads, resized to WebP with metadata (including GPS) stripped. Upload-only commits skip the deploy (`vercel.json`) and go live with the next publish.
+- **Resume** — upload a PDF; the preview image is rendered in the browser.
+- **Analytics** — cookieless, real-time visitor stats: daily visitors and pageviews, live-now count, top pages, referrers, countries, devices and browsers. Only aggregate counts are stored; bots and signed-in admin visits aren't counted.
+
+**Setup**
+
+1. `node scripts/admin-setup.mjs` — asks for your email and password and writes `ADMIN_EMAIL` and `ADMIN_PASSWORD_HASH` (a scrypt hash; the password is never stored) to `.env.local`. Two-factor codes are optional.
+2. Create a [fine-grained GitHub token](https://github.com/settings/personal-access-tokens/new) for this repo only (Contents: read/write, Commit statuses: read) and add it as `GITHUB_TOKEN`.
+3. `node scripts/set-vercel-env.mjs production`, then redeploy.
+
+Without `GITHUB_TOKEN`, local dev writes changes to the working tree instead of committing.
 
 ---
 
