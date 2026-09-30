@@ -1,45 +1,39 @@
-import { notFound } from "next/navigation";
 import { BlogCover } from "@/components/blog-cover";
 import { ReadingProgress } from "@/components/blog/reading-progress";
 import { TableOfContents } from "@/components/blog/table-of-contents";
 import { Container } from "@/components/container";
-import { TransitionLink } from "@/components/view-transitions";
 import { MdxContent } from "@/components/mdx-content";
+import { TransitionLink } from "@/components/view-transitions";
 import { heroConfig } from "@/config/hero";
 import { extractHeadings, readingMinutes } from "@/lib/headings";
-import { getBlogPost, getBlogPosts } from "@/lib/mdx";
 
-export async function generateStaticParams() {
-  const posts = await getBlogPosts();
-  return posts.map((post) => ({ slug: post.slug }));
-}
+export type ArticlePost = {
+  slug: string;
+  title: string;
+  description: string;
+  date: string;
+  cover?: string;
+  original?: string;
+  content: string;
+};
 
-export async function generateMetadata({
-  params,
+/**
+ * A blog post page. Shared by the live post and the admin preview, so what you
+ * preview is exactly what gets published.
+ */
+export function BlogArticle({
+  post,
+  mapSrc,
+  children,
 }: {
-  params: Promise<{ slug: string }>;
+  post: ArticlePost;
+  /** Rewrites image URLs (the preview serves not-yet-deployed uploads). */
+  mapSrc?: (src: string) => string;
+  /** Rendered after the article (e.g. older/newer links). */
+  children?: React.ReactNode;
 }) {
-  const { slug } = await params;
-  const post = await getBlogPost(slug);
-  if (!post) return {};
-  return { title: `${post.title} - Blog` };
-}
-
-export default async function BlogPostPage({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
-  const { slug } = await params;
-  const post = await getBlogPost(slug);
-  if (!post) notFound();
-
   const headings = extractHeadings(post.content);
-  // Posts are sorted newest first.
-  const posts = await getBlogPosts();
-  const index = posts.findIndex((item) => item.slug === post.slug);
-  const newer = index > 0 ? posts[index - 1] : undefined;
-  const older = index >= 0 ? posts[index + 1] : undefined;
+  const cover = post.cover && mapSrc ? mapSrc(post.cover) : post.cover;
 
   return (
     <div className="pb-16 pt-8">
@@ -54,9 +48,10 @@ export default async function BlogPostPage({
 
         <BlogCover
           title={post.title}
-          cover={post.cover}
+          cover={cover}
           className="mt-6 aspect-[2/1] w-full rounded-2xl"
           transitionName={`cover-${post.slug}`}
+          unoptimized={Boolean(mapSrc)}
           priority
         />
 
@@ -99,45 +94,11 @@ export default async function BlogPostPage({
             id="post-body"
             className="prose prose-neutral prose-reading dark:prose-invert mt-10 border-t border-border pt-10"
           >
-            <MdxContent source={post.content} />
+            <MdxContent source={post.content} mapSrc={mapSrc} />
           </article>
         </div>
 
-        {(newer || older) && (
-          <nav
-            aria-label="More posts"
-            className="mt-16 grid gap-3 border-t border-border pt-8 sm:grid-cols-2"
-          >
-            {older ? (
-              <TransitionLink
-                href={`/blog/${older.slug}`}
-                className="group rounded-xl border border-border p-4 transition-colors hover:border-foreground/15 hover:bg-card/60"
-              >
-                <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-secondary">
-                  ← Older
-                </span>
-                <span className="mt-1 block font-display text-base font-medium leading-snug tracking-tight">
-                  {older.title}
-                </span>
-              </TransitionLink>
-            ) : (
-              <span className="hidden sm:block" />
-            )}
-            {newer && (
-              <TransitionLink
-                href={`/blog/${newer.slug}`}
-                className="group rounded-xl border border-border p-4 text-right transition-colors hover:border-foreground/15 hover:bg-card/60 sm:col-start-2"
-              >
-                <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-secondary">
-                  Newer →
-                </span>
-                <span className="mt-1 block font-display text-base font-medium leading-snug tracking-tight">
-                  {newer.title}
-                </span>
-              </TransitionLink>
-            )}
-          </nav>
-        )}
+        {children}
       </Container>
     </div>
   );

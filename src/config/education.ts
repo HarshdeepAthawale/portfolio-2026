@@ -1,20 +1,7 @@
-export const education = [
-  {
-    school: "Thapar Institute of Engineering & Technology",
-    degree: "B.E. · Computer Engineering",
-    period: "2024-2028",
-  },
-];
+// Content lives in content/data/education.json (editable from /admin).
+import data from "../../content/data/education.json";
 
-export const skills = [
-  "Python",
-  "C / C++",
-  "Burp Suite",
-  "Nmap",
-  "Metasploit",
-  "Frida",
-  "MobSF",
-  "OWASP Top 10",
-  "MITRE ATT&CK",
-  "Docker",
-];
+export type EducationItem = { school: string; degree: string; period: string };
+
+export const education: EducationItem[] = data.education;
+export const skills: string[] = data.skills;

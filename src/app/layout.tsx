@@ -1,12 +1,5 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, Newsreader, Geist_Mono } from "next/font/google";
-import { Analytics } from "@vercel/analytics/react";
-import { SiteHeader } from "@/components/site-header";
-import { SiteFooter } from "@/components/site-footer";
-import { CommandMenu } from "@/components/command-menu";
-import { CursorPet } from "@/components/cursor-pet";
-import { Lightbox } from "@/components/lightbox";
-import { ScrollReveal } from "@/components/scroll-reveal";
 import { ViewTransitionsProvider } from "@/components/view-transitions";
 import { ThemeProvider } from "@/components/theme-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -72,17 +65,7 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
           <TooltipProvider>
             <ViewTransitionsProvider>
-            <div className="relative flex min-h-screen flex-col bg-green-grid">
-              <SiteHeader />
-              <main className="page-content flex-1">{children}</main>
-              <SiteFooter />
-              <div className="pointer-events-none fixed inset-x-0 bottom-0 z-10 h-[60px] bg-gradient-to-t from-background/80 to-transparent [mask-image:linear-gradient(to_top,black_50%,transparent)]" />
-              <CommandMenu />
-              <CursorPet />
-              <ScrollReveal />
-              <Lightbox />
-            </div>
-            <Analytics />
+            {children}
             </ViewTransitionsProvider>
           </TooltipProvider>
         </ThemeProvider>

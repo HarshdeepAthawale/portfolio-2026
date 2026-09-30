@@ -39,3 +39,5 @@ next-env.d.ts
 
 # local-dev visitor counter (production uses Redis)
 /data/visitors.json
+/data/admin-kv.json
+/data/analytics.json

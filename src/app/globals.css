@@ -60,6 +60,9 @@
   --sage: #4d6b47;
   --sage-soft: #edf2ea;
   --sage-border: #d2dfcc;
+  /* Analytics chart series (validated for contrast and colour-blind separation). */
+  --chart-visitors: #48804a;
+  --chart-pageviews: #4a74c9;
 }
 
 .dark {
@@ -84,6 +87,8 @@
   --sage: #a6c3a0;
   --sage-soft: rgb(122 157 128 / 0.12);
   --sage-border: rgb(122 157 128 / 0.32);
+  --chart-visitors: #63a05b;
+  --chart-pageviews: #628ddc;
 }
 
 * {
