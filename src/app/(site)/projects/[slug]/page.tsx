@@ -44,7 +44,7 @@ export default async function ProjectDetailPage({
         </TransitionLink>
         {scene && (
           <div
-            className="dark corner-frame relative mt-6 aspect-[16/10] overflow-hidden bg-background text-foreground sm:aspect-[2/1]"
+            className="corner-frame relative mt-6 aspect-[16/10] overflow-hidden bg-muted text-foreground sm:aspect-[2/1] dark:bg-background"
             style={{ viewTransitionName: `poster-${slug}` }}
           >
             <ParticleField shape={scene.shape} />

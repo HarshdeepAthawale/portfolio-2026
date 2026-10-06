@@ -17,11 +17,11 @@ export function ProjectCard({ project, index = 0 }: { project: Project; index?: 
       style={{ animationDelay: `${index * 0.05}s` }}
     >
       {/* Poster opens the project page; the shared view-transition-name lets it
-          glide into the page header. Always the dark "console" look. */}
+          glide into the page header. */}
       <TransitionLink
         href={`/projects/${project.slug}`}
         aria-label={`Open ${project.title}`}
-        className="dark corner-frame relative block aspect-[16/10] overflow-hidden bg-background text-foreground sm:aspect-[2/1]"
+        className="corner-frame relative block aspect-[16/10] overflow-hidden bg-muted text-foreground sm:aspect-[2/1] dark:bg-background"
         style={{ viewTransitionName: `poster-${project.slug}` }}
       >
         {scene ? (
