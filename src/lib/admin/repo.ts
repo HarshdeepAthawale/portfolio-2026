@@ -30,7 +30,7 @@ export class ConflictError extends Error {}
 // Only these paths can ever be written, whatever a request asks for.
 const WRITABLE = [
   /^content\/(blog|projects)\/[a-z0-9]+(?:-[a-z0-9]+)*\.mdx$/,
-  /^content\/data\/(hero|experience|achievements|projects|education)\.json$/,
+  /^content\/data\/(hero|experience|achievements|projects|education|favourites)\.json$/,
   /^public\/assets\/uploads\/[a-z0-9]+(?:-[a-z0-9]+)*\.(?:webp|png|jpg)$/,
   /^public\/assets\/resume\.pdf$/,
   /^public\/assets\/resume-preview\.png$/,

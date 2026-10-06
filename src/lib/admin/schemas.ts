@@ -24,7 +24,7 @@ export type Field =
   | (Base & { kind: "list"; fields: Field[]; itemTitle: string[]; newItem: Record<string, unknown> });
 
 export type DataSection = {
-  key: "hero" | "experience" | "achievements" | "projects" | "education";
+  key: "hero" | "experience" | "achievements" | "projects" | "education" | "favourites";
   title: string;
   description: string;
   file: string;
@@ -45,6 +45,23 @@ const photoList = (key: string, label: string): Field => ({
   fields: [
     { kind: "image", key: "src", label: "Photo", required: true },
     { kind: "text", key: "alt", label: "Caption / alt text", required: true },
+  ],
+});
+
+const shelf = (key: string, label: string, by: string): Field => ({
+  kind: "list",
+  key,
+  label,
+  required: true,
+  itemTitle: ["title"],
+  newItem: { title: "", cover: "" },
+  fields: [
+    { kind: "text", key: "title", label: "Title", required: true },
+    { kind: "image", key: "cover", label: "Poster / cover", required: true, help: "Portrait, 2:3." },
+    { kind: "text", key: "year", label: "Year", placeholder: "2010 or 2015-2019" },
+    { kind: "text", key: "by", label: by },
+    { kind: "text", key: "language", label: "Language" },
+    { kind: "textarea", key: "note", label: "Why it stuck with you", rows: 2, help: "Optional, one or two lines." },
   ],
 });
 
@@ -284,6 +301,21 @@ export const DATA_SECTIONS: DataSection[] = [
           ],
         },
         { kind: "tags", key: "skills", label: "Skills", required: true },
+      ],
+    },
+  },
+  {
+    key: "favourites",
+    title: "Favourites",
+    description: "Movies, series and books on the Favourites and Books pages.",
+    file: "content/data/favourites.json",
+    viewPath: "/favourites",
+    root: {
+      kind: "object",
+      fields: [
+        shelf("movies", "Movies", "Director"),
+        shelf("series", "Series", "Creator"),
+        shelf("books", "Books", "Author"),
       ],
     },
   },
