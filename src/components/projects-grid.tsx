@@ -94,7 +94,7 @@ export function ProjectCard({ project, index = 0 }: { project: Project; index?: 
           </div>
         </div>
 
-        <p className="mt-2 flex-1 text-sm leading-relaxed text-secondary">
+        <p className="mt-2 line-clamp-4 flex-1 text-sm leading-relaxed text-secondary sm:line-clamp-none">
           {project.description}
         </p>
 

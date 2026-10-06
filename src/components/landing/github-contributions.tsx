@@ -85,7 +85,7 @@ export async function GitHubContributions({ index }: { index?: number }) {
 
   return (
     <Container>
-      <div className="mb-5 flex items-center justify-between gap-4">
+      <div className="mb-5 flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
         <SectionHeading title="GitHub Activity" uppercase className="mb-0" index={index} />
         <Link
           href={`https://github.com/${siteConfig.githubUsername}`}

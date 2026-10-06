@@ -1,10 +1,19 @@
 "use client";
 
 import Script from "next/script";
+import { useEffect, useState } from "react";
 import { petConfig } from "@/config/pet";
 
 export function CursorPet() {
-  if (!petConfig.enabled) return null;
+  // The pet chases the mouse. On touch screens there's no cursor to chase, so it
+  // would just sit on top of the header; only load it where there's a real pointer.
+  const [hasPointer, setHasPointer] = useState(false);
+
+  useEffect(() => {
+    setHasPointer(window.matchMedia("(hover: hover) and (pointer: fine)").matches);
+  }, []);
+
+  if (!petConfig.enabled || !hasPointer) return null;
 
   return (
     <Script
