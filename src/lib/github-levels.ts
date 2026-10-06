@@ -1,9 +1,11 @@
-// Contribution levels 0-4 as a warm sun ramp (one hue, light to dark in light
-// mode, dim to bright in dark mode). Shared by the grid and its legend.
+// Contribution levels 0-4: empty, then one warm hue stepping light to dark in
+// light mode and dim to bright in dark mode. Validated for monotone lightness,
+// visible step gaps, and a lightest step that still clears the card (2:1).
+// Shared by the grid and its legend.
 export const contributionLevelClasses = [
-  "bg-foreground/[0.06]",
-  "bg-[#f6e1c8] dark:bg-[#3a2418]",
-  "bg-[#efbd8f] dark:bg-[#6e3b1c]",
-  "bg-[#e08a4c] dark:bg-[#b45d24]",
-  "bg-[#b8501a] dark:bg-[#ff8b3e]",
+  "bg-foreground/[0.07]",
+  "bg-[#dfa671] dark:bg-[#7a4220]",
+  "bg-[#c97c3e] dark:bg-[#a6561f]",
+  "bg-[#a9541c] dark:bg-[#d9702c]",
+  "bg-[#73300e] dark:bg-[#ff9a52]",
 ] as const;
