@@ -1,12 +1,19 @@
 import type { Metadata } from "next";
-import { IBM_Plex_Mono, Instrument_Sans } from "next/font/google";
+import { IBM_Plex_Mono, Instrument_Sans, Petrona } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ViewTransitionsProvider } from "@/components/view-transitions";
 import { siteConfig } from "@/config/meta";
 import "./globals.css";
 
-// One humanist grotesk for headings and body, a mono for small uppercase labels.
+// A soft, low-contrast serif for headings, a humanist grotesk for body text,
+// and a mono for small uppercase labels.
+const petrona = Petrona({
+  subsets: ["latin"],
+  weight: ["300", "400"],
+  variable: "--font-petrona",
+});
+
 const instrumentSans = Instrument_Sans({
   subsets: ["latin"],
   variable: "--font-instrument",
@@ -50,7 +57,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${instrumentSans.variable} ${plexMono.variable} min-h-screen bg-background font-sans antialiased`}
+        className={`${petrona.variable} ${instrumentSans.variable} ${plexMono.variable} min-h-screen bg-background font-sans antialiased`}
         suppressHydrationWarning
       >
         <script
