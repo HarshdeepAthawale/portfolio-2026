@@ -6,8 +6,21 @@ import { FLAT_SHAPES, getShape, POINT_COUNT, type ShapeName } from "@/lib/partic
 const MORPH_MS = 1400;
 const DUST = 70;
 
-// Gold-dust ramp, back (dim sun) to front (bright bone).
-const LEVELS = ["rgba(255,139,62,0.35)", "rgba(255,160,90,0.55)", "rgba(255,196,140,0.8)", "rgba(255,232,196,1)"];
+// Depth levels, back to front. Colours come from the theme (--particle-*):
+// glowing gold dust in dark mode, ink-on-paper dots in light mode.
+const LEVEL_COUNT = 4;
+
+type Palette = { levels: string[]; dust: string; blend: GlobalCompositeOperation };
+
+function readPalette(el: Element): Palette {
+  const css = getComputedStyle(el);
+  const v = (name: string) => css.getPropertyValue(name).trim();
+  return {
+    levels: Array.from({ length: LEVEL_COUNT }, (_, i) => v(`--particle-${i}`) || "rgb(255 160 90 / 0.6)"),
+    dust: v("--particle-dust") || "255 190 130",
+    blend: (v("--particle-blend") || "lighter") as GlobalCompositeOperation,
+  };
+}
 
 const easeInOut = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - (-2 * t + 2) ** 3 / 2);
 
@@ -48,7 +61,8 @@ export function ParticleField({ shape }: { shape: ShapeName }) {
       speed: 0.004 + Math.random() * 0.012,
       phase: Math.random() * Math.PI * 2,
     }));
-    const buckets: number[][] = LEVELS.map(() => []);
+    const buckets: number[][] = Array.from({ length: LEVEL_COUNT }, () => []);
+    let palette = readPalette(canvas);
     const projected = new Float32Array(POINT_COUNT * 3);
     let width = 0;
     let height = 0;
@@ -87,14 +101,14 @@ export function ParticleField({ shape }: { shape: ShapeName }) {
 
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       ctx.clearRect(0, 0, width, height);
-      ctx.globalCompositeOperation = "lighter";
+      ctx.globalCompositeOperation = palette.blend;
 
       // Ambient dust drifting upward.
       for (const d of dust) {
         if (!reduced) d.y -= d.speed * dt;
         if (d.y < 0) d.y += 1;
         const twinkle = 0.25 + 0.25 * Math.sin(now / 900 + d.phase);
-        ctx.fillStyle = `rgba(255,190,130,${twinkle})`;
+        ctx.fillStyle = `rgb(${palette.dust} / ${twinkle})`;
         ctx.fillRect(d.x * width, d.y * height, 1.2, 1.2);
       }
 
@@ -122,11 +136,11 @@ export function ParticleField({ shape }: { shape: ShapeName }) {
         projected[i * 3 + 1] = cy - y2 * scale * perspective;
         const depth = Math.min(1, Math.max(0, (z2 + 1) / 2));
         projected[i * 3 + 2] = depth;
-        buckets[Math.min(LEVELS.length - 1, Math.floor(depth * LEVELS.length))].push(i);
+        buckets[Math.min(LEVEL_COUNT - 1, Math.floor(depth * LEVEL_COUNT))].push(i);
       }
 
       buckets.forEach((bucket, level) => {
-        ctx.fillStyle = LEVELS[level];
+        ctx.fillStyle = palette.levels[level];
         const size = 0.9 + level * 0.45;
         for (const i of bucket) {
           ctx.fillRect(projected[i * 3] - size / 2, projected[i * 3 + 1] - size / 2, size, size);
@@ -140,6 +154,12 @@ export function ParticleField({ shape }: { shape: ShapeName }) {
       frame = requestAnimationFrame(loop);
     };
 
+    // Repaint with the new colours when the theme toggles.
+    const themeObserver = new MutationObserver(() => {
+      palette = readPalette(canvas);
+      s.draw();
+    });
+    themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
     const resizeObserver = new ResizeObserver(resize);
     resizeObserver.observe(canvas);
     const visibility = new IntersectionObserver(([entry]) => {
@@ -153,6 +173,7 @@ export function ParticleField({ shape }: { shape: ShapeName }) {
     return () => {
       cancelAnimationFrame(frame);
       resizeObserver.disconnect();
+      themeObserver.disconnect();
       visibility.disconnect();
       s.draw = () => {};
     };
