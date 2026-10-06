@@ -21,11 +21,14 @@ export function ProjectCard({ project, index = 0 }: { project: Project; index?: 
       <TransitionLink
         href={`/projects/${project.slug}`}
         aria-label={`Open ${project.title}`}
-        className="corner-frame relative block aspect-[16/10] overflow-hidden bg-muted text-foreground sm:aspect-[2/1] dark:bg-background"
+        className="corner-frame relative block aspect-[16/10] overflow-hidden bg-muted text-foreground dark:bg-background"
         style={{ viewTransitionName: `poster-${project.slug}` }}
       >
         {scene ? (
-          <ParticleField shape={scene.shape} />
+          // Keep the figure clear of the label (top) and badge (bottom).
+          <div className="absolute inset-x-0 bottom-10 top-9">
+            <ParticleField shape={scene.shape} />
+          </div>
         ) : project.cover ? (
           <Image
             src={project.cover}

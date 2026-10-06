@@ -47,7 +47,9 @@ export default async function ProjectDetailPage({
             className="corner-frame relative mt-6 aspect-[16/10] overflow-hidden bg-muted text-foreground sm:aspect-[2/1] dark:bg-background"
             style={{ viewTransitionName: `poster-${slug}` }}
           >
-            <ParticleField shape={scene.shape} />
+            <div className="absolute inset-x-0 bottom-12 top-11">
+              <ParticleField shape={scene.shape} />
+            </div>
             <span className="absolute left-4 top-4 flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.15em] text-foreground/80">
               <span aria-hidden className="size-1.5 rounded-full bg-sun" />
               {scene.status}
