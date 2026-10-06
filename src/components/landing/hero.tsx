@@ -41,8 +41,10 @@ export function Hero() {
                 <span className="text-foreground/45">
                   {heroConfig.name.split(" ").slice(-1)}
                 </span>
+                {/* Sized in em and nudged so its centre sits on the middle of the
+                    capitals (Petrona cap height ~0.64em), at every heading size. */}
                 <SealCheck
-                  className="ml-2 inline-block size-6 align-[-0.12em] text-sun sm:size-7"
+                  className="ml-[0.2em] inline-block size-[0.62em] align-[0.01em] text-sun"
                   weight="fill"
                   aria-label="Verified"
                 />
