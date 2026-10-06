@@ -2,31 +2,30 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, GithubLogo, Globe } from "@phosphor-icons/react/dist/ssr";
 import { Container } from "@/components/container";
-import { ProjectScene } from "@/components/project-scene";
+import { ParticleField } from "@/components/particle-field";
 import { SectionHeading } from "@/components/section-heading";
 import { TransitionLink } from "@/components/view-transitions";
-import { projects, type Project } from "@/config/projects";
-import { getTechIcon } from "@/lib/tech-icons";
-import { cn } from "@/lib/utils";
+import { projects, projectScenes, type Project } from "@/config/projects";
 
 export function ProjectCard({ project, index = 0 }: { project: Project; index?: number }) {
+  const scene = project.scene ? projectScenes[project.scene] : undefined;
   const mark = project.monogram ?? project.title.slice(0, 2).toUpperCase();
 
   return (
     <article
-      className="animate-in-up-on-view group flex flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-foreground/15 hover:shadow-lg"
+      className="animate-in-up-on-view group flex flex-col border border-border bg-card p-3 transition-colors duration-300 hover:border-foreground/25"
       style={{ animationDelay: `${index * 0.05}s` }}
     >
       {/* Poster opens the project page; the shared view-transition-name lets it
-          glide into the page header. */}
+          glide into the page header. Always the dark "console" look. */}
       <TransitionLink
         href={`/projects/${project.slug}`}
         aria-label={`Open ${project.title}`}
-        className="relative mx-4 mt-4 flex aspect-[16/10] items-center justify-center overflow-hidden rounded-xl bg-muted/40 sm:aspect-[2/1]"
+        className="dark corner-frame relative block aspect-[16/10] overflow-hidden bg-background text-foreground sm:aspect-[2/1]"
         style={{ viewTransitionName: `poster-${project.slug}` }}
       >
-        {project.scene ? (
-          <ProjectScene variant={project.scene} label={`${project.title} animated poster`} />
+        {scene ? (
+          <ParticleField shape={scene.shape} />
         ) : project.cover ? (
           <Image
             src={project.cover}
@@ -36,40 +35,49 @@ export function ProjectCard({ project, index = 0 }: { project: Project; index?: 
             className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
           />
         ) : (
+          <span className="absolute inset-0 flex items-center justify-center font-display text-5xl text-foreground/70">
+            {mark}
+          </span>
+        )}
+        {scene && (
           <>
-            {/* soft glow behind the tile */}
-            <div
-              className={cn(
-                "pointer-events-none absolute size-24 rounded-[1.6rem] bg-linear-to-br opacity-40 blur-2xl transition-opacity duration-300 group-hover:opacity-60 sm:size-28",
-                project.gradient,
-              )}
-            />
-            {/* monogram tile */}
-            <div
-              className={cn(
-                "relative flex size-20 items-center justify-center overflow-hidden rounded-[1.35rem] bg-linear-to-br shadow-lg ring-1 ring-white/10 transition-transform duration-300 group-hover:scale-[1.04] sm:size-24",
-                project.gradient,
-              )}
-            >
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.35),transparent_60%)]" />
-              <span className="relative text-2xl font-semibold tracking-tight text-white sm:text-3xl">
-                {mark}
-              </span>
-            </div>
+            <span className="absolute left-3 top-3 flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.15em] text-foreground/80">
+              <span aria-hidden className="size-1.5 rounded-full bg-sun" />
+              {scene.status}
+            </span>
+            <span className="chip-live absolute bottom-3 right-3 bg-background/70">{scene.badge}</span>
           </>
         )}
       </TransitionLink>
 
-      <div className="flex flex-1 flex-col p-4 pt-3">
-        <div className="flex items-start justify-between gap-3">
-          <h3 className="font-display text-xl font-medium tracking-tight">
+      <div className="flex flex-1 flex-col px-1 pb-1 pt-4">
+        <div className="flex items-baseline justify-between gap-3">
+          <h3 className="font-display text-2xl leading-tight">
             <TransitionLink
               href={`/projects/${project.slug}`}
-              className="transition-colors hover:text-secondary"
+              className="transition-colors hover:text-sun"
             >
               {project.title}
             </TransitionLink>
           </h3>
+          <span className="shrink-0 font-mono text-[10px] uppercase tracking-[0.12em] text-secondary">
+            {project.date}
+          </span>
+        </div>
+
+        <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-secondary">{project.description}</p>
+
+        <div className="mt-auto flex items-end justify-between gap-3 pt-4">
+          <ul className="flex flex-wrap gap-1.5" aria-label="Built with">
+            {project.tech.map((tech) => (
+              <li
+                key={tech}
+                className="rounded-sm border border-border px-1.5 py-0.5 font-mono text-[10px] uppercase tracking-[0.08em] text-secondary"
+              >
+                {tech}
+              </li>
+            ))}
+          </ul>
           <div className="flex shrink-0 items-center gap-1">
             {project.website && (
               <Link
@@ -77,7 +85,7 @@ export function ProjectCard({ project, index = 0 }: { project: Project; index?: 
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`Visit ${project.title}`}
-                className="rounded-md p-1 text-secondary transition-colors hover:text-foreground"
+                className="rounded-sm p-1 text-secondary transition-colors hover:text-foreground"
               >
                 <Globe className="size-4" />
               </Link>
@@ -87,44 +95,11 @@ export function ProjectCard({ project, index = 0 }: { project: Project; index?: 
               target="_blank"
               rel="noopener noreferrer"
               aria-label={`${project.title} on GitHub`}
-              className="rounded-md p-1 text-secondary transition-colors hover:text-foreground"
+              className="rounded-sm p-1 text-secondary transition-colors hover:text-foreground"
             >
               <GithubLogo className="size-4" />
             </Link>
           </div>
-        </div>
-
-        <p className="mt-2 line-clamp-4 flex-1 text-sm leading-relaxed text-secondary sm:line-clamp-none">
-          {project.description}
-        </p>
-
-        <div className="mt-4 flex flex-wrap gap-1.5">
-          {project.tech.map((tech) => {
-            const icon = getTechIcon(tech);
-            return icon ? (
-              <div
-                key={tech}
-                title={tech}
-                className="flex size-7 items-center justify-center rounded-md border border-border/60 bg-background/50 dark:bg-white/95"
-              >
-                <Image
-                  src={`https://cdn.simpleicons.org/${icon}`}
-                  alt={tech}
-                  width={14}
-                  height={14}
-                  className="size-3.5"
-                  unoptimized
-                />
-              </div>
-            ) : (
-              <span
-                key={tech}
-                className="rounded-md border border-dashed border-border px-2 py-0.5 font-mono text-[10px] text-secondary"
-              >
-                {tech}
-              </span>
-            );
-          })}
         </div>
       </div>
     </article>
