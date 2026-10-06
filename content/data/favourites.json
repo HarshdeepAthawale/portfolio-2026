@@ -1,0 +1,42 @@
+{
+  "movies": [
+    {
+      "title": "The Social Network",
+      "cover": "/assets/favourites/the-social-network.jpg",
+      "year": "2010",
+      "by": "David Fincher",
+      "language": "English"
+    },
+    {
+      "title": "Anandi Gopal",
+      "cover": "/assets/favourites/anandi-gopal.jpg",
+      "year": "2019",
+      "by": "Sameer Vidwans",
+      "language": "Marathi"
+    },
+    {
+      "title": "Natsamrat",
+      "cover": "/assets/favourites/natsamrat.jpg",
+      "year": "2016",
+      "by": "Mahesh Manjrekar",
+      "language": "Marathi"
+    }
+  ],
+  "series": [
+    {
+      "title": "Mr. Robot",
+      "cover": "/assets/favourites/mr-robot.jpg",
+      "year": "2015-2019",
+      "by": "Sam Esmail",
+      "language": "English"
+    },
+    {
+      "title": "Suits",
+      "cover": "/assets/favourites/suits.jpg",
+      "year": "2011-2019",
+      "by": "Aaron Korsh",
+      "language": "English"
+    }
+  ],
+  "books": []
+}
