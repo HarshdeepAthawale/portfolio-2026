@@ -67,13 +67,10 @@
   /* Analytics chart series (validated for contrast and colour-blind separation). */
   --chart-visitors: #c2541a;
   --chart-pageviews: #4a6fc4;
-  /* Particle fields: ink-on-paper dots in light mode. */
-  --particle-0: rgb(184 80 26 / 0.22);
-  --particle-1: rgb(184 80 26 / 0.45);
-  --particle-2: rgb(140 58 18 / 0.7);
-  --particle-3: rgb(80 34 12 / 0.92);
-  --particle-dust: 150 80 40;
-  --particle-blend: multiply;
+  /* Particle fields: a fine ink line drawing with sun-coloured nodes in light mode. */
+  --particle-style: lines;
+  --particle-ink: 39 34 31;
+  --particle-node: 184 80 26;
 }
 
 .dark {
@@ -101,6 +98,7 @@
   --chart-visitors: #e5772f;
   --chart-pageviews: #7993e2;
   /* Glowing gold dust in dark mode. */
+  --particle-style: dots;
   --particle-0: rgb(255 139 62 / 0.35);
   --particle-1: rgb(255 160 90 / 0.55);
   --particle-2: rgb(255 196 140 / 0.8);
