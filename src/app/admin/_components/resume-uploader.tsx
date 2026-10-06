@@ -87,7 +87,7 @@ export function ResumeUploader() {
     <div className="grid gap-6 lg:grid-cols-[1fr_1.2fr]">
       <div className={`${cardClass} space-y-4`}>
         <div className="flex items-center gap-3">
-          <FilePdf className="size-8 text-sage" />
+          <FilePdf className="size-8 text-sun" />
           <div className="min-w-0">
             <p className="truncate text-sm font-medium">{pdf ? pdf.name : "No file chosen"}</p>
             <p className="text-xs text-secondary">
@@ -120,7 +120,7 @@ export function ResumeUploader() {
         />
         {error && <p className="text-sm text-red-600 dark:text-red-400">{error}</p>}
         {state === "done" && (
-          <p className="rounded-xl border border-sage-border bg-sage-soft px-3 py-2 text-sm text-sage">
+          <p className="rounded-xl border border-sun-border bg-sun-soft px-3 py-2 text-sm text-sun">
             Published. /resume updates after the redeploy (about a minute).{" "}
             {commitUrl && (
               <a href={commitUrl} target="_blank" rel="noopener noreferrer" className="underline">

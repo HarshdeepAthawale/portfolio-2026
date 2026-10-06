@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 
-/** Thin sage bar across the top of the page that fills as the article is read. */
+/** Thin sun bar across the top of the page that fills as the article is read. */
 export function ReadingProgress({ targetId }: { targetId: string }) {
   const bar = useRef<HTMLDivElement>(null);
 
@@ -29,7 +29,7 @@ export function ReadingProgress({ targetId }: { targetId: string }) {
     <div
       ref={bar}
       aria-hidden
-      className="fixed inset-x-0 top-0 z-[60] h-0.5 origin-left scale-x-0 bg-sage"
+      className="fixed inset-x-0 top-0 z-[60] h-0.5 origin-left scale-x-0 bg-sun"
     />
   );
 }

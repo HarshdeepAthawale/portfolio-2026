@@ -1,24 +1,21 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, Newsreader, Geist_Mono } from "next/font/google";
-import { ViewTransitionsProvider } from "@/components/view-transitions";
+import { IBM_Plex_Mono, Instrument_Sans } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { ViewTransitionsProvider } from "@/components/view-transitions";
 import { siteConfig } from "@/config/meta";
 import "./globals.css";
 
-const plusJakartaSans = Plus_Jakarta_Sans({
+// One humanist grotesk for headings and body, a mono for small uppercase labels.
+const instrumentSans = Instrument_Sans({
   subsets: ["latin"],
-  variable: "--font-plus-jakarta",
+  variable: "--font-instrument",
 });
 
-const newsreader = Newsreader({
+const plexMono = IBM_Plex_Mono({
   subsets: ["latin"],
-  variable: "--font-newsreader",
-});
-
-const geistMono = Geist_Mono({
-  subsets: ["latin"],
-  variable: "--font-geist-mono",
+  weight: ["400", "500"],
+  variable: "--font-plex-mono",
 });
 
 export const metadata: Metadata = {
@@ -53,7 +50,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${plusJakartaSans.variable} ${newsreader.variable} ${geistMono.variable} min-h-screen bg-background font-sans antialiased`}
+        className={`${instrumentSans.variable} ${plexMono.variable} min-h-screen bg-background font-sans antialiased`}
         suppressHydrationWarning
       >
         <script
@@ -62,7 +59,7 @@ export default function RootLayout({
               "try{if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('reveal-enabled')}catch(e){}",
           }}
         />
-        <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
           <TooltipProvider>
             <ViewTransitionsProvider>
             {children}

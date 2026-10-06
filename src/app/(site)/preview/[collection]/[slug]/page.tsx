@@ -69,7 +69,7 @@ export default async function PreviewPage({
             {fm.tech.map((tech) => (
               <span
                 key={tech}
-                className="rounded-full border border-border bg-muted px-2.5 py-1 font-mono text-[11px]"
+                className="rounded-sm border border-border bg-muted px-2.5 py-1 font-mono text-[11px]"
               >
                 {tech}
               </span>

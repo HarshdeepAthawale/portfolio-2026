@@ -20,7 +20,7 @@ export default function ContentPage() {
           <Link
             key={section.key}
             href={`/admin/content/${section.key}`}
-            className="rounded-2xl border border-border bg-card/70 p-5 transition-colors hover:border-sage-border hover:bg-sage-soft/40"
+            className="rounded-2xl border border-border bg-card/70 p-5 transition-colors hover:border-sun-border hover:bg-sun-soft/40"
           >
             <p className="font-display text-lg font-medium tracking-tight">{section.title}</p>
             <p className="mt-1 text-sm text-secondary">{section.description}</p>

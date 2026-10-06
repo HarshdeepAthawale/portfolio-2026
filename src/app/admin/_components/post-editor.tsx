@@ -292,7 +292,7 @@ export function PostEditor({ collection, initial }: { collection: Collection; in
           <span
             className={cn(
               "size-2 rounded-full",
-              saveState === "error" ? "bg-red-500" : saveState === "saved" || saveState === "idle" ? "bg-sage" : "bg-amber-500",
+              saveState === "error" ? "bg-red-500" : saveState === "saved" || saveState === "idle" ? "bg-sun" : "bg-amber-500",
             )}
           />
           <span aria-live="polite">{status}</span>
@@ -401,14 +401,14 @@ export function PostEditor({ collection, initial }: { collection: Collection; in
       {/* Write / preview */}
       <section>
         <div className="mb-2 flex items-center justify-between gap-3">
-          <div className="flex rounded-full border border-border p-0.5 text-sm lg:hidden">
+          <div className="flex rounded-sm border border-border p-0.5 text-sm lg:hidden">
             {(["write", "preview"] as const).map((mode) => (
               <button
                 key={mode}
                 type="button"
                 onClick={() => setView(mode)}
                 className={cn(
-                  "rounded-full px-3 py-1 capitalize",
+                  "rounded-sm px-3 py-1 capitalize",
                   view === mode ? "bg-foreground text-background" : "text-secondary",
                 )}
               >
@@ -460,7 +460,7 @@ export function PostEditor({ collection, initial }: { collection: Collection; in
               }}
               placeholder={"Write in Markdown / MDX.\n\n## A section heading\n\nPaste or drop images to upload them."}
               spellCheck
-              className="block min-h-[60vh] w-full resize-y rounded-b-xl border border-border bg-background p-4 font-mono text-sm leading-relaxed outline-none focus:border-sage-border"
+              className="block min-h-[60vh] w-full resize-y rounded-b-xl border border-border bg-background p-4 font-mono text-sm leading-relaxed outline-none focus:border-sun-border"
             />
             <input
               ref={imageInput}
@@ -487,7 +487,7 @@ export function PostEditor({ collection, initial }: { collection: Collection; in
                 <a
                   href={`/preview/${collection}/${slug}`}
                   target="_blank"
-                  className="absolute right-2 top-2 inline-flex items-center gap-1 rounded-full border border-border bg-background/90 px-2.5 py-1 text-xs text-secondary hover:text-foreground"
+                  className="absolute right-2 top-2 inline-flex items-center gap-1 rounded-sm border border-border bg-background/90 px-2.5 py-1 text-xs text-secondary hover:text-foreground"
                 >
                   Open <ArrowSquareOut className="size-3" />
                 </a>
@@ -508,7 +508,7 @@ export function PostEditor({ collection, initial }: { collection: Collection; in
             "rounded-xl border px-4 py-3 text-sm",
             message.kind === "error"
               ? "border-red-500/30 bg-red-500/10 text-red-700 dark:text-red-400"
-              : "border-sage-border bg-sage-soft text-sage",
+              : "border-sun-border bg-sun-soft text-sun",
           )}
         >
           {message.text}{" "}

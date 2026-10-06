@@ -16,7 +16,7 @@ export default async function LoginPage({
   const { next } = await searchParams;
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-green-grid px-4 py-16">
+    <main className="flex min-h-screen items-center justify-center bg-background px-4 py-16">
       <div className="w-full max-w-sm rounded-2xl border border-border bg-card/90 p-6 shadow-sm backdrop-blur sm:p-8">
         <p className="font-mono text-xs uppercase tracking-[0.15em] text-secondary">Admin</p>
         <h1 className="font-display mt-2 text-2xl font-medium tracking-tight">Sign in</h1>

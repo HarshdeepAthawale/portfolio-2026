@@ -61,7 +61,7 @@ function StatTile({
               <span
                 className={cn(
                   "inline-flex items-center gap-0.5 font-medium",
-                  delta >= 0 ? "text-sage" : "text-red-600 dark:text-red-400",
+                  delta >= 0 ? "text-sun" : "text-red-600 dark:text-red-400",
                 )}
               >
                 {delta >= 0 ? <ArrowUpRight className="size-3" /> : <ArrowDownRight className="size-3" />}
@@ -141,9 +141,9 @@ export default async function AnalyticsPage({
           <p className="mt-2 inline-flex items-center gap-2 text-sm text-secondary">
             <span className="relative flex size-2" aria-hidden>
               {report.liveNow > 0 && (
-                <span className="absolute inline-flex size-full animate-ping rounded-full bg-sage opacity-60 motion-reduce:animate-none" />
+                <span className="absolute inline-flex size-full animate-ping rounded-full bg-sun opacity-60 motion-reduce:animate-none" />
               )}
-              <span className={cn("relative inline-flex size-2 rounded-full", report.liveNow > 0 ? "bg-sage" : "bg-foreground/25")} />
+              <span className={cn("relative inline-flex size-2 rounded-full", report.liveNow > 0 ? "bg-sun" : "bg-foreground/25")} />
             </span>
             {report.liveNow} {report.liveNow === 1 ? "person" : "people"} on the site now
             <span aria-hidden>·</span>
@@ -151,14 +151,14 @@ export default async function AnalyticsPage({
           </p>
         </div>
         {/* Filters sit in one row above everything they control. */}
-        <nav aria-label="Date range" className="flex rounded-full border border-border p-0.5 text-sm">
+        <nav aria-label="Date range" className="flex rounded-sm border border-border p-0.5 text-sm">
           {RANGES.map((r) => (
             <Link
               key={r}
               href={`/admin/analytics?range=${r}`}
               aria-current={r === range ? "page" : undefined}
               className={cn(
-                "rounded-full px-3 py-1",
+                "rounded-sm px-3 py-1",
                 r === range ? "bg-foreground text-background" : "text-secondary hover:text-foreground",
               )}
             >

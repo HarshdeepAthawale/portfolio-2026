@@ -78,7 +78,7 @@ export default function AboutPage() {
             {aboutConfig.traits.map((trait) => (
               <span
                 key={trait}
-                className={`relative rounded-full border px-3 py-1 text-xs font-medium ${aboutConfig.traitStyles[trait]}`}
+                className={`relative rounded-sm border px-3 py-1 text-xs font-medium ${aboutConfig.traitStyles[trait]}`}
               >
                 {trait}
               </span>
@@ -124,7 +124,7 @@ export default function AboutPage() {
                   <h3 className="font-display text-base font-medium tracking-tight">{item.org}</h3>
                   <span
                     className={cn(
-                      "shrink-0 rounded-full border px-2 py-0.5 font-mono text-[10px] uppercase tracking-wide",
+                      "shrink-0 rounded-sm border px-2 py-0.5 font-mono text-[10px] uppercase tracking-wide",
                       severityStyles[item.tier],
                     )}
                   >

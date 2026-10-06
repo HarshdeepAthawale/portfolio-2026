@@ -40,7 +40,7 @@ export default async function PanelLayout({ children }: { children: React.ReactN
         </div>
       </header>
       {isLocalMode() && (
-        <p className="border-b border-sage-border bg-sage-soft px-4 py-2 text-center text-xs text-sage">
+        <p className="border-b border-sun-border bg-sun-soft px-4 py-2 text-center text-xs text-sun">
           Local mode: changes are written to this folder, not committed to GitHub.
         </p>
       )}

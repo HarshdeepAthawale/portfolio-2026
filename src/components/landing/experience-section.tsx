@@ -60,7 +60,7 @@ function RoleItem({ role }: { role: ExperienceRole }) {
         aria-hidden
         className={cn(
           "relative z-10 mt-[0.4rem] size-2.5 shrink-0 rounded-full ring-4 ring-background",
-          role.working ? "bg-sage" : "bg-foreground/30",
+          role.working ? "bg-sun" : "bg-foreground/30",
         )}
       />
       <Collapsible className="group/role min-w-0 flex-1">
@@ -101,8 +101,8 @@ function TimelineItem({ job, delay }: { job: ExperienceItem; delay: number }) {
       className="animate-in-up-on-view relative flex gap-4 pb-10 last:pb-0 sm:gap-5"
       style={{ animationDelay: `${delay}s` }}
     >
-      {/* Node on the timeline: the company logo, or a sage dot. */}
-      <div className="relative z-10 flex size-10 shrink-0 items-center justify-center overflow-hidden rounded-full border border-border bg-background">
+      {/* Node on the timeline: the company logo, or a sun dot. */}
+      <div className="relative z-10 flex size-10 shrink-0 items-center justify-center overflow-hidden rounded-sm border border-border bg-background">
         {job.logo ? (
           <Image
             src={job.logo}
@@ -113,7 +113,7 @@ function TimelineItem({ job, delay }: { job: ExperienceItem; delay: number }) {
             unoptimized
           />
         ) : (
-          <span className="size-2.5 rounded-full bg-sage" />
+          <span className="size-2.5 rounded-full bg-sun" />
         )}
       </div>
 
@@ -126,8 +126,8 @@ function TimelineItem({ job, delay }: { job: ExperienceItem; delay: number }) {
                 {job.company}
               </h3>
               {job.working && (
-                <span className="inline-flex items-center gap-1.5 rounded-full border border-sage-border bg-sage-soft px-2 py-0.5 text-xs text-sage">
-                  <span className="size-1.5 animate-pulse rounded-full bg-sage" />
+                <span className="chip-live">
+                  <span className="size-1.5 animate-pulse rounded-full bg-sun" />
                   Current
                 </span>
               )}
@@ -172,7 +172,7 @@ function TimelineItem({ job, delay }: { job: ExperienceItem; delay: number }) {
               {job.tech.map((item) => (
                 <span
                   key={item}
-                  className="rounded-full border border-border bg-muted px-2.5 py-1 font-mono text-xs"
+                  className="rounded-sm border border-border bg-muted px-2.5 py-1 font-mono text-xs"
                 >
                   {item}
                 </span>

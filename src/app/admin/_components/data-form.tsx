@@ -29,7 +29,7 @@ function TagsInput({ value, onChange }: { value: string[]; onChange: (v: string[
   return (
     <div className="mt-1.5 flex flex-wrap items-center gap-1.5 rounded-lg border border-border bg-background p-1.5">
       {value.map((tag, i) => (
-        <span key={`${tag}-${i}`} className="inline-flex items-center gap-1 rounded-full border border-border bg-muted px-2 py-0.5 font-mono text-xs">
+        <span key={`${tag}-${i}`} className="inline-flex items-center gap-1 rounded-sm border border-border bg-muted px-2 py-0.5 font-mono text-xs">
           {tag}
           <button type="button" aria-label={`Remove ${tag}`} onClick={() => onChange(value.filter((_, j) => j !== i))}>
             <X className="size-3" />
@@ -156,7 +156,7 @@ function ListField({
           onChange([...value, structuredClone(field.newItem)]);
           setOpen(value.length);
         }}
-        className="inline-flex items-center gap-1 text-sm text-sage hover:underline"
+        className="inline-flex items-center gap-1 text-sm text-sun hover:underline"
       >
         <Plus className="size-3.5" /> Add {field.label.toLowerCase().replace(/s$/, "")}
       </button>
@@ -222,7 +222,7 @@ function FieldInput({ field, value, onChange }: { field: Field; value: Value; on
               />
             </div>
           ))}
-          <button type="button" onClick={() => onChange([...items, ""])} className="inline-flex items-center gap-1 text-sm text-sage hover:underline">
+          <button type="button" onClick={() => onChange([...items, ""])} className="inline-flex items-center gap-1 text-sm text-sun hover:underline">
             <Plus className="size-3.5" /> Add {noun}
           </button>
         </div>
@@ -254,7 +254,7 @@ function Fields({ fields, value, onChange }: { fields: Field[]; value: Obj; onCh
                 type="checkbox"
                 checked={value[field.key] === true}
                 onChange={(e) => set(field.key, e.target.checked)}
-                className="size-4 accent-[var(--color-sage)]"
+                className="size-4 accent-[var(--color-sun)]"
               />
               {field.label}
             </label>
@@ -339,7 +339,7 @@ export function DataForm({ sectionKey, initial, sha }: { sectionKey: DataSection
           role={result.kind === "error" ? "alert" : "status"}
           className={cn(
             "rounded-xl border px-4 py-3 text-sm",
-            result.kind === "error" ? "border-red-500/30 bg-red-500/10 text-red-700 dark:text-red-400" : "border-sage-border bg-sage-soft text-sage",
+            result.kind === "error" ? "border-red-500/30 bg-red-500/10 text-red-700 dark:text-red-400" : "border-sun-border bg-sun-soft text-sun",
           )}
         >
           {result.text}{" "}

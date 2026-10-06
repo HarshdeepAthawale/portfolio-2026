@@ -51,7 +51,7 @@
   display: flex;
   align-items: center;
   gap: 0.6em;
-  font: 500 clamp(9px, 3.4cqh, 12px) / 1 var(--font-geist-mono), ui-monospace, monospace;
+  font: 500 clamp(9px, 3.4cqh, 12px) / 1 var(--font-plex-mono), ui-monospace, monospace;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.72);
@@ -73,7 +73,7 @@
   border-radius: 999px;
   border: 1px solid rgba(255, 255, 255, 0.16);
   background: rgba(0, 0, 0, 0.38);
-  font: 500 clamp(9px, 3.4cqh, 12px) / 1 var(--font-geist-mono), ui-monospace, monospace;
+  font: 500 clamp(9px, 3.4cqh, 12px) / 1 var(--font-plex-mono), ui-monospace, monospace;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   white-space: nowrap;

@@ -23,8 +23,8 @@ export default async function Image() {
           flexDirection: "column",
           justifyContent: "space-between",
           padding: "72px 80px",
-          background: "#f3f5f1",
-          color: "#1c1917",
+          background: "#0f0c0b",
+          color: "#fff6e5",
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 56 }}>
@@ -37,21 +37,20 @@ export default async function Image() {
             style={{
               borderRadius: 9999,
               objectFit: "cover",
-              border: "6px solid #ffffff",
-              boxShadow: "0 12px 32px rgba(28, 25, 23, 0.18)",
+              border: "2px solid rgba(255, 246, 229, 0.2)",
             }}
           />
           <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-            <div style={{ fontSize: 76, fontWeight: 700, letterSpacing: -2, lineHeight: 1 }}>
+            <div style={{ fontSize: 76, fontWeight: 600, letterSpacing: -3, lineHeight: 1 }}>
               Harshdeep Athawale
             </div>
-            <div style={{ fontSize: 40, fontWeight: 600, color: "#4d6b47" }}>
+            <div style={{ fontSize: 40, fontWeight: 600, color: "#ff8b3e" }}>
               Security Researcher/Engineer
             </div>
-            <div style={{ fontSize: 26, color: "#57534e", marginTop: 6 }}>
+            <div style={{ fontSize: 26, color: "#b1aca6", marginTop: 6 }}>
               Red Bull · Netflix · Goldman Sachs · Adobe · NVIDIA · Anduril
             </div>
-            <div style={{ fontSize: 26, color: "#a8a29e", marginTop: 18 }}>
+            <div style={{ fontSize: 26, color: "#7a746e", marginTop: 18 }}>
               harshdeepathawale.in
             </div>
           </div>
@@ -65,10 +64,10 @@ export default async function Image() {
                 style={{
                   display: "flex",
                   padding: "12px 22px",
-                  borderRadius: 9999,
-                  border: "2px solid #d2dfcc",
-                  background: "#edf2ea",
-                  color: "#3f5a3a",
+                  borderRadius: 2,
+                  border: "2px solid rgba(255, 139, 62, 0.45)",
+                  background: "rgba(255, 139, 62, 0.08)",
+                  color: "#ff8b3e",
                   fontSize: 24,
                   fontWeight: 600,
                 }}

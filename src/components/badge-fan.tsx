@@ -27,7 +27,7 @@ export function BadgeFan({
       aria-label={`${title} badges`}
       className={cn(
         "group/fan relative aspect-[2/1] overflow-hidden bg-muted/40",
-        "bg-[radial-gradient(ellipse_at_50%_115%,var(--sage-soft),transparent_70%)]",
+        "bg-[radial-gradient(ellipse_at_50%_115%,var(--sun-soft),transparent_70%)]",
         "[--spread:30%] [--tilt:5deg] hover:[--spread:38%] hover:[--tilt:7deg]",
         className,
       )}
