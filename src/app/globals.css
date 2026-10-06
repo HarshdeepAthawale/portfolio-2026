@@ -135,7 +135,7 @@ body {
 
 .corner-frame::before {
   --c: color-mix(in srgb, var(--foreground) 32%, transparent);
-  --l: 14px;
+  --l: var(--corner, 14px);
   content: "";
   position: absolute;
   inset: 0;
