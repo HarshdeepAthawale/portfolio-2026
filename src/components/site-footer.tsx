@@ -1,65 +1,97 @@
 import Link from "next/link";
-import {
-  ArrowUpRight,
-  EnvelopeSimple,
-  GithubLogo,
-  LinkedinLogo,
-  MediumLogo,
-  XLogo,
-} from "@phosphor-icons/react/dist/ssr";
+import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
 import { Container } from "@/components/container";
-import { heroConfig } from "@/config/hero";
+import { heroConfig, socialLinks } from "@/config/hero";
 import { siteConfig } from "@/config/meta";
+import { footerNav } from "@/config/navigation";
 
-const footerSocial = [
-  { name: "LinkedIn", href: "https://www.linkedin.com/in/harshdeepathawale/", icon: LinkedinLogo },
-  { name: "GitHub", href: "https://github.com/HarshdeepAthawale", icon: GithubLogo },
-  { name: "X", href: "https://x.com/harshdeep0x01", icon: XLogo },
-  { name: "Medium", href: "https://medium.com/@harshdeepathawale", icon: MediumLogo },
-  { name: "Email", href: `mailto:${heroConfig.email}`, icon: EnvelopeSimple },
-];
+const labelClass = "font-mono text-xs uppercase tracking-[0.18em] text-secondary";
+const linkClass = "text-[15px] text-foreground/85 transition-colors hover:text-sun";
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-border/60">
+    <footer className="border-t border-border">
       <Container className="py-14 sm:py-16">
-        {/* Closing note */}
-        <p className="font-display text-2xl font-medium tracking-tight sm:text-3xl">
-          Have a bug worth chasing? <span className="text-foreground/45">Let&apos;s talk.</span>
-        </p>
-        <p className="mt-3 max-w-md text-sm leading-relaxed text-secondary sm:text-base">
-          Open to security internships for Summer 2027, and always happy to talk
-          research, disclosures, or a tricky chain.
-        </p>
-        <a
-          href={`mailto:${heroConfig.email}`}
-          className="link-underline mt-5 inline-flex items-center gap-1.5 text-base font-medium"
-        >
-          {heroConfig.email}
-          <ArrowUpRight className="size-4" />
-        </a>
+        {/* Closing card: always the dark, warm "dune" look, in both themes. */}
+        <div className="dark cta-dune overflow-hidden rounded-md px-6 py-10 text-foreground sm:px-10 sm:py-14">
+          <h2 className="max-w-lg font-display text-4xl leading-[1.05] sm:text-5xl">
+            Have a bug worth chasing?
+          </h2>
+          <p className="mt-4 max-w-md text-sm leading-relaxed text-foreground/80 sm:text-base">
+            Open to security internships for Summer 2027, and always happy to talk research,
+            disclosures, or a tricky chain.
+          </p>
+          <div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-3">
+            <a
+              href={`mailto:${heroConfig.email}`}
+              className="inline-flex h-10 items-center rounded-sm bg-foreground px-5 text-sm font-medium text-background transition-opacity hover:opacity-85"
+            >
+              Get in touch
+            </a>
+            <a href={`mailto:${heroConfig.email}`} className="link-underline text-sm text-foreground/80">
+              {heroConfig.email}
+            </a>
+          </div>
+        </div>
 
-        <div className="mt-12 flex flex-col gap-5 border-t border-border/60 pt-6 sm:flex-row sm:items-center sm:justify-between">
-          <p className="font-mono text-xs text-secondary">
+        <div className="mt-14 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3">
+          <nav aria-label="Site">
+            <p className={labelClass}>Navigate</p>
+            <ul className="mt-4 space-y-2.5">
+              {footerNav.map((item) => (
+                <li key={item.href}>
+                  <Link href={item.href} className={linkClass}>
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+          <div>
+            <p className={labelClass}>Connect</p>
+            <ul className="mt-4 space-y-2.5">
+              {socialLinks.map((link) => (
+                <li key={link.name}>
+                  <a
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`${linkClass} inline-flex items-center gap-1`}
+                  >
+                    {link.name}
+                    <ArrowUpRight className="size-3.5 text-foreground/40" />
+                  </a>
+                </li>
+              ))}
+              <li>
+                <a href={`mailto:${heroConfig.email}`} className={linkClass}>
+                  Email
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div className="col-span-2 sm:col-span-1">
+            <p className={labelClass}>Disclosure</p>
+            <ul className="mt-4 space-y-2.5">
+              <li>
+                <a href="/.well-known/security.txt" className={linkClass}>
+                  security.txt
+                </a>
+              </li>
+              <li>
+                <a href={`mailto:${heroConfig.email}?subject=Security%20report`} className={linkClass}>
+                  Report a vulnerability
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="mt-12 flex flex-wrap items-center justify-between gap-3 border-t border-border pt-6 font-mono text-xs text-secondary">
+          <p>
             © {new Date().getFullYear()} {siteConfig.name}
           </p>
-          <div className="flex items-center gap-2">
-            {footerSocial.map((link) => {
-              const Icon = link.icon;
-              return (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={link.name}
-                  className="flex size-9 items-center justify-center rounded-lg border border-border text-secondary transition-colors hover:bg-muted hover:text-foreground"
-                >
-                  <Icon className="size-5" />
-                </Link>
-              );
-            })}
-          </div>
+          <p>{heroConfig.location}</p>
         </div>
       </Container>
     </footer>
