@@ -1,29 +1,12 @@
 import { MediaCoverCard } from "@/components/media-cover-card";
+import type { Favourite } from "@/config/favourites";
 import { cn } from "@/lib/utils";
 
-export function MediaCoverGrid({
-  items,
-  getSubtitle,
-  className,
-}: {
-  items: { title: string; cover: string; author?: string }[];
-  getSubtitle?: (item: { title: string; cover: string; author?: string }) => string | undefined;
-  className?: string;
-}) {
+export function MediaCoverGrid({ items, className }: { items: Favourite[]; className?: string }) {
   return (
-    <div
-      className={cn(
-        "grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-5 lg:grid-cols-4 lg:gap-6",
-        className,
-      )}
-    >
-      {items.map((item) => (
-        <MediaCoverCard
-          key={item.title}
-          title={item.title}
-          subtitle={getSubtitle?.(item) ?? item.author}
-          cover={item.cover}
-        />
+    <div className={cn("grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-5", className)}>
+      {items.map((item, index) => (
+        <MediaCoverCard key={item.title} item={item} index={index} />
       ))}
     </div>
   );
