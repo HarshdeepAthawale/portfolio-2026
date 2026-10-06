@@ -6,7 +6,8 @@ import { consoleDomains, consoleSummary, pipelineStages } from "@/config/threat-
 import { ParticleField } from "@/components/particle-field";
 import { cn } from "@/lib/utils";
 
-const STAGE_MS = 1700;
+// Each attack surface shows for 5 s: four pipeline stages of 1.25 s each.
+const STAGE_MS = 1250;
 
 /**
  * Home-page console: a disclosure pipeline that loops recon → triage, a particle
@@ -14,11 +15,12 @@ const STAGE_MS = 1700;
  */
 export function ThreatConsole() {
   const [{ active, stage }, setProgress] = useState({ active: 0, stage: 0 });
-  const [paused, setPaused] = useState(false);
+  // Bumped on a manual pick so the chosen surface gets its full 5 s.
+  const [restart, setRestart] = useState(0);
   const domain = consoleDomains[active % consoleDomains.length];
 
   useEffect(() => {
-    if (paused || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     // Walk the pipeline; once triaged, move on to the next attack surface.
     const timer = window.setInterval(() => {
       setProgress((current) =>
@@ -28,19 +30,18 @@ export function ThreatConsole() {
       );
     }, STAGE_MS);
     return () => window.clearInterval(timer);
-  }, [paused]);
+  }, [restart]);
 
-  const select = (index: number) => setProgress({ active: index, stage: pipelineStages.length - 1 });
+  const select = (index: number) => {
+    setProgress({ active: index, stage: 0 });
+    setRestart((n) => n + 1);
+  };
 
   return (
     <Container>
       <section
         aria-label="Threat console: findings by attack surface"
         className="animate-in-up-on-view space-y-3 border border-border bg-background p-3 text-foreground sm:p-4"
-        onPointerEnter={() => setPaused(true)}
-        onPointerLeave={() => setPaused(false)}
-        onFocus={() => setPaused(true)}
-        onBlur={() => setPaused(false)}
       >
         {/* Disclosure pipeline */}
         <div className="flex items-center gap-4 border border-border px-4 py-3">
