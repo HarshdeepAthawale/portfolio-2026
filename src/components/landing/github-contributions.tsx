@@ -7,6 +7,7 @@ import { siteConfig } from "@/config/meta";
 import {
   getGitHubContributions,
   groupContributionsByWeek,
+  relevelContributions,
   type ContributionDay,
 } from "@/lib/github";
 import { contributionLevelClasses } from "@/lib/github-levels";
@@ -68,8 +69,9 @@ export async function GitHubContributions({ index }: { index?: number }) {
 
   if (!data) return null;
 
-  const days = data.contributions.filter((day) => day.date);
-  const weeks = groupContributionsByWeek(data.contributions);
+  const { days: leveled, ranges } = relevelContributions(data.contributions);
+  const days = leveled.filter((day) => day.date);
+  const weeks = groupContributionsByWeek(leveled);
   const monthLabels = getMonthLabels(weeks);
   const total = data.total.lastYear;
   const { longest, current, best } = getStats(days);
@@ -98,7 +100,7 @@ export async function GitHubContributions({ index }: { index?: number }) {
         </Link>
       </div>
 
-      <div className="animate-in-up-on-view rounded-2xl border border-border bg-card/60 p-4 sm:p-5">
+      <div className="animate-in-up-on-view rounded-2xl border border-border bg-card p-4 sm:p-5">
         <dl className="mb-5 grid grid-cols-2 gap-4 sm:grid-cols-4">
           {stats.map((stat) => (
             <div key={stat.label}>
@@ -121,10 +123,14 @@ export async function GitHubContributions({ index }: { index?: number }) {
           label={`${total} GitHub contributions in the past year`}
         />
 
-        <div className="mt-4 flex items-center justify-end gap-1.5 text-[10px] font-medium uppercase tracking-wider text-secondary">
+        {/* Legend: each step labelled with the contributions it stands for. */}
+        <div className="mt-4 flex flex-wrap items-center justify-end gap-x-3 gap-y-1.5 font-mono text-[10px] uppercase tracking-[0.12em] text-secondary">
           <span>Less</span>
           {contributionLevelClasses.map((color, i) => (
-            <div key={i} className={cn("size-2.5 rounded-[3px]", color)} />
+            <span key={i} className="inline-flex items-center gap-1" title={`${ranges[i]} contributions`}>
+              <span className={cn("size-2.5 rounded-[2px]", color)} />
+              <span className="normal-case tracking-normal">{ranges[i]}</span>
+            </span>
           ))}
           <span>More</span>
         </div>

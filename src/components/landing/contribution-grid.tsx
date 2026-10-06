@@ -39,10 +39,32 @@ export function ContributionGrid({
   const scrollRef = useRef<HTMLDivElement>(null);
   const [tip, setTip] = useState<Tip | null>(null);
 
-  // On narrow screens the year overflows: start at the most recent weeks.
+  // On narrow screens the year overflows: start at the most recent weeks. Layout
+  // settles after mount (fonts, reveal), so keep pinning to the end on resize
+  // until the visitor scrolls the grid themselves.
   useEffect(() => {
     const el = scrollRef.current;
-    if (el) el.scrollLeft = el.scrollWidth;
+    if (!el) return;
+    let touched = false;
+    const toEnd = () => {
+      if (!touched) el.scrollLeft = el.scrollWidth;
+    };
+    const markTouched = () => {
+      touched = true;
+    };
+    const observer = new ResizeObserver(toEnd);
+    observer.observe(el);
+    if (el.firstElementChild) observer.observe(el.firstElementChild);
+    el.addEventListener("pointerdown", markTouched);
+    el.addEventListener("wheel", markTouched, { passive: true });
+    el.addEventListener("touchstart", markTouched, { passive: true });
+    toEnd();
+    return () => {
+      observer.disconnect();
+      el.removeEventListener("pointerdown", markTouched);
+      el.removeEventListener("wheel", markTouched);
+      el.removeEventListener("touchstart", markTouched);
+    };
   }, []);
 
   const showTip = (target: EventTarget) => {
@@ -65,7 +87,7 @@ export function ContributionGrid({
         ref={scrollRef}
         role="img"
         aria-label={label}
-        className="overflow-x-auto [scrollbar-width:none] max-sm:[mask-image:linear-gradient(to_right,transparent,#000_28px)] [&::-webkit-scrollbar]:hidden"
+        className="overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         onPointerOver={(event) => showTip(event.target)}
         onPointerLeave={() => setTip(null)}
         onScroll={() => setTip(null)}
@@ -81,22 +103,30 @@ export function ContributionGrid({
           {monthLabels.map(({ month, weekIndex }) => (
             <span
               key={`${month}-${weekIndex}`}
-              className="whitespace-nowrap pb-1.5 text-[10px] font-medium uppercase tracking-wider text-secondary"
+              className="whitespace-nowrap pb-1.5 font-mono text-[10px] uppercase tracking-[0.12em] text-secondary"
               style={{ gridColumn: `${weekIndex + 2} / span 4`, gridRow: 1 }}
             >
               {month}
             </span>
           ))}
 
-          {WEEKDAY_LABELS.map(({ day, label: weekday }) => (
-            <span
-              key={weekday}
-              className="self-center pr-1.5 text-[9px] leading-none text-secondary"
-              style={{ gridColumn: 1, gridRow: day + 2 }}
-            >
-              {weekday}
-            </span>
-          ))}
+          {/* Day labels: a solid strip pinned to the left edge (plus the corner
+              above it), so weeks scroll cleanly underneath on narrow screens. */}
+          <span aria-hidden className="sticky left-0 z-[1] bg-card" style={{ gridColumn: 1, gridRow: 1 }} />
+          <div
+            className="sticky left-0 z-[1] grid bg-card pr-2"
+            style={{ gridColumn: 1, gridRow: "2 / span 7", gridTemplateRows: "subgrid" }}
+          >
+            {WEEKDAY_LABELS.map(({ day, label: weekday }) => (
+              <span
+                key={weekday}
+                className="self-center font-mono text-[9px] uppercase leading-none tracking-[0.08em] text-secondary"
+                style={{ gridRow: day + 1 }}
+              >
+                {weekday}
+              </span>
+            ))}
+          </div>
 
           {weeks.map((week, weekIndex) =>
             week.map((day, dayIndex) =>
@@ -106,7 +136,7 @@ export function ContributionGrid({
                   data-date={day.date}
                   data-count={day.count}
                   className={cn(
-                    "gh-cell aspect-square rounded-[3px] transition-transform duration-150 hover:z-10 hover:scale-[1.35] hover:ring-1 hover:ring-foreground/50",
+                    "gh-cell aspect-square rounded-[2px] transition-transform duration-150 hover:z-10 hover:scale-[1.35] hover:ring-1 hover:ring-foreground/50",
                     contributionLevelClasses[day.level] ?? contributionLevelClasses[0],
                   )}
                   style={
