@@ -18,7 +18,7 @@ export function SectionHeading({
         className={cn(
           "text-foreground",
           uppercase
-            ? "flex items-center gap-2.5 font-mono text-xs font-medium uppercase tracking-[0.18em] text-secondary"
+            ? "flex items-center gap-2.5 whitespace-nowrap font-mono text-xs font-medium uppercase tracking-[0.18em] text-secondary"
             : "font-display text-2xl font-medium",
         )}
       >
