@@ -40,7 +40,7 @@ export default function AboutPage() {
           <div className="grid gap-6 sm:grid-cols-[1fr_auto] sm:items-start sm:gap-8">
             <div className="space-y-4">
               <h1 className="font-display text-3xl font-medium tracking-tight sm:text-4xl">
-                {aboutConfig.headline[0]}
+                {aboutConfig.headline[0]}{" "}
                 <br />
                 {aboutConfig.headline[1]}
               </h1>
