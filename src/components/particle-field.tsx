@@ -1,16 +1,32 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { FLAT_SHAPES, getShape, POINT_COUNT, type ShapeName } from "@/lib/particle-shapes";
+import {
+  FLAT_SHAPES,
+  getShape,
+  getWireframe,
+  POINT_COUNT,
+  type ShapeName,
+  type Wireframe,
+} from "@/lib/particle-shapes";
 
 const MORPH_MS = 1400;
+const FADE_MS = 700;
 const DUST = 70;
 
-// Depth levels, back to front. Colours come from the theme (--particle-*):
-// glowing gold dust in dark mode, ink-on-paper dots in light mode.
+// Depth levels, back to front. Everything comes from the theme (--particle-*):
+// glowing gold dust in dark mode, a fine ink line drawing in light mode.
 const LEVEL_COUNT = 4;
 
-type Palette = { levels: string[]; dust: string; blend: GlobalCompositeOperation };
+type Palette = {
+  style: "dots" | "lines";
+  levels: string[];
+  dust: string;
+  blend: GlobalCompositeOperation;
+  /** Line drawing: ink and accent-node colours as "r g b". */
+  ink: string;
+  node: string;
+};
 
 function readPalette(el: Element): Palette {
   const css = getComputedStyle(el);
@@ -19,12 +35,18 @@ function readPalette(el: Element): Palette {
     levels: Array.from({ length: LEVEL_COUNT }, (_, i) => v(`--particle-${i}`) || "rgb(255 160 90 / 0.6)"),
     dust: v("--particle-dust") || "255 190 130",
     blend: (v("--particle-blend") || "lighter") as GlobalCompositeOperation,
+    style: v("--particle-style") === "lines" ? "lines" : "dots",
+    ink: v("--particle-ink") || "15 12 11",
+    node: v("--particle-node") || "184 80 26",
   };
 }
 
 const easeInOut = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - (-2 * t + 2) ** 3 / 2);
 
-/** A slowly turning cloud of glowing particles that morphs between shapes. */
+/**
+ * A slowly turning 3D shape: glowing particles that morph between shapes in
+ * dark mode, a crossfading line drawing in light mode.
+ */
 export function ParticleField({ shape }: { shape: ShapeName }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const state = useRef({
@@ -34,6 +56,9 @@ export function ParticleField({ shape }: { shape: ShapeName }) {
     morphStart: -1,
     angle: 0.6,
     sway: false,
+    wire: null as Wireframe | null,
+    prevWire: null as Wireframe | null,
+    wireStart: 0,
     draw: () => {},
   });
 
@@ -42,6 +67,9 @@ export function ParticleField({ shape }: { shape: ShapeName }) {
     const s = state.current;
     const points = getShape(shape);
     s.sway = FLAT_SHAPES.has(shape);
+    s.prevWire = s.wire;
+    s.wire = getWireframe(shape);
+    s.wireStart = performance.now();
     const first = s.morphStart < 0;
     s.from.set(first ? flatten(points) : s.current);
     s.target.set(flatten(points));
@@ -88,6 +116,35 @@ export function ParticleField({ shape }: { shape: ShapeName }) {
       if (!reduced) s.angle += dt * 0.35;
       const angle = s.sway ? Math.sin(s.angle * 1.4) * 0.55 : s.angle;
 
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.clearRect(0, 0, width, height);
+
+      const cosY = Math.cos(angle);
+      const sinY = Math.sin(angle);
+      const cosX = Math.cos(0.3);
+      const sinX = Math.sin(0.3);
+      const scale = Math.min(width, height) * 0.4;
+      const cx = width / 2;
+      const cy = height / 2;
+      // Rotate around Y, tilt around X, then perspective-project. Writes [x, y, depth 0..1].
+      const out = new Float32Array(3);
+      const project = (x: number, y: number, z: number) => {
+        const x1 = x * cosY + z * sinY;
+        const z1 = -x * sinY + z * cosY;
+        const y2 = y * cosX - z1 * sinX;
+        const z2 = y * sinX + z1 * cosX;
+        const perspective = 3 / (3 - z2);
+        out[0] = cx + x1 * scale * perspective;
+        out[1] = cy - y2 * scale * perspective;
+        out[2] = Math.min(1, Math.max(0, (z2 + 1) / 2));
+        return out;
+      };
+
+      if (palette.style === "lines") {
+        drawWireframes(now, project);
+        return;
+      }
+
       // Morph: each point eases from its old spot to its new one, slightly staggered.
       const elapsed = reduced ? MORPH_MS * 2 : now - s.morphStart;
       for (let i = 0; i < POINT_COUNT; i++) {
@@ -99,8 +156,6 @@ export function ParticleField({ shape }: { shape: ShapeName }) {
         }
       }
 
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      ctx.clearRect(0, 0, width, height);
       ctx.globalCompositeOperation = palette.blend;
 
       // Ambient dust drifting upward.
@@ -112,31 +167,13 @@ export function ParticleField({ shape }: { shape: ShapeName }) {
         ctx.fillRect(d.x * width, d.y * height, 1.2, 1.2);
       }
 
-      const cosY = Math.cos(angle);
-      const sinY = Math.sin(angle);
-      const tilt = 0.3;
-      const cosX = Math.cos(tilt);
-      const sinX = Math.sin(tilt);
-      const scale = Math.min(width, height) * 0.4;
-      const cx = width / 2;
-      const cy = height / 2;
       for (const bucket of buckets) bucket.length = 0;
-
       for (let i = 0; i < POINT_COUNT; i++) {
-        const x = s.current[i * 3];
-        const y = s.current[i * 3 + 1];
-        const z = s.current[i * 3 + 2];
-        // Rotate around Y, then tilt around X.
-        const x1 = x * cosY + z * sinY;
-        const z1 = -x * sinY + z * cosY;
-        const y2 = y * cosX - z1 * sinX;
-        const z2 = y * sinX + z1 * cosX;
-        const perspective = 3 / (3 - z2);
-        projected[i * 3] = cx + x1 * scale * perspective;
-        projected[i * 3 + 1] = cy - y2 * scale * perspective;
-        const depth = Math.min(1, Math.max(0, (z2 + 1) / 2));
-        projected[i * 3 + 2] = depth;
-        buckets[Math.min(LEVEL_COUNT - 1, Math.floor(depth * LEVEL_COUNT))].push(i);
+        const p = project(s.current[i * 3], s.current[i * 3 + 1], s.current[i * 3 + 2]);
+        projected[i * 3] = p[0];
+        projected[i * 3 + 1] = p[1];
+        projected[i * 3 + 2] = p[2];
+        buckets[Math.min(LEVEL_COUNT - 1, Math.floor(p[2] * LEVEL_COUNT))].push(i);
       }
 
       buckets.forEach((bucket, level) => {
@@ -147,6 +184,57 @@ export function ParticleField({ shape }: { shape: ShapeName }) {
         }
       });
       ctx.globalCompositeOperation = "source-over";
+    };
+
+    // Light mode: hairline strokes, fainter towards the back, with small accent
+    // nodes; the outgoing shape fades out as the new one fades in.
+    const LINE_ALPHA = [0.16, 0.32, 0.55, 0.85];
+    const segmentBuckets: number[][] = LINE_ALPHA.map(() => []);
+    const drawWireframes = (now: number, project: (x: number, y: number, z: number) => Float32Array) => {
+      const fade = reduced ? 1 : easeInOut(Math.min(1, (now - s.wireStart) / FADE_MS));
+      if (s.prevWire && fade < 1) drawWire(s.prevWire, 1 - fade, project);
+      if (s.wire) drawWire(s.wire, fade, project);
+    };
+
+    const drawWire = (
+      wire: Wireframe,
+      alpha: number,
+      project: (x: number, y: number, z: number) => Float32Array,
+    ) => {
+      const points = new Float32Array(wire.segments.length * 6);
+      for (const bucket of segmentBuckets) bucket.length = 0;
+      wire.segments.forEach(([a, b], i) => {
+        const pa = project(a[0], a[1], a[2]);
+        points[i * 6] = pa[0];
+        points[i * 6 + 1] = pa[1];
+        const da = pa[2];
+        const pb = project(b[0], b[1], b[2]);
+        points[i * 6 + 3] = pb[0];
+        points[i * 6 + 4] = pb[1];
+        const depth = (da + pb[2]) / 2;
+        segmentBuckets[Math.min(LINE_ALPHA.length - 1, Math.floor(depth * LINE_ALPHA.length))].push(i);
+      });
+
+      ctx.lineWidth = 1;
+      ctx.lineCap = "round";
+      segmentBuckets.forEach((bucket, level) => {
+        if (!bucket.length) return;
+        ctx.beginPath();
+        for (const i of bucket) {
+          ctx.moveTo(points[i * 6], points[i * 6 + 1]);
+          ctx.lineTo(points[i * 6 + 3], points[i * 6 + 4]);
+        }
+        ctx.strokeStyle = `rgb(${palette.ink} / ${LINE_ALPHA[level] * alpha})`;
+        ctx.stroke();
+      });
+
+      for (const node of wire.nodes) {
+        const p = project(node[0], node[1], node[2]);
+        ctx.beginPath();
+        ctx.arc(p[0], p[1], 2 + p[2] * 1.5, 0, Math.PI * 2);
+        ctx.fillStyle = `rgb(${palette.node} / ${(0.45 + p[2] * 0.55) * alpha})`;
+        ctx.fill();
+      }
     };
 
     const loop = () => {
