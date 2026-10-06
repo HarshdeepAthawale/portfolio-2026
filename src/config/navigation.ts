@@ -1,15 +1,16 @@
+// Primary links in the header (the logo goes home).
 export const headerNav = [
-  { label: "Home", href: "/" },
   { label: "About", href: "/about" },
+  { label: "Work", href: "/work" },
   { label: "Projects", href: "/projects" },
+  { label: "Blog", href: "/blog" },
 ] as const;
 
+// Secondary pages, under "More" on desktop.
 export const moreNav = [
-  { label: "Work", href: "/work" },
-  { label: "Blog", href: "/blog" },
-  { label: "Resume", href: "/resume" },
-  { label: "Honors & Awards", href: "/achievements" },
-  { label: "Favourites", href: "/favourites" },
+  { label: "Resume", href: "/resume", note: "PDF and highlights" },
+  { label: "Honors & Awards", href: "/achievements", note: "Wins, judging, badges" },
+  { label: "Favourites", href: "/favourites", note: "Books, films, series" },
 ] as const;
 
 export const footerNav = [
