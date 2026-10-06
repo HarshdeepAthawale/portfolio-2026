@@ -5,9 +5,12 @@
  */
 
 export type Vec3 = [number, number, number];
-export type ShapeName = "graph" | "browser" | "servers" | "padlock";
+export type ShapeName = "graph" | "browser" | "servers" | "padlock" | "shield" | "face";
 
 export const POINT_COUNT = 720;
+
+/** Flat shapes sway gently instead of spinning, so they never turn edge-on. */
+export const FLAT_SHAPES: ReadonlySet<ShapeName> = new Set(["browser", "shield"]);
 
 type Segment = [Vec3, Vec3];
 
@@ -166,11 +169,67 @@ function padlock(rand: () => number): Vec3[] {
   return [...keyhole, ...slot, ...sampleSegments([...body, ...shackle, ...legs], POINT_COUNT - 80, rand, 0.012)];
 }
 
+/** WAF: a shield (front and back faces) with a check mark. */
+function shield(rand: () => number): Vec3[] {
+  // Outline from the top centre, round the right side down to the tip.
+  const half: [number, number][] = [];
+  for (let i = 0; i <= 12; i++) {
+    const t = i / 12;
+    // Top edge dips slightly in the middle, sides run straight, then curve to the tip.
+    if (t < 0.25) half.push([t * 4 * 0.66, 0.78 + Math.sin(t * 4 * Math.PI) * 0.03 - (1 - t * 4) * 0.06]);
+    else if (t < 0.5) half.push([0.66, 0.78 - ((t - 0.25) / 0.25) * 0.6]);
+    else {
+      const u = (t - 0.5) / 0.5;
+      half.push([0.66 * Math.cos((u * Math.PI) / 2), 0.18 - Math.sin((u * Math.PI) / 2) * 1.0]);
+    }
+  }
+  const outline = [...half.map(([x, y]): [number, number] => [-x, y]).reverse(), ...half.slice(1)];
+  const segments: Segment[] = [];
+  for (const [z, scale] of [[0.09, 1], [-0.09, 1], [0.1, 0.78]] as const) {
+    for (let i = 0; i < outline.length - 1; i++) {
+      const [ax, ay] = outline[i];
+      const [bx, by] = outline[i + 1];
+      segments.push([[ax * scale, ay * scale, z], [bx * scale, by * scale, z]]);
+    }
+  }
+  const check: Segment[] = [
+    [[-0.34, 0.06, 0.12], [-0.08, -0.24, 0.12]],
+    [[-0.08, -0.24, 0.12], [0.38, 0.36, 0.12]],
+  ];
+  return [...sampleSegments(check, 220, rand, 0.04), ...sampleSegments(segments, POINT_COUNT - 220, rand, 0.012)];
+}
+
+/** Deepfake detection: a head-shaped scan of points with a scan ring. */
+function face(rand: () => number): Vec3[] {
+  const surface: Vec3[] = [];
+  const n = 560;
+  for (let i = 0; i < n; i++) {
+    const y = 1 - (i / (n - 1)) * 2;
+    const r = Math.sqrt(1 - y * y);
+    const theta = i * 2.39996;
+    // Narrower towards the chin.
+    const taper = y < 0 ? 1 + y * 0.25 : 1;
+    surface.push([Math.cos(theta) * r * 0.6 * taper, y * 0.88, Math.sin(theta) * r * 0.62 * taper]);
+  }
+  const ring = sampleSegments(
+    arc([0, 0, 0], 0.82, 0, Math.PI * 2, 0, 48).map(([a, b]): Segment => [
+      [a[0], 0.08, a[1]],
+      [b[0], 0.08, b[1]],
+    ]),
+    POINT_COUNT - n,
+    rand,
+    0.01,
+  );
+  return [...surface, ...ring];
+}
+
 const GENERATORS: Record<ShapeName, (rand: () => number) => Vec3[]> = {
   graph,
   browser,
   servers,
   padlock,
+  shield,
+  face,
 };
 
 const cache = new Map<ShapeName, Vec3[]>();

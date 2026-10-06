@@ -2,9 +2,9 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Container } from "@/components/container";
 import { MdxContent } from "@/components/mdx-content";
-import { ProjectScene } from "@/components/project-scene";
+import { ParticleField } from "@/components/particle-field";
 import { TransitionLink } from "@/components/view-transitions";
-import { projects } from "@/config/projects";
+import { projectScenes, projects } from "@/config/projects";
 import { getProjectPost, getProjectPosts } from "@/lib/mdx";
 
 export async function generateStaticParams() {
@@ -33,7 +33,8 @@ export default async function ProjectDetailPage({
   if (!post) notFound();
 
   // Same animated poster as the project's card, so card and page feel connected.
-  const scene = projects.find((project) => project.slug === slug)?.scene;
+  const sceneKey = projects.find((project) => project.slug === slug)?.scene;
+  const scene = sceneKey ? projectScenes[sceneKey] : undefined;
 
   return (
     <div className="space-y-8 pb-16 pt-8">
@@ -43,10 +44,15 @@ export default async function ProjectDetailPage({
         </TransitionLink>
         {scene && (
           <div
-            className="relative mt-6 aspect-[16/10] overflow-hidden rounded-2xl border border-border sm:aspect-[2/1]"
+            className="dark corner-frame relative mt-6 aspect-[16/10] overflow-hidden bg-background text-foreground sm:aspect-[2/1]"
             style={{ viewTransitionName: `poster-${slug}` }}
           >
-            <ProjectScene variant={scene} label={`${post.title} animated poster`} />
+            <ParticleField shape={scene.shape} />
+            <span className="absolute left-4 top-4 flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.15em] text-foreground/80">
+              <span aria-hidden className="size-1.5 rounded-full bg-sun" />
+              {scene.status}
+            </span>
+            <span className="chip-live absolute bottom-4 right-4 bg-background/70">{scene.badge}</span>
           </div>
         )}
         <p className="mt-6 font-mono text-xs text-muted-foreground">{post.date}</p>
