@@ -67,6 +67,13 @@
   /* Analytics chart series (validated for contrast and colour-blind separation). */
   --chart-visitors: #c2541a;
   --chart-pageviews: #4a6fc4;
+  /* Particle fields: ink-on-paper dots in light mode. */
+  --particle-0: rgb(184 80 26 / 0.22);
+  --particle-1: rgb(184 80 26 / 0.45);
+  --particle-2: rgb(140 58 18 / 0.7);
+  --particle-3: rgb(80 34 12 / 0.92);
+  --particle-dust: 150 80 40;
+  --particle-blend: multiply;
 }
 
 .dark {
@@ -93,6 +100,13 @@
   --sun-border: rgb(255 139 62 / 0.4);
   --chart-visitors: #e5772f;
   --chart-pageviews: #7993e2;
+  /* Glowing gold dust in dark mode. */
+  --particle-0: rgb(255 139 62 / 0.35);
+  --particle-1: rgb(255 160 90 / 0.55);
+  --particle-2: rgb(255 196 140 / 0.8);
+  --particle-3: rgb(255 232 196 / 1);
+  --particle-dust: 255 190 130;
+  --particle-blend: lighter;
 }
 
 * {
@@ -139,15 +153,25 @@ body {
     linear-gradient(var(--c), var(--c)) bottom right / 1px var(--l) no-repeat;
 }
 
-/* Closing card: warm dune glow with a fine film grain, like a desert at dusk. */
+/* Closing card: a sun-washed dune by day, the same dune at dusk by night,
+   both with a fine film grain. */
 .cta-dune {
+  background-color: #f6e4c8;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 0.85 0 0 0 0 0.65 0 0 0 0.55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+    radial-gradient(120% 90% at 85% 10%, rgb(255 250 240 / 0.9), transparent 50%),
+    linear-gradient(115deg, transparent 28%, rgb(255 139 62 / 0.35) 52%, rgb(255 214 160 / 0.5) 62%, transparent 76%),
+    radial-gradient(80% 70% at 8% 100%, rgb(214 120 60 / 0.45), transparent 60%);
+  background-blend-mode: overlay, normal, normal, normal;
+}
+
+.dark .cta-dune {
   background-color: #0f0c0b;
   background-image:
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 0.85 0 0 0 0 0.65 0 0 0 0.55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
     radial-gradient(120% 90% at 85% 15%, rgb(255 214 160 / 0.55), transparent 45%),
     linear-gradient(115deg, transparent 30%, rgb(255 139 62 / 0.45) 52%, rgb(255 220 170 / 0.35) 60%, transparent 72%),
     radial-gradient(80% 70% at 10% 100%, rgb(120 52 18 / 0.7), transparent 60%);
-  background-blend-mode: overlay, normal, normal, normal;
 }
 
 /* Small mono status chip, e.g. CURRENT / LIVE. */

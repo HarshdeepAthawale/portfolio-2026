@@ -36,7 +36,7 @@ export function ThreatConsole() {
     <Container>
       <section
         aria-label="Threat console: findings by attack surface"
-        className="dark animate-in-up-on-view space-y-3 border border-border bg-background p-3 text-foreground sm:p-4"
+        className="animate-in-up-on-view space-y-3 border border-border bg-background p-3 text-foreground sm:p-4"
         onPointerEnter={() => setPaused(true)}
         onPointerLeave={() => setPaused(false)}
         onFocus={() => setPaused(true)}

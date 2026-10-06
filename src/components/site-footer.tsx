@@ -12,8 +12,8 @@ export function SiteFooter() {
   return (
     <footer className="border-t border-border">
       <Container className="py-14 sm:py-16">
-        {/* Closing card: always the dark, warm "dune" look, in both themes. */}
-        <div className="dark cta-dune overflow-hidden rounded-md px-6 py-10 text-foreground sm:px-10 sm:py-14">
+        {/* Closing card: a warm "dune" - sand in light mode, dusk in dark mode. */}
+        <div className="cta-dune overflow-hidden rounded-md px-6 py-10 text-foreground sm:px-10 sm:py-14">
           <h2 className="max-w-lg font-display text-4xl leading-[1.05] sm:text-5xl">
             Have a bug worth chasing?
           </h2>
