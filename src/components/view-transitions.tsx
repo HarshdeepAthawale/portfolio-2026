@@ -43,9 +43,27 @@ export function ViewTransitionsProvider({ children }: { children: React.ReactNod
  * rest cross-fades. Falls back to a normal navigation when unsupported, for
  * reduced motion, new-tab clicks, and external targets.
  */
-export function TransitionLink({ href, onClick, ...props }: ComponentProps<typeof Link>) {
+// How long the old page may stay frozen waiting for the next route. Kept short:
+// if the route isn't ready yet, the animation ends and the page appears as soon
+// as its data arrives, instead of the screen sitting still.
+const FREEZE_CAP_MS = 350;
+
+export function TransitionLink({
+  href,
+  onClick,
+  onPointerEnter,
+  onTouchStart,
+  onFocus,
+  ...props
+}: ComponentProps<typeof Link>) {
   const router = useRouter();
   const pending = useContext(PendingNavigation);
+  const url = typeof href === "string" ? href : href.toString();
+
+  // Warm the route on intent (hover, touch, keyboard focus) so a click rarely waits.
+  const warm = () => {
+    if (url.startsWith("/")) router.prefetch(url);
+  };
 
   const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
     onClick?.(event);
@@ -59,7 +77,6 @@ export function TransitionLink({ href, onClick, ...props }: ComponentProps<typeo
     if (!doc.startViewTransition) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-    const url = typeof href === "string" ? href : href.toString();
     if (url === window.location.pathname) return;
 
     event.preventDefault();
@@ -75,10 +92,28 @@ export function TransitionLink({ href, onClick, ...props }: ComponentProps<typeo
               pending.current = null;
               resolve();
             }
-          }, 1200);
+          }, FREEZE_CAP_MS);
         }),
     );
   };
 
-  return <Link href={href} onClick={handleClick} {...props} />;
+  return (
+    <Link
+      href={href}
+      onClick={handleClick}
+      onPointerEnter={(event) => {
+        warm();
+        onPointerEnter?.(event);
+      }}
+      onTouchStart={(event) => {
+        warm();
+        onTouchStart?.(event);
+      }}
+      onFocus={(event) => {
+        warm();
+        onFocus?.(event);
+      }}
+      {...props}
+    />
+  );
 }
