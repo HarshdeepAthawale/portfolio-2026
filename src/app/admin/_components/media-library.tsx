@@ -46,7 +46,7 @@ export function MediaLibrary({ initial }: { initial: string[] }) {
         }}
         className={cn(
           "flex flex-col items-center justify-center gap-3 rounded-2xl border border-dashed p-8 text-center transition-colors",
-          dragging ? "border-sage bg-sage-soft" : "border-border",
+          dragging ? "border-sun bg-sun-soft" : "border-border",
         )}
       >
         <p className="text-sm text-secondary">Drop images here, or</p>
@@ -91,7 +91,7 @@ export function MediaLibrary({ initial }: { initial: string[] }) {
                         key={item.label}
                         type="button"
                         onClick={() => void copy(item.text)}
-                        className="inline-flex items-center gap-1 text-sage hover:underline"
+                        className="inline-flex items-center gap-1 text-sun hover:underline"
                       >
                         {copied === item.text ? <Check className="size-3" /> : <Copy className="size-3" />}
                         {item.label}

@@ -5,9 +5,9 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme inline {
-  --font-sans: var(--font-plus-jakarta), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-newsreader), ui-serif, Georgia, serif;
-  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --font-sans: var(--font-instrument), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-instrument), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, monospace;
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -27,68 +27,72 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  /* The site's single accent: a calm sage. */
-  --color-sage: var(--sage);
-  --color-sage-soft: var(--sage-soft);
-  --color-sage-border: var(--sage-border);
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
+  /* The site's single accent: a warm desert sun. */
+  --color-sun: var(--sun);
+  --color-sun-soft: var(--sun-soft);
+  --color-sun-border: var(--sun-border);
+  /* Crisp, near-square corners throughout. */
+  --radius-sm: 2px;
+  --radius-md: 3px;
   --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
+  --radius-xl: 6px;
+  --radius-2xl: 8px;
+  --radius-3xl: 10px;
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(0.965 0.008 155);
-  --foreground: oklch(0.18 0.01 155);
-  --card: oklch(0.985 0.005 155);
-  --card-foreground: oklch(0.18 0.01 155);
-  --popover: oklch(0.985 0.005 155);
-  --popover-foreground: oklch(0.18 0.01 155);
-  --primary: oklch(0.18 0.01 155);
-  --primary-foreground: oklch(0.98 0.005 155);
-  --secondary: oklch(0.42 0.015 155);
-  --secondary-foreground: oklch(0.18 0.01 155);
-  --muted: oklch(0.94 0.008 155);
-  --muted-foreground: oklch(0.42 0.015 155);
-  --accent: oklch(0.94 0.008 155);
-  --accent-foreground: oklch(0.18 0.01 155);
+  /* Warm desert palette: dust paper, near-black ink, a sun accent. */
+  --radius: 4px;
+  --background: #fbf6ec;
+  --foreground: #0f0c0b;
+  --card: #fffaf2;
+  --card-foreground: #0f0c0b;
+  --popover: #fffaf2;
+  --popover-foreground: #0f0c0b;
+  --primary: #0f0c0b;
+  --primary-foreground: #fff6e5;
+  --secondary: #54504e;
+  --secondary-foreground: #0f0c0b;
+  --muted: #f3ecdf;
+  --muted-foreground: #6e6862;
+  --accent: #f3ecdf;
+  --accent-foreground: #0f0c0b;
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.88 0.012 155);
-  --input: oklch(0.88 0.012 155);
-  --ring: oklch(0.55 0.02 155);
-  --sage: #4d6b47;
-  --sage-soft: #edf2ea;
-  --sage-border: #d2dfcc;
+  --border: #dfd8d3;
+  --input: #dfd8d3;
+  --ring: #b1aca6;
+  --sun: #b8501a;
+  --sun-soft: #fdebdc;
+  --sun-border: #f1c4a2;
   /* Analytics chart series (validated for contrast and colour-blind separation). */
-  --chart-visitors: #48804a;
-  --chart-pageviews: #4a74c9;
+  --chart-visitors: #c2541a;
+  --chart-pageviews: #4a6fc4;
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.708 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
+  --background: #0f0c0b;
+  --foreground: #fff6e5;
+  --card: #1b1613;
+  --card-foreground: #fff6e5;
+  --popover: #1b1613;
+  --popover-foreground: #fff6e5;
+  --primary: #fff6e5;
+  --primary-foreground: #0f0c0b;
+  --secondary: #b1aca6;
+  --secondary-foreground: #fff6e5;
+  --muted: #27221f;
+  --muted-foreground: #9a948e;
+  --accent: #27221f;
+  --accent-foreground: #fff6e5;
   --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --sage: #a6c3a0;
-  --sage-soft: rgb(122 157 128 / 0.12);
-  --sage-border: rgb(122 157 128 / 0.32);
-  --chart-visitors: #63a05b;
-  --chart-pageviews: #628ddc;
+  --border: rgb(255 246 229 / 0.12);
+  --input: rgb(255 246 229 / 0.16);
+  --ring: #54504e;
+  --sun: #ff8b3e;
+  --sun-soft: rgb(255 139 62 / 0.1);
+  --sun-border: rgb(255 139 62 / 0.4);
+  --chart-visitors: #e5772f;
+  --chart-pageviews: #7993e2;
 }
 
 * {
@@ -105,52 +109,48 @@ body {
   transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-.bg-green-grid {
-  background-color: var(--background);
-  background-image:
-    linear-gradient(color-mix(in srgb, var(--foreground) 7%, transparent) 1px, transparent 1px),
-    linear-gradient(90deg, color-mix(in srgb, var(--foreground) 7%, transparent) 1px, transparent 1px);
-  background-size: 40px 40px;
-  transition: background-color 0.2s ease, color 0.2s ease;
+/* Big headings run tight, like editorial display type. */
+.font-display {
+  letter-spacing: -0.03em;
 }
 
-.dark .bg-green-grid {
-  background-color: oklch(0.14 0.015 160);
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-  background-size: 40px 40px;
+/* Corner brackets: four thin L-marks framing a block (no full border). */
+.corner-frame {
+  position: relative;
 }
 
-.glass-header {
-  background: color-mix(in srgb, var(--card) 55%, transparent);
-  backdrop-filter: blur(18px) saturate(1.6);
-  -webkit-backdrop-filter: blur(18px) saturate(1.6);
-  border-bottom: 1px solid color-mix(in srgb, var(--foreground) 8%, transparent);
-  box-shadow: 0 1px 0 color-mix(in srgb, var(--foreground) 4%, transparent);
+.corner-frame::before {
+  --c: color-mix(in srgb, var(--foreground) 32%, transparent);
+  --l: 14px;
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(var(--c), var(--c)) top left / var(--l) 1px no-repeat,
+    linear-gradient(var(--c), var(--c)) top left / 1px var(--l) no-repeat,
+    linear-gradient(var(--c), var(--c)) top right / var(--l) 1px no-repeat,
+    linear-gradient(var(--c), var(--c)) top right / 1px var(--l) no-repeat,
+    linear-gradient(var(--c), var(--c)) bottom left / var(--l) 1px no-repeat,
+    linear-gradient(var(--c), var(--c)) bottom left / 1px var(--l) no-repeat,
+    linear-gradient(var(--c), var(--c)) bottom right / var(--l) 1px no-repeat,
+    linear-gradient(var(--c), var(--c)) bottom right / 1px var(--l) no-repeat;
 }
 
-.glass-nav {
-  background: color-mix(in srgb, var(--card) 72%, transparent);
-  backdrop-filter: blur(20px) saturate(1.8);
-  -webkit-backdrop-filter: blur(20px) saturate(1.8);
-  border: 1px solid color-mix(in srgb, var(--foreground) 10%, transparent);
-  box-shadow:
-    0 1px 2px color-mix(in srgb, var(--foreground) 5%, transparent),
-    0 8px 24px color-mix(in srgb, var(--foreground) 3%, transparent);
-  transition:
-    background 0.3s ease,
-    border-color 0.3s ease,
-    backdrop-filter 0.3s ease;
-}
-
-.dark .glass-header {
-  background: color-mix(in srgb, var(--background) 35%, transparent);
-}
-
-.dark .glass-nav {
-  background: color-mix(in srgb, var(--card) 55%, transparent);
-  border-color: color-mix(in srgb, var(--foreground) 12%, transparent);
+/* Small mono status chip, e.g. CURRENT / LIVE. */
+.chip-live {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  border: 1px solid var(--sun-border);
+  border-radius: 2px;
+  padding: 0.125rem 0.375rem;
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--sun);
 }
 
 @keyframes vinyl-spin {
@@ -242,26 +242,26 @@ body {
 }
 
 ::selection {
-  background: color-mix(in srgb, var(--sage) 28%, transparent);
+  background: color-mix(in srgb, var(--sun) 28%, transparent);
 }
 
-/* Keyboard focus uses the sage accent everywhere. */
+/* Keyboard focus uses the sun accent everywhere. */
 :where(a, button, input, textarea, select, summary, [tabindex]):focus-visible {
-  outline: 2px solid var(--sage);
+  outline: 2px solid var(--sun);
   outline-offset: 2px;
 }
 
-/* Inline links (prose + .link-underline): a faint sage base line, with a solid
+/* Inline links (prose + .link-underline): a faint sun base line, with a solid
    underline that slides in on hover - the same motion as the navbar links.
    Background-image underlines also work across line wraps. */
 .prose a,
 .link-underline {
   text-decoration: none;
   background-image:
-    linear-gradient(var(--sage), var(--sage)),
+    linear-gradient(var(--sun), var(--sun)),
     linear-gradient(
-      color-mix(in srgb, var(--sage) 35%, transparent),
-      color-mix(in srgb, var(--sage) 35%, transparent)
+      color-mix(in srgb, var(--sun) 35%, transparent),
+      color-mix(in srgb, var(--sun) 35%, transparent)
     );
   background-size: 0% 1.5px, 100% 1px;
   background-position: 0 100%, 0 100%;
@@ -277,7 +277,7 @@ body {
 .link-underline:hover,
 .link-underline:focus-visible {
   background-size: 100% 1.5px, 100% 1px;
-  color: var(--sage);
+  color: var(--sun);
 }
 
 /* ---- Long-form reading: blog posts and project write-ups ---- */
@@ -294,9 +294,9 @@ body {
 }
 
 .prose-reading :where(h2, h3) {
-  font-family: var(--font-newsreader), Georgia, serif;
+  font-family: var(--font-display);
   font-weight: 500;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.025em;
 }
 
 .prose-reading :where(h2) {
@@ -306,12 +306,13 @@ body {
 /* Pull quotes. */
 .prose-reading :where(blockquote) {
   margin: 2em 0;
-  border-left: 2px solid var(--sage);
+  border-left: 2px solid var(--sun);
   padding-left: 1.25em;
-  font-family: var(--font-newsreader), Georgia, serif;
-  font-size: 1.25em;
-  font-style: italic;
+  font-family: var(--font-display);
+  font-size: 1.3em;
+  font-style: normal;
   font-weight: 400;
+  letter-spacing: -0.02em;
   line-height: 1.5;
   color: var(--foreground);
   quotes: none;
@@ -322,15 +323,15 @@ body {
   content: none;
 }
 
-/* Inline code as a quiet sage chip (no typography-plugin backticks). */
+/* Inline code as a quiet sun chip (no typography-plugin backticks). */
 .prose-reading :where(code):not(:where(pre code)) {
-  border: 1px solid var(--sage-border);
-  border-radius: 6px;
-  background: var(--sage-soft);
+  border: 1px solid var(--sun-border);
+  border-radius: 2px;
+  background: var(--sun-soft);
   padding: 0.1em 0.4em;
   font-size: 0.85em;
   font-weight: 500;
-  color: var(--sage);
+  color: var(--sun);
 }
 
 .prose-reading :where(code):not(:where(pre code))::before,
@@ -341,7 +342,7 @@ body {
 /* Code blocks themed to the site. */
 .prose-reading pre {
   border: 1px solid var(--border);
-  border-radius: 12px;
+  border-radius: 6px;
   background: var(--muted);
   padding: 1em 1.25em;
   font-size: 0.85em;
@@ -351,12 +352,12 @@ body {
 
 .prose-reading :where(ul > li)::marker,
 .prose-reading :where(ol > li)::marker {
-  color: var(--sage);
+  color: var(--sun);
 }
 
 .prose-reading :where(img) {
   border: 1px solid var(--border);
-  border-radius: 12px;
+  border-radius: 6px;
 }
 
 /* Images the lightbox can open. */

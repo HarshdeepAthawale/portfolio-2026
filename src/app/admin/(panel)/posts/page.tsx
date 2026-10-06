@@ -8,18 +8,18 @@ export const metadata: Metadata = { title: "Posts" };
 function Status({ post }: { post: PostSummary }) {
   if (!post.published) {
     return (
-      <span className="rounded-full border border-amber-500/30 bg-amber-500/10 px-2 py-0.5 text-[11px] text-amber-700 dark:text-amber-400">
+      <span className="rounded-sm border border-amber-500/30 bg-amber-500/10 px-2 py-0.5 text-[11px] text-amber-700 dark:text-amber-400">
         Draft
       </span>
     );
   }
   return (
     <span className="inline-flex items-center gap-1.5">
-      <span className="rounded-full border border-sage-border bg-sage-soft px-2 py-0.5 text-[11px] text-sage">
+      <span className="rounded-sm border border-sun-border bg-sun-soft px-2 py-0.5 text-[11px] text-sun">
         Published
       </span>
       {post.hasDraft && (
-        <span className="rounded-full border border-border px-2 py-0.5 text-[11px] text-secondary">
+        <span className="rounded-sm border border-border px-2 py-0.5 text-[11px] text-secondary">
           Unpublished edits
         </span>
       )}
@@ -50,7 +50,7 @@ async function CollectionList({ collection }: { collection: Collection }) {
             <li key={post.slug} className="flex flex-col gap-1.5 py-3 sm:flex-row sm:items-center sm:gap-4">
               <Link
                 href={`/admin/posts/${collection}/${post.slug}`}
-                className="min-w-0 flex-1 font-medium hover:text-sage"
+                className="min-w-0 flex-1 font-medium hover:text-sun"
               >
                 <span className="block truncate">{post.title}</span>
                 <span className="block truncate font-mono text-[11px] font-normal text-secondary">

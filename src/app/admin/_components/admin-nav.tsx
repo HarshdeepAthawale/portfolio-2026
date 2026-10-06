@@ -25,8 +25,8 @@ export function AdminNav() {
             href={link.href}
             aria-current={active ? "page" : undefined}
             className={cn(
-              "shrink-0 rounded-full px-3 py-1.5 text-sm transition-colors",
-              active ? "bg-sage-soft text-sage" : "text-secondary hover:text-foreground",
+              "shrink-0 rounded-sm px-3 py-1.5 text-sm transition-colors",
+              active ? "bg-sun-soft text-sun" : "text-secondary hover:text-foreground",
             )}
           >
             {link.label}

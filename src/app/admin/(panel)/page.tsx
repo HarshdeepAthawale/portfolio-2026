@@ -13,7 +13,7 @@ import { cn } from "@/lib/utils";
 export const metadata: Metadata = { title: "Dashboard" };
 
 const STATE_LABEL: Record<RecentCommit["state"], { label: string; className: string }> = {
-  success: { label: "Live", className: "bg-sage-soft text-sage border-sage-border" },
+  success: { label: "Live", className: "bg-sun-soft text-sun border-sun-border" },
   pending: { label: "Deploying", className: "bg-amber-500/10 text-amber-700 border-amber-500/30 dark:text-amber-400" },
   failure: { label: "Failed", className: "bg-red-500/10 text-red-600 border-red-500/30 dark:text-red-400" },
   error: { label: "Failed", className: "bg-red-500/10 text-red-600 border-red-500/30 dark:text-red-400" },
@@ -69,7 +69,7 @@ export default async function DashboardPage() {
             </>
           );
           return stat.href ? (
-            <Link key={stat.label} href={stat.href} className={`${cardClass} transition-colors hover:border-sage-border`}>
+            <Link key={stat.label} href={stat.href} className={`${cardClass} transition-colors hover:border-sun-border`}>
               {tile}
             </Link>
           ) : (
@@ -91,7 +91,7 @@ export default async function DashboardPage() {
                 <li key={`${post.collection}/${post.slug}`}>
                   <Link
                     href={`/admin/posts/${post.collection}/${post.slug}`}
-                    className="flex items-baseline justify-between gap-3 py-2.5 text-sm hover:text-sage"
+                    className="flex items-baseline justify-between gap-3 py-2.5 text-sm hover:text-sun"
                   >
                     <span className="truncate">{post.title}</span>
                     <span className="shrink-0 text-xs text-secondary">
@@ -116,14 +116,14 @@ export default async function DashboardPage() {
                 const state = STATE_LABEL[commit.state];
                 return (
                   <li key={commit.sha} className="flex items-center gap-3 py-2.5 text-sm">
-                    <span className={cn("shrink-0 rounded-full border px-2 py-0.5 text-[11px]", state.className)}>
+                    <span className={cn("shrink-0 rounded-sm border px-2 py-0.5 text-[11px]", state.className)}>
                       {state.label}
                     </span>
                     <a
                       href={commit.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="min-w-0 flex-1 truncate hover:text-sage"
+                      className="min-w-0 flex-1 truncate hover:text-sun"
                     >
                       {commit.message}
                     </a>
@@ -143,7 +143,7 @@ export default async function DashboardPage() {
             <Link
               key={section.key}
               href={`/admin/content/${section.key}`}
-              className="rounded-xl border border-border p-3 transition-colors hover:border-sage-border hover:bg-sage-soft/40"
+              className="rounded-xl border border-border p-3 transition-colors hover:border-sun-border hover:bg-sun-soft/40"
             >
               <p className="text-sm font-medium">{section.title}</p>
               <p className="mt-0.5 text-xs text-secondary">{section.description}</p>

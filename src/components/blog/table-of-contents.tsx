@@ -42,7 +42,7 @@ export function TableOfContents({ headings }: { headings: Heading[] }) {
               className={cn(
                 "-ml-px block border-l pl-3 text-xs leading-snug transition-colors",
                 active === heading.id
-                  ? "border-sage text-foreground"
+                  ? "border-sun text-foreground"
                   : "border-transparent text-secondary hover:text-foreground",
               )}
             >

@@ -12,17 +12,17 @@ export const aboutConfig = {
     caption: heroConfig.location,
   },
   traits: ["Curious", "Relentless", "Methodical", "Ethical"] as const,
-  // One calm sage tint for every trait (the site's single accent).
+  // One calm sun tint for every trait (the site's single accent).
   traitStyles: {
-    Curious: "border-sage-border bg-sage-soft text-sage",
-    Relentless: "border-sage-border bg-sage-soft text-sage",
-    Methodical: "border-sage-border bg-sage-soft text-sage",
-    Ethical: "border-sage-border bg-sage-soft text-sage",
+    Curious: "border-sun-border bg-sun-soft text-sun",
+    Relentless: "border-sun-border bg-sun-soft text-sun",
+    Methodical: "border-sun-border bg-sun-soft text-sun",
+    Ethical: "border-sun-border bg-sun-soft text-sun",
   },
   meta: [
     { label: "Location", value: heroConfig.location },
     { label: "Education", value: "3rd year CS · TIET" },
-    { label: "Status", value: "Security Intern · Fall 2026" },
+    { label: "Status", value: "Open to internships · Summer 2027" },
     { label: "Focus", value: "AppSec · Bug Bounty · GRC" },
   ],
   story: {

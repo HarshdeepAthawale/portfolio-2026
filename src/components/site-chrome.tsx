@@ -11,7 +11,7 @@ import { SiteHeader } from "@/components/site-header";
 export function SiteChrome({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <div className="relative flex min-h-screen flex-col bg-green-grid">
+      <div className="relative flex min-h-screen flex-col bg-background">
         <SiteHeader />
         <main className="page-content flex-1">{children}</main>
         <SiteFooter />

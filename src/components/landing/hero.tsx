@@ -30,19 +30,19 @@ export function Hero() {
 
   return (
     <Container className="pt-4">
-      <div className="animate-in-up-on-view flex flex-col gap-5">
+      <div className="animate-in-up-on-view corner-frame flex flex-col gap-5 p-5 sm:p-7">
         <div className="flex items-start gap-4">
           <ProfileAvatar />
           <div className="min-w-0 flex-1">
-            <h1 className="font-display text-3xl font-medium tracking-tight sm:text-4xl">
+            <h1 className="font-display text-4xl font-medium leading-[1.05] sm:text-5xl">
               {heroConfig.name.split(" ").slice(0, -1).join(" ")}{" "}
               {/* Badge rides with the last name so it never strands on wrap. */}
               <span className="whitespace-nowrap">
-                <span className="font-normal italic">
+                <span className="text-foreground/45">
                   {heroConfig.name.split(" ").slice(-1)}
                 </span>
                 <SealCheck
-                  className="ml-2 inline-block size-6 align-[-0.12em] text-sage sm:size-7"
+                  className="ml-2 inline-block size-6 align-[-0.12em] text-sun sm:size-7"
                   weight="fill"
                   aria-label="Verified"
                 />
@@ -79,22 +79,22 @@ export function Hero() {
           <div className="flex items-center gap-2">
             <Link
               href="/resume"
-              className="inline-flex h-9 items-center gap-1.5 rounded-full bg-foreground px-4 text-sm font-medium text-background transition-opacity hover:opacity-85"
+              className="inline-flex h-10 items-center gap-1.5 rounded-sm bg-foreground px-5 text-sm font-medium text-background transition-opacity hover:opacity-85"
             >
               Resume
               <ArrowUpRight className="size-3.5" />
             </Link>
             <a
               href={`mailto:${heroConfig.email}`}
-              className="inline-flex h-9 items-center rounded-full border border-border bg-card/80 px-4 text-sm font-medium transition-colors hover:border-foreground/25 hover:bg-card"
+              className="inline-flex h-10 items-center rounded-sm border border-foreground/25 px-5 text-sm font-medium transition-colors hover:bg-foreground hover:text-background"
             >
               Get in touch
             </a>
           </div>
           <p className="inline-flex items-center gap-2 text-xs text-secondary sm:text-sm">
             <span className="relative flex size-2" aria-hidden>
-              <span className="absolute inline-flex size-full animate-ping rounded-full bg-sage opacity-60 motion-reduce:animate-none" />
-              <span className="relative inline-flex size-2 rounded-full bg-sage" />
+              <span className="absolute inline-flex size-full animate-ping rounded-full bg-sun opacity-60 motion-reduce:animate-none" />
+              <span className="relative inline-flex size-2 rounded-full bg-sun" />
             </span>
             {heroConfig.availability}
           </p>

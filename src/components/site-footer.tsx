@@ -25,10 +25,10 @@ export function SiteFooter() {
       <Container className="py-14 sm:py-16">
         {/* Closing note */}
         <p className="font-display text-2xl font-medium tracking-tight sm:text-3xl">
-          Have a bug worth chasing? <span className="italic text-secondary">Let&apos;s talk.</span>
+          Have a bug worth chasing? <span className="text-foreground/45">Let&apos;s talk.</span>
         </p>
         <p className="mt-3 max-w-md text-sm leading-relaxed text-secondary sm:text-base">
-          Open to security internships for Fall 2026, and always happy to talk
+          Open to security internships for Summer 2027, and always happy to talk
           research, disclosures, or a tricky chain.
         </p>
         <a

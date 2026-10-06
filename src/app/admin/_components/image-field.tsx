@@ -54,7 +54,7 @@ export function ImageField({
               type="button"
               onClick={() => fileInput.current?.click()}
               disabled={busy}
-              className="inline-flex items-center gap-1 text-sage hover:underline disabled:opacity-50"
+              className="inline-flex items-center gap-1 text-sun hover:underline disabled:opacity-50"
             >
               <UploadSimple className="size-3.5" />
               {busy ? "Uploading…" : "Upload"}
