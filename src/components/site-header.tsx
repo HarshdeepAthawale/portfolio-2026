@@ -237,7 +237,8 @@ export function SiteHeader() {
         style={{ viewTransitionName: "site-header" }}
         className={cn(
           "sticky top-0 z-50 w-full border-b border-border bg-background/85 backdrop-blur-md transition-transform duration-300 ease-out motion-reduce:transition-none",
-          hidden && !menuOpen && "-translate-y-full",
+          // Keyboard users tabbing into a hidden header bring it back into view.
+          hidden && !menuOpen && "-translate-y-full focus-within:translate-y-0",
         )}
       >
         <div className="container mx-auto flex h-16 max-w-3xl items-center gap-6 px-5 sm:px-6">
