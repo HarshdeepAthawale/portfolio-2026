@@ -155,7 +155,8 @@
     nekoEl.style.imageRendering = "pixelated";
     nekoEl.style.left = `${nekoPosX - 16}px`;
     nekoEl.style.top = `${nekoPosY - 16}px`;
-    nekoEl.style.zIndex = 2147483647;
+    // Same layer as the header (z-50): above the navbar, below any dialog that opens later.
+    nekoEl.style.zIndex = 50;
 
     nekoEl.style.backgroundImage = `url(${nekoFile})`;
     

@@ -52,7 +52,7 @@ export function CommandMenu() {
         className="fixed inset-0 bg-black/50 backdrop-blur-sm"
         onClick={() => setOpen(false)}
       />
-      <div className="relative w-full max-w-lg overflow-hidden rounded-2xl border border-border bg-card shadow-2xl">
+      <div className="relative w-full max-w-lg overflow-hidden rounded-md border border-border bg-card shadow-2xl">
         <div className="flex items-center gap-3 border-b border-border px-4">
           <MagnifyingGlass className="size-4 shrink-0 text-muted-foreground" />
           <Command.Input
@@ -63,12 +63,12 @@ export function CommandMenu() {
             type="button"
             onClick={() => setOpen(false)}
             aria-label="Close search"
-            className="inline-flex size-8 shrink-0 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+            className="inline-flex size-8 shrink-0 items-center justify-center rounded-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
           >
             <X className="size-4" />
           </button>
         </div>
-        <Command.List className="max-h-80 overflow-y-auto p-2">
+        <Command.List className="max-h-80 overflow-y-auto p-2 [scrollbar-color:var(--border)_transparent] [scrollbar-width:thin] [&_[cmdk-group-heading]]:px-3 [&_[cmdk-group-heading]]:pb-1.5 [&_[cmdk-group-heading]]:pt-2 [&_[cmdk-group-heading]]:font-mono [&_[cmdk-group-heading]]:text-[10px] [&_[cmdk-group-heading]]:uppercase [&_[cmdk-group-heading]]:tracking-[0.18em] [&_[cmdk-group-heading]]:text-secondary">
           <Command.Empty className="px-4 py-8 text-center text-sm text-muted-foreground">
             No results found.
           </Command.Empty>
@@ -80,7 +80,7 @@ export function CommandMenu() {
                   key={`${item.label}-${item.href}`}
                   value={item.label}
                   onSelect={() => navigate(item.href, external)}
-                  className="flex cursor-pointer items-center justify-between rounded-lg px-3 py-2.5 text-sm aria-selected:bg-muted"
+                  className="flex cursor-pointer items-center justify-between rounded-sm px-3 py-2.5 text-sm aria-selected:bg-muted aria-selected:text-sun"
                 >
                   {item.label}
                 </Command.Item>
