@@ -41,7 +41,7 @@ export function BlogArticle({
       <Container className="max-w-2xl">
         <TransitionLink
           href="/blog"
-          className="text-sm text-secondary transition-colors hover:text-foreground"
+          className="hit-area text-sm text-secondary transition-colors hover:text-foreground"
         >
           ← Back to blog
         </TransitionLink>

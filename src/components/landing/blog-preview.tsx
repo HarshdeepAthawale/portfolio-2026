@@ -37,7 +37,7 @@ export async function BlogPreview({ limit = 3 }: { limit?: number }) {
       </div>
       <Link
         href="/blog"
-        className="mt-4 inline-flex items-center gap-1 font-mono text-xs uppercase tracking-[0.15em] text-secondary transition-colors hover:text-foreground"
+        className="hit-area mt-4 inline-flex items-center gap-1 font-mono text-xs uppercase tracking-[0.15em] text-secondary transition-colors hover:text-foreground"
       >
         View all posts
         <ArrowUpRight className="size-3.5" />

@@ -28,7 +28,7 @@ export function SiteFooter() {
             >
               Get in touch
             </a>
-            <a href={`mailto:${heroConfig.email}`} className="link-underline text-sm text-foreground/80">
+            <a href={`mailto:${heroConfig.email}`} className="link-underline hit-area text-sm text-foreground/80">
               {heroConfig.email}
             </a>
           </div>

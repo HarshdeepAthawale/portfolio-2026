@@ -93,7 +93,7 @@ export async function GitHubContributions({ index }: { index?: number }) {
           href={`https://github.com/${siteConfig.githubUsername}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex shrink-0 items-center gap-1 font-mono text-xs uppercase tracking-[0.15em] text-secondary transition-colors hover:text-foreground"
+          className="hit-area inline-flex shrink-0 items-center gap-1 font-mono text-xs uppercase tracking-[0.15em] text-secondary transition-colors hover:text-foreground"
         >
           @{siteConfig.githubUsername}
           <ArrowUpRight className="size-3.5" />

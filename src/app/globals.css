@@ -172,6 +172,18 @@ body {
     radial-gradient(80% 70% at 10% 100%, rgb(120 52 18 / 0.7), transparent 60%);
 }
 
+/* An invisible, larger tap zone for small text links (>= 24px tall on phones)
+   without changing how they look. */
+.hit-area {
+  position: relative;
+}
+
+.hit-area::after {
+  content: "";
+  position: absolute;
+  inset: -8px -4px;
+}
+
 /* Small mono status chip, e.g. CURRENT / LIVE. */
 .chip-live {
   display: inline-flex;
@@ -425,11 +437,11 @@ body {
 
 #mowgli-wake-hint {
   position: fixed;
-  z-index: 2147483647;
+  z-index: 50;
   display: none;
   pointer-events: none;
   white-space: nowrap;
-  border-radius: 9999px;
+  border-radius: 2px;
   border: 1px solid var(--border);
   background: var(--card);
   padding: 0.25rem 0.625rem;
@@ -445,7 +457,7 @@ body {
 
 #mowgli-zzz {
   position: fixed;
-  z-index: 2147483647;
+  z-index: 50;
   display: none;
   pointer-events: none;
   font-family: var(--font-mono), ui-monospace, monospace;
