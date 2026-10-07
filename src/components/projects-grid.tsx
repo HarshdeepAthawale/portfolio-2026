@@ -134,7 +134,7 @@ export function ProjectsGrid({
           {showViewAll && (
             <Link
               href="/projects"
-              className="inline-flex shrink-0 items-center gap-1 font-mono text-xs uppercase tracking-[0.15em] text-secondary transition-colors hover:text-foreground"
+              className="hit-area inline-flex shrink-0 items-center gap-1 font-mono text-xs uppercase tracking-[0.15em] text-secondary transition-colors hover:text-foreground"
             >
               View all
               <ArrowUpRight className="size-3.5" />

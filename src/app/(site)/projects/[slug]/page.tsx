@@ -39,7 +39,7 @@ export default async function ProjectDetailPage({
   return (
     <div className="space-y-8 pb-16 pt-8">
       <Container>
-        <TransitionLink href="/projects" className="text-sm text-secondary hover:text-primary">
+        <TransitionLink href="/projects" className="hit-area text-sm text-secondary hover:text-primary">
           ← Back to projects
         </TransitionLink>
         {scene && (
