@@ -3,13 +3,15 @@ import { ArrowLeft } from "@phosphor-icons/react/dist/ssr";
 import { AchievementCard } from "@/components/landing/achievement-card";
 import { Container } from "@/components/container";
 import { achievements } from "@/config/achievements";
+import { withImageSizes } from "@/lib/image-size";
 
 export const metadata = {
   title: "Honors & Awards - Harshdeep Athawale",
   description: "Hackathon wins, awards, and milestones.",
 };
 
-export default function AchievementsPage() {
+export default async function AchievementsPage() {
+  const items = await withImageSizes(achievements);
   return (
     <div className="space-y-10 pb-16 pt-8">
       <Container>
@@ -17,7 +19,7 @@ export default function AchievementsPage() {
           href="/"
           className="mb-6 inline-flex items-center gap-1.5 text-sm text-secondary transition-colors hover:text-foreground"
         >
-          <ArrowLeft className="size-4" />
+          <ArrowLeft className="hit-area size-4" />
           Back home
         </Link>
         <h1 className="font-display text-3xl font-medium tracking-tight">Honors &amp; Awards</h1>
@@ -28,7 +30,7 @@ export default function AchievementsPage() {
 
       <Container>
         <div className="flex flex-col gap-4">
-          {achievements.map((achievement, index) => (
+          {items.map((achievement, index) => (
             <AchievementCard
               key={achievement.slug}
               achievement={achievement}

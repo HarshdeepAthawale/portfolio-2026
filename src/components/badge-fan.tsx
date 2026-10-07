@@ -54,7 +54,7 @@ export function BadgeFan({
               src={src}
               alt=""
               loading="lazy"
-              className="w-full rounded-xl border border-border shadow-[0_10px_30px_-12px_rgba(0,0,0,0.35)]"
+              className="aspect-[2/1] w-full rounded-xl border border-border object-cover shadow-[0_10px_30px_-12px_rgba(0,0,0,0.35)]"
             />
           </div>
         );

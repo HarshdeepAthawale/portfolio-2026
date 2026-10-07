@@ -11,6 +11,8 @@ export type Achievement = {
   details?: string[];
   /** Cover image for cards and detail header */
   image?: string;
+  /** Pixel size of `image`, filled in on the server so the page reserves its space. */
+  imageSize?: { width: number; height: number };
   /** Pinterest-style photo gallery on the detail page */
   gallery?: string[];
   /** When true, renders the gallery as a uniform badge wall instead of masonry */

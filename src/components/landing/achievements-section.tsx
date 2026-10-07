@@ -4,8 +4,9 @@ import { AchievementCard } from "@/components/landing/achievement-card";
 import { Container } from "@/components/container";
 import { SectionHeading } from "@/components/section-heading";
 import { achievements } from "@/config/achievements";
+import { withImageSizes } from "@/lib/image-size";
 
-export function AchievementsSection({
+export async function AchievementsSection({
   limit,
   showAllLink = false,
   index,
@@ -14,7 +15,7 @@ export function AchievementsSection({
   showAllLink?: boolean;
   index?: number;
 }) {
-  const items = limit ? achievements.slice(0, limit) : achievements;
+  const items = await withImageSizes(limit ? achievements.slice(0, limit) : achievements);
 
   return (
     <Container>
@@ -23,7 +24,7 @@ export function AchievementsSection({
         {showAllLink && (
           <Link
             href="/achievements"
-            className="inline-flex shrink-0 items-center gap-1 font-mono text-xs uppercase tracking-[0.15em] text-secondary transition-colors hover:text-foreground"
+            className="hit-area inline-flex shrink-0 items-center gap-1 font-mono text-xs uppercase tracking-[0.15em] text-secondary transition-colors hover:text-foreground"
           >
             View all
             <ArrowUpRight className="size-3.5" />

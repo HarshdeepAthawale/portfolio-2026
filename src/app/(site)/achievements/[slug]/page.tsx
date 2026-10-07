@@ -7,6 +7,7 @@ import { BadgeFan } from "@/components/badge-fan";
 import { BadgeGallery } from "@/components/badge-gallery";
 import { Container } from "@/components/container";
 import { achievements, getAchievement } from "@/config/achievements";
+import { getImageSize } from "@/lib/image-size";
 
 export async function generateStaticParams() {
   return achievements.map((item) => ({ slug: item.slug }));
@@ -32,7 +33,8 @@ export default async function AchievementDetailPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const achievement = getAchievement(slug);
+  const found = getAchievement(slug);
+  const achievement = found && { ...found, imageSize: await getImageSize(found.image) };
   if (!achievement) notFound();
 
   const hasGallery = Boolean(achievement.gallery?.length);
@@ -44,7 +46,7 @@ export default async function AchievementDetailPage({
           href="/achievements"
           className="inline-flex items-center gap-1.5 text-sm text-secondary transition-colors hover:text-foreground"
         >
-          <ArrowLeft className="size-4" />
+          <ArrowLeft className="hit-area size-4" />
           Back to honors &amp; awards
         </Link>
 
