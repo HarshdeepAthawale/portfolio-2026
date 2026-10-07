@@ -40,8 +40,9 @@ export function AchievementPhoto({
       <Image
         src={achievement.image!}
         alt={`${achievement.organization} — ${achievement.title}`}
-        width={0}
-        height={0}
+        // Real dimensions reserve the photo's space before it loads (no layout jump).
+        width={achievement.imageSize?.width ?? 1200}
+        height={achievement.imageSize?.height ?? 900}
         sizes="(max-width: 768px) 100vw, 768px"
         className={cn("h-auto w-full", className)}
         priority={priority}
