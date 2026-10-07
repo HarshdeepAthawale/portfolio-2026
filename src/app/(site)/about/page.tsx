@@ -70,11 +70,11 @@ export default function AboutPage() {
             {aboutConfig.quote}
           </blockquote>
 
-          <div className="relative flex flex-wrap items-center gap-2 py-1">
-            <div
-              aria-hidden
-              className="pointer-events-none absolute inset-x-0 top-1/2 h-px -translate-y-1/2 bg-border"
-            />
+          <div className="flex flex-wrap items-center gap-2 py-1">
+            <span className="mr-2 flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.18em] text-secondary">
+              <span aria-hidden className="size-1.5 rounded-full bg-sun" />
+              Traits
+            </span>
             {aboutConfig.traits.map((trait) => (
               <span
                 key={trait}
