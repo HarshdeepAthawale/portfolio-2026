@@ -9,7 +9,8 @@ export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 export default async function Image() {
-  const shot = await readFile(join(process.cwd(), "public/assets/mineport.png"));
+  // Pre-cropped to exactly 1200x630 from the current home-page hero.
+  const shot = await readFile(join(process.cwd(), "public/assets/og-home.png"));
   const shotSrc = `data:image/png;base64,${shot.toString("base64")}`;
 
   return new ImageResponse(
@@ -19,11 +20,10 @@ export default async function Image() {
           width: "100%",
           height: "100%",
           display: "flex",
-          backgroundColor: "#f3f6f3",
+          backgroundColor: "#f9f6ed",
           backgroundImage: `url(${shotSrc})`,
           backgroundSize: "cover",
-          // Anchor to the top so the nav, name, avatar and tech stack stay in frame.
-          backgroundPosition: "top center",
+          backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
         }}
       />
