@@ -75,41 +75,6 @@ export const aboutConfig = {
       },
     ],
   },
-  // Critical infrastructure bugs and where each one stands. Set `status` to
-  // "Fixed" once the vendor has confirmed a patch; "Discovered" until then.
-  infraBugs: {
-    title: "Critical infrastructure bugs",
-    items: [
-      {
-        bug: "Remote code execution",
-        where: "Build pipeline",
-        org: "Flipkart · Myntra",
-        status: "Discovered",
-        text: "Remote code execution reachable through a build pipeline.",
-      },
-      {
-        bug: "Subdomain takeover",
-        where: "DNS",
-        org: "Anduril",
-        status: "Discovered",
-        text: "A dangling subdomain that could be claimed and served from a trusted company domain.",
-      },
-      {
-        bug: "Exposed source maps",
-        where: "Frontend build",
-        org: "Flipkart · Myntra",
-        status: "Discovered",
-        text: "Production source maps leaked OAuth secrets, exposing the app's full client-side logic.",
-      },
-      {
-        bug: "Hardcoded secrets",
-        where: "Client code",
-        org: "NHS · Superdrug",
-        status: "Discovered",
-        text: "OAuth secrets shipped in client code, exposing medical data before any patient was affected.",
-      },
-    ],
-  },
   built: {
     title: "What I've built",
     items: [
