@@ -1,5 +1,20 @@
 [
   {
+    "slug": "cyber-ai-hackathon-2026-innovation-award",
+    "title": "Innovation Award",
+    "organization": "Cyber AI Hackathon 2026",
+    "year": "2026",
+    "periodShort": "Oct",
+    "periodLong": "October",
+    "details": [
+      "Received the Innovation Award as part of Team Incognito (T020) at Cyber AI Hackathon 2026.",
+      "Recognized for innovation at a cybersecurity and AI hackathon organized by the University of Derby, UK, with technical support from the American Society for Engineers.",
+      "Collaborated with Prabinder Singh, Kyna Sood, Danish Dhanjal, and Anish Grover."
+    ],
+    "featured": true,
+    "image": "/assets/achievements/cyber-ai-hackathon-2026-innovation-award.jpg"
+  },
+  {
     "slug": "sih-2026-internal-judge",
     "title": "Judge",
     "organization": "Internal Smart India Hackathon (SIH) 2026",
