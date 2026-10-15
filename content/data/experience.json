@@ -81,9 +81,9 @@
     "locationShort": "Delhi, IN (Hybrid)",
     "locationLong": "Delhi, India (Hybrid)",
     "details": [
-      "Performed vulnerability assessments across REST APIs, authentication flows, and a sandboxed code-execution layer - surfacing broken access control, injection, and cross-tenant data-leakage gaps and driving remediation before launch.",
-      "Secured an agentic AI platform - sandboxed untrusted code execution and runtime isolation that stopped cross-tenant leakage and kept workloads secure at 5K+ concurrent users.",
-      "Hardened request rate limiting and abuse controls on the platform's APIs, keeping them abuse-resistant under production load."
+      "Identified and remediated security vulnerabilities across REST APIs, authentication flows, and code-execution boundaries, addressing broken access control, injection, and cross-tenant data exposure.",
+      "Engineered sandboxing and runtime isolation for untrusted code, strengthening tenant isolation across an agentic AI platform serving 5K+ concurrent users.",
+      "Hardened request rate limiting and agent runtime restrictions, keeping tenant workloads isolated and the platform's APIs abuse-resistant at production scale."
     ],
     "tech": [
       "API Security",
