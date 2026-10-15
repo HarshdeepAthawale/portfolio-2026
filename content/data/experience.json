@@ -83,10 +83,11 @@
     "details": [
       "Identified and remediated security vulnerabilities across REST APIs, authentication flows, and code-execution boundaries, addressing broken access control, injection, and cross-tenant data exposure.",
       "Engineered sandboxing and runtime isolation for untrusted code, strengthening tenant isolation across an agentic AI platform serving 5K+ concurrent users.",
-      "Hardened request rate limiting and agent runtime restrictions, keeping tenant workloads isolated and the platform's APIs abuse-resistant at production scale."
+      "Engineered edge defenses on Cloudflare - Workers for auth and per-tenant rate limiting, WAF rules and Turnstile against bots - blocking abuse before it reached a platform serving 5K+ users."
     ],
     "tech": [
       "API Security",
+      "Cloudflare",
       "Access Control",
       "Rate Limiting",
       "RLS",
