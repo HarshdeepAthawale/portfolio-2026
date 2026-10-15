@@ -140,6 +140,33 @@ export default function AboutPage() {
 
       <Container>
         <section className="max-w-2xl space-y-6">
+          <h2 className="font-display text-xl font-medium tracking-tight">{aboutConfig.infraBugs.title}</h2>
+          <ul className="divide-y divide-border border-y border-border">
+            {aboutConfig.infraBugs.items.map((item) => (
+              <li key={`${item.org}-${item.bug}`} className="grid gap-1 py-3.5 sm:grid-cols-[1fr_auto] sm:items-baseline sm:gap-4">
+                <div>
+                  <p className="font-medium text-foreground">{item.bug}</p>
+                  <p className="mt-0.5 text-sm text-secondary">
+                    {item.where} · {item.org}
+                  </p>
+                  <p className="mt-1 text-sm leading-relaxed text-secondary">{item.text}</p>
+                </div>
+                <span
+                  className={cn(
+                    "chip-live justify-self-start sm:justify-self-end",
+                    item.status === "Fixed" ? "border-sun-border text-sun" : "",
+                  )}
+                >
+                  {item.status}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </section>
+      </Container>
+
+      <Container>
+        <section className="max-w-2xl space-y-6">
           <h2 className="font-display text-xl font-medium tracking-tight">{aboutConfig.built.title}</h2>
           <div className="space-y-3">
             {aboutConfig.built.items.map((item) => (
