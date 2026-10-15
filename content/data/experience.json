@@ -81,8 +81,8 @@
     "locationShort": "Delhi, IN (Hybrid)",
     "locationLong": "Delhi, India (Hybrid)",
     "details": [
-      "Discovered and remediated critical flaws across REST APIs, authentication flows, and code-execution boundaries, eliminating broken access control, injection, and unauthorized data access.",
-      "Architected Cloudflare edge defenses using Workers-based authentication, request throttling, custom WAF rules, and Turnstile bot mitigation, filtering malicious traffic before it reached a platform serving 5K+ users."
+      "Identified and remediated IDOR, SQL injection, authentication bypass, and RCE vulnerabilities across APIs and application flows.",
+      "Implemented Cloudflare Workers and custom WAF rules to mitigate bot abuse across the application serving 5K+ users."
     ],
     "tech": [
       "API Security",
