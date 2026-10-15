@@ -23,7 +23,7 @@ export const aboutConfig = {
     { label: "Location", value: heroConfig.location },
     { label: "Education", value: "3rd year CS · TIET" },
     { label: "Status", value: "Open to internships · Summer 2027" },
-    { label: "Focus", value: "AppSec · Bug Bounty · GRC" },
+    { label: "Focus", value: "AppSec · Bug Bounty · API Security" },
   ],
   story: {
     title: "How it started",
@@ -31,7 +31,7 @@ export const aboutConfig = {
       "It started with a simple question that wouldn't leave me alone: how does software actually **break**? I'd pull apart apps just to see what assumptions they made - and which ones I could violate. That **curiosity** pulled me straight into security.",
       "At **TIET**, coursework was only half the story. The other half was late nights on **TryHackMe** labs, reading disclosed reports, and learning to think like an attacker. The grind compounded - 230+ labs and a 300+ day streak into the **Top 1% worldwide**.",
       "**Bug bounty** changed everything. Hunting real programs on **HackerOne** and **Intigriti** - Red Bull, Netflix, Adobe, NVIDIA, Anduril, Flipkart, Coca-Cola - taught me that finding a bug is the easy part. **Proving impact**, writing a report a stranger can reproduce, and scoring it honestly is the craft.",
-      "Then I flipped it. **Finding the bugs is what taught me to build the defenses** - a transformer-based WAF, runtime isolation for an agentic AI platform, and the SOC 2 / ISO 27001 GRC baseline at **Iris Intelligence**. Along the way I **won 1st place at Nio Hack** (Niograph Inc. & American Society for Engineers, USA - 120+ teams) and placed **1st runner-up at the PSB Hackathon Series 2026** (Govt. of India, 226 teams), and I'm still learning fast by breaking things and writing it up.",
+      "Then I flipped it. **Finding the bugs is what taught me to build the defenses** - a transformer-based WAF, plus runtime isolation and API rate limiting for an agentic AI platform at **Iris Intelligence**. Along the way I **won 1st place at Nio Hack** (Niograph Inc. & American Society for Engineers, USA - 120+ teams) and placed **1st runner-up at the PSB Hackathon Series 2026** (Govt. of India, 226 teams), and I'm still learning fast by breaking things and writing it up.",
     ],
   },
   findings: {
@@ -87,8 +87,8 @@ export const aboutConfig = {
         text: "Sandboxed untrusted code execution and runtime isolation that stopped cross-tenant leakage at 5,000+ concurrent users.",
       },
       {
-        title: "GRC baseline",
-        text: "SOC 2 and ISO 27001 compliance documentation with privacy-by-design controls, establishing the company's GRC foundation.",
+        title: "API abuse controls",
+        text: "Request rate limiting and abuse controls that kept a production AI platform's APIs abuse-resistant under load.",
       },
     ],
   },

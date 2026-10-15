@@ -50,5 +50,5 @@ export const quoteConfig = {
 export const rotatingTitles = [
   "Security Researcher/Engineer",
   "Bug Bounty Hunter",
-  "AppSec · Mobile · GRC",
+  "AppSec · Mobile · API Security",
 ];
