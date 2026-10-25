@@ -15,17 +15,6 @@ function isActive(pathname: string, href: string) {
   return pathname === href || pathname.startsWith(`${href}/`);
 }
 
-/** A small security reticle: the site's mark. */
-function LogoMark({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden className={className}>
-      <circle cx="12" cy="12" r="8" stroke="currentColor" strokeWidth="1.4" />
-      <path d="M12 1.5v5M12 17.5v5M1.5 12h5M17.5 12h5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
-      <circle cx="12" cy="12" r="1.9" className="fill-sun" />
-    </svg>
-  );
-}
-
 function MoreMenu({ pathname }: { pathname: string }) {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -247,7 +236,6 @@ export function SiteHeader() {
             aria-label="Harshdeep Athawale, home"
             className="group flex shrink-0 items-center gap-2 text-foreground"
           >
-            <LogoMark className="size-6 transition-transform duration-500 group-hover:rotate-90" />
             <span className="font-display text-xl">harshdeep</span>
           </Link>
 
