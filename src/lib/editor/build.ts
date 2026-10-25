@@ -186,7 +186,6 @@ export async function buildEditorData(): Promise<EditorData> {
   // ---------------------------------------------------------------- projects
   const projectEntries = projects.map((p, i): Entry => {
     const r = repoStats[i];
-    const repo = p.repo ?? p.slug;
     const { share, note } = starShare(r?.stars ?? 0);
     const url = r?.url ?? p.href;
     const shots = [p.cover, p.cover?.replace(/-cover\.png$/, ".jpg")]

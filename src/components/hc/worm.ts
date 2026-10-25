@@ -113,7 +113,7 @@ export function createWorm({ buffer, status, den, pointer, touchedAt, seed, colo
   let head: (P & { under: boolean }) | null = null;
   let travelled = 0;
   let homeAt: P | null = null;
-  let eaten: string[] = [];
+  const eaten: string[] = [];
   let swallows: number[] = [];
   let path: Path | null = null;
   let dig: { path: Path; to: P; then: { goal: Goal; points: { x: number; y: number }[] }; marked: number } | null = null;
