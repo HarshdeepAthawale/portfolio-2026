@@ -1,23 +1,12 @@
-import Link from "next/link";
-import { Container } from "@/components/container";
 import { SiteChrome } from "@/components/site-chrome";
-import { Button } from "@/components/ui/button";
+import { GameScreen } from "@/components/minecraft/ui";
 
 export default function NotFound() {
-  return (
-    <SiteChrome>
-    <div className="flex min-h-[60vh] items-center pb-16 pt-20">
-      <Container className="text-center">
-        <p className="font-mono text-sm text-muted-foreground">404</p>
-        <h1 className="font-display mt-2 text-3xl font-medium tracking-tight">Page not found</h1>
-        <p className="mt-3 text-muted-foreground">
-          The page you&apos;re looking for doesn&apos;t exist or was moved.
-        </p>
-        <Button asChild className="mt-8">
-          <Link href="/">Back to home</Link>
-        </Button>
-      </Container>
-    </div>
-    </SiteChrome>
-  );
+  return <SiteChrome>
+    <GameScreen title="Page not found">
+      <section className="mc-dark-panel flex flex-1 items-center justify-center">
+        <div className="mc-empty"><p>404</p><span>The page you’re looking for doesn’t exist or was moved.</span></div>
+      </section>
+    </GameScreen>
+  </SiteChrome>;
 }

@@ -11,7 +11,7 @@ export const dynamic = "force-static";
 export const metadata: Metadata = {
   title: siteConfig.title,
   description: siteConfig.description,
-  alternates: { canonical: "/" },
+  alternates: { canonical: "/intro" },
 };
 
 const WALL = [

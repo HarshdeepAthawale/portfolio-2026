@@ -1,6 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Keep an optional preview/build output separate from an already-running dev server.
+  distDir: process.env.NEXT_DIST_DIR || ".next",
   devIndicators: false,
   experimental: {
     // Admin uploads go through server actions; Vercel caps bodies at 4.5 MB.

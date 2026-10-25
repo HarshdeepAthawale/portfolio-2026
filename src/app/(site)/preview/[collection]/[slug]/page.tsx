@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { BlogArticle } from "@/components/blog/blog-article";
-import { Container } from "@/components/container";
+import { GameScreen, GameTags } from "@/components/minecraft/ui";
+import { GameScroll } from "@/components/minecraft/game-scroll";
 import { MdxContent } from "@/components/mdx-content";
 import { getEditablePost, isCollection, isValidSlug } from "@/lib/admin/posts";
 import { requireAdmin } from "@/lib/admin/session";
@@ -35,17 +36,11 @@ export default async function PreviewPage({
 
   const compileError = await mdxCompileError(doc.body);
   if (compileError) {
-    return (
-      <Container className="max-w-2xl py-16">
-        <p className="font-mono text-xs uppercase tracking-[0.15em] text-secondary">Preview</p>
-        <h1 className="font-display mt-2 text-2xl font-medium tracking-tight">
-          This draft doesn&apos;t compile yet
-        </h1>
-        <pre className="mt-4 whitespace-pre-wrap rounded-xl border border-border bg-muted p-4 font-mono text-sm">
-          {compileError}
-        </pre>
-      </Container>
-    );
+    return <GameScreen title="Preview" backHref="/projects">
+      <GameScroll className="mc-dark-panel mc-collection-scroll" aria-label="Draft compile error">
+        <div className="mc-collection-content mc-detail-card"><h2>This draft doesn’t compile yet</h2><pre className="mc-preview-error">{compileError}</pre></div>
+      </GameScroll>
+    </GameScreen>;
   }
 
   const fm = doc.frontmatter;
@@ -58,28 +53,12 @@ export default async function PreviewPage({
     );
   }
 
-  return (
-    <div className="pb-16 pt-8">
-      <Container>
-        <p className="font-mono text-xs text-muted-foreground">{fm.date}</p>
-        <h1 className="font-display mt-2 text-3xl font-medium tracking-tight">{fm.title || "Untitled"}</h1>
-        <p className="mt-3 text-secondary">{fm.description}</p>
-        {fm.tech && (
-          <div className="mt-4 flex flex-wrap gap-2">
-            {fm.tech.map((tech) => (
-              <span
-                key={tech}
-                className="rounded-sm border border-border bg-muted px-2.5 py-1 font-mono text-[11px]"
-              >
-                {tech}
-              </span>
-            ))}
-          </div>
-        )}
-        <article className="prose prose-neutral prose-reading dark:prose-invert mt-8">
-          <MdxContent source={doc.body} mapSrc={previewSrc} />
-        </article>
-      </Container>
-    </div>
-  );
+  return <GameScreen title={fm.title || "Untitled"} backHref="/projects" className="mc-project-detail-screen">
+    <GameScroll className="mc-dark-panel mc-project-detail-scroll" aria-label="Project draft preview">
+      <div className="mc-project-detail-content">
+        <header className="mc-detail-card"><span className="mc-detail-date">{fm.date}</span><h2>{fm.title || "Untitled"}</h2><p>{fm.description}</p>{fm.tech && <GameTags items={fm.tech} />}</header>
+        <article className="mc-detail-card prose prose-neutral prose-reading dark:prose-invert"><MdxContent source={doc.body} mapSrc={previewSrc} /></article>
+      </div>
+    </GameScroll>
+  </GameScreen>;
 }
