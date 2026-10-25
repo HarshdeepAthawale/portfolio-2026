@@ -3,7 +3,7 @@ export const skillCategories = [
   { title: "Languages", icon: "diamond-sword.png", items: ["Python", "C", "C++", "Bash", "TypeScript", "SQL"] },
   { title: "Security & Research", icon: "diamond-pickaxe.png", items: ["Burp Suite", "Wireshark", "Metasploit", "Kali Linux", "Frida", "MobSF", "GraphQL Security", "API Security", "OWASP Top 10", "MITRE ATT&CK"] },
   { title: "AI & Development", icon: "diamond-shovel.png", items: ["PyTorch", "DistilBERT", "ResNet50", "EfficientNet", "FastAPI", "Next.js", "React", "Node.js", "FFmpeg"] },
-  { title: "Tools & Infra", icon: "diamond-axe.png", items: ["Docker", "Linux", "Git", "GitHub", "PostgreSQL", "MongoDB", "Redis", "AWS", "Nginx", "Cloudflare"] },
+  { title: "Tools & Infra", icon: "diamond-axe.png", items: ["Docker", "Linux", "Git", "GitHub", "PostgreSQL", "MongoDB", "Redis", "Nginx", "Cloudflare"] },
 ];
 
 export const currentInventory = [
