@@ -1,21 +1,4 @@
-import { Container } from "@/components/container";
-import { ProjectsGrid } from "@/components/projects-grid";
-import { projects } from "@/config/projects";
+import { MinecraftProjects } from "@/components/minecraft/project-list";
 
-export const metadata = {
-  title: "Projects - Harshdeep Athawale",
-};
-
-export default function ProjectsPage() {
-  return (
-    <div className="space-y-10 pb-16 pt-8">
-      <Container>
-        <h1 className="font-display text-3xl font-medium tracking-tight">Projects</h1>
-        <p className="mt-3 text-secondary">
-          AI systems, RAG pipelines, and full-stack products I&apos;ve built along the way.
-        </p>
-      </Container>
-      <ProjectsGrid items={projects} showHeading={false} />
-    </div>
-  );
-}
+export const metadata = { title: "Projects — Harshdeep Athawale" };
+export default function Page() { return <MinecraftProjects />; }
