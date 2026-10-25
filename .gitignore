@@ -41,3 +41,10 @@ next-env.d.ts
 /data/visitors.json
 /data/admin-kv.json
 /data/analytics.json
+
+# Temporary reference inspection and visual QA
+/.codex/reference/
+/.codex/qa/
+/.codex/media-tools/
+/.next-minecraft/
+/.next-build/

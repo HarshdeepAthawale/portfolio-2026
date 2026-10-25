@@ -7,7 +7,7 @@ export const aboutConfig = {
   quote:
     "The best security work is reproducible, honestly scoped, and written so the defender can fix it the same day.",
   portrait: {
-    src: "/assets/portrait.jpg",
+    src: "/assets/profile-waist.jpeg",
     alt: "Harshdeep Athawale",
     caption: heroConfig.location,
   },

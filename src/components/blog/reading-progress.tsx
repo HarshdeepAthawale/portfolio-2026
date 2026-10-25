@@ -7,20 +7,25 @@ export function ReadingProgress({ targetId }: { targetId: string }) {
   const bar = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const article = document.getElementById(targetId);
+    const scroller = article?.closest<HTMLElement>(".mc-reading-scroll");
     const update = () => {
       const article = document.getElementById(targetId);
       if (!article || !bar.current) return;
       const rect = article.getBoundingClientRect();
-      const total = rect.height - window.innerHeight;
-      const progress = total <= 0 ? 1 : Math.min(Math.max(-rect.top / total, 0), 1);
+      const viewport = scroller?.clientHeight ?? window.innerHeight;
+      const top = scroller?.getBoundingClientRect().top ?? 0;
+      const total = rect.height - viewport;
+      const progress = total <= 0 ? 1 : Math.min(Math.max((top - rect.top) / total, 0), 1);
       bar.current.style.transform = `scaleX(${progress})`;
     };
 
     update();
-    window.addEventListener("scroll", update, { passive: true });
+    const scrollTarget = scroller ?? window;
+    scrollTarget.addEventListener("scroll", update, { passive: true });
     window.addEventListener("resize", update);
     return () => {
-      window.removeEventListener("scroll", update);
+      scrollTarget.removeEventListener("scroll", update);
       window.removeEventListener("resize", update);
     };
   }, [targetId]);

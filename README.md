@@ -207,3 +207,12 @@ MIT — feel free to fork and make it yours. A star on GitHub is always apprecia
 ---
 
 Built with late nights, coffee, and curiosity.
+
+
+## Minecraft revamp
+
+The public portfolio now follows a Minecraft title screen and inventory UI. Detailed reference measurements, screen mapping, behavior, asset attribution, and content integration are recorded in [docs/MINECRAFT_REVAMP.md](docs/MINECRAFT_REVAMP.md).
+
+Run `npm run dev` for local development, or `npm run build` followed by `npm start` for a production server. `NEXT_DIST_DIR` can isolate the output when another development server is already running.
+
+Shared content remains in `content/data/` and `content/blog/`. Skill categories and the four inventory notes live in `src/config/minecraft.ts`. The resume stays at `/assets/resume.pdf`; the contact book opens the visitor’s email app.

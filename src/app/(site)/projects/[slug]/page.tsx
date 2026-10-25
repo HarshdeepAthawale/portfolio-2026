@@ -1,90 +1,33 @@
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
-import { Container } from "@/components/container";
 import { MdxContent } from "@/components/mdx-content";
-import { ParticleField } from "@/components/particle-field";
-import { TransitionLink } from "@/components/view-transitions";
-import { projectScenes, projects } from "@/config/projects";
+import { GameScreen, GameTags } from "@/components/minecraft/ui";
+import { projects } from "@/config/projects";
 import { getProjectPost, getProjectPosts } from "@/lib/mdx";
 
 export async function generateStaticParams() {
-  const posts = await getProjectPosts();
-  return posts.map((post) => ({ slug: post.slug }));
+  return (await getProjectPosts()).map(post => ({ slug: post.slug }));
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
-  const { slug } = await params;
-  const post = await getProjectPost(slug);
-  if (!post) return {};
-  return { title: `${post.title} - Projects` };
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const post = await getProjectPost((await params).slug);
+  return post ? { title: `${post.title} — Harshdeep Athawale` } : {};
 }
 
-export default async function ProjectDetailPage({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
+export default async function ProjectDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const post = await getProjectPost(slug);
   if (!post) notFound();
-
-  // Same animated poster as the project's card, so card and page feel connected.
-  const sceneKey = projects.find((project) => project.slug === slug)?.scene;
-  const scene = sceneKey ? projectScenes[sceneKey] : undefined;
-
-  return (
-    <div className="space-y-8 pb-16 pt-8">
-      <Container>
-        <TransitionLink href="/projects" className="hit-area text-sm text-secondary hover:text-primary">
-          ← Back to projects
-        </TransitionLink>
-        {scene && (
-          <div
-            className="corner-frame relative mt-6 aspect-[16/10] overflow-hidden bg-muted text-foreground sm:aspect-[2/1] dark:bg-background"
-            style={{ viewTransitionName: `poster-${slug}` }}
-          >
-            <div className="absolute inset-x-0 bottom-12 top-11">
-              <ParticleField shape={scene.shape} />
-            </div>
-            <span className="absolute left-4 top-4 flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.15em] text-foreground/80">
-              <span aria-hidden className="size-1.5 rounded-full bg-sun" />
-              {scene.status}
-            </span>
-            <span className="chip-live absolute bottom-4 right-4 bg-background/70">{scene.badge}</span>
-          </div>
-        )}
-        <p className="mt-6 font-mono text-xs text-muted-foreground">{post.date}</p>
-        <h1 className="font-display mt-2 text-3xl font-medium tracking-tight">{post.title}</h1>
-        <p className="mt-3 text-secondary">{post.description}</p>
-        {post.tech && (
-          <div className="mt-4 flex flex-wrap gap-2">
-            {post.tech.map((tech) => (
-              <span
-                key={tech}
-                className="rounded-sm border border-border bg-muted px-2.5 py-1 font-mono text-[11px]"
-              >
-                {tech}
-              </span>
-            ))}
-          </div>
-        )}
-        {post.writeup && (
-          <Link
-            href={post.writeup}
-            className="link-underline mt-5 inline-flex items-center gap-1.5 text-sm font-medium"
-          >
-            Read the full write-up
-            <span aria-hidden>→</span>
-          </Link>
-        )}
-        <article className="prose prose-neutral prose-reading dark:prose-invert mt-8">
-          <MdxContent source={post.content} />
-        </article>
-      </Container>
-    </div>
-  );
+  const project = projects.find(item => item.slug === slug);
+  return <GameScreen title={post.title} className="mc-project-detail-screen" backHref="/projects">
+    <section className="mc-dark-panel mc-scrollbar mc-project-detail-scroll" tabIndex={0} role="region" aria-label={`${post.title} details`}>
+      <div className="mc-project-detail-content">
+        <header className="mc-detail-card"><span className="mc-detail-date">{post.date}</span><h2>{post.title}</h2><p>{post.description}</p>{post.tech && <GameTags items={post.tech} />}<a className="mc-detail-source" href={project?.href ?? "https://github.com/HarshdeepAthawale"} target="_blank" rel="noopener noreferrer">GitHub ↗</a></header>
+        {project?.cover && <div className="mc-detail-card mc-detail-cover"><Image src={project.cover} alt={`${post.title} overview`} width={1200} height={675} sizes="(min-width: 1100px) 1100px, 90vw" priority /></div>}
+        {post.writeup && <Link href={post.writeup} className="mc-detail-writeup">Read the full research write-up →</Link>}
+        <article className="mc-detail-card prose prose-neutral prose-reading dark:prose-invert"><MdxContent source={post.content} /></article>
+      </div>
+    </section>
+  </GameScreen>;
 }
