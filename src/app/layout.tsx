@@ -33,10 +33,6 @@ export const metadata: Metadata = {
     description: siteConfig.description,
     creator: "@harshdeep0x01",
   },
-  icons: {
-    icon: "/assets/avatar-smile.png",
-    apple: "/assets/avatar-smile.png",
-  },
 };
 
 export default function RootLayout({
