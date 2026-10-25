@@ -12,10 +12,11 @@ export function TableOfContents({ headings }: { headings: Heading[] }) {
     const elements = headings
       .map((heading) => document.getElementById(heading.id))
       .filter((el): el is HTMLElement => Boolean(el));
+    const scroller = elements[0]?.closest<HTMLElement>(".mc-reading-scroll");
 
     const update = () => {
       // The last heading scrolled past the top third of the screen is active.
-      const line = window.innerHeight * 0.3;
+      const line = (scroller?.getBoundingClientRect().top ?? 0) + (scroller?.clientHeight ?? window.innerHeight) * 0.3;
       let current = elements[0]?.id ?? "";
       for (const el of elements) {
         if (el.getBoundingClientRect().top <= line) current = el.id;
@@ -24,8 +25,10 @@ export function TableOfContents({ headings }: { headings: Heading[] }) {
     };
 
     update();
-    window.addEventListener("scroll", update, { passive: true });
-    return () => window.removeEventListener("scroll", update);
+    const scrollTarget = scroller ?? window;
+    scrollTarget.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    return () => { scrollTarget.removeEventListener("scroll", update); window.removeEventListener("resize", update); };
   }, [headings]);
 
   return (

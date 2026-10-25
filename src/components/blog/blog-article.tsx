@@ -1,11 +1,9 @@
-import { BlogCover } from "@/components/blog-cover";
-import { ReadingProgress } from "@/components/blog/reading-progress";
-import { TableOfContents } from "@/components/blog/table-of-contents";
-import { Container } from "@/components/container";
+import Image from "next/image";
+import Link from "next/link";
+import { GameScreen } from "@/components/minecraft/ui";
 import { MdxContent } from "@/components/mdx-content";
-import { TransitionLink } from "@/components/view-transitions";
 import { heroConfig } from "@/config/hero";
-import { extractHeadings, readingMinutes } from "@/lib/headings";
+import { readingMinutes } from "@/lib/headings";
 
 export type ArticlePost = {
   slug: string;
@@ -17,89 +15,25 @@ export type ArticlePost = {
   content: string;
 };
 
-/**
- * A blog post page. Shared by the live post and the admin preview, so what you
- * preview is exactly what gets published.
- */
-export function BlogArticle({
-  post,
-  mapSrc,
-  children,
-}: {
+/** Public and admin-preview articles share the reference's readable article skin. */
+export function BlogArticle({ post, mapSrc, children }: {
   post: ArticlePost;
-  /** Rewrites image URLs (the preview serves not-yet-deployed uploads). */
   mapSrc?: (src: string) => string;
-  /** Rendered after the article (e.g. older/newer links). */
   children?: React.ReactNode;
 }) {
-  const headings = extractHeadings(post.content);
   const cover = post.cover && mapSrc ? mapSrc(post.cover) : post.cover;
-
-  return (
-    <div className="pb-16 pt-8">
-      <ReadingProgress targetId="post-body" />
-      <Container className="max-w-2xl">
-        <TransitionLink
-          href="/blog"
-          className="hit-area text-sm text-secondary transition-colors hover:text-foreground"
-        >
-          ← Back to blog
-        </TransitionLink>
-
-        <BlogCover
-          title={post.title}
-          cover={cover}
-          className="mt-6 aspect-[2/1] w-full rounded-2xl"
-          transitionName={`cover-${post.slug}`}
-          unoptimized={Boolean(mapSrc)}
-          priority
-        />
-
-        <header className="mt-8">
-          <p className="font-mono text-xs uppercase tracking-[0.15em] text-secondary">
-            {post.date} · {readingMinutes(post.content)} min read
-          </p>
-          <h1 className="font-display mt-3 text-3xl font-medium tracking-tight sm:text-4xl">{post.title}</h1>
-          <p className="mt-2 text-sm text-secondary">
-            {heroConfig.name}
-            {post.original && (
-              <>
-                {" · Originally published on "}
-                <a
-                  href={post.original}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="link-underline text-foreground"
-                >
-                  Medium ↗
-                </a>
-              </>
-            )}
-          </p>
-          <p className="mt-4 text-base leading-relaxed text-secondary sm:text-lg">
-            {post.description}
-          </p>
-        </header>
-
-        <div className="relative">
-          {/* On wide screens, a table of contents rides alongside the article. */}
-          {headings.length > 1 && (
-            <aside className="absolute left-full top-10 ml-12 hidden h-[calc(100%-2.5rem)] w-48 xl:block">
-              <div className="sticky top-24">
-                <TableOfContents headings={headings} />
-              </div>
-            </aside>
-          )}
-          <article
-            id="post-body"
-            className="prose prose-neutral prose-reading dark:prose-invert mt-10 border-t border-border pt-10"
-          >
-            <MdxContent source={post.content} mapSrc={mapSrc} />
-          </article>
-        </div>
-
-        {children}
-      </Container>
+  return <GameScreen backHref="/blog" className="mc-blog-article-screen">
+    <div className="mc-blog-article-scroll" tabIndex={0} role="region" aria-label={`${post.title} article`}>
+      <nav className="blog-breadcrumb" aria-label="Breadcrumb"><Link href="/blog">← Blog</Link><span>{readingMinutes(post.content)} min read</span></nav>
+      <div className="blog-article-panel">
+        {cover && <div className="blog-hero"><Image src={cover} alt="" width={1200} height={630} sizes="(min-width: 1080px) 1080px, 100vw" priority unoptimized={Boolean(mapSrc)} /></div>}
+        <div className="blog-publication-meta"><time>{post.date}</time><span>·</span><span>{heroConfig.name}</span>{post.original && <><span>·</span><a href={post.original} target="_blank" rel="noopener noreferrer">Originally on Medium ↗</a></>}</div>
+        <article className="rb-article rb-theme-portfolio"><div className="rb-article-inner">
+          <header className="rb-header"><h1 className="rb-title">{post.title}</h1><p className="rb-subtitle">{post.description}</p><div className="rb-tags"><span className="rb-tag">Security</span><span className="rb-tag">Research</span></div></header>
+          <div id="post-body" className="rb-body"><MdxContent source={post.content} mapSrc={mapSrc} /></div>
+          {children}
+        </div></article>
+      </div>
     </div>
-  );
+  </GameScreen>;
 }
