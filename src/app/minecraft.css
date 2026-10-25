@@ -297,7 +297,7 @@
 .mc-media-card h3{margin:10px 0 0;font-size:18px;line-height:1.375}
 .mc-media-meta{margin:4px 0 0;color:#aaa;font-size:12px;line-height:1.5}
 .mc-media-note{margin:8px 0 0;color:#d4d4d4;font-size:14px;line-height:1.625}
-.mc-resume-screen .mc-custom-actions{grid-template-columns:repeat(3,minmax(0,1fr));max-width:640px}
+.mc-resume-screen .mc-custom-actions{grid-template-columns:repeat(3,minmax(0,1fr));max-width:min(640px,96vw)}
 .mc-resume-preview{display:block;padding:12px;background:#8b8b8b;box-shadow:inset 3px 3px #373737,inset -3px -3px #fff}
 .mc-resume-preview img{display:block;width:100%;height:auto;image-rendering:auto}
 .mc-achievement-hero{overflow:hidden}.mc-achievement-hero img,.mc-achievement-gallery img{image-rendering:auto}
@@ -309,3 +309,7 @@
 @media(max-width:639px){.mc-loading p{font-size:18px;line-height:28px}.mc-loading>span{font-size:12px;line-height:16px}}
 
 .mc-enchantment-list{position:relative}.mc-skill-tooltip{visibility:visible;z-index:10;white-space:normal;overflow-wrap:anywhere}
+
+/* Fixed-height screens pin to the visible viewport so mobile URL-bar changes can't scroll the page or leave a gap */
+.minecraft-root:not(.mc-flow-world){position:fixed;inset:0;width:auto;height:auto}
+html:has(.minecraft-root:not(.mc-flow-world)),html:has(.minecraft-root:not(.mc-flow-world)) body{overflow:hidden;overscroll-behavior:none;background:#111319}
