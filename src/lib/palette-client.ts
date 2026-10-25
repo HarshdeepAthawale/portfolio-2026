@@ -9,8 +9,12 @@ export function currentPalette() {
   return document.documentElement.dataset.palette || DEFAULT_PALETTE;
 }
 
-/** Applies a palette site-wide and remembers it. Returns false for unknown names. */
-export function setPalette(name: string) {
+/**
+ * Applies a palette site-wide and remembers it. Returns false for unknown names.
+ * `transition: false` skips the view-transition cross-fade and applies at once
+ * (the terminal pages fade their own colours and repaint canvases right away).
+ */
+export function setPalette(name: string, { transition = true }: { transition?: boolean } = {}) {
   const palette = palettes.find((p) => p.name === name.toLowerCase().replace(/[^a-z]/g, ""));
   if (!palette) return false;
   const root = document.documentElement;
@@ -21,7 +25,7 @@ export function setPalette(name: string) {
   };
   const doc = document as Document & { startViewTransition?: (cb: () => void) => unknown };
   // A quick cross-fade when supported; instant otherwise.
-  if (doc.startViewTransition && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  if (transition && doc.startViewTransition && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
     root.dataset.vt = "theme";
     const t = doc.startViewTransition(apply) as { finished?: Promise<void> };
     t.finished?.finally(() => delete root.dataset.vt);
