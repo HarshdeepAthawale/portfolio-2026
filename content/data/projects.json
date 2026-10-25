@@ -16,7 +16,6 @@
     "href": "https://github.com/HarshdeepAthawale/Transformer-based-end-to-end-Web-Application-Firewall-WAF-pipeline",
     "featured": true,
     "monogram": "AW",
-    "cover": "/assets/projects/ai-waf-cover.png",
     "scene": "waf",
     "gradient": "from-[#0f1015] via-[#332c63] to-[#8574c0]",
     "repo": "Transformer-based-end-to-end-Web-Application-Firewall-WAF-pipeline"
@@ -37,7 +36,6 @@
     "href": "https://github.com/HarshdeepAthawale/Deepfake-Detection-Authenticity-Verification-System",
     "featured": true,
     "monogram": "DD",
-    "cover": "/assets/projects/deepfake-cover.png",
     "scene": "deepfake",
     "gradient": "from-[#0f1015] via-[#173a3c] to-[#4fa39c]",
     "repo": "Deepfake-Detection-Authenticity-Verification-System"
