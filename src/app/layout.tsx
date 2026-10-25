@@ -1,27 +1,15 @@
 import type { Metadata } from "next";
-import { IBM_Plex_Mono, Instrument_Sans, Petrona } from "next/font/google";
-import { ThemeProvider } from "@/components/theme-provider";
+import { IBM_Plex_Mono } from "next/font/google";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ViewTransitionsProvider } from "@/components/view-transitions";
 import { siteConfig } from "@/config/meta";
+import { paletteBootScript, paletteStylesheet } from "@/config/palettes";
 import "./globals.css";
 
-// A soft, low-contrast serif for headings, a humanist grotesk for body text,
-// and a mono for small uppercase labels.
-const petrona = Petrona({
-  subsets: ["latin"],
-  weight: ["300", "400"],
-  variable: "--font-petrona",
-});
-
-const instrumentSans = Instrument_Sans({
-  subsets: ["latin"],
-  variable: "--font-instrument",
-});
-
+// One monospace voice for the whole site.
 const plexMono = IBM_Plex_Mono({
   subsets: ["latin"],
-  weight: ["400", "500"],
+  weight: ["400", "500", "600"],
   variable: "--font-plex-mono",
 });
 
@@ -55,9 +43,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className="dark" data-palette="blackmoney" suppressHydrationWarning>
+      <head>
+        {/* Every terminal palette as CSS variables; the boot script picks the saved one before paint. */}
+        <style dangerouslySetInnerHTML={{ __html: paletteStylesheet() }} />
+        <script dangerouslySetInnerHTML={{ __html: paletteBootScript() }} />
+      </head>
       <body
-        className={`${petrona.variable} ${instrumentSans.variable} ${plexMono.variable} min-h-screen bg-background font-sans antialiased`}
+        className={`${plexMono.variable} min-h-screen bg-background font-sans antialiased`}
         suppressHydrationWarning
       >
         <script
@@ -66,13 +59,9 @@ export default function RootLayout({
               "try{if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('reveal-enabled')}catch(e){}",
           }}
         />
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
-          <TooltipProvider>
-            <ViewTransitionsProvider>
-            {children}
-            </ViewTransitionsProvider>
-          </TooltipProvider>
-        </ThemeProvider>
+        <TooltipProvider>
+          <ViewTransitionsProvider>{children}</ViewTransitionsProvider>
+        </TooltipProvider>
       </body>
     </html>
   );
