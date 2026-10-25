@@ -1264,6 +1264,26 @@ a.md-link:hover {
   right: 40px;
 }
 
+.hc-intro .hc-eye {
+  position: absolute;
+  top: 0;
+  right: auto;
+  left: 0;
+  z-index: 2;
+  width: 0;
+  height: 0;
+  aspect-ratio: auto;
+  margin: 0;
+}
+
+.hc-intro .hc-desk {
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
 .hc-wall {
   position: absolute;
   inset: 0;
