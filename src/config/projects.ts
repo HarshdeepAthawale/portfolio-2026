@@ -9,6 +9,8 @@ export type Project = {
   description: string;
   tech: string[];
   href: string;
+  /** GitHub repo name under HarshdeepAthawale (for live stats). */
+  repo?: string;
   website?: string;
   featured?: boolean;
   /** Optional cover image for project cards (fallback when no scene) */
