@@ -5,6 +5,8 @@ import { ViewTransitionsProvider } from "@/components/view-transitions";
 import { siteConfig } from "@/config/meta";
 import { paletteBootScript, paletteStylesheet } from "@/config/palettes";
 import "./globals.css";
+import "./minecraft.css";
+import "./minecraft-blog.css";
 
 // One monospace voice for the whole site.
 const plexMono = IBM_Plex_Mono({
@@ -30,10 +32,6 @@ export const metadata: Metadata = {
     title: siteConfig.title,
     description: siteConfig.description,
     creator: "@harshdeep0x01",
-  },
-  icons: {
-    icon: "/assets/avatar-smile.png",
-    apple: "/assets/avatar-smile.png",
   },
 };
 

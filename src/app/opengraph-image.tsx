@@ -10,7 +10,7 @@ export const contentType = "image/png";
 
 export default async function Image() {
   // Pre-cropped to exactly 1200x630 from the current home-page hero.
-  const shot = await readFile(join(process.cwd(), "public/assets/og-home.png"));
+  const shot = await readFile(join(process.cwd(), "public/assets/og-minecraft.png"));
   const shotSrc = `data:image/png;base64,${shot.toString("base64")}`;
 
   return new ImageResponse(
@@ -20,7 +20,7 @@ export default async function Image() {
           width: "100%",
           height: "100%",
           display: "flex",
-          backgroundColor: "#f9f6ed",
+          backgroundColor: "#202530",
           backgroundImage: `url(${shotSrc})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
