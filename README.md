@@ -1,4 +1,4 @@
-# Harshdeep Athawale — Portfolio
+# Harshdeep Athawale - Portfolio
 
 My personal site, built to feel like the Minecraft title screen. Pick a menu option to see where I've worked, what I've built, what I'm learning, and what I write about.
 
