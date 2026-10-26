@@ -8,10 +8,10 @@ I'm a security researcher and Computer Engineering student at Thapar. Most of my
 
 ```bash
 npm install
-npm run dev
+npm run dev -- --port 3001
 ```
 
-Then open http://localhost:3000.
+Then open http://localhost:3001.
 
 ---
 
