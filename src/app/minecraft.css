@@ -375,7 +375,6 @@ html:has(.minecraft-root:not(.mc-flow-world)),html:has(.minecraft-root:not(.mc-f
 
 /* Options: now playing + Spotify */
 .mc-now-playing{display:flex;align-items:center;gap:12px;margin:0 0 8px;padding:8px;background:#8b8b8b;box-shadow:inset 2px 2px #373737,inset -2px -2px #fff;color:#fff;text-decoration:none;text-shadow:2px 2px #3f3f3f}
-a.mc-now-playing{margin:8px 0 0}a.mc-now-playing:hover{filter:brightness(1.08)}
 .mc-disc-slot{display:flex;align-items:center;justify-content:center;flex-shrink:0;width:48px;height:48px;background:#6b6b6b;box-shadow:inset 2px 2px #373737,inset -2px -2px #bdbdbd}
 .mc-disc{width:36px;height:36px;image-rendering:pixelated}
 .mc-disc-album{border-radius:50%;image-rendering:auto;box-shadow:0 0 0 2px #000}
@@ -398,3 +397,13 @@ a.mc-now-playing{margin:8px 0 0}a.mc-now-playing:hover{filter:brightness(1.08)}
 .minecraft-root[data-time=dawn] .mc-world-time{background:#ffb48a26}
 .minecraft-root[data-time=dusk] .mc-world-time{background:linear-gradient(#78285033,#e38b6a2e)}
 .minecraft-root[data-time=night] .mc-world-time{background:#050a2e73}
+
+/* Right now: live Spotify slot */
+.mc-now-spotify{color:inherit;text-decoration:none}
+.mc-now-spotify .mc-disc{width:38px;height:38px}
+.mc-now-text>.mc-now-artist{color:#d6d0bb;font-size:13px;line-height:1.4;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mc-now-spotify .mc-now-text>span:not(.mc-now-artist){overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mc-eq{display:inline-flex;align-items:flex-end;gap:2px;height:16px}
+.mc-eq i{display:block;width:4px;background:#55ff55;box-shadow:1px 1px #1a3f1a;animation:mc-eq .9s ease-in-out infinite}
+.mc-eq i:nth-child(2){animation-delay:-.3s}.mc-eq i:nth-child(3){animation-delay:-.6s}
+@keyframes mc-eq{0%,100%{height:4px}50%{height:16px}}

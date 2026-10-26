@@ -8,8 +8,30 @@ import { aboutConfig } from "@/config/about";
 import { bountyPrograms, currentInventory } from "@/config/minecraft";
 import { GameScreen, GameTags, InventorySlot } from "./ui";
 import { GameScroll } from "./game-scroll";
+import type { SpotifyTrack } from "@/lib/spotify";
 import { ContributionBlocks, GitHubStatsDialog, type GitHubStats } from "./github-stats";
 import type { CSSProperties } from "react";
+
+/** Live Spotify slot: the current track, or the last one played. Hidden until Spotify answers. */
+function SpotifySlot() {
+  const [track, setTrack] = useState<SpotifyTrack | null>(null);
+  useEffect(() => {
+    let live = true;
+    const load = () => fetch("/api/spotify").then(res => res.json()).then((data: { track: SpotifyTrack | null }) => { if (live) setTrack(data.track); }).catch(() => {});
+    void load();
+    const timer = setInterval(load, 60_000);
+    return () => { live = false; clearInterval(timer); };
+  }, []);
+  if (!track) return null;
+  return <div className="mc-now-item">
+    <a className="mc-item-panel mc-now-button mc-now-spotify" href={track.songUrl} target="_blank" rel="noopener noreferrer" aria-label={`${track.isPlaying ? "Listening to" : "Last played"} ${track.title} by ${track.artist} on Spotify`}>
+      <span className="mc-inventory-slot">{track.albumArt ? <img className={`mc-disc mc-disc-album ${track.isPlaying ? "mc-disc-spinning" : ""}`} src={track.albumArt} alt="" /> : <img className="mc-disc" src="/minecraft/images/items/music-disc.png" alt="" />}</span>
+      <span className="mc-now-text"><small>{track.isPlaying ? "Listening on Spotify" : "Last played on Spotify"}</small><span>{track.title}</span><span className="mc-now-artist">{track.artist}</span></span>
+      <span className="mc-plus" aria-hidden="true">{track.isPlaying ? <span className="mc-eq"><i /><i /><i /></span> : "↗"}</span>
+      <span className="mc-item-tooltip" aria-hidden="true">{track.album}</span>
+    </a>
+  </div>;
+}
 
 function ContactBook({ onClose }: { onClose: () => void }) {
   const [email, setEmail] = useState("");
@@ -64,9 +86,10 @@ export function MinecraftAbout({ github }: { github: GitHubStats }) {
           <Link className="mc-achievements-link" href="/achievements">View achievements <span>→</span></Link>
         </aside>
         <div className="mc-about-content">
-          <section className="mc-item-panel mc-about-intro"><p>Hi, I’m Harshdeep! I’m a security researcher and engineer who builds software and breaks it. {heroConfig.bio.replace("I build software and break web and mobile apps to report critical bugs - ", "")} Finding the bugs is what taught me to build the defenses.</p><p className="mc-availability"><span/> {heroConfig.availability}</p></section>
+          <section className="mc-item-panel mc-about-intro"><p>Hi, I’m Harshdeep! I’m a security researcher and engineer who builds software and breaks it. {heroConfig.bio.replace("I build software and break web and mobile apps to report critical bugs - ", "")}</p><p className="mc-availability"><span/> {heroConfig.availability}</p></section>
           <section className="mc-right-now"><div className="mc-right-now-heading"><h2>Right now</h2><span>click a slot to open it</span></div>
             {currentInventory.map((item, index) => <div className="mc-now-item" key={item.label}><button type="button" className={`mc-item-panel mc-now-button mc-now-${item.motion}`} style={{ "--item-duration": item.duration, "--item-scale": `${item.iconScale * 100}%` } as CSSProperties} aria-expanded={expanded === index} aria-controls={`now-note-${index}`} onClick={() => setExpanded(value => value === index ? null : index)}><InventorySlot src={item.icon} /><span className="mc-now-text"><small>{item.label}</small><span>{item.value}</span></span><span className="mc-plus">{expanded === index ? "−" : "+"}</span><span className="mc-item-tooltip" aria-hidden="true">{item.tooltip}</span></button>{expanded === index && <p className="mc-now-note" id={`now-note-${index}`}>{item.note}</p>}</div>)}
+            <SpotifySlot />
           </section>
           {github.contributions && <ContributionBlocks contributions={github.contributions} />}
           <section className="mc-bounty" aria-labelledby="bounty-heading">
