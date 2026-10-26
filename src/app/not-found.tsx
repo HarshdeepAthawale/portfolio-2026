@@ -1,5 +1,8 @@
+import type { Metadata } from "next";
 import { SiteChrome } from "@/components/site-chrome";
 import { GameScreen } from "@/components/minecraft/ui";
+
+export const metadata: Metadata = { title: "Page not found | Harshdeep Athawale", robots: { index: false } };
 
 export default function NotFound() {
   return <SiteChrome>
