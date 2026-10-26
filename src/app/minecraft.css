@@ -313,3 +313,33 @@
 /* Fixed-height screens pin to the visible viewport so mobile URL-bar changes can't scroll the page or leave a gap */
 .minecraft-root:not(.mc-flow-world){position:fixed;inset:0;width:auto;height:auto}
 html:has(.minecraft-root:not(.mc-flow-world)),html:has(.minecraft-root:not(.mc-flow-world)) body{overflow:hidden;overscroll-behavior:none;background:#111319}
+
+/* GitHub Statistics dialog (About) */
+.mc-about-buttons .mc-stats-button{grid-column:1/-1}
+.mc-stats-dialog{display:flex;flex-direction:column;align-items:center;gap:14px;width:640px;max-width:100%;margin:auto 0;padding:20px 16px 16px;background:#000c;border:2px solid #000;box-shadow:inset 0 0 0 2px #ffffff18}
+.mc-stats-dialog h2{margin:0;font-size:24px;line-height:32px;font-weight:700}
+.mc-stats-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;width:100%;max-width:480px}
+.mc-stats-tabs .mc-button{width:100%;height:36px;font-size:14px}
+.mc-stats-tabs .mc-button[aria-pressed=true]{color:#ffffa0;outline:2px solid #fff;outline-offset:-2px}
+.mc-stats-list{display:flex;flex-direction:column;gap:2px;width:100%;min-height:260px;margin:0;padding:10px 14px;background:#0008;border:2px solid #000;box-shadow:inset 0 0 0 2px #ffffff18}
+.mc-stats-list>div{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:8px 6px;font-size:16px;line-height:22px}
+.mc-stats-list>div:nth-child(odd){background:#ffffff0d}
+.mc-stats-list dt{color:#e0e0e0}.mc-stats-list dd{margin:0;font-weight:700;text-align:right}
+.mc-stats-source{margin:0;font-size:12px;color:#aaa}.mc-stats-source a{color:#ffff55}
+.mc-stats-done{width:220px;max-width:100%;height:40px}
+
+/* Contribution blocks (About) */
+.mc-blocks{display:flex;flex-direction:column;gap:10px;margin-top:18px}
+.mc-blocks-panel{display:flex;flex-direction:column;align-items:center;gap:10px;padding:14px}
+.mc-blocks-grid{display:grid;grid-template-columns:repeat(26,minmax(0,1fr));grid-template-rows:repeat(7,auto);gap:3px;width:100%;max-width:640px}
+.mc-block{display:block;aspect-ratio:1;border:2px solid #000;box-sizing:border-box}
+.mc-blocks-grid .mc-block:hover{outline:2px solid #fff;outline-offset:0;position:relative;z-index:1}
+.mc-block-0{background:#7a7a7a;box-shadow:inset 2px 2px #9a9a9a,inset -2px -2px #555}
+.mc-block-1{background:#866043;box-shadow:inset 2px 2px #a37a58,inset -2px -2px #5e4230}
+.mc-block-2{background:#5f9f35;box-shadow:inset 2px 2px #7cc24c,inset -2px -2px #3f6e22}
+.mc-block-3{background:#17c45a;box-shadow:inset 2px 2px #5ff59a,inset -2px -2px #0b7a36}
+.mc-block-4{background:#3fd8d0;box-shadow:inset 2px 2px #9ef7f2,inset -2px -2px #1f8e88}
+.mc-blocks-status{min-height:22px;margin:0;padding:3px 10px;background:#100010f0;border:2px solid #25025a;font-size:13px;text-align:center}
+.mc-blocks-legend{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 14px;margin:0;padding:0;list-style:none;font-size:12px;color:#d6d0bb}
+.mc-blocks-legend li{display:flex;align-items:center;gap:6px}.mc-blocks-legend .mc-block{width:14px;height:14px}
+@media(max-width:639px){.mc-blocks-grid{gap:2px}.mc-block{border-width:1px}.mc-stats-list>div{font-size:14px}}

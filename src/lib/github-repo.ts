@@ -21,6 +21,8 @@ export type Profile = {
   followers: number;
   repos: number;
   stars: number;
+  /** Account creation, "YYYY-MM-DD". */
+  since: string;
   /** Primary language of each owned, non-fork repo, most common first. */
   languages: { name: string; repos: number }[];
 };
@@ -100,7 +102,7 @@ export async function getProfile(): Promise<Profile | null> {
   try {
     const [userRes, reposRes] = await Promise.all([get(`/users/${owner()}`), get(`/users/${owner()}/repos?per_page=100&type=owner`)]);
     if (!userRes.ok || !reposRes.ok) return null;
-    const user = (await userRes.json()) as { followers: number; public_repos: number };
+    const user = (await userRes.json()) as { followers: number; public_repos: number; created_at: string };
     const repos = (await reposRes.json()) as { fork: boolean; stargazers_count: number; language: string | null }[];
     const own = repos.filter((repo) => !repo.fork);
     const counts = new Map<string, number>();
@@ -109,6 +111,7 @@ export async function getProfile(): Promise<Profile | null> {
       followers: user.followers,
       repos: user.public_repos,
       stars: own.reduce((sum, repo) => sum + repo.stargazers_count, 0),
+      since: user.created_at.slice(0, 10),
       languages: [...counts].map(([name, n]) => ({ name, repos: n })).sort((a, b) => b.repos - a.repos),
     };
   } catch {
@@ -152,5 +155,44 @@ export async function getMonthlyTopRepos(months: string[]): Promise<Record<strin
     );
   } catch {
     return {};
+  }
+}
+
+export type Contributions = {
+  total: number;
+  commits: number;
+  pullRequests: number;
+  /** The last year, oldest first: one entry per day. */
+  days: { date: string; count: number }[];
+};
+
+/** The owner's contribution calendar for the last year (needs GITHUB_TOKEN). */
+export async function getContributions(): Promise<Contributions | null> {
+  if (!process.env.GITHUB_TOKEN) return null;
+  const query = `query { user(login: "${owner()}") { contributionsCollection { totalCommitContributions totalPullRequestContributions contributionCalendar { totalContributions weeks { contributionDays { date contributionCount } } } } } }`;
+  try {
+    const res = await fetch(`${API}/graphql`, {
+      method: "POST",
+      headers: { ...headers(), "Content-Type": "application/json" },
+      body: JSON.stringify({ query }),
+      next: { revalidate: 3600 },
+    });
+    if (!res.ok) return null;
+    type Collection = {
+      totalCommitContributions: number;
+      totalPullRequestContributions: number;
+      contributionCalendar: { totalContributions: number; weeks: { contributionDays: { date: string; contributionCount: number }[] }[] };
+    };
+    const body = (await res.json()) as { data?: { user?: { contributionsCollection: Collection } } };
+    const c = body.data?.user?.contributionsCollection;
+    if (!c) return null;
+    return {
+      total: c.contributionCalendar.totalContributions,
+      commits: c.totalCommitContributions,
+      pullRequests: c.totalPullRequestContributions,
+      days: c.contributionCalendar.weeks.flatMap((week) => week.contributionDays.map((day) => ({ date: day.date, count: day.contributionCount }))),
+    };
+  } catch {
+    return null;
   }
 }

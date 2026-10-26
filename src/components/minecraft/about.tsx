@@ -8,6 +8,7 @@ import { aboutConfig } from "@/config/about";
 import { currentInventory } from "@/config/minecraft";
 import { GameScreen, GameTags, InventorySlot } from "./ui";
 import { GameScroll } from "./game-scroll";
+import { ContributionBlocks, GitHubStatsDialog, type GitHubStats } from "./github-stats";
 import type { CSSProperties } from "react";
 
 function ContactBook({ onClose }: { onClose: () => void }) {
@@ -43,10 +44,13 @@ function ContactBook({ onClose }: { onClose: () => void }) {
   </div>;
 }
 
-export function MinecraftAbout() {
+export function MinecraftAbout({ github }: { github: GitHubStats }) {
   const [expanded, setExpanded] = useState<number | null>(null);
   const [contact, setContact] = useState(false);
+  const [stats, setStats] = useState(false);
   const closeContact = useRef(() => setContact(false)).current;
+  const closeStats = useRef(() => setStats(false)).current;
+  const hasStats = Boolean(github.profile || github.contributions);
   return <GameScreen title="About Me" className="mc-about-screen">
     <section className="mc-dark-panel mc-about-panel" aria-label="About Harshdeep"><GameScroll className="mc-about-scroll" aria-label="About me content">
       <div className="mc-about-grid">
@@ -56,7 +60,7 @@ export function MinecraftAbout() {
           <div className="mc-profile-divider" aria-hidden="true">✦</div>
           <dl className="mc-profile-facts"><div><dt>Studying</dt><dd>Computer Engineering</dd></div><div><dt>From</dt><dd>{heroConfig.location}</dd></div><div><dt>Currently</dt><dd>Student @ TIET</dd></div></dl>
           <GameTags items={["AppSec", "Bug Bounty", "AI"]} />
-          <div className="mc-about-buttons"><a className="mc-button" href="/assets/resume.pdf" target="_blank" rel="noopener noreferrer">Resume</a><button className="mc-button" type="button" onClick={() => setContact(true)} aria-haspopup="dialog">Contact</button></div>
+          <div className="mc-about-buttons"><a className="mc-button" href="/assets/resume.pdf" target="_blank" rel="noopener noreferrer">Resume</a><button className="mc-button" type="button" onClick={() => setContact(true)} aria-haspopup="dialog">Contact</button>{hasStats && <button className="mc-button mc-stats-button" type="button" onClick={() => setStats(true)} aria-haspopup="dialog">GitHub Stats</button>}</div>
           <Link className="mc-achievements-link" href="/achievements">View achievements <span>→</span></Link>
         </aside>
         <div className="mc-about-content">
@@ -64,9 +68,11 @@ export function MinecraftAbout() {
           <section className="mc-right-now"><div className="mc-right-now-heading"><h2>Right now</h2><span>click a slot to open it</span></div>
             {currentInventory.map((item, index) => <div className="mc-now-item" key={item.label}><button type="button" className={`mc-item-panel mc-now-button mc-now-${item.motion}`} style={{ "--item-duration": item.duration, "--item-scale": `${item.iconScale * 100}%` } as CSSProperties} aria-expanded={expanded === index} aria-controls={`now-note-${index}`} onClick={() => setExpanded(value => value === index ? null : index)}><InventorySlot src={item.icon} /><span className="mc-now-text"><small>{item.label}</small><span>{item.value}</span></span><span className="mc-plus">{expanded === index ? "−" : "+"}</span><span className="mc-item-tooltip" aria-hidden="true">{item.tooltip}</span></button>{expanded === index && <p className="mc-now-note" id={`now-note-${index}`}>{item.note}</p>}</div>)}
           </section>
+          {github.contributions && <ContributionBlocks contributions={github.contributions} />}
         </div>
       </div>
     </GameScroll></section>
     {contact && <ContactBook onClose={closeContact} />}
+    {stats && <GitHubStatsDialog stats={github} onClose={closeStats} />}
   </GameScreen>;
 }
