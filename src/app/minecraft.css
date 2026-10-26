@@ -407,3 +407,4 @@ html:has(.minecraft-root:not(.mc-flow-world)),html:has(.minecraft-root:not(.mc-f
 .mc-eq i{display:block;width:4px;background:#55ff55;box-shadow:1px 1px #1a3f1a;animation:mc-eq .9s ease-in-out infinite}
 .mc-eq i:nth-child(2){animation-delay:-.3s}.mc-eq i:nth-child(3){animation-delay:-.6s}
 @keyframes mc-eq{0%,100%{height:4px}50%{height:16px}}
+.mc-sky-buttons{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;margin-bottom:4px}
