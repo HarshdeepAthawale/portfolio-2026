@@ -13,8 +13,6 @@ npm run dev
 
 Then open http://localhost:3000.
 
-Most of the content lives in `content/` and can also be edited from `/admin`.
-
 ---
 
 Not an official Minecraft product. Not approved by or associated with Mojang or Microsoft.
