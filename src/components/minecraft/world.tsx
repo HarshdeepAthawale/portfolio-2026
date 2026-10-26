@@ -3,6 +3,7 @@
 import { usePathname, useRouter } from "next/navigation";
 import { createContext, useCallback, useContext, useEffect, useRef, useState, type ReactNode } from "react";
 import { Panorama } from "./panorama";
+import { BootScreen } from "./boot-screen";
 import { defaultMinecraftPreferences, minecraftPreferencesKey, parseMinecraftPreferences, subscribeToMinecraftPreferences } from "@/lib/minecraft-preferences";
 
 const initial = defaultMinecraftPreferences;
@@ -33,7 +34,6 @@ export function MinecraftWorld({ children }: { children: ReactNode }) {
   const [song, setSong] = useState(0);
   const songQueue = useRef<number[]>([]);
   const [loading, setLoading] = useState<number | null>(null);
-  const [booted, setBooted] = useState(false);
   const [time, setTime] = useState("day");
   const [sky, setSky] = useState<Sky>("auto");
   const music = useRef<HTMLAudioElement | null>(null);
@@ -88,13 +88,6 @@ export function MinecraftWorld({ children }: { children: ReactNode }) {
   }, [clearTimers]);
 
   useEffect(() => {
-    // The first-load screen only shows when loading takes longer than its CSS delay.
-    let done = false;
-    const finish = () => { if (!done) { done = true; setBooted(true); } };
-    const fonts = document.fonts?.ready ?? Promise.resolve();
-    const page = document.readyState === "complete" ? Promise.resolve() : new Promise(resolve => window.addEventListener("load", resolve, { once: true }));
-    void Promise.all([fonts, page]).then(finish);
-    const fallback = setTimeout(finish, 6000);
     try {
       const saved = localStorage.getItem(skyKey);
       if (saved === "day" || saved === "night") setSky(saved);
@@ -102,7 +95,7 @@ export function MinecraftWorld({ children }: { children: ReactNode }) {
     const tick = () => setTime(timeOfDay(new Date().getHours()));
     tick();
     const clock = setInterval(tick, 60_000);
-    return () => { clearTimeout(fallback); clearInterval(clock); };
+    return () => clearInterval(clock);
   }, []);
 
   const chooseSky = (value: Sky) => {
@@ -245,7 +238,7 @@ export function MinecraftWorld({ children }: { children: ReactNode }) {
           <button type="button" className="mc-button mc-full-width" onClick={() => setOptions(false)}>Done</button>
         </div>
       </div>}
-      {!booted && <div className="mc-boot" role="status" aria-label="Generating world"><p>Generating world</p><span>Building terrain</span><div className="mc-boot-track"><div /></div></div>}
+      <BootScreen />
       {loading !== null && <div className={`mc-loading ${loading === 100 ? "mc-loading-fade" : ""}`} role="status" aria-live="polite" aria-label={`${loading < 35 ? "Loading level" : loading < 70 ? "Building terrain" : loading < 100 ? "Generating chunks" : "Ready"}, ${loading} percent`}>
         <p>{loading < 35 ? "Loading level" : loading < 70 ? "Building terrain" : loading < 100 ? "Generating chunks" : "Ready!"}</p>
         <span>{loading}%</span><div className="mc-loading-track"><div style={{ width: `${loading}%` }} /></div>

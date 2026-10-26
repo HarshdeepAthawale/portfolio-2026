@@ -384,13 +384,16 @@ html:has(.minecraft-root:not(.mc-flow-world)),html:has(.minecraft-root:not(.mc-f
 .mc-now-playing-text>span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .mc-now-playing-text small{color:#2b2b2b;text-shadow:none;font-size:11px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 
-/* First-load screen: hidden unless loading takes longer than 400ms */
-.mc-boot{position:fixed;z-index:1100;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:linear-gradient(#0000008c,#0000008c),#3b2a1d url('/minecraft/textures/dirt.jpg') 0 0/64px 64px;image-rendering:pixelated;color:#fff;font-family:Minecraft,monospace;text-shadow:2px 2px #3f3f3f;opacity:0;animation:mc-boot-in .2s .4s forwards;pointer-events:none}
-.mc-boot p{margin:0;font-size:20px}.mc-boot>span{color:#c8c8c8;font-size:15px}
-.mc-boot-track{width:320px;max-width:75vw;height:8px;border:2px solid #000;background:#808080}
-.mc-boot-track>div{height:100%;width:12%;background:#80ff20;animation:mc-boot-fill 3.2s steps(1,end) infinite}
-@keyframes mc-boot-in{to{opacity:1;pointer-events:auto}}
-@keyframes mc-boot-fill{0%{width:12%}25%{width:34%}50%{width:61%}75%{width:84%}100%{width:100%}}
+/* First-load screen: plays on every full page load; the failsafe hides it if scripts never run */
+.mc-boot{position:fixed;z-index:1100;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:linear-gradient(#0000008c,#0000008c),#3b2a1d url('/minecraft/textures/dirt.jpg') 0 0/64px 64px;image-rendering:pixelated;color:#fff;font-family:Minecraft,monospace;text-shadow:2px 2px #3f3f3f;transition:opacity .3s;animation:mc-boot-failsafe 0s 10s forwards}
+.mc-boot-done{opacity:0}
+.mc-boot p{margin:0;font-size:20px}
+.mc-chunk-map{display:grid;grid-template-columns:repeat(17,1fr);grid-template-rows:repeat(17,1fr);width:min(204px,56vw);aspect-ratio:1;margin:8px 0;background:#00000059;box-shadow:0 0 0 2px #000}
+.mc-chunk-map span{display:block}
+.mc-boot-stage{color:#fff;font-size:15px}
+.mc-boot-tip{min-height:20px;color:#ffff55;font-size:13px;text-align:center;padding:0 16px}
+.mc-boot-skip{position:absolute;bottom:20px;color:#aaa;font-size:11px}
+@keyframes mc-boot-failsafe{to{opacity:0;visibility:hidden}}
 
 /* Panorama colour grade by local time of day */
 .mc-world-time{position:absolute;inset:0;z-index:-2;pointer-events:none;transition:background 2s}
