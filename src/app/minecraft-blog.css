@@ -147,3 +147,8 @@
 .mc-flow-world .mc-corner-controls{position:fixed}
 .mc-blog-article-screen{height:auto;min-height:100dvh;overflow:visible}
 .mc-blog-article-scroll{height:auto;overflow:visible}
+
+/* While reading, keep the fixed sound/options buttons out of the way until they're needed */
+.minecraft-root.mc-flow-world .mc-corner-controls{opacity:.4;transition:opacity .2s}
+.minecraft-root.mc-flow-world .mc-corner-controls:hover,.minecraft-root.mc-flow-world .mc-corner-controls:focus-within{opacity:1}
+@media(hover:none){.minecraft-root.mc-flow-world .mc-corner-controls{opacity:.6}}
