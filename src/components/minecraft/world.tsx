@@ -8,6 +8,8 @@ import { defaultMinecraftPreferences, minecraftPreferencesKey, parseMinecraftPre
 const initial = defaultMinecraftPreferences;
 const tracks = [{ name: "menu-music", gain: 1 }, { name: "creative1", gain: 0.417 }, { name: "hal2", gain: 0.786 }, { name: "menu1", gain: 0.888 }];
 // The panorama is colour-graded to the visitor's local time of day.
+const skyKey = "minecraft-sky";
+type Sky = "auto" | "day" | "night";
 const timeOfDay = (hour: number) => hour >= 5 && hour < 8 ? "dawn" : hour >= 8 && hour < 17 ? "day" : hour >= 17 && hour < 20 ? "dusk" : "night";
 const WorldContext = createContext<{ playClick: () => void; navigate: (href: string) => void; reduced: boolean } | null>(null);
 export function useWorld() {
@@ -33,6 +35,7 @@ export function MinecraftWorld({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState<number | null>(null);
   const [booted, setBooted] = useState(false);
   const [time, setTime] = useState("day");
+  const [sky, setSky] = useState<Sky>("auto");
   const music = useRef<HTMLAudioElement | null>(null);
   const clickAudio = useRef<HTMLAudioElement | null>(null);
   const timeouts = useRef<ReturnType<typeof setTimeout>[]>([]);
@@ -92,11 +95,20 @@ export function MinecraftWorld({ children }: { children: ReactNode }) {
     const page = document.readyState === "complete" ? Promise.resolve() : new Promise(resolve => window.addEventListener("load", resolve, { once: true }));
     void Promise.all([fonts, page]).then(finish);
     const fallback = setTimeout(finish, 6000);
+    try {
+      const saved = localStorage.getItem(skyKey);
+      if (saved === "day" || saved === "night") setSky(saved);
+    } catch { /* Optional persistence. */ }
     const tick = () => setTime(timeOfDay(new Date().getHours()));
     tick();
     const clock = setInterval(tick, 60_000);
     return () => { clearTimeout(fallback); clearInterval(clock); };
   }, []);
+
+  const chooseSky = (value: Sky) => {
+    setSky(value);
+    try { if (value === "auto") localStorage.removeItem(skyKey); else localStorage.setItem(skyKey, value); } catch { /* Optional persistence. */ }
+  };
 
   useEffect(() => {
     if (!ready) return;
@@ -199,7 +211,7 @@ export function MinecraftWorld({ children }: { children: ReactNode }) {
   }, [options]);
 
   return <WorldContext.Provider value={{ playClick, navigate, reduced: preferences.reduced }}>
-    <div className={`minecraft-root ${pathname === "/" ? "mc-home-world" : "mc-inner-world"} ${pathname.startsWith("/blog/") || pathname.startsWith("/preview/blog/") ? "mc-flow-world" : ""}`} data-motion={preferences.reduced ? "reduced" : "full"} data-time={time}>
+    <div className={`minecraft-root ${pathname === "/" ? "mc-home-world" : "mc-inner-world"} ${pathname.startsWith("/blog/") || pathname.startsWith("/preview/blog/") ? "mc-flow-world" : ""}`} data-motion={preferences.reduced ? "reduced" : "full"} data-time={sky === "auto" ? time : sky}>
       <Panorama reduced={preferences.reduced} />
       <div className="mc-world-time" aria-hidden="true" />
       <div className="mc-world-shade" aria-hidden="true" />
@@ -220,6 +232,11 @@ export function MinecraftWorld({ children }: { children: ReactNode }) {
             <span className="mc-now-playing-text"><small>{preferences.muted ? "Muted" : "Now playing"}</small><span>{tracks[song].name}</span><small>Track {song + 1} of {tracks.length}</small></span>
           </div>
           <button type="button" className="mc-option-toggle mc-next-song" onClick={nextSong}>Next Song</button>
+          <p>Sky</p>
+          <div className="mc-sky-buttons" role="group" aria-label="Sky">
+            {(["auto", "day", "night"] as const).map(value => <button type="button" key={value} className="mc-option-toggle" aria-pressed={sky === value} onClick={() => chooseSky(value)}>{value === "auto" ? "Auto" : value === "day" ? "Day" : "Night"}</button>)}
+          </div>
+          <small>Auto follows your local time.</small>
           <p>Motion</p>
           <div className="mc-motion-buttons" role="group" aria-label="Motion preference">
             {[false, true].map(reduced => <button type="button" key={String(reduced)} className="mc-option-toggle" aria-pressed={preferences.reduced === reduced} onClick={() => setPreferences(value => ({ ...value, reduced }))}>{reduced ? "Reduced" : "Full"}</button>)}
