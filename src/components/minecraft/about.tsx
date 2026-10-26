@@ -72,7 +72,7 @@ export function MinecraftAbout({ github }: { github: GitHubStats }) {
           <section className="mc-bounty" aria-labelledby="bounty-heading">
             <div className="mc-right-now-heading"><h2 id="bounty-heading">Bug bounty chest</h2><span>35+ reports · {bountyPrograms.length} programs</span></div>
             <ul className="mc-bounty-chest">
-              {bountyPrograms.map(([name, mono]) => <li key={name} tabIndex={0} aria-label={name}><span aria-hidden="true">{mono}</span><span className="mc-bounty-tooltip" aria-hidden="true">{name}<small>Vulnerabilities reported</small></span></li>)}
+              {bountyPrograms.map(([name, logo]) => <li key={name} tabIndex={0} aria-label={name}><Image src={`/assets/bounty/${logo}`} alt="" width={36} height={36} className="mc-bounty-logo" unoptimized /><span className="mc-bounty-tooltip" aria-hidden="true">{name}<small>Vulnerabilities reported</small></span></li>)}
             </ul>
           </section>
         </div>
