@@ -1,0 +1,30 @@
+---
+title: "Behavior DNA"
+description: "Continuous behavioral authentication for digital banking — verifying who is using an account, not just which credentials they hold."
+date: "05.2026"
+tech: ["React", "TypeScript", "FastAPI", "XGBoost", "SHAP", "Hyperledger Fabric", "PostgreSQL", "Redis", "Docker"]
+---
+
+Built for the CBI Hackathon. Passwords prove what you know and OTPs prove what you have — Behavior DNA proves **who you are**.
+
+## The idea
+
+Stolen credentials and SIM-swaps pass every traditional check. Behavior DNA watches *how* a user types and touches from the first keypress, so an attacker holding the right password still looks wrong.
+
+## How it works
+
+- An **on-device SDK** captures 40+ keystroke, touch and session signals and flushes them every 500 ms. Device identifiers are HMAC-hashed on the device and never leave in the clear.
+- A **FastAPI decision engine** evaluates every login through three parallel pathways: behavioral machine learning, blockchain-anchored device trust, and coercion context.
+- Each login returns **APPROVE / STEP_UP / HARD_BLOCK** in under 80 ms, with the top **SHAP** attributions behind every decision.
+
+## Security features
+
+- **SIM-swap defense** — a device-hash baseline on Hyperledger Fabric; a mismatch is blocked outright.
+- **Duress protection** — a silent duress PIN opens a decoy session and alerts trusted contacts.
+- **Coercion detection** — screen-sharing, hesitation and paste patterns raise the risk score.
+- **Post-quantum crypto** — ML-KEM-768 key encapsulation and ML-DSA-65 signatures (FIPS 203/204).
+- **Active deception** — honeypot fields and decoy endpoints that fingerprint intruders.
+
+## Stack
+
+React · TypeScript · FastAPI · XGBoost · SHAP · Hyperledger Fabric · PostgreSQL · Redis · Docker
