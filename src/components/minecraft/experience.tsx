@@ -19,7 +19,7 @@ export function MinecraftExperience() {
               {item.tech && <GameTags items={item.tech} />}
             </div>
           </article>)}
-          {education.map(item => <article className="mc-experience-entry" key={item.school}><div className="mc-experience-date"><p>{item.period}</p><p>Education</p></div><div><h2>{item.degree}<span> — {item.school}</span></h2><p className="mc-education-note">Learning how systems work. Finding out how they break.</p></div></article>)}
+          {education.map(item => <article className="mc-experience-entry" key={item.school}><div className="mc-experience-date"><p>{item.period}</p><p>Education</p></div><div><h2>{item.degree}<span> — {item.school}</span></h2><p className="mc-education-note">Core coursework: Data Structures &amp; Algorithms, Operating Systems, Computer Networks, DBMS.</p></div></article>)}
         </div>
       </GameScroll>
     </section>
