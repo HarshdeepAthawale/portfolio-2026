@@ -3,10 +3,13 @@
 import { usePathname, useRouter } from "next/navigation";
 import { createContext, useCallback, useContext, useEffect, useRef, useState, type ReactNode } from "react";
 import { Panorama } from "./panorama";
+import type { SpotifyTrack } from "@/lib/spotify";
 import { defaultMinecraftPreferences, minecraftPreferencesKey, parseMinecraftPreferences, subscribeToMinecraftPreferences } from "@/lib/minecraft-preferences";
 
 const initial = defaultMinecraftPreferences;
 const tracks = [{ name: "menu-music", gain: 1 }, { name: "creative1", gain: 0.417 }, { name: "hal2", gain: 0.786 }, { name: "menu1", gain: 0.888 }];
+// The panorama is colour-graded to the visitor's local time of day.
+const timeOfDay = (hour: number) => hour >= 5 && hour < 8 ? "dawn" : hour >= 8 && hour < 17 ? "day" : hour >= 17 && hour < 20 ? "dusk" : "night";
 const WorldContext = createContext<{ playClick: () => void; navigate: (href: string) => void; reduced: boolean } | null>(null);
 export function useWorld() {
   const context = useContext(WorldContext);
@@ -29,6 +32,9 @@ export function MinecraftWorld({ children }: { children: ReactNode }) {
   const [song, setSong] = useState(0);
   const songQueue = useRef<number[]>([]);
   const [loading, setLoading] = useState<number | null>(null);
+  const [booted, setBooted] = useState(false);
+  const [time, setTime] = useState("day");
+  const [spotify, setSpotify] = useState<SpotifyTrack | null>(null);
   const music = useRef<HTMLAudioElement | null>(null);
   const clickAudio = useRef<HTMLAudioElement | null>(null);
   const timeouts = useRef<ReturnType<typeof setTimeout>[]>([]);
@@ -79,6 +85,27 @@ export function MinecraftWorld({ children }: { children: ReactNode }) {
     setReady(true);
     return () => { unsubscribe(); clearTimers(); clickAudio.current?.pause(); };
   }, [clearTimers]);
+
+  useEffect(() => {
+    // The first-load screen only shows when loading takes longer than its CSS delay.
+    let done = false;
+    const finish = () => { if (!done) { done = true; setBooted(true); } };
+    const fonts = document.fonts?.ready ?? Promise.resolve();
+    const page = document.readyState === "complete" ? Promise.resolve() : new Promise(resolve => window.addEventListener("load", resolve, { once: true }));
+    void Promise.all([fonts, page]).then(finish);
+    const fallback = setTimeout(finish, 6000);
+    const tick = () => setTime(timeOfDay(new Date().getHours()));
+    tick();
+    const clock = setInterval(tick, 60_000);
+    return () => { clearTimeout(fallback); clearInterval(clock); };
+  }, []);
+
+  useEffect(() => {
+    if (!options) return;
+    let live = true;
+    fetch("/api/spotify").then(res => res.json()).then((data: { track: SpotifyTrack | null }) => { if (live) setSpotify(data.track); }).catch(() => {});
+    return () => { live = false; };
+  }, [options]);
 
   useEffect(() => {
     if (!ready) return;
@@ -181,8 +208,9 @@ export function MinecraftWorld({ children }: { children: ReactNode }) {
   }, [options]);
 
   return <WorldContext.Provider value={{ playClick, navigate, reduced: preferences.reduced }}>
-    <div className={`minecraft-root ${pathname === "/" ? "mc-home-world" : "mc-inner-world"} ${pathname.startsWith("/blog/") || pathname.startsWith("/preview/blog/") ? "mc-flow-world" : ""}`} data-motion={preferences.reduced ? "reduced" : "full"}>
+    <div className={`minecraft-root ${pathname === "/" ? "mc-home-world" : "mc-inner-world"} ${pathname.startsWith("/blog/") || pathname.startsWith("/preview/blog/") ? "mc-flow-world" : ""}`} data-motion={preferences.reduced ? "reduced" : "full"} data-time={time}>
       <Panorama reduced={preferences.reduced} />
+      <div className="mc-world-time" aria-hidden="true" />
       <div className="mc-world-shade" aria-hidden="true" />
       <a className="mc-skip-link" href="#main-content">Skip to content</a>
       {children}
@@ -196,7 +224,15 @@ export function MinecraftWorld({ children }: { children: ReactNode }) {
           <label className="mc-volume-label" htmlFor="mc-volume">Music Volume: {Math.round(preferences.volume * 100)}%</label>
           <input id="mc-volume" aria-label="Music volume" type="range" min="0" max="1" step="0.05" value={preferences.volume} onChange={event => setPreferences(value => ({ ...value, volume: Number(event.target.value) }))} />
           <p>Music</p>
+          <div className="mc-now-playing">
+            <span className="mc-disc-slot"><img className={`mc-disc ${preferences.muted ? "" : "mc-disc-spinning"}`} src="/minecraft/images/items/music-disc.png" alt="" /></span>
+            <span className="mc-now-playing-text"><small>{preferences.muted ? "Muted" : "Now playing"}</small><span>{tracks[song].name}</span><small>Track {song + 1} of {tracks.length}</small></span>
+          </div>
           <button type="button" className="mc-option-toggle mc-next-song" onClick={nextSong}>Next Song</button>
+          {spotify && <a className="mc-now-playing mc-spotify" href={spotify.songUrl} target="_blank" rel="noopener noreferrer">
+            <span className="mc-disc-slot">{spotify.albumArt ? <img className={`mc-disc mc-disc-album ${spotify.isPlaying ? "mc-disc-spinning" : ""}`} src={spotify.albumArt} alt="" /> : <img className="mc-disc" src="/minecraft/images/items/music-disc.png" alt="" />}</span>
+            <span className="mc-now-playing-text"><small>{spotify.isPlaying ? "Harshdeep is listening on Spotify" : "Last played on Spotify"}</small><span>{spotify.title}</span><small>{spotify.artist}</small></span>
+          </a>}
           <p>Motion</p>
           <div className="mc-motion-buttons" role="group" aria-label="Motion preference">
             {[false, true].map(reduced => <button type="button" key={String(reduced)} className="mc-option-toggle" aria-pressed={preferences.reduced === reduced} onClick={() => setPreferences(value => ({ ...value, reduced }))}>{reduced ? "Reduced" : "Full"}</button>)}
@@ -205,6 +241,7 @@ export function MinecraftWorld({ children }: { children: ReactNode }) {
           <button type="button" className="mc-button mc-full-width" onClick={() => setOptions(false)}>Done</button>
         </div>
       </div>}
+      {!booted && <div className="mc-boot" role="status" aria-label="Generating world"><p>Generating world</p><span>Building terrain</span><div className="mc-boot-track"><div /></div></div>}
       {loading !== null && <div className={`mc-loading ${loading === 100 ? "mc-loading-fade" : ""}`} role="status" aria-live="polite" aria-label={`${loading < 35 ? "Loading level" : loading < 70 ? "Building terrain" : loading < 100 ? "Generating chunks" : "Ready"}, ${loading} percent`}>
         <p>{loading < 35 ? "Loading level" : loading < 70 ? "Building terrain" : loading < 100 ? "Generating chunks" : "Ready!"}</p>
         <span>{loading}%</span><div className="mc-loading-track"><div style={{ width: `${loading}%` }} /></div>

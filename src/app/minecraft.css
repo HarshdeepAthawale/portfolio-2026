@@ -343,3 +343,57 @@ html:has(.minecraft-root:not(.mc-flow-world)),html:has(.minecraft-root:not(.mc-f
 .mc-blocks-legend{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 14px;margin:0;padding:0;list-style:none;font-size:12px;color:#d6d0bb}
 .mc-blocks-legend li{display:flex;align-items:center;gap:6px}.mc-blocks-legend .mc-block{width:14px;height:14px}
 @media(max-width:639px){.mc-blocks-grid{gap:2px}.mc-block{border-width:1px}.mc-stats-list>div{font-size:14px}}
+
+/* Advancement tree (Achievements) */
+.mc-adv-tree{display:flex;flex-direction:column;gap:14px;max-width:1180px;margin:0 auto 20px;padding:16px 18px 18px;border:3px solid #000;background:linear-gradient(#0000008c,#0000008c),url('/minecraft/textures/dirt.jpg') 0 0/64px 64px;image-rendering:pixelated;box-shadow:inset 0 0 0 3px #00000080}
+.mc-adv-branch h2{margin:0 0 8px;font-size:14px;font-weight:400;color:#d6d0bb}
+.mc-adv-chain{display:flex;flex-wrap:wrap;align-items:center;row-gap:10px;margin:0;padding:4px;list-style:none}
+.mc-adv-link{flex:1 0 28px;max-width:90px;height:4px;background:#fff;box-shadow:0 0 0 2px #000}
+.mc-adv-node-wrap{position:relative;flex-shrink:0}
+.mc-adv-node{display:flex;align-items:center;justify-content:center;width:52px;height:52px;border:3px solid #000;transition:filter .1s}
+.mc-adv-node img{width:32px;height:32px;image-rendering:pixelated}
+.mc-adv-node:hover,.mc-adv-node:focus-visible{filter:brightness(1.2);outline:3px solid #fff;outline-offset:0}
+.mc-adv-task{background:#9a9a9a;box-shadow:inset 3px 3px #c6c6c6,inset -3px -3px #5a5a5a}
+.mc-adv-goal{background:#c9a227;box-shadow:inset 3px 3px #f2d36b,inset -3px -3px #7a5f10}
+.mc-adv-challenge{background:#8b5cc4;box-shadow:inset 3px 3px #c3a2f0,inset -3px -3px #4b2c78}
+.mc-adv-tooltip{position:absolute;left:0;top:calc(100% + 8px);z-index:20;display:none;flex-direction:column;gap:2px;width:max-content;max-width:240px;padding:8px 10px;background:#100010f0;border:2px solid #25025a;box-shadow:0 0 0 2px #100010f0;font-size:13px;line-height:1.4;pointer-events:none}
+.mc-adv-tooltip strong{font-weight:400;font-size:14px}.mc-adv-tooltip small{color:#aaa;font-size:12px}
+.mc-adv-title-task{color:#55ff55}.mc-adv-title-goal{color:#ffff55}.mc-adv-title-challenge{color:#ff55ff}
+.mc-adv-node-wrap:hover .mc-adv-tooltip,.mc-adv-node-wrap:focus-within .mc-adv-tooltip{display:flex}
+.mc-adv-node-wrap:nth-child(n+5) .mc-adv-tooltip,.mc-adv-node-wrap:last-child:not(:first-child) .mc-adv-tooltip{left:auto;right:0}
+
+/* Bug bounty chest (About) */
+.mc-bounty{display:flex;flex-direction:column;gap:10px;margin-top:18px}
+.mc-bounty-chest{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));width:max-content;max-width:100%;margin:0;padding:8px;list-style:none;background:#c6c6c6;border:2px solid #000;box-shadow:inset 3px 3px #fff,inset -3px -3px #555}
+.mc-bounty-chest li{position:relative;display:flex;align-items:center;justify-content:center;width:52px;max-width:100%;aspect-ratio:1;background:#8b8b8b;box-shadow:inset 3px 3px #373737,inset -3px -3px #fff;font-size:15px;font-weight:700;color:#fff;text-shadow:2px 2px #3f3f3f;cursor:default}
+.mc-bounty-chest li:hover,.mc-bounty-chest li:focus-visible{background:#a8a8a8;outline:none}
+.mc-bounty-tooltip{position:absolute;left:50%;bottom:calc(100% + 8px);z-index:20;display:none;flex-direction:column;gap:2px;width:max-content;translate:-50% 0;padding:6px 10px;background:#100010f0;border:2px solid #25025a;box-shadow:0 0 0 2px #100010f0;color:#55ffff;font-size:14px;font-weight:400;pointer-events:none}
+.mc-bounty-tooltip small{color:#aaa;font-size:12px}
+.mc-bounty-chest li:hover .mc-bounty-tooltip,.mc-bounty-chest li:focus .mc-bounty-tooltip{display:flex}
+@media(max-width:639px){.mc-bounty-chest{grid-template-columns:repeat(4,minmax(0,1fr))}}
+
+/* Options: now playing + Spotify */
+.mc-now-playing{display:flex;align-items:center;gap:12px;margin:0 0 8px;padding:8px;background:#8b8b8b;box-shadow:inset 2px 2px #373737,inset -2px -2px #fff;color:#fff;text-decoration:none;text-shadow:2px 2px #3f3f3f}
+a.mc-now-playing{margin:8px 0 0}a.mc-now-playing:hover{filter:brightness(1.08)}
+.mc-disc-slot{display:flex;align-items:center;justify-content:center;flex-shrink:0;width:48px;height:48px;background:#6b6b6b;box-shadow:inset 2px 2px #373737,inset -2px -2px #bdbdbd}
+.mc-disc{width:36px;height:36px;image-rendering:pixelated}
+.mc-disc-album{border-radius:50%;image-rendering:auto;box-shadow:0 0 0 2px #000}
+@keyframes mc-disc-spin{to{transform:rotate(360deg)}}
+.mc-disc-spinning{animation:mc-disc-spin 3s linear infinite}
+.mc-now-playing-text{display:flex;flex-direction:column;min-width:0;font-size:14px;line-height:1.3}
+.mc-now-playing-text>span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mc-now-playing-text small{color:#2b2b2b;text-shadow:none;font-size:11px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* First-load screen: hidden unless loading takes longer than 400ms */
+.mc-boot{position:fixed;z-index:1100;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:linear-gradient(#0000008c,#0000008c),#3b2a1d url('/minecraft/textures/dirt.jpg') 0 0/64px 64px;image-rendering:pixelated;color:#fff;font-family:Minecraft,monospace;text-shadow:2px 2px #3f3f3f;opacity:0;animation:mc-boot-in .2s .4s forwards;pointer-events:none}
+.mc-boot p{margin:0;font-size:20px}.mc-boot>span{color:#c8c8c8;font-size:15px}
+.mc-boot-track{width:320px;max-width:75vw;height:8px;border:2px solid #000;background:#808080}
+.mc-boot-track>div{height:100%;width:12%;background:#80ff20;animation:mc-boot-fill 3.2s steps(1,end) infinite}
+@keyframes mc-boot-in{to{opacity:1;pointer-events:auto}}
+@keyframes mc-boot-fill{0%{width:12%}25%{width:34%}50%{width:61%}75%{width:84%}100%{width:100%}}
+
+/* Panorama colour grade by local time of day */
+.mc-world-time{position:absolute;inset:0;z-index:-2;pointer-events:none;transition:background 2s}
+.minecraft-root[data-time=dawn] .mc-world-time{background:#ffb48a26}
+.minecraft-root[data-time=dusk] .mc-world-time{background:linear-gradient(#78285033,#e38b6a2e)}
+.minecraft-root[data-time=night] .mc-world-time{background:#050a2e73}

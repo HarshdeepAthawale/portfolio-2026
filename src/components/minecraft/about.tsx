@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { heroConfig } from "@/config/hero";
 import { aboutConfig } from "@/config/about";
-import { currentInventory } from "@/config/minecraft";
+import { bountyPrograms, currentInventory } from "@/config/minecraft";
 import { GameScreen, GameTags, InventorySlot } from "./ui";
 import { GameScroll } from "./game-scroll";
 import { ContributionBlocks, GitHubStatsDialog, type GitHubStats } from "./github-stats";
@@ -69,6 +69,12 @@ export function MinecraftAbout({ github }: { github: GitHubStats }) {
             {currentInventory.map((item, index) => <div className="mc-now-item" key={item.label}><button type="button" className={`mc-item-panel mc-now-button mc-now-${item.motion}`} style={{ "--item-duration": item.duration, "--item-scale": `${item.iconScale * 100}%` } as CSSProperties} aria-expanded={expanded === index} aria-controls={`now-note-${index}`} onClick={() => setExpanded(value => value === index ? null : index)}><InventorySlot src={item.icon} /><span className="mc-now-text"><small>{item.label}</small><span>{item.value}</span></span><span className="mc-plus">{expanded === index ? "−" : "+"}</span><span className="mc-item-tooltip" aria-hidden="true">{item.tooltip}</span></button>{expanded === index && <p className="mc-now-note" id={`now-note-${index}`}>{item.note}</p>}</div>)}
           </section>
           {github.contributions && <ContributionBlocks contributions={github.contributions} />}
+          <section className="mc-bounty" aria-labelledby="bounty-heading">
+            <div className="mc-right-now-heading"><h2 id="bounty-heading">Bug bounty chest</h2><span>35+ reports · {bountyPrograms.length} programs</span></div>
+            <ul className="mc-bounty-chest">
+              {bountyPrograms.map(([name, mono]) => <li key={name} tabIndex={0} aria-label={name}><span aria-hidden="true">{mono}</span><span className="mc-bounty-tooltip" aria-hidden="true">{name}<small>Vulnerabilities reported</small></span></li>)}
+            </ul>
+          </section>
         </div>
       </div>
     </GameScroll></section>
