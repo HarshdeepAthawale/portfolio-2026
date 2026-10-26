@@ -14,4 +14,4 @@ export const currentInventory = [
 ];
 
 /** Programs named in the bio, shown as the About page's bug bounty chest. */
-export const bountyPrograms = [["Red Bull", "RB"], ["Goldman Sachs", "GS"], ["Adobe", "AD"], ["Netflix", "NF"], ["NVIDIA", "NV"], ["Anduril", "AN"], ["Flipkart", "FK"], ["Coca-Cola", "CC"]] as const;
+export const bountyPrograms = [["Red Bull", "redbull.png"], ["Goldman Sachs", "goldman-sachs.png"], ["Adobe", "adobe.png"], ["Netflix", "netflix.png"], ["NVIDIA", "nvidia.png"], ["Anduril", "anduril.png"], ["Flipkart", "flipkart.png"], ["Coca-Cola", "coca-cola.svg"]] as const;

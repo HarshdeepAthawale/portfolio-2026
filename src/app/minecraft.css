@@ -368,6 +368,7 @@ html:has(.minecraft-root:not(.mc-flow-world)),html:has(.minecraft-root:not(.mc-f
 .mc-bounty-chest li{position:relative;display:flex;align-items:center;justify-content:center;width:52px;max-width:100%;aspect-ratio:1;background:#8b8b8b;box-shadow:inset 3px 3px #373737,inset -3px -3px #fff;font-size:15px;font-weight:700;color:#fff;text-shadow:2px 2px #3f3f3f;cursor:default}
 .mc-bounty-chest li:hover,.mc-bounty-chest li:focus-visible{background:#a8a8a8;outline:none}
 .mc-bounty-tooltip{position:absolute;left:50%;bottom:calc(100% + 8px);z-index:20;display:none;flex-direction:column;gap:2px;width:max-content;translate:-50% 0;padding:6px 10px;background:#100010f0;border:2px solid #25025a;box-shadow:0 0 0 2px #100010f0;color:#55ffff;font-size:14px;font-weight:400;pointer-events:none}
+.mc-bounty-logo{width:62%;height:62%;object-fit:contain;image-rendering:auto!important;box-shadow:0 0 0 2px #00000059}
 .mc-bounty-tooltip small{color:#aaa;font-size:12px}
 .mc-bounty-chest li:hover .mc-bounty-tooltip,.mc-bounty-chest li:focus .mc-bounty-tooltip{display:flex}
 @media(max-width:639px){.mc-bounty-chest{grid-template-columns:repeat(4,minmax(0,1fr))}}
