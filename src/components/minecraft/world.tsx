@@ -3,7 +3,6 @@
 import { usePathname, useRouter } from "next/navigation";
 import { createContext, useCallback, useContext, useEffect, useRef, useState, type ReactNode } from "react";
 import { Panorama } from "./panorama";
-import type { SpotifyTrack } from "@/lib/spotify";
 import { defaultMinecraftPreferences, minecraftPreferencesKey, parseMinecraftPreferences, subscribeToMinecraftPreferences } from "@/lib/minecraft-preferences";
 
 const initial = defaultMinecraftPreferences;
@@ -34,7 +33,6 @@ export function MinecraftWorld({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState<number | null>(null);
   const [booted, setBooted] = useState(false);
   const [time, setTime] = useState("day");
-  const [spotify, setSpotify] = useState<SpotifyTrack | null>(null);
   const music = useRef<HTMLAudioElement | null>(null);
   const clickAudio = useRef<HTMLAudioElement | null>(null);
   const timeouts = useRef<ReturnType<typeof setTimeout>[]>([]);
@@ -99,13 +97,6 @@ export function MinecraftWorld({ children }: { children: ReactNode }) {
     const clock = setInterval(tick, 60_000);
     return () => { clearTimeout(fallback); clearInterval(clock); };
   }, []);
-
-  useEffect(() => {
-    if (!options) return;
-    let live = true;
-    fetch("/api/spotify").then(res => res.json()).then((data: { track: SpotifyTrack | null }) => { if (live) setSpotify(data.track); }).catch(() => {});
-    return () => { live = false; };
-  }, [options]);
 
   useEffect(() => {
     if (!ready) return;
@@ -229,10 +220,6 @@ export function MinecraftWorld({ children }: { children: ReactNode }) {
             <span className="mc-now-playing-text"><small>{preferences.muted ? "Muted" : "Now playing"}</small><span>{tracks[song].name}</span><small>Track {song + 1} of {tracks.length}</small></span>
           </div>
           <button type="button" className="mc-option-toggle mc-next-song" onClick={nextSong}>Next Song</button>
-          {spotify && <a className="mc-now-playing mc-spotify" href={spotify.songUrl} target="_blank" rel="noopener noreferrer">
-            <span className="mc-disc-slot">{spotify.albumArt ? <img className={`mc-disc mc-disc-album ${spotify.isPlaying ? "mc-disc-spinning" : ""}`} src={spotify.albumArt} alt="" /> : <img className="mc-disc" src="/minecraft/images/items/music-disc.png" alt="" />}</span>
-            <span className="mc-now-playing-text"><small>{spotify.isPlaying ? "Harshdeep is listening on Spotify" : "Last played on Spotify"}</small><span>{spotify.title}</span><small>{spotify.artist}</small></span>
-          </a>}
           <p>Motion</p>
           <div className="mc-motion-buttons" role="group" aria-label="Motion preference">
             {[false, true].map(reduced => <button type="button" key={String(reduced)} className="mc-option-toggle" aria-pressed={preferences.reduced === reduced} onClick={() => setPreferences(value => ({ ...value, reduced }))}>{reduced ? "Reduced" : "Full"}</button>)}
