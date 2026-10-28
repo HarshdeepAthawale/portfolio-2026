@@ -418,3 +418,10 @@ html:has(.minecraft-root:not(.mc-flow-world)),html:has(.minecraft-root:not(.mc-f
 .mc-exp-logo{width:48px;height:48px}
 .mc-exp-logo img{width:76%;height:76%;object-fit:contain;image-rendering:auto!important;box-shadow:0 0 0 2px #00000059}
 @media(max-width:639px){.mc-exp-logo{width:40px;height:40px}}
+
+/* UI fixes: keep page actions clear of the corner buttons, tidy the phone footer, let skill names wrap */
+@media(max-width:1119px){.mc-inner-world .mc-custom-actions{margin-bottom:calc(19 * var(--u))}}
+@media(max-width:639px){
+  .mc-home-footer{left:50%;right:auto;translate:-50% 0;width:max-content;max-width:calc(100vw - 24px);bottom:calc(30 * var(--u));text-align:center;font-size:calc(5.5 * var(--u))}
+  .mc-enchant-category>span{white-space:normal;overflow:visible;text-overflow:clip;font-size:16px;line-height:1.25}
+}
