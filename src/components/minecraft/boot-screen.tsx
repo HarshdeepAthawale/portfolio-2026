@@ -51,11 +51,13 @@ export function BootScreen() {
       if (t < 1) frame = requestAnimationFrame(tick);
     };
     frame = requestAnimationFrame(tick);
-    const page = document.readyState === "complete" ? Promise.resolve() : new Promise(resolve => window.addEventListener("load", resolve, { once: true }));
+    // Wait for the fonts (capped) and the minimum duration, but never for every image on the page:
+    // on slow phones the full "load" event can take many seconds.
+    const fonts = Promise.race([document.fonts?.ready ?? Promise.resolve(), new Promise(resolve => setTimeout(resolve, 1500))]);
     const minimum = new Promise(resolve => setTimeout(resolve, duration));
     let fade: ReturnType<typeof setTimeout> | undefined;
     const finish = () => { setProgress(100); setState("fading"); fade = setTimeout(() => setState("done"), 350); };
-    void Promise.race([Promise.all([page, document.fonts?.ready, minimum]), new Promise(resolve => setTimeout(resolve, 9000))]).then(finish);
+    void Promise.all([fonts, minimum]).then(finish);
     const tipTimer = setInterval(() => setTip(value => (value + 1) % tips.length), 2200);
     const skip = (event: Event) => { if (event instanceof KeyboardEvent && event.key === "Tab") return; finish(); };
     window.addEventListener("keydown", skip, { once: true });
