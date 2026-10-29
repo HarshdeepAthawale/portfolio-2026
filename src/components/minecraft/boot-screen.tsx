@@ -56,13 +56,24 @@ export function BootScreen() {
     const fonts = Promise.race([document.fonts?.ready ?? Promise.resolve(), new Promise(resolve => setTimeout(resolve, 1500))]);
     const minimum = new Promise(resolve => setTimeout(resolve, duration));
     let fade: ReturnType<typeof setTimeout> | undefined;
-    const finish = () => { setProgress(100); setState("fading"); fade = setTimeout(() => setState("done"), 350); };
+    let detach = () => {};
+    const finish = () => { setProgress(100); setState("fading"); if (!fade) fade = setTimeout(() => { setState("done"); detach(); }, 350); };
     void Promise.all([fonts, minimum]).then(finish);
     const tipTimer = setInterval(() => setTip(value => (value + 1) % tips.length), 2200);
     const skip = (event: Event) => { if (event instanceof KeyboardEvent && event.key === "Tab") return; finish(); };
+    // A tap that skips the screen must not also land on the menu button underneath it
+    // (the chunk map sits right over Experience/Projects), so swallow the click that follows.
+    const swallow = (event: MouseEvent) => { event.preventDefault(); event.stopPropagation(); };
+    const guard = () => {
+      window.addEventListener("click", swallow, { capture: true, once: true });
+      setTimeout(() => window.removeEventListener("click", swallow, { capture: true }), 800);
+    };
+    // Once the screen is gone, later taps and keys belong to the page again.
+    detach = () => { window.removeEventListener("keydown", skip); window.removeEventListener("pointerdown", guard); window.removeEventListener("pointerdown", skip); };
     window.addEventListener("keydown", skip, { once: true });
+    window.addEventListener("pointerdown", guard, { once: true });
     window.addEventListener("pointerdown", skip, { once: true });
-    return () => { cancelAnimationFrame(frame); clearInterval(tipTimer); if (fade) clearTimeout(fade); window.removeEventListener("keydown", skip); window.removeEventListener("pointerdown", skip); };
+    return () => { cancelAnimationFrame(frame); clearInterval(tipTimer); if (fade) clearTimeout(fade); detach(); };
   }, []);
 
   if (state === "done") return null;
