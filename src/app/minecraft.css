@@ -425,3 +425,10 @@ html:has(.minecraft-root:not(.mc-flow-world)),html:has(.minecraft-root:not(.mc-f
   .mc-home-footer{left:50%;right:auto;translate:-50% 0;width:max-content;max-width:calc(100vw - 24px);bottom:calc(30 * var(--u));text-align:center;font-size:calc(5.5 * var(--u))}
   .mc-enchant-category>span{white-space:normal;overflow:visible;text-overflow:clip;font-size:16px;line-height:1.25}
 }
+
+/* Project write-ups: give headings and paragraphs real spacing (the card's h2/p reset was flattening them) */
+.mc-detail-card.prose>h2{margin:1.6em 0 .5em;font-size:20px;line-height:1.35}
+.mc-detail-card.prose>h3{margin:1.4em 0 .4em;font-size:17px;line-height:1.4}
+.mc-detail-card.prose>p{margin:0 0 1em}
+.mc-detail-card.prose>:first-child{margin-top:0}
+@media(max-width:639px){.mc-detail-card.prose>h2{font-size:18px}}
