@@ -152,3 +152,5 @@
 .minecraft-root.mc-flow-world .mc-corner-controls{opacity:.4;transition:opacity .2s}
 .minecraft-root.mc-flow-world .mc-corner-controls:hover,.minecraft-root.mc-flow-world .mc-corner-controls:focus-within{opacity:1}
 @media(hover:none){.minecraft-root.mc-flow-world .mc-corner-controls{opacity:.6}}
+/* On phones the fixed sound/options buttons sit on top of article text; reading pages don't need them */
+@media(max-width:639px){.minecraft-root.mc-flow-world .mc-corner-controls{display:none}}
