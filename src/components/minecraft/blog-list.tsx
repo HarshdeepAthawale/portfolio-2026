@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { useWorld } from "./world";
 import type { ContentItem } from "@/lib/mdx";
@@ -8,7 +9,10 @@ import { GameButton, GameScreen } from "./ui";
 
 export function MinecraftBlog({ posts }: { posts: Omit<ContentItem, "content">[] }) {
   const { navigate } = useWorld();
+  const router = useRouter();
   const [query, setQuery] = useState("");
+  // Posts open through buttons, not links, so prefetch them up front to make opening instant.
+  useEffect(() => { posts.forEach(post => router.prefetch(`/blog/${post.slug}`)); }, [posts, router]);
   const [selected, setSelected] = useState<string | null>(null);
   const filtered = posts.filter(post => `${post.title} ${post.description}`.toLocaleLowerCase().includes(query.trim().toLocaleLowerCase()));
   const current = filtered.find(post => post.slug === selected);
@@ -19,9 +23,9 @@ export function MinecraftBlog({ posts }: { posts: Omit<ContentItem, "content">[]
       <input id="blog-search" type="search" className="blog-search" placeholder="Search…" value={query} onChange={event => setQuery(event.target.value)} onKeyDown={event => { if (event.key === "Escape") { event.preventDefault(); setQuery(""); event.currentTarget.blur(); } }} />
     </div>
     <section className="blog-world-panel" aria-label="Blog posts">
-      <p id="blog-open-help" className="sr-only">Click a post to select it. Double-click or press Enter to open it, or use the Open Article button.</p>
+      <p id="blog-open-help" className="sr-only">Click a post to select it, then click it again or press Enter to open it, or use the Open Article button.</p>
       <div className="blog-world-scroll"><div className="blog-world-list">
-        {filtered.map(post => <button type="button" key={post.slug} className="blog-world-row" aria-pressed={current?.slug === post.slug} aria-describedby="blog-open-help" onClick={() => setSelected(post.slug)} onDoubleClick={() => open(post.slug)} onKeyDown={event => { if (event.key === "Enter") { event.preventDefault(); open(post.slug); } }}>
+        {filtered.map(post => <button type="button" key={post.slug} className="blog-world-row" aria-pressed={current?.slug === post.slug} aria-describedby="blog-open-help" onClick={() => { if (current?.slug === post.slug) open(post.slug); else setSelected(post.slug); }} onKeyDown={event => { if (event.key === "Enter") { event.preventDefault(); open(post.slug); } }}>
           <span className="blog-world-cover">{post.cover ? <Image src={post.cover} alt="" width={80} height={80} sizes="80px" /> : <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3Z" /></svg>}<span className="blog-world-play" aria-hidden="true">▶</span></span>
           <span className="blog-world-copy"><span className="blog-world-title">{post.title}</span><span className="blog-world-description">{post.description}</span><span className="blog-world-meta">{post.date} · Security, Research</span></span>
         </button>)}

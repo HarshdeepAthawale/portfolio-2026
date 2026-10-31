@@ -1,6 +1,7 @@
 "use client";
 
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 import { useWorld } from "./world";
 import { projects } from "@/config/projects";
 import { GameButton, GameScreen, GameTags } from "./ui";
@@ -8,9 +9,12 @@ import { GameScroll } from "./game-scroll";
 
 export function MinecraftProjects() {
   const { navigate } = useWorld();
+  const router = useRouter();
   const [query, setQuery] = useState("");
   const [selected, setSelected] = useState<string | null>(null);
   const list = useRef<HTMLDivElement>(null);
+  // Rows aren't links, so Next can't prefetch them on its own: warm every detail page so opening one is instant.
+  useEffect(() => { projects.forEach(project => router.prefetch(`/projects/${project.slug}`)); }, [router]);
   const filtered = useMemo(() => projects.filter(project => `${project.title} ${project.description} ${project.tech.join(" ")}`.toLowerCase().includes(query.toLowerCase())), [query]);
   const current = projects.find(project => project.slug === selected);
   const select = (slug: string) => setSelected(slug);
@@ -36,14 +40,14 @@ export function MinecraftProjects() {
           document.getElementById(`project-${filtered[next].slug}`)?.scrollIntoView({ block: "nearest" });
         }
       }}>
-        {filtered.map(project => <div key={project.slug} id={`project-${project.slug}`} role="option" aria-selected={selected === project.slug} tabIndex={-1} className={`mc-project-row ${selected === project.slug ? "mc-row-selected" : ""}`} onClick={() => { select(project.slug); list.current?.focus(); }} onDoubleClick={() => navigate(`/projects/${project.slug}`)}>
+        {filtered.map(project => <div key={project.slug} id={`project-${project.slug}`} role="option" aria-selected={selected === project.slug} tabIndex={-1} className={`mc-project-row ${selected === project.slug ? "mc-row-selected" : ""}`} onClick={() => { if (selected === project.slug) { navigate(`/projects/${project.slug}`); return; } select(project.slug); list.current?.focus(); }}>
           <div className={`mc-project-icon mc-project-icon-${project.scene}`} aria-hidden="true"><span>{project.monogram}</span></div>
           <div className="mc-project-info"><div className="mc-project-title"><h2>{project.title}</h2><span>{project.date.split(".")[1]}</span></div><p>{project.description}</p><GameTags items={project.tech} /></div>
           <div className="mc-project-status"><span className="mc-signal" aria-hidden="true"><i/><i/><i/><i/></span><span>Released</span></div>
         </div>)}
         {!filtered.length && <p className="mc-empty">No projects found.<br/><span>Try Python, security, AI, or Next.js.</span></p>}
       </GameScroll>
-      <p className="mc-list-count" role="status">{filtered.length} {filtered.length === 1 ? "project" : "projects"} · select a project for actions</p>
+      <p className="mc-list-count" role="status">{filtered.length} {filtered.length === 1 ? "project" : "projects"} · tap a project, tap again to open</p>
     </section>
   </GameScreen>;
 }
