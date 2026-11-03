@@ -11,6 +11,8 @@
   "services": [{ "binding": "WORKER_SELF_REFERENCE", "service": "harshdeepathawale" }],
   // ISR and fetch() cache (About page GitHub stats revalidate hourly).
   "r2_buckets": [{ "binding": "NEXT_INC_CACHE_R2_BUCKET", "bucket_name": "harshdeepathawale-next-cache" }],
+  // Keep the workers.dev preview URL alongside the custom domain.
+  "workers_dev": true,
   "routes": [
     { "pattern": "harshdeepathawale.in", "custom_domain": true },
     { "pattern": "www.harshdeepathawale.in", "custom_domain": true }
