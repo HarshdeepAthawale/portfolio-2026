@@ -8,7 +8,7 @@ export const skillCategories = [
 
 export const currentInventory = [
   { label: "Hunting", value: "Critical bugs in real systems", note: "35+ vulnerability reports across Red Bull, Netflix, Adobe, NVIDIA, and more. Clear reproduction, real impact, and remediation that holds.", icon: "images/skills/diamond-sword.png", tooltip: "Diamond Sword", motion: "orb", duration: "2.4s", iconScale: .8 },
-  { label: "Building", value: "AI-powered defenses", note: "A transformer-based WAF that detects 96% of real-world attack payloads, against 46% for ModSecurity with OWASP CRS v4.", icon: "images/skills/enchant-book.png", tooltip: "Enchantment Book", motion: "orb", duration: "2.4s", iconScale: .82 },
+  { label: "Building", value: "AI-powered defenses", note: "A transformer-based WAF that detects 96% of real-world attack payloads, and a four-agent deepfake detection system.", icon: "images/skills/enchant-book.png", tooltip: "Enchantment Book", motion: "orb", duration: "2.4s", iconScale: .82 },
   { label: "Learning", value: "Top 1% on TryHackMe", note: "230+ hands-on labs and a 300+ day learning streak. Consistency over intensity.", icon: "images/experience-orb.png", tooltip: "Experience Orb", motion: "bob", duration: "2.7s", iconScale: .8 },
   { label: "Off the clock", value: "Mr. Robot & Suits", note: "A couple of favorites from my watchlist. Also a fan of The Social Network, Anandi Gopal, and Natsamrat.", icon: "images/items/music-disc.png", tooltip: "Music Disc", motion: "bob", duration: "2.9s", iconScale: .84 },
 ];

@@ -1,0 +1,25 @@
+---
+title: "Deepfake Detection System"
+description: "Full-stack AI platform with a 4-agent orchestration system for deepfake media analysis, powered by ResNet50/EfficientNet trained on FaceForensics++."
+date: "03.2026"
+tech: ["Next.js", "React", "TypeScript", "Node.js", "MongoDB", "FFmpeg"]
+---
+
+A full-stack platform that detects AI-generated and manipulated media, built around a multi-agent pipeline.
+
+## Architecture
+
+The system orchestrates **four agents**, each with a focused job:
+
+- **Perception** — ingests and normalizes media (frames, audio) via FFmpeg.
+- **Detection** — runs the ML classifiers over extracted frames.
+- **Compression** — handles efficient storage and streaming of analyzed assets.
+- **Cognitive** — aggregates signals into a final, explainable verdict.
+
+## The models
+
+Trained **ResNet50** and **EfficientNet** classifiers on the **FaceForensics++** dataset — 16GB and 7000+ samples — achieving high accuracy in distinguishing genuine footage from AI-generated content.
+
+## Stack
+
+Next.js · React · TypeScript · Node.js · Express · MongoDB · FFmpeg · Tailwind CSS
