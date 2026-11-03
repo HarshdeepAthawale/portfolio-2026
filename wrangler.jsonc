@@ -1,0 +1,21 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "harshdeepathawale",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2026-10-01",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "assets": { "directory": ".open-next/assets", "binding": "ASSETS" },
+  // next/image resizing runs through Cloudflare Images.
+  "images": { "binding": "IMAGES" },
+  // Lets the worker call itself for cache revalidation.
+  "services": [{ "binding": "WORKER_SELF_REFERENCE", "service": "harshdeepathawale" }],
+  // ISR and fetch() cache (About page GitHub stats revalidate hourly).
+  "r2_buckets": [{ "binding": "NEXT_INC_CACHE_R2_BUCKET", "bucket_name": "harshdeepathawale-next-cache" }],
+  // Keep the workers.dev preview URL alongside the custom domain.
+  "workers_dev": true,
+  "routes": [
+    { "pattern": "harshdeepathawale.in", "custom_domain": true },
+    { "pattern": "www.harshdeepathawale.in", "custom_domain": true }
+  ],
+  "observability": { "enabled": true }
+}

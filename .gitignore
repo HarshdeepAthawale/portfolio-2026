@@ -48,3 +48,8 @@ next-env.d.ts
 /.codex/media-tools/
 /.next-minecraft/
 /.next-build/
+
+# Cloudflare (OpenNext) build output
+/.open-next/
+/.wrangler/
+.dev.vars
