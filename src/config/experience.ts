@@ -1,4 +1,4 @@
-// Content lives in content/data/experience.json (editable from /admin).
+// Content lives in content/data/experience.json.
 import data from "../../content/data/experience.json";
 
 export type ExperiencePhoto = { src: string; alt: string };

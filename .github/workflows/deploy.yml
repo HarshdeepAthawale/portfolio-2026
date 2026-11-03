@@ -13,7 +13,7 @@ concurrency:
 
 permissions:
   contents: read
-  statuses: write # the admin dashboard reads deploy state from commit statuses
+  statuses: write # report deploy state on each commit
 
 jobs:
   deploy:

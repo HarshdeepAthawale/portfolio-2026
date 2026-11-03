@@ -1,11 +1,10 @@
 import { recordPageview } from "@/lib/analytics";
-import { SESSION_COOKIE } from "@/lib/admin/session";
-import { kvIncr } from "@/lib/admin/kv";
+import { kvIncr } from "@/lib/kv";
 import { BOT_UA, visitorId } from "@/lib/visitor-id";
 
 export const dynamic = "force-dynamic";
 
-const PRIVATE_PATH = /^\/(admin|preview|api)(\/|$)/;
+const PRIVATE_PATH = /^\/api(\/|$)/;
 
 function deviceOf(ua: string) {
   if (/iPad|Tablet/i.test(ua)) return "Tablet";
@@ -40,9 +39,8 @@ export async function POST(request: Request) {
   const done = new Response(null, { status: 204 });
   try {
     const ua = request.headers.get("user-agent") ?? "";
-    const cookies = request.headers.get("cookie") ?? "";
-    // Bots, and you (signed in to /admin), don't count.
-    if (!ua || BOT_UA.test(ua) || cookies.includes(`${SESSION_COOKIE}=`)) return done;
+    // Bots don't count.
+    if (!ua || BOT_UA.test(ua)) return done;
 
     const body = JSON.parse((await request.text()).slice(0, 2000)) as { path?: unknown; referrer?: unknown };
     if (typeof body.path !== "string" || !body.path.startsWith("/")) return done;

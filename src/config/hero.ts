@@ -1,4 +1,4 @@
-// Content lives in content/data/hero.json (editable from /admin).
+// Content lives in content/data/hero.json.
 import data from "../../content/data/hero.json";
 
 export type SocialIcon = "x" | "linkedin" | "github" | "medium";

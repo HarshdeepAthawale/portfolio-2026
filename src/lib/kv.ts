@@ -3,7 +3,7 @@ import path from "path";
 import { hasRedisConfig, redisPipeline } from "@/lib/redis";
 
 /**
- * A tiny key-value store for admin state: sessions, rate limits, drafts.
+ * A tiny key-value store (rate limits for the analytics endpoint).
  * Production uses Redis. Local dev without Redis falls back to a gitignored
  * JSON file; that fallback is refused in production.
  */

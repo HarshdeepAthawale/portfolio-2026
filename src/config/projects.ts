@@ -1,4 +1,4 @@
-// Content lives in content/data/projects.json (editable from /admin).
+// Content lives in content/data/projects.json.
 import type { ShapeName } from "@/lib/particle-shapes";
 import data from "../../content/data/projects.json";
 

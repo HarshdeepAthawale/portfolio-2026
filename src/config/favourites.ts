@@ -1,4 +1,4 @@
-// Content lives in content/data/favourites.json (editable from /admin).
+// Content lives in content/data/favourites.json.
 import data from "../../content/data/favourites.json";
 
 export type Favourite = {

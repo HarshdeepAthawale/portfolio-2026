@@ -1,4 +1,4 @@
-// Content lives in content/data/achievements.json (editable from /admin).
+// Content lives in content/data/achievements.json.
 import data from "../../content/data/achievements.json";
 
 export type Achievement = {

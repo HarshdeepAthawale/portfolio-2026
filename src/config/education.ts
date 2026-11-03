@@ -1,4 +1,4 @@
-// Content lives in content/data/education.json (editable from /admin).
+// Content lives in content/data/education.json.
 import data from "../../content/data/education.json";
 
 export type EducationItem = { school: string; degree: string; period: string; logo?: string };
