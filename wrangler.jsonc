@@ -11,6 +11,10 @@
   "services": [{ "binding": "WORKER_SELF_REFERENCE", "service": "harshdeepathawale" }],
   // ISR and fetch() cache (About page GitHub stats revalidate hourly).
   "r2_buckets": [{ "binding": "NEXT_INC_CACHE_R2_BUCKET", "bucket_name": "harshdeepathawale-next-cache" }],
+  // Sessions, drafts, visitor counts and analytics (see src/lib/d1-redis.ts).
+  "d1_databases": [
+    { "binding": "DB", "database_name": "harshdeepathawale-db", "database_id": "2bec163f-00cb-46f4-9516-6c3aeaa30af7", "migrations_dir": "migrations" }
+  ],
   // Keep the workers.dev preview URL alongside the custom domain.
   "workers_dev": true,
   "routes": [
