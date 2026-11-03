@@ -7,7 +7,7 @@
  *   ADMIN_PASSWORD_HASH  a scrypt hash - the password itself is never stored
  *   ADMIN_TOTP_SECRET    two-factor secret for an authenticator app (optional, off by default)
  *
- * Then push them to Vercel:  node scripts/set-vercel-env.mjs production
+ * Then upload them to Cloudflare:  npx wrangler secret put ADMIN_EMAIL (and ADMIN_PASSWORD_HASH)
  *
  * Usage: node scripts/admin-setup.mjs
  * Nothing here is sent anywhere; the TOTP secret is shown only in this terminal.
@@ -134,6 +134,6 @@ Next:
        - Repository access: only HarshdeepAthawale/portfolio-2026
        - Permissions: Contents (read and write), Commit statuses (read-only)
      Add it to .env.local as GITHUB_TOKEN=...
-  2. Push everything to Vercel:  node scripts/set-vercel-env.mjs production
+  2. Upload them to Cloudflare:  npx wrangler secret put ADMIN_EMAIL  (repeat for ADMIN_PASSWORD_HASH)
   3. Redeploy, then sign in at /admin
 `);

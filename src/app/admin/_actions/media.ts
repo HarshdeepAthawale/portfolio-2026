@@ -7,7 +7,7 @@ import { assertAdmin } from "@/lib/admin/session";
 
 /**
  * Uploads land in public/assets/uploads/. Upload-only commits don't trigger a
- * deploy (see vercel.json); they go live with the next publish. Until then the
+ * deploy (see .github/workflows/deploy.yml); they go live with the next publish. Until then the
  * admin preview serves them straight from the repo.
  */
 export async function uploadImageAction(formData: FormData) {

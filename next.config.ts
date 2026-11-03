@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
   distDir: process.env.NEXT_DIST_DIR || ".next",
   devIndicators: false,
   experimental: {
-    // Admin uploads go through server actions; Vercel caps bodies at 4.5 MB.
+    // Admin uploads go through server actions; keep bodies under 4.5 MB.
     serverActions: { bodySizeLimit: "4.5mb" },
   },
   async headers() {

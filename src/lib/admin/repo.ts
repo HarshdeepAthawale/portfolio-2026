@@ -5,7 +5,7 @@ import { adminEnv } from "@/lib/admin/env";
 
 /**
  * Reads and commits site content. In production every change is a commit to the
- * GitHub repo (Vercel then redeploys), so git history is the audit log and any
+ * GitHub repo (GitHub Actions then redeploys to Cloudflare), so git history is the audit log and any
  * change can be reverted. In local dev without a GITHUB_TOKEN, files are written
  * to the working tree instead.
  */
@@ -252,7 +252,7 @@ export type RecentCommit = {
   message: string;
   date: string;
   url: string;
-  /** Deployment status reported to GitHub by Vercel. */
+  /** Deployment status reported to GitHub by the Cloudflare deploy workflow. */
   state: "success" | "pending" | "failure" | "error" | "unknown";
 };
 

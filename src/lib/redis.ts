@@ -2,7 +2,7 @@ import { d1Pipeline, type D1 } from "@/lib/d1-redis";
 
 // Storage for sessions, drafts, visitor counts and analytics. On Cloudflare it is
 // the D1 database bound as `DB`; elsewhere it falls back to Upstash Redis over REST
-// (either the Upstash-direct or the Vercel Marketplace / KV variable names).
+// (UPSTASH_REDIS_REST_* or KV_REST_API_* variable names).
 
 /** The Worker's D1 binding, when running on Cloudflare. */
 function d1(): D1 | null {

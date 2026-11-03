@@ -6,7 +6,7 @@ const MAX_BYTES = 3.5 * 1024 * 1024;
 const MAX_SIDE = 2400;
 
 /**
- * Phone photos are often over Vercel's 4.5 MB request cap, so big images are
+ * Phone photos are often over the 4.5 MB request cap, so big images are
  * scaled down in the browser first. The server re-encodes everything anyway.
  */
 async function prepareImage(file: File): Promise<File> {
