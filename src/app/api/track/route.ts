@@ -53,7 +53,7 @@ export async function POST(request: Request) {
     // A cheap guard against someone looping the endpoint to inflate numbers.
     if ((await kvIncr(`an:rl:${visitor.slice(0, 32)}`, 60)) > 60) return done;
 
-    const country = request.headers.get("x-vercel-ip-country") ?? "";
+    const country = request.headers.get("cf-ipcountry") ?? request.headers.get("x-vercel-ip-country") ?? "";
     await recordPageview({
       visitor,
       path: pagePath,

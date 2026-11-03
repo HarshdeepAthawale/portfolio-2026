@@ -1,5 +1,20 @@
-// Upstash Redis over its REST API. Supports both the Upstash-direct names and
-// the Vercel Marketplace / KV names, so it works however the database was provisioned.
+import { d1Pipeline, type D1 } from "@/lib/d1-redis";
+
+// Storage for sessions, drafts, visitor counts and analytics. On Cloudflare it is
+// the D1 database bound as `DB`; elsewhere it falls back to Upstash Redis over REST
+// (either the Upstash-direct or the Vercel Marketplace / KV variable names).
+
+/** The Worker's D1 binding, when running on Cloudflare. */
+function d1(): D1 | null {
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const { getCloudflareContext } = require("@opennextjs/cloudflare") as typeof import("@opennextjs/cloudflare");
+    return ((getCloudflareContext().env as { DB?: D1 }).DB) ?? null;
+  } catch {
+    return null; // Node (next dev / build): no Cloudflare context.
+  }
+}
+
 function redisUrl() {
   return process.env.UPSTASH_REDIS_REST_URL ?? process.env.KV_REST_API_URL;
 }
@@ -9,11 +24,13 @@ function redisToken() {
 }
 
 export function hasRedisConfig() {
-  return Boolean(redisUrl() && redisToken());
+  return Boolean(d1() || (redisUrl() && redisToken()));
 }
 
-/** Runs one or more commands in a single round trip via Upstash's REST pipeline. */
+/** Runs commands in order: on D1 when bound, otherwise in one round trip via Upstash's REST pipeline. */
 export async function redisPipeline(commands: (string | number)[][]): Promise<unknown[]> {
+  const db = d1();
+  if (db) return d1Pipeline(db, commands);
   const res = await fetch(`${redisUrl()}/pipeline`, {
     method: "POST",
     headers: {
