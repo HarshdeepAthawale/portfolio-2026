@@ -23,7 +23,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
   return <GameScreen title={post.title} className="mc-project-detail-screen" backHref="/projects">
     <section className="mc-dark-panel mc-scrollbar mc-project-detail-scroll" tabIndex={0} role="region" aria-label={`${post.title} details`}>
       <div className="mc-project-detail-content">
-        <header className="mc-detail-card"><span className="mc-detail-date">{post.date}</span><h2>{post.title}</h2><p>{post.description}</p>{post.tech && <GameTags items={post.tech} />}<a className="mc-detail-source" href={project?.href ?? "https://github.com/HarshdeepAthawale"} target="_blank" rel="noopener noreferrer">GitHub ↗</a></header>
+        <header className="mc-detail-card">{project?.icon && <span className="mc-detail-logo"><Image src={project.icon} alt="" width={64} height={64} unoptimized /></span>}<span className="mc-detail-date">{post.date}</span><h2>{post.title}</h2><p>{post.description}</p>{post.tech && <GameTags items={post.tech} />}<a className="mc-detail-source" href={project?.href ?? "https://github.com/HarshdeepAthawale"} target="_blank" rel="noopener noreferrer">GitHub ↗</a></header>
         {project?.cover && <div className="mc-detail-card mc-detail-cover"><Image src={project.cover} alt={`${post.title} overview`} width={1200} height={675} sizes="(min-width: 1100px) 1100px, 90vw" priority /></div>}
         {post.writeup && <Link href={post.writeup} className="mc-detail-writeup">Read the full research write-up →</Link>}
         <article className="mc-detail-card prose prose-neutral prose-reading dark:prose-invert"><MdxContent source={post.content} /></article>

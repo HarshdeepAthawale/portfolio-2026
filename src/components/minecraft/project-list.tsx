@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useWorld } from "./world";
 import { projects } from "@/config/projects";
@@ -41,7 +42,7 @@ export function MinecraftProjects() {
         }
       }}>
         {filtered.map(project => <div key={project.slug} id={`project-${project.slug}`} role="option" aria-selected={selected === project.slug} tabIndex={-1} className={`mc-project-row ${selected === project.slug ? "mc-row-selected" : ""}`} onClick={() => { if (selected === project.slug) { navigate(`/projects/${project.slug}`); return; } select(project.slug); list.current?.focus(); }}>
-          <div className={`mc-project-icon mc-project-icon-${project.scene}`} aria-hidden="true"><span>{project.monogram}</span></div>
+          <div className={`mc-project-icon mc-project-icon-${project.scene}`} aria-hidden="true">{project.icon ? <Image src={project.icon} alt="" width={64} height={64} unoptimized draggable={false} /> : <span>{project.monogram}</span>}</div>
           <div className="mc-project-info"><div className="mc-project-title"><h2>{project.title}</h2><span>{project.date.split(".")[1]}</span></div><p>{project.description}</p><GameTags items={project.tech} /></div>
           <div className="mc-project-status"><span className="mc-signal" aria-hidden="true"><i/><i/><i/><i/></span><span>Released</span></div>
         </div>)}

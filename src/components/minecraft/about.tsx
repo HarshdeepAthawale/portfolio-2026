@@ -82,7 +82,7 @@ export function MinecraftAbout({ github }: { github: GitHubStats }) {
           <div className="mc-profile-divider" aria-hidden="true">✦</div>
           <dl className="mc-profile-facts"><div><dt>Studying</dt><dd>Computer Engineering</dd></div><div><dt>From</dt><dd>{heroConfig.location}</dd></div><div><dt>Currently</dt><dd>Student @ TIET</dd></div></dl>
           <GameTags items={["AppSec", "Bug Bounty", "AI"]} />
-          <div className="mc-about-buttons"><a className="mc-button" href="/assets/resume.pdf" target="_blank" rel="noopener noreferrer">Resume</a><button className="mc-button" type="button" onClick={() => setContact(true)} aria-haspopup="dialog">Contact</button>{hasStats && <button className="mc-button mc-stats-button" type="button" onClick={() => setStats(true)} aria-haspopup="dialog">GitHub Stats</button>}</div>
+          <div className="mc-about-buttons"><Link className="mc-button" href="/resume">Resume</Link><button className="mc-button" type="button" onClick={() => setContact(true)} aria-haspopup="dialog">Contact</button>{hasStats && <button className="mc-button mc-stats-button" type="button" onClick={() => setStats(true)} aria-haspopup="dialog">GitHub Stats</button>}</div>
           <Link className="mc-achievements-link" href="/achievements">View achievements <span>→</span></Link>
         </aside>
         <div className="mc-about-content">

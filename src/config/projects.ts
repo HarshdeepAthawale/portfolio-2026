@@ -17,6 +17,8 @@ export type Project = {
   cover?: string;
   /** Animated particle poster (see projectScenes); takes precedence over the cover */
   scene?: "waf" | "deepfake";
+  /** Pixel-art logo shown on project rows and pages (Minecraft item style) */
+  icon?: string;
   /** 2-letter monogram shown on the gradient tile */
   monogram?: string;
   gradient: string;
