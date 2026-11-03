@@ -16,7 +16,7 @@ export type Project = {
   /** Optional cover image for project cards (fallback when no scene) */
   cover?: string;
   /** Animated particle poster (see projectScenes); takes precedence over the cover */
-  scene?: "waf" | "deepfake";
+  scene?: "waf";
   /** 2-letter monogram shown on the gradient tile */
   monogram?: string;
   gradient: string;
@@ -30,5 +30,4 @@ export const projectScenes: Record<
   { shape: ShapeName; status: string; badge: string }
 > = {
   waf: { shape: "shield", status: "WAF · inspecting", badge: "96% detection" },
-  deepfake: { shape: "face", status: "Deepfake · 4-agent scan", badge: "Scanning" },
 };

@@ -23,55 +23,6 @@
     ]
   },
   {
-    "company": "Google Developer Groups TIET",
-    "logo": "/assets/experience/gdg-tiet.png",
-    "employmentType": "Full-time",
-    "periodShort": "Jul 25 - Present",
-    "periodLong": "July 2025 - Present",
-    "locationShort": "Patiala, IN (On-site)",
-    "locationLong": "Patiala, India (On-site)",
-    "working": true,
-    "roles": [
-      {
-        "title": "Head of Cyber Security",
-        "periodShort": "Aug 26 - Present",
-        "periodLong": "August 2026 - Present",
-        "working": true,
-        "details": [
-          "Leading the club's security work - building security projects with core members, alongside bug bounty hunting and security research."
-        ],
-        "photos": [
-          {
-            "src": "/assets/experience/gdg-tiet-team.jpg",
-            "alt": "The GDG TIET team at the 'Welcome to the family' induction"
-          }
-        ]
-      },
-      {
-        "title": "Core Member",
-        "periodShort": "Jul 25 - Aug 26",
-        "periodLong": "July 2025 - August 2026",
-        "details": [
-          "Delivered a 2-hour cybersecurity workshop at DevFest 2025, covering core security concepts through live demonstrations for 160+ attendees."
-        ],
-        "photos": [
-          {
-            "src": "/assets/experience/gdg-tiet-speaking.jpg",
-            "alt": "Presenting the DevFest 2025 cybersecurity workshop"
-          },
-          {
-            "src": "/assets/experience/gdg-tiet-workshop.jpg",
-            "alt": "Attendees following along in the DevFest 2025 cybersecurity workshop"
-          },
-          {
-            "src": "/assets/experience/gdg-tiet-devfest.jpg",
-            "alt": "1st-year orientation 2025 with the GDG at Thapar team"
-          }
-        ]
-      }
-    ]
-  },
-  {
     "company": "Iris Intelligence",
     "logo": "/assets/experience/irisintelligence.jpg",
     "role": "Security Engineer",
@@ -81,14 +32,15 @@
     "locationShort": "Delhi, IN (Hybrid)",
     "locationLong": "Delhi, India (Hybrid)",
     "details": [
-      "Identified and remediated IDOR, SQL injection, authentication bypass, and RCE vulnerabilities across APIs and application flows.",
-      "Implemented Cloudflare Workers and custom WAF rules to mitigate bot abuse across the application serving 5K+ users."
+      "Identified and remediated IDOR, SQL injection, authentication bypass, and RCE vulnerabilities across REST APIs and authentication flows, securing a platform serving 5K+ users.",
+      "Performed adversarial security testing of agentic AI workflows, uncovering prompt injection, tool misuse, and insecure function-calling flaws in LLM-integrated applications.",
+      "Automated security regression testing in CI/CD using API fuzzing and authorization checks, so every change was scanned before reaching production."
     ],
     "tech": [
       "API Security",
-      "Cloudflare",
-      "Access Control",
-      "Threat Modeling"
+      "LLM Security",
+      "CI/CD",
+      "API Fuzzing"
     ]
   }
 ]

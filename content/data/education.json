@@ -3,20 +3,31 @@
     {
       "school": "Thapar Institute of Engineering & Technology",
       "degree": "B.E. · Computer Engineering",
-      "period": "2024-2028",
+      "period": "Aug 2024 - Jun 2028",
       "logo": "/assets/experience/thapar.png"
     }
   ],
   "skills": [
     "Python",
-    "C / C++",
+    "Bash",
+    "C++",
     "Burp Suite",
     "Nmap",
     "Metasploit",
-    "Frida",
+    "OWASP ZAP",
+    "sqlmap",
+    "Nuclei",
     "MobSF",
-    "OWASP Top 10",
+    "Frida",
+    "JADX",
+    "Wireshark",
     "MITRE ATT&CK",
-    "Docker"
+    "Cyber Kill Chain",
+    "OWASP Top 10",
+    "Docker",
+    "CI/CD",
+    "Linux",
+    "Git",
+    "PostgreSQL"
   ]
 }
