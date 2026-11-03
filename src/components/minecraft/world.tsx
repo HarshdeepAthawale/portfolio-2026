@@ -138,13 +138,17 @@ export function MinecraftWorld({ children }: { children: ReactNode }) {
     void clickAudio.current.play().catch(() => {});
   }, []);
 
+  // The "Loading level" screen only appears if a route change is genuinely slow (over ~600 ms);
+  // normal, instant navigations show nothing at all.
   const beginTransition = useCallback(() => {
     clearTimers();
-    setLoading(12);
-    [34, 61, 84, 93].forEach((step, index) => {
-      timeouts.current.push(setTimeout(() => setLoading(step), [70, 155, 260, 390][index]));
-    });
-    timeouts.current.push(setTimeout(() => setLoading(null), 5000));
+    timeouts.current.push(setTimeout(() => {
+      setLoading(12);
+      [34, 61, 84, 93].forEach((step, index) => {
+        timeouts.current.push(setTimeout(() => setLoading(step), [200, 600, 1100, 1800][index]));
+      });
+      timeouts.current.push(setTimeout(() => setLoading(null), 8000));
+    }, 600));
   }, [clearTimers]);
 
   const navigate = useCallback((href: string) => {
@@ -155,8 +159,8 @@ export function MinecraftWorld({ children }: { children: ReactNode }) {
   useEffect(() => {
     if (previousPath.current === pathname) return;
     previousPath.current = pathname;
-    clearTimers();
-    setLoading(100);
+    clearTimers(); // cancels a pending "slow navigation" screen
+    setLoading(current => current === null ? null : 100);
     const timer = setTimeout(() => setLoading(null), preferences.reduced ? 0 : 220);
     return () => clearTimeout(timer);
   }, [pathname, preferences.reduced, clearTimers]);

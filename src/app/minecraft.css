@@ -388,11 +388,8 @@ html:has(.minecraft-root:not(.mc-flow-world)),html:has(.minecraft-root:not(.mc-f
 .mc-boot{position:fixed;z-index:1100;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:linear-gradient(#0000008c,#0000008c),#3b2a1d url('/minecraft/textures/dirt.jpg') 0 0/64px 64px;image-rendering:pixelated;color:#fff;font-family:Minecraft,monospace;text-shadow:2px 2px #3f3f3f;transition:opacity .3s;animation:mc-boot-failsafe 0s 10s forwards}
 .mc-boot-done{opacity:0}
 .mc-boot p{margin:0;font-size:20px}
-.mc-chunk-map{display:grid;grid-template-columns:repeat(17,1fr);grid-template-rows:repeat(17,1fr);width:min(204px,56vw);aspect-ratio:1;margin:8px 0;background:#00000059;box-shadow:0 0 0 2px #000}
-.mc-chunk-map span{display:block}
 .mc-boot-stage{color:#fff;font-size:15px}
 .mc-boot-tip{min-height:20px;color:#ffff55;font-size:13px;text-align:center;padding:0 16px}
-.mc-boot-skip{position:absolute;bottom:20px;color:#aaa;font-size:11px}
 @keyframes mc-boot-failsafe{to{opacity:0;visibility:hidden}}
 
 /* Panorama colour grade by local time of day */
@@ -449,3 +446,9 @@ html:has(.minecraft-root:not(.mc-flow-world)),html:has(.minecraft-root:not(.mc-f
 @media(max-aspect-ratio:4/5){.mc-resume-screen .mc-resume-preview{display:flex;align-items:flex-start}.mc-resume-screen .mc-resume-preview img{position:static;transform:none;width:100%;height:auto;max-height:100%}}
 @media(max-width:639px){.mc-resume-screen .mc-collection-scroll{padding:8px}.mc-resume-screen .mc-collection-description{display:none}}
 .mc-resume-screen .mc-scroll-content{display:flex;flex:1;min-width:0;min-height:0}
+
+/* Generating world screen */
+.mc-chunk-frame{padding:6px;background:#2a2a2a;border:2px solid #000;box-shadow:inset 2px 2px #5a5a5a,inset -2px -2px #151515}
+.mc-chunk-map{display:block;width:min(204px,56vw);aspect-ratio:1;image-rendering:pixelated}
+.mc-boot-bar{width:min(320px,75vw);height:10px;padding:2px;background:#555;border:2px solid #000;box-sizing:border-box}
+.mc-boot-bar>div{height:100%;background:#80ff20;box-shadow:inset 0 2px #b9ff7a;transition:width .12s linear}
