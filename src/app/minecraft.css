@@ -438,3 +438,12 @@ html:has(.minecraft-root:not(.mc-flow-world)),html:has(.minecraft-root:not(.mc-f
 .mc-detail-logo{float:right;display:grid;place-items:center;width:72px;height:72px;margin:0 0 8px 12px;background:#8b8b8b;box-shadow:inset 3px 3px #373737,inset -3px -3px #fff}
 .mc-detail-logo img{width:80%;height:80%;image-rendering:pixelated}
 @media(max-width:639px){.mc-detail-logo{width:56px;height:56px}}
+
+/* Resume: the whole page fits the screen at once, no scrolling or zooming */
+.mc-resume-screen .mc-collection-scroll{overflow:hidden!important;display:flex;padding:8px 16px;scrollbar-gutter:auto}
+.mc-resume-screen .mc-collection-content{flex:1;min-height:0;min-width:0;width:100%;max-width:none;margin:0;gap:8px;align-items:center}
+.mc-resume-screen .mc-collection-description{display:none}
+.mc-resume-screen .mc-resume-preview{position:relative;flex:1;min-height:0;width:100%;padding:0;box-sizing:border-box}
+.mc-resume-screen .mc-resume-preview img{position:absolute;inset:8px;width:calc(100% - 16px);height:calc(100% - 16px);max-width:none;max-height:none;object-fit:contain}
+@media(max-width:639px){.mc-resume-screen .mc-collection-scroll{padding:8px}.mc-resume-screen .mc-collection-description{display:none}}
+.mc-resume-screen .mc-scroll-content{display:flex;flex:1;min-width:0;min-height:0}
