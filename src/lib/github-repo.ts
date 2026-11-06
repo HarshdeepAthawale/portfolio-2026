@@ -31,6 +31,8 @@ const API = "https://api.github.com";
 const owner = () => siteConfig.githubUsername;
 
 const headers = () => ({
+  // GitHub rejects requests without a User-Agent, and Workers don't send one by default.
+  "User-Agent": "portfolio-site",
   Accept: "application/vnd.github+json",
   "X-GitHub-Api-Version": "2022-11-28",
   // Optional: lifts the 60/hour anonymous limit at build time.
