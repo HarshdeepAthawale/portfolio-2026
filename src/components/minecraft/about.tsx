@@ -66,7 +66,13 @@ function ContactBook({ onClose }: { onClose: () => void }) {
   </div>;
 }
 
-export function MinecraftAbout({ github }: { github: GitHubStats }) {
+export function MinecraftAbout() {
+  const [github, setGithub] = useState<GitHubStats>({ username: "", profile: null, contributions: null });
+  useEffect(() => {
+    let live = true;
+    fetch("/api/github").then(res => res.json()).then((data: GitHubStats) => { if (live) setGithub(data); }).catch(() => {});
+    return () => { live = false; };
+  }, []);
   const [expanded, setExpanded] = useState<number | null>(null);
   const [contact, setContact] = useState(false);
   const [stats, setStats] = useState(false);

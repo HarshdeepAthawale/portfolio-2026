@@ -37,7 +37,7 @@ const headers = () => ({
   ...(process.env.GITHUB_TOKEN ? { Authorization: `Bearer ${process.env.GITHUB_TOKEN}` } : {}),
 });
 
-const get = (path: string) => fetch(`${API}${path}`, { headers: headers(), next: { revalidate: 3600 } });
+const get = (path: string) => fetch(`${API}${path}`, { headers: headers(), cache: "no-store" });
 
 /** Commit count on the default branch, from the last page of a 1-per-page listing. */
 async function commitCount(repo: string, branch: string) {
@@ -138,7 +138,7 @@ export async function getMonthlyTopRepos(months: string[]): Promise<Record<strin
       method: "POST",
       headers: { ...headers(), "Content-Type": "application/json" },
       body: JSON.stringify({ query: `query { user(login: "${owner()}") { ${fields} } }` }),
-      next: { revalidate: 3600 },
+      cache: "no-store",
     });
     if (!res.ok) return {};
     type Repo = { repository: { name: string; isPrivate: boolean }; contributions: { totalCount: number } };
@@ -175,7 +175,7 @@ export async function getContributions(): Promise<Contributions | null> {
       method: "POST",
       headers: { ...headers(), "Content-Type": "application/json" },
       body: JSON.stringify({ query }),
-      next: { revalidate: 3600 },
+      cache: "no-store",
     });
     if (!res.ok) return null;
     type Collection = {

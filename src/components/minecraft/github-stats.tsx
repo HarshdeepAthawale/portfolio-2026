@@ -69,7 +69,7 @@ export function GitHubStatsDialog({ stats, onClose }: { stats: GitHubStats; onCl
       <dl className="mc-stats-list">
         {rows[tab].length ? rows[tab].map(([label, value]) => <div key={label}><dt>{label}</dt><dd>{value}</dd></div>) : <div><dt>Nothing to show yet</dt><dd>—</dd></div>}
       </dl>
-      <p className="mc-stats-source">Live from <a href={`https://github.com/${stats.username}`} target="_blank" rel="noopener noreferrer">github.com/{stats.username}</a> · refreshed hourly</p>
+      <p className="mc-stats-source">Live from <a href={`https://github.com/${stats.username}`} target="_blank" rel="noopener noreferrer">github.com/{stats.username}</a> · updated every 30 minutes</p>
       <button type="button" className="mc-button mc-stats-done" onClick={onClose}>Done</button>
     </div>
   </div>;
