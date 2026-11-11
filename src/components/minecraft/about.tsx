@@ -67,6 +67,7 @@ function ContactBook({ onClose }: { onClose: () => void }) {
 }
 
 export function MinecraftAbout() {
+  const { src, alt, width, height } = aboutConfig.portrait;
   const [github, setGithub] = useState<GitHubStats>({ username: "", profile: null, contributions: null });
   useEffect(() => {
     let live = true;
@@ -83,7 +84,7 @@ export function MinecraftAbout() {
     <section className="mc-dark-panel mc-about-panel" aria-label="About Harshdeep"><GameScroll className="mc-about-scroll" aria-label="About me content">
       <div className="mc-about-grid">
         <aside className="mc-about-sidebar">
-          <div className="mc-portrait-frame"><div className="mc-portrait-window"><Image src={aboutConfig.portrait.src} alt={`${heroConfig.name}, waist-up portrait`} width={960} height={1280} sizes="(min-width: 900px) 390px, 120vw" priority /></div></div>
+          <div className="mc-portrait-frame"><div className="mc-portrait-window"><Image src={src} alt={alt} width={width} height={height} sizes="(min-width: 900px) 288px, 100vw" priority /></div></div>
           <h2 className="mc-item-panel mc-profile-name">{heroConfig.name}</h2>
           <div className="mc-profile-divider" aria-hidden="true">✦</div>
           <dl className="mc-profile-facts"><div><dt>Studying</dt><dd>Computer Engineering</dd></div><div><dt>From</dt><dd>{heroConfig.location}</dd></div><div><dt>Currently</dt><dd>Student @ TIET</dd></div></dl>
