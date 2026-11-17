@@ -136,7 +136,35 @@ def helix():
     img.resize((16 * SCALE, 16 * SCALE), Image.NEAREST).save(OUT / "behavior-dna.png")
 
 
+def harness():
+    """A gold padlock with a green check: nothing gets through until it is verified."""
+    img = Image.new("RGBA", (16, 16), (0, 0, 0, 0))
+    px = img.load()
+    # shackle (iron)
+    for y in range(1, 7):
+        for x in (4, 5, 10, 11):
+            px[x, y] = rgba("#c9ced8") if x in (4, 10) else rgba("#8f96a6")
+    for x in range(5, 11):
+        px[x, 1] = rgba("#dfe3ea")
+        px[x, 2] = rgba("#c9ced8") if x < 8 else rgba("#8f96a6")
+    # body (gold)
+    for y in range(7, 15):
+        for x in range(2, 14):
+            px[x, y] = rgba("#f2c230") if (x + y) % 7 else rgba("#e0ac1f")
+    for x in range(2, 14):
+        px[x, 7] = rgba("#ffe58a")
+        px[x, 14] = rgba("#b98712")
+    for y in range(7, 15):
+        px[2, y] = rgba("#ffe58a")
+        px[13, y] = rgba("#b98712")
+    # green check
+    for x, y in [(5, 11), (6, 12), (7, 13), (8, 12), (9, 11), (10, 10), (11, 9)]:
+        px[x, y] = rgba("#3ddc6a")
+        px[x, y + 1 if y < 13 else y] = rgba("#1fa84a")
+    finish(img, "security-harness")
+
+
 if __name__ == "__main__":
     OUT.mkdir(parents=True, exist_ok=True)
-    shield(); deepfake(); helix()
+    shield(); deepfake(); helix(); harness()
     print("wrote", ", ".join(sorted(p.name for p in OUT.glob("*.png"))))

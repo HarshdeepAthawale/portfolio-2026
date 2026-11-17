@@ -63,5 +63,24 @@
     "gradient": "from-[#0f1015] via-[#3a2a17] to-[#c49a4f]",
     "repo": "Behavior-DNA-Bank",
     "icon": "/minecraft/images/projects/behavior-dna.png"
+  },
+  {
+    "slug": "security-harness",
+    "title": "Security Harness",
+    "date": "11.2026",
+    "description": "A self-hosted bug-hunting harness (Python, SQLite) built around one hard guarantee: it never reports a bug it hasn't reproduced. LLM agents only propose attacks; a deterministic engine replays each one and drops anything it can't reproduce. Validated on OWASP crAPI, where it auto-discovered all 44 endpoints from the OpenAPI spec and confirmed real BOLA/IDOR bugs with replay-backed evidence. 400+ tests, 4-person team.",
+    "tech": [
+      "Python",
+      "SQLite",
+      "LLM Agents",
+      "OpenAPI",
+      "Docker",
+      "OWASP crAPI"
+    ],
+    "href": "https://github.com/HarshdeepAthawale",
+    "featured": true,
+    "monogram": "SH",
+    "icon": "/minecraft/images/projects/security-harness.png",
+    "gradient": "from-[#0f1015] via-[#1d3a2a] to-[#55c98a]"
   }
 ]

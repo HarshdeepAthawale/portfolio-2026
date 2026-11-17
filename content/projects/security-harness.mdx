@@ -1,0 +1,39 @@
+---
+title: "Security Harness"
+description: "A self-hosted bug-hunting harness that never reports a bug it hasn't reproduced: agents propose attacks, a deterministic engine replays them."
+date: "11.2026"
+tech: ["Python", "SQLite", "LLM Agents", "OpenAPI", "Docker", "OWASP crAPI"]
+---
+
+A 4-person team project: an automated bug-hunting harness built around one hard guarantee — **it never reports a bug it hasn't reproduced.**
+
+## The guarantee
+
+LLM agents are good at *guessing* attacks and bad at being trusted. So here they only **propose**. A deterministic verification engine replays every proposed attack against the target, and anything it can't reproduce is dropped before it ever becomes a finding.
+
+## Architecture
+
+Four parts, built in Python with SQLite for state:
+
+- **Orchestrator** — plans the run and hands work to the agents.
+- **LLM agents** — propose candidate attacks; they never touch the target directly.
+- **Request broker** — the single choke-point all traffic flows through.
+- **Verification engine** — replays each proposal and keeps only what reproduces.
+
+## The broker
+
+Everything the agents want to send goes through one place, which:
+
+- enforces **scope allow-lists**, so nothing outside the target is ever touched;
+- blocks **SSRF and cloud-metadata addresses** with DNS-pinning;
+- injects **auth tokens by reference**, so secrets are never exposed to the LLM;
+- **redacts responses** before they come back;
+- writes a **signed, tamper-proof log** of every request.
+
+## Validation
+
+Tested on **OWASP crAPI**, a Dockerized deliberately-vulnerable API. The harness parsed its OpenAPI spec to auto-discover **all 44 endpoints**, then confirmed genuine access-control bugs (**BOLA / IDOR**) with replay-backed evidence. The project ships with **400+ tests**.
+
+## Stack
+
+Python · SQLite · LLM agents · OpenAPI · Docker · OWASP crAPI
