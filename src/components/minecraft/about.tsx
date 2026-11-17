@@ -8,6 +8,7 @@ import { aboutConfig } from "@/config/about";
 import { bountyPrograms, currentInventory } from "@/config/minecraft";
 import { GameScreen, GameTags, InventorySlot } from "./ui";
 import { GameScroll } from "./game-scroll";
+import { useWorld } from "./world";
 import type { SpotifyTrack } from "@/lib/spotify";
 import { ContributionBlocks, GitHubStatsDialog, type GitHubStats } from "./github-stats";
 import type { CSSProperties } from "react";
@@ -66,8 +67,24 @@ function ContactBook({ onClose }: { onClose: () => void }) {
   </div>;
 }
 
+const PORTRAIT_SWAP_MS = 4000;
+
+/** The About photo: cross-fades between the portraits every few seconds (stays on the first with Reduced motion). */
+function PortraitRotator() {
+  const { reduced } = useWorld();
+  const [active, setActive] = useState(0);
+  const photos = aboutConfig.portraits;
+  useEffect(() => {
+    if (reduced || photos.length < 2) return;
+    const timer = setInterval(() => setActive(index => (index + 1) % photos.length), PORTRAIT_SWAP_MS);
+    return () => clearInterval(timer);
+  }, [reduced, photos.length]);
+  return <div className="mc-portrait-frame"><div className="mc-portrait-window">
+    {photos.map((photo, index) => <Image key={photo.src} className={`mc-portrait-photo ${index === active ? "mc-portrait-active" : ""}`} src={photo.src} alt={index === active ? photo.alt : ""} aria-hidden={index !== active} width={photo.width} height={photo.height} sizes="(min-width: 900px) 288px, 100vw" style={{ objectPosition: photo.position }} priority />)}
+  </div></div>;
+}
+
 export function MinecraftAbout() {
-  const { src, alt, width, height } = aboutConfig.portrait;
   const [github, setGithub] = useState<GitHubStats>({ username: "", profile: null, contributions: null });
   useEffect(() => {
     let live = true;
@@ -84,7 +101,7 @@ export function MinecraftAbout() {
     <section className="mc-dark-panel mc-about-panel" aria-label="About Harshdeep"><GameScroll className="mc-about-scroll" aria-label="About me content">
       <div className="mc-about-grid">
         <aside className="mc-about-sidebar">
-          <div className="mc-portrait-frame"><div className="mc-portrait-window"><Image src={src} alt={alt} width={width} height={height} sizes="(min-width: 900px) 288px, 100vw" priority /></div></div>
+          <PortraitRotator />
           <h2 className="mc-item-panel mc-profile-name">{heroConfig.name}</h2>
           <div className="mc-profile-divider" aria-hidden="true">✦</div>
           <dl className="mc-profile-facts"><div><dt>Studying</dt><dd>Computer Engineering</dd></div><div><dt>From</dt><dd>{heroConfig.location}</dd></div><div><dt>Currently</dt><dd>Student @ TIET</dd></div></dl>

@@ -6,6 +6,11 @@ export const aboutConfig = {
     "I'm Harshdeep Athawale, a **security researcher/engineer** who builds software and breaks it. **35+ vulnerability reports** across Red Bull, Goldman Sachs, Adobe, Netflix, NVIDIA, Anduril, Flipkart, and Coca-Cola - and the defenses I build come straight from what breaking them taught me. I care about the full picture: clear **reproduction**, real **impact**, and remediation that holds.",
   quote:
     "The best security work is reproducible, honestly scoped, and written so the defender can fix it the same day.",
+  // The About photo swaps between these every few seconds (see MinecraftAbout).
+  portraits: [
+    { src: "/assets/about-portrait.jpg", width: 962, height: 1386, position: "50% 56%", alt: "Harshdeep Athawale in a blazer, taking a mirror selfie" },
+    { src: "/assets/about-portrait-2.jpg", width: 1448, height: 1086, position: "66% 22%", alt: "Harshdeep Athawale smiling with headphones around his neck" },
+  ],
   portrait: {
     src: "/assets/about-portrait.jpg",
     alt: "Harshdeep Athawale",
