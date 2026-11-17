@@ -77,10 +77,11 @@
       "Docker",
       "OWASP crAPI"
     ],
-    "href": "https://github.com/HarshdeepAthawale",
+    "href": "https://github.com/HarshdeepAthawale/security-harness",
     "featured": true,
     "monogram": "SH",
     "icon": "/minecraft/images/projects/security-harness.png",
-    "gradient": "from-[#0f1015] via-[#1d3a2a] to-[#55c98a]"
+    "gradient": "from-[#0f1015] via-[#1d3a2a] to-[#55c98a]",
+    "repo": "security-harness"
   }
 ]
