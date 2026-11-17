@@ -68,7 +68,7 @@
     "slug": "security-harness",
     "title": "Security Harness",
     "date": "11.2026",
-    "description": "A self-hosted bug-hunting harness (Python, SQLite) built around one hard guarantee: it never reports a bug it hasn't reproduced. LLM agents only propose attacks; a deterministic engine replays each one and drops anything it can't reproduce. Validated on OWASP crAPI, where it auto-discovered all 44 endpoints from the OpenAPI spec and confirmed real BOLA/IDOR bugs with replay-backed evidence. 400+ tests, 4-person team.",
+    "description": "A self-hosted bug-hunting harness (Python, SQLite) built around one hard guarantee: it never reports a bug it hasn't reproduced. LLM agents only propose attacks; a deterministic engine replays each one and drops anything it can't reproduce. Validated on OWASP crAPI, where it auto-discovered all 44 endpoints from the OpenAPI spec and confirmed real BOLA/IDOR bugs with replay-backed evidence. 400+ tests.",
     "tech": [
       "Python",
       "SQLite",
