@@ -1,24 +1,44 @@
 [
   {
+    "company": "Intigriti",
+    "logo": "/assets/experience/intigriti.jpg",
+    "role": "Security Researcher",
+    "employmentType": "Part-time",
+    "periodShort": "Apr 26 - Present",
+    "periodLong": "April 2026 - Present",
+    "locationShort": "Antwerp, BE (Remote)",
+    "locationLong": "Antwerp, Flemish Region, Belgium (Remote)",
+    "working": true,
+    "details": [
+      "Critical (CVSS 9.1) unauthenticated GraphQL on Red Bull's Batalla staging - production-mirrored user data leaked with zero credentials, including a genuine @redbull.com email in the records.",
+      "Unauthenticated Coca-Cola API exposing 892 staff records with write access to a production database, plus hardcoded OAuth secrets at Superdrug risking NHS patient data.",
+      "NVIDIA subdomain takeover (CVSS 7.5) serving gambling content - recognized on the Intigriti Hall of Fame with 4 severity badges."
+    ],
+    "tech": [
+      "Web Application Security",
+      "GraphQL",
+      "Subdomain Takeover",
+      "Hall of Fame"
+    ]
+  },
+  {
     "company": "HackerOne",
     "logo": "/assets/experience/hackerone.jpg",
     "role": "Security Researcher",
     "employmentType": "Part-time",
-    "periodShort": "Dec 25 - Present",
-    "periodLong": "December 2025 - Present",
+    "periodShort": "Dec 25 - Mar 26",
+    "periodLong": "December 2025 - March 2026",
     "locationShort": "San Francisco, CA (Remote)",
-    "locationLong": "San Francisco, CA (Remote)",
-    "working": true,
+    "locationLong": "San Francisco, California (Remote)",
     "details": [
-      "Submitted 35+ vulnerability reports to global programs including Goldman Sachs, Flipkart, Adobe, Netflix, Red Bull, NVIDIA, Anduril, Coca-Cola, and Superdrug - headlined by a Critical (CVSS 9.1) GraphQL flaw at Red Bull exposing employee PII, and an unauthenticated API exposing 892 employees' PII with write access to a production database.",
-      "Found high-impact infra and supply-chain bugs: remote code execution in a build pipeline, a subdomain takeover at Anduril, and exposed source maps leaking OAuth secrets at Flipkart/Myntra.",
-      "Discovered hardcoded OAuth secrets leaking NHS medical data and an appointment IDOR at Superdrug - preventing potential patient-data breaches."
+      "Reports to enterprise programs - Goldman Sachs, Adobe, Netflix, Anduril, Flipkart, Cloudflare, OPPO.",
+      "Headlined by an authentication bypass (CVSS 8.6) in Netflix's Law Enforcement Portal, plus an Anduril subdomain takeover (CVSS 8.2) via dangling Mailgun CNAME enabling email spoofing/interception.",
+      "Infra & supply-chain bugs: build-pipeline RCE, Flipkart/Myntra source maps leaking OAuth secrets, GS Akamai WAF bypass to admin routes."
     ],
     "tech": [
+      "Report Writing",
+      "Web Application Security",
       "Burp Suite",
-      "GraphQL",
-      "IDOR",
-      "Subdomain Takeover",
       "CVSS 3.1"
     ]
   },
